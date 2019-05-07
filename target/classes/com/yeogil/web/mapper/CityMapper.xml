@@ -29,7 +29,7 @@
 	</select>
 
 	<select id="selectProduct" resultMap="result"
-		parameterType="com.yeogil.web.controller.Proxy">
+		parameterType="com.yeogil.web.controller.Proxy" >
 		SELECT @ROWNUM:=@ROWNUM+1 AS rownum,
 			PRODUCT_NAME productName, 
 			PRICE price, 

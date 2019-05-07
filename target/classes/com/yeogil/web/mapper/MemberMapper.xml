@@ -31,7 +31,7 @@
 					,THUMBNAIL_IMAGE = #{thumbnailImg}
 			WHERE MEMBER_ID LIKE #{memberId}
 	</update>
-	<select id="countMember" resultType="int">
+	<select id="countMember" resultType="int" >
 		SELECT COUNT(*)
 		FROM yeogil.MEMBER
 	</select>

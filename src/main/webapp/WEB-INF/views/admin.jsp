@@ -39,7 +39,7 @@
   <link href="<%=application.getContextPath()%>/resources/admin/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
   <link href="<%=application.getContextPath()%>/resources/admin/assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
   <!-- Custom styles -->
-  <link href="<%=application.getContextPath()%>/resources/admin/css/style.css" rel="stylesheet">
+  <link href="<%=application.getContextPath()%>/resources/admin/css/style.css" rel="stylesheet" >
 </head>
 
 <body>
