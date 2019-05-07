@@ -38,7 +38,6 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public int countMember() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

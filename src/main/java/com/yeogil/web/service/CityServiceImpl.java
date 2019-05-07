@@ -37,7 +37,6 @@ public class CityServiceImpl implements CityService{
 
 	@Override
 	public int countCity() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
