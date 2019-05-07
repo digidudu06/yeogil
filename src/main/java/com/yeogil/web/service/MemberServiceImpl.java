@@ -44,7 +44,8 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public void modifyMember(MemberDTO mem) {
-		memMap.updateMember(mem);
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override

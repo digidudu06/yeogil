@@ -14,22 +14,9 @@
 		VALUES(#{memberId},#{nickname},#{thumbnailImg})
 	</insert>
 	
-	<select id="existMember" 
-			parameterType="com.yeogil.web.domain.MemberDTO" 
-			resultType="boolean">
+	<select id="existMember" parameterType="com.yeogil.web.domain.MemberDTO" resultType="boolean">
 		SELECT if(COUNT(*)>0,'true','false')
 		FROM yeogil.MEMBER
 		WHERE MEMBER_ID LIKE #{memberId}
 	</select>
-	
-	<update id="updateMember"
-			parameterType="com.yeogil.web.domain.MemberDTO"
-			flushCache="true"
-			statementType="PREPARED"
-			timeout="20">
-			UPDATE yeogil.MEMBER 
-				SET NICKNAME = #{nickname}
-					,THUMBNAIL_IMAGE = #{thumbnailImg}
-			WHERE MEMBER_ID LIKE #{memberId}
-	</update>
 </mapper>

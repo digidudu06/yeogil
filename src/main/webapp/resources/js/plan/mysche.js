@@ -19,17 +19,7 @@ mysche = (()=>{
 			$('.plan_hidden_btn').click(function(){
 				mypage.init();
 			});
-			
-			if(sessionStorage.getItem('thumbnailImg')==='default_img'){
-				$('.my_img').attr('src',img+'/common/default_img.png');
-			}else{
-				$('.my_img').attr('src',sessionStorage.getItem('thumbnailImg'));
-			}
-			$('.my_name').text(sessionStorage.getItem('nickname'));
-			
-			$('.m_tab').remove();
-			$('.mtab_line').remove();
-		});		
+		});
 	};
 	return {init:init};
 })();

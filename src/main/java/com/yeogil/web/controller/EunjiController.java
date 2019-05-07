@@ -19,7 +19,7 @@ public class EunjiController {
 	
 	
 	@PostMapping("/login")
-	public MemberDTO login(@RequestBody Object mem) {
+	public boolean login(@RequestBody Object mem) {
         System.out.println("===================은지 컨트롤러 진입====================");
         System.out.println(mem.toString());
         
@@ -38,15 +38,12 @@ public class EunjiController {
         
         System.out.println(member);
         IPredicate ip = (Object o)-> memberService.existMember(member);
-        if(!(ip.test(member))) {// 아이디 없으면
+        if(!(ip.test(member))) {
             IConsumer ic = (Object o) -> memberService.createMember(member);
             ic.accept(member);
-        }else {//아이디 있으면
-        	IConsumer ic = (Object o) -> memberService.modifyMember(member);
-        	ic.accept(member);
         }
         
-        return member;
+        return ip.test(member);
 
     }
 }
