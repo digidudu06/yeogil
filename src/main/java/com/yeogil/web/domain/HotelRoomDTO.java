@@ -5,6 +5,9 @@ import org.springframework.stereotype.Component;
 import lombok.Data;
 
 @Data @Component
-public class CityDTO {
-	private String citySeq,cityName,cityEname,cityLat,cityLng,imgName,imgUrl,countryEname;
+public class HotelRoomDTO {
+	private String roomNum,
+					startDate,
+					endDate,
+					roomType;
 }

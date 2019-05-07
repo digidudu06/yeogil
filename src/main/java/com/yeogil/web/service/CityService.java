@@ -17,5 +17,5 @@ public interface CityService {
 	public int countCity();
 	public void modifyCity(CityDTO city);
 	public void removeCity(CityDTO city);
-	public List<?> findCites(String countryName);
+	public List<?> findCities(String countryName);
 }

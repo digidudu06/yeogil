@@ -37,10 +37,18 @@ public class HomeController {
 		System.out.println("=====ReserController진입=====");
 		return "reser_index";
 	}
+<<<<<<< HEAD
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String admin(Locale locale, Model model) {
 		System.out.println("=====admincontroller진입=====");
 		return "admin";
+=======
+
+	@RequestMapping(value = "/workspace", method = RequestMethod.GET)
+	public String workspace(Locale locale, Model model) {
+		System.out.println("=====worksc진입=====");
+		return "workspace";
+>>>>>>> f357d9da6ed1d58a8c959dee93cf22b1de376636
 	}
 }

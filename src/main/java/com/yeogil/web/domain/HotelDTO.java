@@ -7,9 +7,6 @@ import lombok.Data;
 @Data @Component
 public class HotelDTO {
 	private String hotelName,
-					hotelAddr,
-					price,
-					roomType,
-					notice,
-					imgUrl;
+					hotelTel,
+					hotelAddr;
 }

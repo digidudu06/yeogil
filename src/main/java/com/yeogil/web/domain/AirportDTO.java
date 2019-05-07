@@ -8,5 +8,4 @@ import lombok.Data;
 public class AirportDTO {
 	private String airportName,
 					flightName;
-					
 }
