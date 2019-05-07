@@ -36,6 +36,7 @@
 					<a href="#" class="fl"><li id="tour">여행지</li></a>
 					<a href="#" class="fl"><li id="plan">일정만들기</li></a>
 					<a href="#" class="fl"><li id="reservation">항공·호텔</li></a>
+					<a href="#" class="fl"><li id="admin">관리자</li></a>
 				</ul>
 				<div class="fr gnb_box" style="padding-top: 10px;">
 					<a id="custom-login-btn" href="javascript:loginWithKakao()">
