@@ -6,5 +6,5 @@ import lombok.Data;
 
 @Data @Component
 public class CityDTO {
-	private String citySeq,cityName,cityEname,cityLat,cityLng,imgName,imgUrl,countryEname;
+	private String citySeq,cityName,cityEname,cityLat,cityLng,imgName,imgUrl,countryName;
 }

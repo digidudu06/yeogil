@@ -36,6 +36,13 @@ main = (()=>{
 		$('#reservation').click(function(){
 				location.assign($.ctx()+'/reser');
 		});
+<<<<<<< HEAD
+=======
+		$('#admin').click(function(){
+			location.assign($.ctx()+'/admin');
+	});
+//==================================================	
+>>>>>>> 74e461c47742fbb0cdb0126a6ab66ef157e38791
 		$.getScript(compojs,()=>{
 			$(compo.main_contents()).appendTo('#common_area');
 			$('.more_btn').remove();

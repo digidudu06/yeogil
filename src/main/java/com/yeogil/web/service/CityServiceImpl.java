@@ -54,7 +54,7 @@ public class CityServiceImpl implements CityService{
 	}
 
 	@Override
-	public List<?> findCities(String countryName) {
+	public List<?> findCites(String countryName) {
 		return cityMapper.selectCities(countryName);
 	}
 

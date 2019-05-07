@@ -1,5 +1,6 @@
 package com.yeogil.web.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,10 +12,14 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.yeogil.web.domain.ImageDTO;
 import com.yeogil.web.domain.WeatherDTO;
 import com.yeogil.web.service.ImageService;
+import com.yeogil.web.domain.AirportLeaveDTO;
+import com.yeogil.web.domain.AirportReturnDTO;
 import com.yeogil.web.domain.ExchangeMoney;
 
 
@@ -56,37 +61,38 @@ public class CrawlController {
 			w.setLtem(l[2]);
 			wlist.add(w);
 		}
-		String ar = conn.get().select("#wob_dcp").text();
-		System.out.println(ar);
-		String[] arStr = ar.split("\\s|[(]");
-		ImageDTO imgUrl = null;
-		for(String s : arStr ) {
-			System.out.println(s);
-			switch (s) {
-			case "맑음":
-				img.setImgName("w_sunny");
-				imgUrl = imageService.findImage(img);
-				break;
-			case "구름":
-				img.setImgName("w_cloud");
-				imgUrl = imageService.findImage(img);
-				break;
-			case "흐림":
-				img.setImgName("w_cloundy");
-				imgUrl = imageService.findImage(img);
-				break;
-			case "소나기": case "비":
-				img.setImgName("w_rain");
-				imgUrl = imageService.findImage(img);
-				break;
-			case "눈": case "폭설":
-				img.setImgName("w_snow");
-				imgUrl = imageService.findImage(img);
-				break;
-			default:
-				break;
-			}
-		}
+		
+		String nowimg = conn.get().select("#wob_tci").attr("src");
+		
+//		String ar = conn.get().select("#wob_dcp").text();
+//		String[] arStr = ar.split("\\s|[(]");
+//		ImageDTO imgUrl = null;
+//		for(String s : arStr ) {
+//			switch (s) {
+//			case "맑음":
+//				img.setImgName("w_sunny");
+//				imgUrl = imageService.findImage(img);
+//				break;
+//			case "구름":
+//				img.setImgName("w_cloud");
+//				imgUrl = imageService.findImage(img);
+//				break;
+//			case "흐림":
+//				img.setImgName("w_cloundy");
+//				imgUrl = imageService.findImage(img);
+//				break;
+//			case "소나기": case "비":
+//				img.setImgName("w_rain");
+//				imgUrl = imageService.findImage(img);
+//				break;
+//			case "눈": case "폭설":
+//				img.setImgName("w_snow");
+//				imgUrl = imageService.findImage(img);
+//				break;
+//			default:
+//				break;
+//			}
+//		}
 		
 		//환율
 		conn = Jsoup
@@ -100,10 +106,10 @@ public class CrawlController {
 		em.setKor(kom);
 		em.setTai(taim);
 		map.clear();
-		map.put("u", imgUrl.getImgUrl());
 		map.put("e", em);
 		map.put("wlist", wlist);
 		map.put("el",el);
+		map.put("nowimg", nowimg);
 		return map;
 	}
 	
@@ -176,6 +182,32 @@ public class CrawlController {
 		map.put("ls",list);
 		return map;
 	}
-	
+//	public static void main(String[] args) throws Exception {
+//		
+//		String topCtry = "https://www.tripadvisor.co.kr/TravelersChoice-Destinations";
+//		Connection conn = Jsoup
+//	            .connect(topCtry)
+//	            .header("Content-Type", "application/json;charset=UTF-8")
+//	            .method(Connection.Method.GET)
+//	            .ignoreContentType(true);
+//		
+//		Elements doc = conn.get().select("#MAIN");
+//		Elements httext1 = conn.get().select(".sr_item");
+//        for (Element s : httext1) {
+//            String imgurl = conn.get().select(".hotel_image").attr("src");
+//            System.out.println("호텔이미지::"+imgurl);
+//            
+//            String deptime1 = s.select(".sr-hotel__name").text();
+//            
+//            String addr = s.select(".bui-link").html();
+//            
+//            String sold = s.select(".room_link").text();
+//            
+//            String notice = s.select(".fe_banner__title").text();
+//
+//            String hprice = s.select(".price scarcity_color b").text();
+//        }
+//		System.out.println(doc);
+//	}
 }
 

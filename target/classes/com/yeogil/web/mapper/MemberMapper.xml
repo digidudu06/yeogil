@@ -22,6 +22,7 @@
 		WHERE MEMBER_ID LIKE #{memberId}
 	</select>
 	
+<<<<<<< HEAD
 	<update id="updateMember"
 			parameterType="com.yeogil.web.domain.MemberDTO"
 			flushCache="true"
@@ -32,4 +33,10 @@
 					,THUMBNAIL_IMAGE = #{thumbnailImg}
 			WHERE MEMBER_ID LIKE #{memberId}
 	</update>
+=======
+	<select id="countMember" resultType="int">
+		SELECT COUNT(*)
+		FROM yeogil.MEMBER
+	</select>
+>>>>>>> 74e461c47742fbb0cdb0126a6ab66ef157e38791
 </mapper>
