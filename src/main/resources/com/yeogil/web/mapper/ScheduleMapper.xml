@@ -10,7 +10,4 @@
   	<result property="countryEname" column="COUNTRY_ENAME"/>
   	<result property="continentName" column="CONTINENT_NAME"/>
 </resultMap>
-
-	
-
 </mapper>
