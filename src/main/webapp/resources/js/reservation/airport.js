@@ -17,6 +17,8 @@ airport = (()=>{
 		let onCreate=()=>{
 			setContentView();
 		};
+		
+		
 		let setContentView =()=>{
 //==========================================메인 네비바
 			$('#home').click(function(){
@@ -88,25 +90,22 @@ airport = (()=>{
 							departDate:$('#sinput_03').val(),
 							arrivalDate:$('#sinput_04').val()};
 					if(arr.departAirport===""&&arr.arrivalAirport===""&&arr.departDate===""&&arr.arrivalDate===""){
-						alert("입력을 똑바로 해주세요 ^^");
+						confirm("누락없이 채워주세요");
 					}else{
 						$.ajax({
 							url: _+'/clink/airline',
-							type:'POST',
+							type:'post',
 							data:JSON.stringify(arr),
 							dataType:'json',
 							contentType:'application/json',
 							success:d=>{
-								if(d.s === "s"){
-									alert("성공");
-								}
+								alert("2");
 							},
 							error:e=>{
-								alert('실패하였습니다.');
+								alert("에러");
 							}
 						});
 					}
-				
 				});
 /*					$('#airpay_01').attr('data-toggle','modal').attr('data-target','#myModal').click(function(e){
 						  e.preventDefault();

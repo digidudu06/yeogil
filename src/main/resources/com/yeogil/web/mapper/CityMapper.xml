@@ -11,7 +11,6 @@
   <result property="imgUrl" column="IMG_URL" />
   <result property="cityLat" column="CITY_LAT" />
   <result property="cityLng" column="CITY_LNG" />
-  <result property="countryEname" column="COUNTRY_ENAME" />
 </resultMap>
 	<select id="selectAllCity" resultMap="result" parameterType="string">
 	  SELECT * FROM yeogil.CITY
@@ -56,7 +55,7 @@
 	</select>
 	
 	<select id="selectCities" resultMap="result" parameterType="string">
-	  	SELECT * FROM yeogil.CITY 
+	  	SELECT * FROM YEOGIL.CITY 
 		WHERE COUNTRY_ENAME LIKE #{value};
 	</select>
 </mapper>

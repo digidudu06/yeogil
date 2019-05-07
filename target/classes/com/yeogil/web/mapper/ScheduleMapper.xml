@@ -10,7 +10,9 @@
   	<result property="countryEname" column="COUNTRY_ENAME"/>
   	<result property="continentName" column="CONTINENT_NAME"/>
 </resultMap>
-
-	
+	<select id="countSchedules" resultType="int">
+		SELECT COUNT(*)
+		FROM yeogil.SCHEDULE
+	</select>
 
 </mapper>

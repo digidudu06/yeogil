@@ -19,4 +19,9 @@
 		FROM yeogil.MEMBER
 		WHERE MEMBER_ID LIKE #{memberId}
 	</select>
+	
+	<select id="countMember" resultType="int">
+		SELECT COUNT(*)
+		FROM yeogil.MEMBER
+	</select>
 </mapper>

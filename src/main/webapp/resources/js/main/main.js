@@ -37,6 +37,9 @@ main = (()=>{
 		$('#reservation').click(function(){
 				location.assign($.ctx()+'/reser');
 		});
+		$('#admin').click(function(){
+			location.assign($.ctx()+'/admin');
+	});
 //==================================================	
 		$.getScript(compojs,()=>{
 			$(compo.main_contents()).appendTo('#common_area');
