@@ -109,9 +109,16 @@ compo = {
 		+'                </div>'
 		+'            </div>'
 	},
-
-	footer : ()=>{
-		return 	
+	logon : ()=>{
+		return 	'<div class="dropdown">'
+		  +'    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">'
+  		  +'    <span class="caret"></span></button>'
+  		  +'    <ul class="dropdown-menu">'
+  		  +'      <li><a href="#">마이페이지</a></li>'
+  		  +'      <li class="divider"></li>'
+  		  +'      <li id="logout_btn" ><a href="#">로그아웃</a></li>'
+  		  +'    </ul>'
+  		  +'  </div>'
 	},
 	// 이창준
 	tourist_area : ()=>{
