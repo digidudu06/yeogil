@@ -54,66 +54,53 @@ hotel =(()=>{
 					$('#hml_01').click(()=>{
 						setContentView();
 					});
-					$('#hcheck_01').click(function(e){
-						 e.preventDefault();
-						let data = {arrivalDate:$('#h_date_01').val(),
-								departDateR:$('#h_date_02').val()};
-						if(data.arrivalDate===""&&data.departDateR===""){
-							alert("모든 항목을 기입해주세요!");
-						}else{
-							$.ajax({
-								url: _+'/crawling/hvation',
-								type:'post',
-								data:JSON.stringify(data),
-								dataType:'json',
-								contentType:'application/json',
-								success: d =>{
-									alert("성공");
-									$(compo.hresult()).appendTo('#common_area');
-									$.each(d.htlist,(i,j)=>{
-										if(i<6){
-											$('<div class="intro_box" style="height:320px"><img src="'+j.imgUrl
-													+'" width="348" height="170" alt=""></img>'
-													+'<div class="intro_title">'+j.hotelName+'</div>'
-													
-													+'<div class="intro_desc">'+j.hotelAddr+'</div>'
-													+'<div class="btn-area">'
-													+'<div class="btn-wrap position-relative">'
-													+'<button id="hotel_p01" type="button" class="btn btn-primary" onclick="finishPaxInfo();">예약 및 결제진행</button><p>'+j.notice+'<p>'+j.price+'<p>'+j.roomType+''
-													+'</div>'
-													+'</div>'
-													
-													+'<div class="clear"></div>').attr('name',j.imgname).appendTo('.intro_list')
-													let that = $(this).attr('name');
-										}
-							                     	$('#hotel_p01').attr('data-toggle','modal').attr('data-target','#myModal').click(function(e){
-														  e.preventDefault();
-												            $('#myModal').attr('style','display: block; z-index:99999;');
-												            $('.modal-dialog').attr('style','top:200px;')
-												            $('.modal-content').attr('style','margin:auto;');
-												            $('#modal_01').text("호텔예약 완료");
-												            $('#modal_02').text("결제가 완료 되었습니다");
-													});
-							                     
-									 });
-								},//success끝
-								error:e=>{
-									alert("에러");
-								}
-							});//ajax끝
-						
-						}//else끝
+					$('#hcheck_01').click(()=>{
+						$(compo.hresult()).appendTo('#common_area');			
+						$.each(img(),(i,j)=>{
+				             $('<div class="intro_box" style="height:320px"><img src="'+j.url
+				                     +'" width="348" height="170" alt=""></img>'
+				                     +'<div class="intro_title">호텔이름</div>'
+				                     
+				                     +'<div class="intro_desc">호텔 간단한 설명</div>'
+				                     +'<div class="btn-area">'
+				                     +'<div class="btn-wrap position-relative">'
+				                     +'<button type="button" class="btn btn-primary" onclick="finishPaxInfo();">예약 및 결제진행</button>'
+				                     +'</div>'
+				                     +'</div>'
+
+				                     +'<div class="clear"></div>').attr('name',j.name).appendTo('.intro_list').click(function(){
+				                     	let that = $(this).attr('name');
+				                     	alert("결제창이동");
+				                     });
+						 });
 					});
-					/*let img = ()=>{
-				        return [{name : "img1",url : "https://t-ec.bstatic.com/xdata/images/hotel/square600/71924697.webp?k=b996e4b63616d2606d1eb2989c8f4da9ea9b915f7fcc85a05aab750f5f53dc85&o="},
-				                {name : "img2",url : "https://t-ec.bstatic.com/xdata/images/hotel/square600/138494607.webp?k=55f2f4d4aa5bd8f1fd307d6278eaa78798e133676b1ff56bac1980f3229667ab&o="},
-				                {name : "img3",url : "https://t-ec.bstatic.com/xdata/images/hotel/square600/69674078.webp?k=4d359c9066ea39394701564b1501a19e5f62b75783d25e681ffbd55f1a1e3644&o="},
-				                {name : "img4",url : "https://t-ec.bstatic.com/xdata/images/hotel/square600/19056004.webp?k=67e9ffdf8091c3d61f3e2fa26ad7d4396993277d70f80493922551205a54f520&o="},
-				                {name : "img5",url : "https://s-ec.bstatic.com/xdata/images/hotel/square600/33463694.webp?k=a66a6a5e1e192209b322c506a142988bffe09c0ef142f01bce366af8e0421c9f&o="},
-				                {name : "img6",url : "https://s-ec.bstatic.com/xdata/images/hotel/square600/177523156.webp?k=c8b6cb853e37799669a0718488192078a12ef7812655eb2fd4ad4efc40bc05ef&o="}];
-				        };*/
+					
+					 
+					
+					
+					let img = ()=>{
+				        return [{name : "img1",url : "http://image.edaily.co.kr/images/Photo/files/NP/S/2016/06/PS16060300126.jpg"},
+				                {name : "img2",url : "https://t1.daumcdn.net/cfile/tistory/220ACD49543246531D"},
+				                {name : "img3",url : "https://travelblog.expedia.co.kr/wp-content/uploads/2017/01/113.jpg"}];
+				        
+				        };
 				});
+				
+		
+		
+		
+		
+		
+		
+		
 		};
+		
+		
+		
+	
+
+		
+		
 		/*let hotel_payment=()=>{
 			$.getScript($.js()+'/compo.js',()=>{
 				$('#hotel_clean').empty();
