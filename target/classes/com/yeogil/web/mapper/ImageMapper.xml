@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeogil.web.mapper.ImageMapper">
+<resultMap id="result" type="hashmap">
+  <result property="imgName" column="IMG_NAME" />
+  <result property="imgUrl" column="IMG_URL" />
+</resultMap>
+	<select id="selectImage" resultType="com.yeogil.web.domain.ImageDTO"
+		parameterType="com.yeogil.web.domain.ImageDTO">
+		SELECT IMG_NAME imgName,IMG_URL imgUrl
+		FROM IMAGE 
+		WHERE IMG_NAME LIKE #{imgName}
+	</select>
+</mapper>

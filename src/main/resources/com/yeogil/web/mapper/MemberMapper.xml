@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeogil.web.mapper.MemberMapper">
+<resultMap id="result" type="hashmap">
+  <id property="memberSeq" column="MEMBER_SEQ" />
+  <result property="memberId" column="MEMBER_ID" />
+  <result property="nickname" column="NICKNAME" />
+  <result property="thumbnailImg" column="THUMBNAIL_IMAGE" />
+</resultMap>
+	<insert id="insertMember">
+		INSERT INTO yeogil.MEMBER(MEMBER_ID,NICKNAME,THUMBNAIL_IMAGE) 
+		VALUES(#{memberId},#{nickname},#{thumbnailImg})
+	</insert>
+	
+	<select id="existMember" 
+			parameterType="com.yeogil.web.domain.MemberDTO" 
+			resultType="boolean">
+		SELECT if(COUNT(*)>0,'true','false')
+		FROM yeogil.MEMBER
+		WHERE MEMBER_ID LIKE #{memberId}
+	</select>
+	
+	<update id="updateMember"
+			parameterType="com.yeogil.web.domain.MemberDTO"
+			flushCache="true"
+			statementType="PREPARED"
+			timeout="20">
+			UPDATE yeogil.MEMBER 
+				SET NICKNAME = #{nickname}
+					,THUMBNAIL_IMAGE = #{thumbnailImg}
+			WHERE MEMBER_ID LIKE #{memberId}
+	</update>
+</mapper>
