@@ -22,7 +22,7 @@ import com.yeogil.web.service.CountryService;
 
 @RestController
 public class ChangJunController {
-	
+	// gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
 	@Autowired CountryService countryService;
 	@Autowired CityMapper cityMapper;
 	@Autowired MemberMapper memberMapper;
