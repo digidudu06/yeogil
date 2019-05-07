@@ -21,7 +21,6 @@ main = (()=>{
 	};
 	
 	let setContentView = ()=>{
-//==========================================메인 네비바
 		$('#home').click(function(){
 			location.assign($.ctx());
 		});
@@ -37,18 +36,29 @@ main = (()=>{
 		$('#reservation').click(function(){
 				location.assign($.ctx()+'/reser');
 		});
-//==================================================	
+		$('#admin').click(function(){
+            location.assign($.ctx()+'/admin');
+        });
 		$.getScript(compojs,()=>{
 			$(compo.main_contents()).appendTo('#common_area');
-			$('.main_top').attr('style', 'background:url('+img+'/main/key_bg_3.jpg) no-repeat;background-size:cover;');
-//*************로그인						
-			
-			$('#custom-login-btn').click(function loginWithKakao() {
-				login();
-		    });
+			$('.more_btn').remove();
 			$('.search_area').empty();
-//==========================================START
-//**************크롤링
+			$('.main_top').attr('style', 'background:url('+img+'/main/key_bg_3.jpg) no-repeat;background-size:cover;');
+//===============================================			
+			if(sessionStorage.getItem('session') === null){
+				$('#custom-login-btn').click(function loginWithKakao() {
+					login();
+				});
+			}else{
+				$('.gnb_box').empty();
+				$(compo.logon()).appendTo('.gnb_box');
+				$('<img src="'+img+'/common/default_img.png" style="width: 30px;">').prependTo('.dropdown-toggle ');
+				$('#logout_btn').click(()=>{
+					alert('클릭 로그아웃!');
+					logout();
+				});
+			}
+//================================================			
 			$.getJSON(_+'/crawling/topCtry',d=>{
                 $('#top_city_list').empty();
                 $.each(d.ls, (i,j)=>{
@@ -75,6 +85,7 @@ main = (()=>{
 	                      // res.properties.nickname으로도 접근 가능 )
 	                          console.log(authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
 	                          Kakao.Auth.setAccessToken(authObj.access_token, true);
+	                          sessionStorage.setItem('session', Kakao.Auth.getAccessToken());
 	                          $.ajax({
 	                              url:_+'/login',
 	                              type: 'POST',
@@ -83,7 +94,10 @@ main = (()=>{
 	                              contentType : "application/json; charset=UTF-8",
 	                              success:function(res){
 	                                  alert('성공');
-	                                 
+	                                 location.assign(_);
+	                                 sessionStorage.setItem('nickname', res.nickname);
+	                                 sessionStorage.setItem('thumbnailImg', res.thumbnailImg);
+	                                 alert(sessionStorage.getItem('nickname')+'?????????'+sessionStorage.getItem('thumbnailImg'));
 	                              },
 	                              error:function(err){
 	                            	  login();
