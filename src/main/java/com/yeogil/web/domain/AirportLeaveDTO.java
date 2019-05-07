@@ -13,5 +13,6 @@ public class AirportLeaveDTO {
 	arrivalAirport,
 	departDate,
 	arrivalDate,
-	price;
+	price,
+	airImg;
 }

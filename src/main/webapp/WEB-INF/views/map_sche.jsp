@@ -3,16 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAbI_gl7rYkLoODMNEkmDZDvaKkAuigkY&callback=initMap"></script>
-<<<<<<< HEAD
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-=======
 <script src="<%=application.getContextPath()%>/resources/js/plan/markerwithlabel.js"></script>
->>>>>>> 74e461c47742fbb0cdb0126a6ab66ef157e38791
 <!-- datepicker cdn -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -49,15 +43,9 @@
 					<a href="#" class="fl"><li id="plan">일정만들기</li></a>
 					<a href="#" class="fl"><li id="reservation">항공·호텔</li></a>
 				</ul>
-<<<<<<< HEAD
-				<div class="fr gnb_box" style="padding-top: 10px;">
-					<a id="custom-login-btn" href="javascript:loginWithKakao()">
-						<img src="https://developers.kakao.com/assets/img/about/logos/kakaologin/kr/kakao_login_btn_small.png" style="width: 100px;"/>
-=======
 				<div class="fr gnb_box">
 					<a id="custom-login-btn" href="javascript:loginWithKakao()">
 						<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
->>>>>>> 74e461c47742fbb0cdb0126a6ab66ef157e38791
 					</a>
 					
 				</div>
