@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yeogil.web.domain.AirportDTO;
 import com.yeogil.web.domain.CountryDTO;
+import com.yeogil.web.domain.ImageDTO;
 import com.yeogil.web.mapper.CityMapper;
 import com.yeogil.web.mapper.MemberMapper;
 import com.yeogil.web.mapper.ScheduleMapper;

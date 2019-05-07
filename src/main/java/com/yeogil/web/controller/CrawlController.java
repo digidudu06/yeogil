@@ -1,5 +1,6 @@
 package com.yeogil.web.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,15 +12,12 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.yeogil.web.domain.ImageDTO;
 import com.yeogil.web.domain.WeatherDTO;
 import com.yeogil.web.service.ImageService;
-<<<<<<< HEAD
-import com.yeogil.web.domain.AirportLeaveDTO;
-import com.yeogil.web.domain.AirportReturnDTO;
-=======
->>>>>>> f357d9da6ed1d58a8c959dee93cf22b1de376636
 import com.yeogil.web.domain.ExchangeMoney;
 
 
@@ -61,43 +59,8 @@ public class CrawlController {
 			w.setLtem(l[2]);
 			wlist.add(w);
 		}
-<<<<<<< HEAD
 		
 		String nowimg = conn.get().select("#wob_tci").attr("src");
-
-=======
-		String ar = conn.get().select("#wob_dcp").text();
-		System.out.println(ar);
-		String[] arStr = ar.split("\\s|[(]");
-		ImageDTO imgUrl = null;
-		for(String s : arStr ) {
-			System.out.println(s);
-			switch (s) {
-			case "맑음":
-				img.setImgName("w_sunny");
-				imgUrl = imageService.findImage(img);
-				break;
-			case "구름":
-				img.setImgName("w_cloud");
-				imgUrl = imageService.findImage(img);
-				break;
-			case "흐림":
-				img.setImgName("w_cloundy");
-				imgUrl = imageService.findImage(img);
-				break;
-			case "소나기": case "비":
-				img.setImgName("w_rain");
-				imgUrl = imageService.findImage(img);
-				break;
-			case "눈": case "폭설":
-				img.setImgName("w_snow");
-				imgUrl = imageService.findImage(img);
-				break;
-			default:
-				break;
-			}
-		}
->>>>>>> f357d9da6ed1d58a8c959dee93cf22b1de376636
 		
 		//환율
 		conn = Jsoup
@@ -114,10 +77,7 @@ public class CrawlController {
 		map.put("e", em);
 		map.put("wlist", wlist);
 		map.put("el",el);
-<<<<<<< HEAD
 		map.put("nowimg", nowimg);
-=======
->>>>>>> f357d9da6ed1d58a8c959dee93cf22b1de376636
 		return map;
 	}
 	
@@ -190,10 +150,5 @@ public class CrawlController {
 		map.put("ls",list);
 		return map;
 	}
-<<<<<<< HEAD
-
-=======
-	
->>>>>>> f357d9da6ed1d58a8c959dee93cf22b1de376636
 }
 
