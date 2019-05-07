@@ -37,10 +37,4 @@ public class HomeController {
 		System.out.println("=====ReserController진입=====");
 		return "reser_index";
 	}
-	
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String admin(Locale locale, Model model) {
-		System.out.println("=====admincontroller진입=====");
-		return "admin";
-	}
 }

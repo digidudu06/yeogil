@@ -3,21 +3,17 @@ package com.yeogil.web.controller;
 import java.util.List;
 import java.util.Map;
 
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yeogil.web.domain.AirportDTO;
+import com.yeogil.web.domain.CityDTO;
 import com.yeogil.web.domain.CountryDTO;
-import com.yeogil.web.domain.ImageDTO;
 import com.yeogil.web.mapper.CityMapper;
-import com.yeogil.web.mapper.MemberMapper;
-import com.yeogil.web.mapper.ScheduleMapper;
 import com.yeogil.web.service.CountryService;
 
 @RestController
@@ -25,8 +21,6 @@ public class ChangJunController {
 	
 	@Autowired CountryService countryService;
 	@Autowired CityMapper cityMapper;
-	@Autowired MemberMapper memberMapper;
-	@Autowired ScheduleMapper scheduleMapper;
 	@Autowired List<CountryDTO> list;
 	@Autowired Map<String, Object> map;
 	@Autowired AirportDTO ar;
@@ -64,27 +58,6 @@ public class ChangJunController {
 		map.clear();
 		map.put("ls", ls);
 		map.put("pxy", pxy);
-		return map;
-	}
-	
-	@GetMapping("/member/memcount")
-	public Map<?,?> memcount() throws Exception {
-		ISupplier is = () -> memberMapper.countMember();
-		map.clear();
-		map.put("memcount", is.get());
-		is = () -> scheduleMapper.countSchedules();
-		map.put("schecount", is.get());
-		
-		String countryimg = "https://namu.wiki/w/대만";
-		
-		Connection conn = Jsoup
-                .connect(countryimg)
-                .header("Content-Type", "application/json;charset=UTF-8")
-                .method(Connection.Method.GET)
-                .ignoreContentType(true);
-		
-		String imgurl = conn.get().select(".wiki-table tbody noscript img").attr("src");
-		map.put("flagimg", imgurl);
 		return map;
 	}
 }

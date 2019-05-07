@@ -1,4 +1,3 @@
-"use strict";
 var city = city || {}
 city = (()=>{
 	let _,js,css,compojs;
@@ -83,8 +82,7 @@ city = (()=>{
 					.click(function (){
 							if(j.imgName === "Taipei"){
 								city_detail();
-								
-								
+								topten();
 							}else{
 								alert('타이베이를 눌러주세요 ㅎㅎ');
 							}
@@ -191,6 +189,7 @@ city = (()=>{
 		
 	};
 	let city_detail = ()=>{
+		alert('누름');
 		$.getScript(compojs,()=>{
 			$('.country_detail').remove();
 			$(compo.city_detail()).insertAfter('.silver');
@@ -205,9 +204,8 @@ city = (()=>{
 			
 		});
 		$.getJSON(_+'/crawling/weather',d=>{
-			
 			$('<img></img>')
-			.attr("src",d.nowimg)
+			.attr("src",d.u)
 			.attr("width","80")
 			.attr("height","90")
 			.appendTo('.temp_left');
@@ -239,7 +237,6 @@ city = (()=>{
 				}
 			});
 		});
-		topten();
 	};
 	let topten = ()=>{
 		$(compo.city_topten()).insertAfter('.city_detail');

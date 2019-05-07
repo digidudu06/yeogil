@@ -12,7 +12,9 @@ public class AirportReturnDTO {
 	departAirportR,
 	arrivalAirportR,
 	departDateR,
-	arrivalDateR
+	arrivalDateR,
+	priceR,
+	airImgR
 	;
 
 }

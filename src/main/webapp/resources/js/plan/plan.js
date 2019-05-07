@@ -38,20 +38,6 @@ plan =(()=>{
 		$('#jw_css').remove();
 		$.getScript(compojs,()=>{
 			$('#common_area').empty();
-			
-			if(sessionStorage.getItem('session') === null){
-				$('#custom-login-btn').click(function loginWithKakao() {
-					login();
-				});
-			}else{
-				$('.gnb_box').empty();
-				$(compo.logon()).appendTo('.gnb_box');
-				$('<img src="'+img+'/common/default_img.png" style="width: 30px;">').prependTo('.dropdown-toggle ');
-				$('#logout_btn').click(()=>{
-					alert('클릭 로그아웃!');
-					logout();
-				});
-			}
 
 			$(compo.plan_header()).appendTo('#common_area');
 			
@@ -63,22 +49,20 @@ plan =(()=>{
 				.appendTo('.p_header_btn_box').text('새로운 일정 만들기')
 				.click(function(){
 //*************************************************css end
-					if(sessionStorage.getItem('session') === null){
-						login();
-					}else{
-						sche.init();
-					}
+					/*$.getScript(mainjs,()=>{
+						if(sessionStorage.getItem('session') === null){
+							main.login();
+						}else{*/
+							sche.init();
+					/*	}
+					});*/
 				});
 			$('<img/>').attr('src',img+'/component/p_header_btn_img1.jpg').appendTo('#btn_1');
 			
 			$('<div class="p_header_btn" id="btn_2">')
 				.appendTo('.p_header_btn_box').text('나의 일정 보기')
 				.click(function(){
-					if(sessionStorage.getItem('session') === null){
-						login();
-					}else{
-						mysche.init();
-					}
+					mysche.init();
 				});
 			
 			$('<img/>').attr('src',img+'/component/p_header_btn_img2.jpg').appendTo('#btn_2');
@@ -93,52 +77,7 @@ plan =(()=>{
 			$('#footer').remove();
 		});
 	};
-	let login = ()=>{
-		Kakao.init('0b0fec75e07cb3ea427be11fe3287c3b');
-		Kakao.Auth.login({
-			success: function(authObj) {
-				Kakao.API.request({
-					url: '/v1/user/me',
-					success: function(res) {
-						alert(JSON.stringify(res)); //<---- kakao.api.request 에서 불러온 결과값 json형태로 출력
-						alert(JSON.stringify(authObj)); //<----Kakao.Auth.createLoginButton에서 불러온 결과값 json형태로 출력
-						console.log(res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
-						console.log(res.kaccount_email);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
-						console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근
-						// res.properties.nickname으로도 접근 가능 )
-						console.log(authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
-						Kakao.Auth.setAccessToken(authObj.access_token, true);
-						sessionStorage.setItem('session', Kakao.Auth.getAccessToken());
-						$.ajax({
-							url:_+'/login',
-							type: 'POST',
-							data: JSON.stringify(res, authObj),
-							dataType:'json',
-							contentType : "application/json; charset=UTF-8",
-							success:function(res){
-								alert('성공');
-								location.assign(_+"/sche");
-								sessionStorage.setItem('nickname', res.nickname);
-                                sessionStorage.setItem('thumbnailImg', res.thumbnailImg);
-							},
-							error:function(err){
-								login();
-							}
-						});
-					}
-				})
-			},
-			fail: function(err) {
-				alert(JSON.stringify(err));
-			}
-		});
-		
-	};
-	let logout=()=>{
-		sessionStorage.removeItem('session');
-		location.assign(_);
-	};
-	return {init:init,cont:cont, login:login};
+	return {init:init,cont:cont};
 })();
 
 plan.$= {

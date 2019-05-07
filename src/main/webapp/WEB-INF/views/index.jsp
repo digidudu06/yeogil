@@ -36,11 +36,10 @@
 					<a href="#" class="fl"><li id="tour">여행지</li></a>
 					<a href="#" class="fl"><li id="plan">일정만들기</li></a>
 					<a href="#" class="fl"><li id="reservation">항공·호텔</li></a>
-					<a href="#" class="fl"><li id="admin">관리자</li></a>  <!-- style="display:hidden;" -->
 				</ul>
-				<div class="fr gnb_box" style="padding-top: 10px;">
+				<div class="fr gnb_box">
 					<a id="custom-login-btn" href="javascript:loginWithKakao()">
-						<img src="https://developers.kakao.com/assets/img/about/logos/kakaologin/kr/kakao_login_btn_small.png" style="width: 100px;"/>
+						<img src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300"/>
 					</a>
 					
 				</div>
