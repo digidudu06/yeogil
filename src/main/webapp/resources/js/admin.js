@@ -5,7 +5,6 @@ admin = (()=>{
 	let ext= x =>{
 		admin.$.ext(x);
 	};
-	
 	let init = ()=>{
 		_ = $.ctx();
 		js = $.js();
@@ -14,7 +13,6 @@ admin = (()=>{
 		compojs = js+'/comp/compo.js';
 		onCreate();
 	};
-	
 	let onCreate=()=>{
 		setContentView();
 	};
