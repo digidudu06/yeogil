@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.yeogil.web.mapper.AirportMapper">
+	<insert id="createAirport" parameterType="com.yeogil.web.domain.AirportDTO">
+	
+		INSERT INTO AIRPORT(AIRPORT_NAME,
+							DEPARTURE_TIME,
+							ARRIVAL_TIME,
+							DEPART_AIRPORT,
+							ARRIVAL_AIRPORT,
+							DEPART_DATE,
+							ARRIVAL_DATE,
+							PRICE,
+							AIR_IMG,
+							AIRPORT_NAMER,
+							DEPARTURE_TIMER,
+							ARRIVAL_TIMER,
+							DEPART_AIRPORTR,
+							ARRIVAL_AIRPORTR,
+							DEPART_DATER,
+							ARRIVAL_DATER,
+							PRICER,
+							AIR_IMGR)
+					VALUES	(#{airportName},
+							#{departureTime},
+							#{arrivalTime},
+							#{departAirport},
+							#{arrivalAirport},
+							#{departDate},
+							#{arrivalDate},
+							#{price},
+							#{airImg},
+							#{airportNameR},
+							#{departureTimeR},
+							#{arrivalTimeR},
+							#{departAirportR},
+							#{arrivalAirportR},
+							#{departDateR},
+							#{arrivalDateR},
+							#{priceR},
+							#{airImgR})
+	</insert>
+		<insert id="insertHotel" parameterType="com.yeogil.web.domain.HotelDTO">
+
+	
+	
+		INSERT INTO AIRPORT(
+							HOTEL_NAME,
+							HOTEL_ADDR,
+							PRICE,
+							ROOM_TYPE,
+							NOTICE,
+							IMGURL
+							)
+					VALUES	(#{hotelName},
+							#{hotelAddr},
+							#{price},
+							#{roomType},
+							#{notice},
+							#{imgUrl})
+	</insert>
+</mapper>
+	

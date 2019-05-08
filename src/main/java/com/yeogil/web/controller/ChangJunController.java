@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yeogil.web.domain.AirportDTO;
+import com.yeogil.web.domain.AirportReturnDTO;
 import com.yeogil.web.domain.CountryDTO;
 import com.yeogil.web.domain.ImageDTO;
 import com.yeogil.web.mapper.CityMapper;
@@ -28,7 +28,7 @@ public class ChangJunController {
 	@Autowired ScheduleMapper scheduleMapper;
 	@Autowired List<CountryDTO> list;
 	@Autowired Map<String, Object> map;
-	@Autowired AirportDTO ar;
+	@Autowired AirportReturnDTO ar;
 	@Autowired Proxy pxy;
 	
 	@SuppressWarnings("unchecked")
@@ -37,11 +37,11 @@ public class ChangJunController {
 		list = (List<CountryDTO>) countryService.findAllCountry();
 		map.clear();
 		map.put("ls",list);
-		ar = new AirportDTO();
-		ar.setAirportName("");
+		ar = new AirportReturnDTO();
+		ar.setAirportNameR("");
 		
-		AirportDTO aaa = new AirportDTO();
-		aaa.setAirportName("");
+		AirportReturnDTO aaa = new AirportReturnDTO();
+		aaa.setAirportNameR("");
 		return map;
 	}
 	
