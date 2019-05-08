@@ -157,7 +157,7 @@ html, body {
 	background-color: #fff;
 	width: 248px;
 	position: relative;
-	background: url('/res/img/workspace/new/cu_next_icon.png') no-repeat
+	/* background: url('/res/img/workspace/new/cu_next_icon.png') no-repeat */
 		225px 30px;
 }
 

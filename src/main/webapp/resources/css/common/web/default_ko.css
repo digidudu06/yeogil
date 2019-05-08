@@ -112,8 +112,8 @@ div, input, label, a, select{
 #paging button:hover{border:1px solid #c6c6c6;}
 #paging button.on{border:1px solid #1a7ad9;color:#1a7ad9;font-weight:bold;}
 #paging .nv button{width:24px;border:1px solid #c6c6c6;text-indent:-5000px;overflow:hidden;}
-#paging .pgn-pv1{background:url('/resources/img/common/paging/pg_first.png') no-repeat;background-position:6px 4px;}
+/* #paging .pgn-pv1{background:url('/resources/img/common/paging/pg_first.png') no-repeat;background-position:6px 4px;}
 #paging .pgn-pv2{background:url('/resources/img/common/paging/pg_prev.png') no-repeat;background-position:10px 4px;}
 #paging .pgn-nx1{background:url('/resources/img/component/pg_last.png') no-repeat;background-position:7px 4px;}
-#paging .pgn-nx2{background:url('/resources/img/component/pg_next.png') no-repeat;background-position:10px 4px;}
-[class^="pgn-"],[class*=" pgn-"]{display:inline-block;background-image:url(../img/bt_paging.png);background-repeat:no-repeat;}
+#paging .pgn-nx2{background:url('/resources/img/component/pg_next.png') no-repeat;background-position:10px 4px;} */
+/* [class^="pgn-"],[class*=" pgn-"]{display:inline-block;background-image:url(../img/bt_paging.png);background-repeat:no-repeat;} */

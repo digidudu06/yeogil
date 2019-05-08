@@ -10,6 +10,11 @@ var wayp;
 var i_wins = [];
 var is_state = '0';
 var now_select_city_cnt;
+var marker_img = '/web/resources/img/map/marker/normal_marker.png';
+var marker_img_on = '/web/resources/img/map/marker/ic_current.png';
+var marker_img_sk = '/web/resources/img/map/marker/ic_current.png';
+//var marker_img_sk = '/res/img/worldmap/skt_pin.png';
+
 
 sche = (()=>{
 	let _,js,compojs,img,css;
@@ -19,6 +24,9 @@ sche = (()=>{
 		img = $.img();
 		css = $.css();
 		compojs = js+'/comp/compo.js';
+		/*marker_img = img+'/map/marker/normal_marker.png';
+		marker_img_on = img+'/map/marker/ic_current.png';
+		marker_img_sk = '/res/img/worldmap/skt_pin.png';*/
 		onCreate();
 	};
 	let onCreate=()=>{
@@ -49,9 +57,9 @@ sche = (()=>{
 			+'<div class="clear"></div>'
 			+'</div>').appendTo('.title_box');
 
-			get("아시아");
 			
 			$('#map').insertAfter('#clip_list').attr('style','height: 100%; position: relative;overflow: hidden;');
+			get("아시아");
 
 			$.each(mapNav(),(i,j)=>{
 				$('<li><img src="'+j.src+'" class="s"></br>'+j.val+'</img></li>').attr({'data':j.name,'data-val':j.val})
@@ -90,14 +98,24 @@ sche = (()=>{
 			$('<div id="search_box"/>').appendTo('#schedule_full_box')
 			.attr('style','width:100%;height:51px;border-bottom:solid #d6d6d6 1px;');
 			
-			$('<div id="country_list_box"/>').appendTo('#schedule_full_box').attr('style','height: 569px;');
-			$('<div id="city_list_box"/>').appendTo('#schedule_full_box').attr('style','height: 569px;');
+			$('<div id="country_list_box"/>')
+			.appendTo('#schedule_full_box')
+			.css("background-image", "url('"+_+"/resources/img/map/cu_next_icon.png')")
+			.attr('style','height: 569px;');
+			
+			$('<div id="city_list_box"/>').appendTo('#schedule_full_box').attr('style','height: 569px;display:none;');
 			$(compo.sche_detail()).appendTo('#right_full_box');
 			$('<div class="detail_city_bottom">'
-		 	+'<div class="detail_plan_go_btn">상세 일정 만들기</div></div>').appendTo('#select_detail_view_city').click(function(){
+		 	+'<div class="detail_plan_go_btn">상세 일정 만들기</div></div>').appendTo('#select_detail_view_city');
+			
+			$('.detail_plan_go_btn').click(function(){
 		 		// 다음페이지
-		 		alert('누름');
-		 		location.assign($.ctx()+'/workspace');
+		 		alert($('#city_list_title').text());
+		 		alert($('#date_pick_btn').children().eq(0).text());
+		 		alert($('#selected_cities .s_cities .city_info .fl').text());
+		 		
+		 		
+		 		//location.assign(_+'/workspace');
 		 		//desche.init();
 		 	});
 			
@@ -318,15 +336,15 @@ sche = (()=>{
 	$('#schedule_full_box').on('mouseover','.item',function(){
 		var no = $(this).attr('data-no');
 		if(markers[no]){
-			markers[no].setZIndex(9);
-			markers[no].setIcon('/res/map/marker/ic_current.png');
+			markers[no].setZIndex(30);
+			markers[no].setIcon(img+'/map/marker/ic_current.png');
 		}
 	});
 	$('#schedule_full_box').on('mouseout','.item',function(){
 		var no = $(this).attr('data-no');
 		if(markers[no]){
-			markers[no].setZIndex(1);
-			markers[no].setIcon('/res/img/worldmap/normal_marker_off.png');
+			markers[no].setZIndex(0);
+			markers[no].setIcon(img+'/map/marker/normal_marker.png');
 		}
 	});
 	
@@ -344,10 +362,9 @@ sche = (()=>{
 		//    map.setOptions({styles: styles});
 		
 		get_country_list();
-		
-		
 	}
-
+/*	google.maps.event.addDomListener(window, 'load', initialize);*/
+	
 	function get_country_list(){
 		let _ct_code = $('#cat_menu li.on').attr('data');
 		let _ct_name = $('#cat_menu li.on').attr('data-val');
@@ -389,14 +406,14 @@ sche = (()=>{
 			data : data,
 			dataType :"json",
 			success: function(data) {
+				alert(data.ls.cityEname);
 				console.log(data);
 				let html = '';
-				
 				$.each(data.ls, function(key, val) {
 					html += '<div class="item" data-no="'+key+'" data="'+val.citySeq+'" data-ci_name="'+val.cityName+'" data-lat="'+val.cityLat+'" data-lng="'+val.cityLng+'">';
 					html += '<div class="img_box fl"><img src="'+val.imgUrl+'"></div>';
 					html += '<div class="info_box fl"><div class="info_title">'+val.cityName+'</div><div class="info_sub_title">'+val.cityEname+'</div></div>';
-					html += '<div class="spot_to_inspot"><img src="/res/img/workspace/new/spot_to_inspot_a.png"></div>';
+					html += '<div class="spot_to_inspot"><img src="'+img+'/map/spot_to_inspot_a.png"></div>';
 					html += '<div class="clear"></div></div>';
 					add_marker_city(val.cityLat,val.cityLng,val.cityName,val.cityEname,val.citySeq);
 				});
@@ -417,7 +434,7 @@ sche = (()=>{
 		var marker = new MarkerWithLabel({
 			position: marker_position,
 			map: map,
-			icon: '',
+			icon: marker_img,
 			title: countryName,
 			title_en : countryEname,
 			cu_srl: countrySeq,
@@ -446,11 +463,10 @@ sche = (()=>{
 
 	function add_marker_city(cityLat, cityLng, cityName, cityEname, citySeq) {
 		var marker_position = new google.maps.LatLng(cityLat,cityLng);
-		//city_marker_img = marker_img;
 		var marker = new MarkerWithLabel({
 			position: marker_position,
 			map: map,
-			icon: '',
+			icon: marker_img,
 			title: cityName,
 			title_en : cityEname,
 			cu_srl: citySeq,
@@ -470,9 +486,9 @@ sche = (()=>{
 				//get_ko_city_in_state(citySeq,cityName);
 			}else{
 				_html = '<div class="s_cities" data-ci="'+citySeq+'" data-day="2" data-lat="'+cityLng+'" data-lng="'+cityLng+'"><div class="city_route_info"><div class="city_distance_info fl">0Km</div><a href="http://flights.earthtory.com" target="_blank"><div class="city_air_search_btn fr">항공검색</div></a><div class="clear"></div></div>';
-				_html += '<div class="city_info"><div class="del_city_btn fl"><img src="/res/img/workspace/new/del_city_btn_a.png"></div><div class="fl">'+cityName+'</div>';
-				_html += '<div class="fr city_set_day_box"><div class="fl city_set_minus_btn"><img src="/res/img/workspace/new/city_item_minus_btn.png"></div><div class="fl city_set_day_info"><span>2</span>일</div>';
-				_html += '<div class="fl city_set_plus_btn"><img src="/res/img/workspace/new/city_item_plus_btn.png"></div><div class="clear"></div></div><div class="clear"></div></div>';
+				_html += '<div class="city_info"><div class="del_city_btn fl"><img src="'+img+'/map/del_city_btn_a.png"></div><div class="fl">'+cityName+'</div>';
+				_html += '<div class="fr city_set_day_box"><div class="fl city_set_minus_btn"><img src="'+img+'/map/city_item_minus_btn.png"></div><div class="fl city_set_day_info"><span>2</span>일</div>';
+				_html += '<div class="fl city_set_plus_btn"><img src="'+img+'/map/city_item_plus_btn.png"></div><div class="clear"></div></div><div class="clear"></div></div>';
 				_html += '</div>';
 				$('#selected_cities').append(_html);
 				draw_city_route();
@@ -488,9 +504,9 @@ sche = (()=>{
 		let ci_name = $(this).parent().attr('data-ci_name');
 		let _html ='';
 		_html = '<div class="s_cities" data-ci="'+ci_srl+'" data-day="2" data-lat="'+_lat+'" data-lng="'+_lng+'"><div class="city_route_info"><div class="city_distance_info fl">0Km</div><a href="http://flights.earthtory.com" target="_blank"><div class="city_air_search_btn fr">항공검색</div></a><div class="clear"></div></div>';
-		_html += '<div class="city_info"><div class="del_city_btn fl"><img src="/res/img/workspace/new/del_city_btn_a.png"></div><div class="fl">'+ci_name+'</div>';
-		_html += '<div class="fr city_set_day_box"><div class="fl city_set_minus_btn"><img src="/res/img/workspace/new/city_item_minus_btn.png"></div><div class="fl city_set_day_info"><span>2</span>일</div>';
-		_html += '<div class="fl city_set_plus_btn"><img src="/res/img/workspace/new/city_item_plus_btn.png"></div><div class="clear"></div></div><div class="clear"></div></div>';
+		_html += '<div class="city_info"><div class="del_city_btn fl"><img src="'+img+'/map/del_city_btn_a.png"></div><div class="fl">'+ci_name+'</div>';
+		_html += '<div class="fr city_set_day_box"><div class="fl city_set_minus_btn"><img src="'+img+'/map/city_item_minus_btn.png"></div><div class="fl city_set_day_info"><span>2</span>일</div>';
+		_html += '<div class="fl city_set_plus_btn"><img src="'+img+'/map/city_item_plus_btn.png"></div><div class="clear"></div></div><div class="clear"></div></div>';
 		_html += '</div>';
 		$('#selected_cities').append(_html);
 		draw_city_route();
@@ -701,7 +717,6 @@ sche = (()=>{
 	
 	
 	function get_ko_state(_cu_name){
-		alert('여기 뜰 차례인가'+_cu_name);
 		$('#city_list_title .cu_title').text(_cu_name);
 		$.ajax({
 			type: "post",
@@ -715,8 +730,8 @@ sche = (()=>{
 					html += '<div class="item" data-no="'+key+'" data="'+val.citySeq+'" data-ci_name="'+val.cityName+'" data-lat="'+val.cityLat+'" data-lng="'+val.cityLng+'">';
 					// 이미지 가져오기
 					html += '<div class="img_box fl"><img src="img"></div>';
-					html += '<div class="info_box fl" style="width:140px;"><div class="info_title">'+val.cityName+'</div><div class="info_sub_title">'+val.countryEname+'</div></div>';
-					html += '<div class="spot_to_inspot"><img src="/res/img/workspace/new/spot_to_inspot_a.png"></div>';
+					html += '<div class="info_box fl" style="width:140px;"><div class="info_title">'+val.cityName+'</div><div class="info_sub_title">'+val.cityEname+'</div></div>';
+					html += '<div class="spot_to_inspot"><img src= "'+img+'/map/spot_to_inspot_a.png"></div>';
 					html += '<div class="clear"></div></div>';
 					add_marker_city(val.cityLat,val.cityLng,val.cityName,val.cityEname,val.citySeq);
 				});
@@ -767,3 +782,5 @@ sche = (()=>{
 	return {init:init,get:get};
 	
 })();
+
+
