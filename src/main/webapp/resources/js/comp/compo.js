@@ -1770,7 +1770,7 @@ compo = {
 		},
 //		전서우
 		reservation: ()=>{
-			return '<div id="booking" class="seo_section">'
+			return '	<div id="booking" class="seo_section">'
 			+'		<div class="seo_section-center">'
 			+'			<div class="seo_container">'
 			+'				<div id="apbtn_01" class="seo_row">'
@@ -1796,20 +1796,20 @@ compo = {
 			+'								<div class="seo_col-md-6">'
 			+'									<div class="seo_form-group">'
 			+'										<span id="start_01" class="seo_form-label">Flying from</span>'
-													+'<input id="sinput_01" class="seo_form-control" type="text" placeholder="City or airport">'
+													+'<input id="sinput_01" class="seo_form-control" type="text" value="인천" placeholder="출발지를 입력해주세요">'
 			+'									</div>'
 			+'								</div>'
 			+'								<div class="seo_col-md-6">'
 			+'									<div class="seo_form-group">'
 			+'										<span id="dest_01" class="seo_form-label">Flyning to</span>'
-													+'<input id="sinput_02" class="seo_form-control" type="text" placeholder="City or airport">'
+													+'<input id="sinput_02" class="seo_form-control" type="text" value="타이페이" placeholder="도착지를 입력해주세요">'
 			+'									</div>'
 			+'								</div>'
 			+'							</div>'
 			+'							<div class="seo_row">'
 			+'								<div class="seo_col-md-3">'
 			+'									<div class="seo_form-group">'
-			+'										<span id="start_02" class="seo_form-label">Departing</span>'
+			+'										<span id="start_02"  class="seo_form-label">Departing</span>'
 			+'										<input id="sinput_03" class="seo_form-control" type="date" required="">'
 			+'									</div>'
 			+'								</div>'
@@ -1886,19 +1886,19 @@ compo = {
 			+'							<form>'
 			+'								<div class="hseo_form-group">'
 			+'									<span id="hdes_01" class="hseo_form-label">Your Destination</span>'
-												+'<input class="hseo_form-control" type="text" placeholder="Enter a destination or hotel name">'
+												+'<input class="hseo_form-control" type="text" placeholder="여행지를 입력해주세요">'
 			+'								</div>'
 			+'								<div class="hseo_row">'
 			+'									<div class="hseo_col-sm-6">'
 			+'										<div class="hseo_form-group">'
 			+'											<span id="hchc_01" class="hseo_form-label">Check In</span>'
-			+'											<input class="hseo_form-control" type="date" required="">'
+			+'											<input id="h_date_01" class="hseo_form-control" type="date" required="">'
 			+'										</div>'
 			+'									</div>'
 			+'									<div class="hseo_col-sm-6">'
 			+'										<div class="hseo_form-group">'
 			+'											<span id="hchc_02" class="hseo_form-label">Check out</span>'
-			+'											<input class="hseo_form-control" type="date" required="">'
+			+'											<input id="h_date_02" class="hseo_form-control" type="date" required="">'
 			+'										</div>'
 			+'									</div>'
 			+'								</div>'
@@ -2005,14 +2005,34 @@ compo = {
 			+'      </div>'
 			+'    </div><p><br>';
 		},
-		progress:()=>{
-			return '<div class="container">'
-			+'  <div class="progress">'
-			+'    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">'
-			+'      해당 조건에 맞는 검색 결과 100% Complete'
-			+'    </div>'
+		wells:()=>{
+			return	'<div class="container">'
+			+'  <table class="table">'
+			+'    <thead>'
+			+'    </thead>'
+			+'    <tbody>'
+			+'      <tr class="active">'
+			+'        <td id="pnbd_01">오는편 : </td>'
+			+'        <td id="pnbd_02">가는편 : </td>'
+			+'      </tr>'
+			+'    </tbody>'
+			+'  </table>'
+			+'</div>' 
+			/*'<div class="container">'
+			+'  <div class="panel panel-default">'
+			+'    <div id="pnbd_01" class="panel-body">가는편</div>'
+			+'    <div id="pnbd_02" class="panel-body">오는편</div>'
 			+'  </div>'
-			+'</div>';
+			+'</div>'*/;
 
+		},
+		grid:()=>{
+			return '<div class="row">'
+			+'<div class="row">'
+			+'  <div class="col-md-6">.col-md-6</div>'
+			+'  <div class="col-md-5">.col-md-5</div>'
+			+'  <div class="col-md-1">.col-md-1</div>'
+			+'</div>'
+			;
 		}
 }

@@ -9,7 +9,7 @@ import com.yeogil.web.domain.HotelDTO;
 
 @Repository
 public interface HotelMapper {
-	public void insertCustomer(HotelDTO hotel);
+	public void insertHotel(HotelDTO htdto);
 	public List<HotelDTO> selectAllCustomers(HashMap<String, String> hash);
 	public List<HotelDTO> selectSomeCustomers(HashMap<String, String> hash);
 	public HotelDTO selectCustomer(HotelDTO hotel);

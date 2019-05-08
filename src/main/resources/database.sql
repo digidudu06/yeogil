@@ -217,4 +217,41 @@ SELECT CITY_SEQ, CITY_NAME, CITY_ENAME, CITY_LAT, CITY_LNG FROM yeogil.CITY WHER
 UPDATE yeogil.CITY SET CITY_LAT=121.0713702, CITY_LNG=22.7972447 WHERE  CITY_SEQ=8;
 SELECT CITY_SEQ, CITY_NAME, CITY_ENAME, CITY_LAT, CITY_LNG FROM yeogil.CITY WHERE  CITY_SEQ=8;
 
+-- 스케쥴 INSERT
 
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('1073491307','Paris','2019-06-01','나의파리여행기','라데팡스 마르모탕미술관 에펠탑','노르망디 호텔(Normandy Hotel)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('1073491307','Paris','2019-06-02','나의파리여행기','1.점심 2.저녁 3.맥주','노르망디 호텔(Normandy Hotel)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('1073491307','Paris','2019-06-03','나의파리여행기','1. 2.마르모탕미술관 3.에펠탑','노르망디 호텔(Normandy Hotel)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('1073491307','Paris','2019-06-04','나의파리여행기','1.라데팡스 2.마르모탕미술관 3.에펠탑','노르망디 호텔(Normandy Hotel)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('1073491307','Paris','2019-06-05','나의파리여행기','1.라데팡스 2.마르모탕미술관 3.에펠탑','노르망디 호텔(Normandy Hotel)');
+
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Messi','Lisbon','2019-06-05','리스본가즈아','1.호시우광장 2.피게이라광장 3.파스테이스데벨렝','TripGeo Guesthouse');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Modric','London','2019-06-12','흐린런던이야기','1.국회의사당 2.타워브릿지 3.런던아이야경','말린 워털루(Marlin waterloo)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Ramos','Amsterdam','2019-06-09','혼자떠난여행기','1.폰델파크 2.안네프랑크의집 3.프린센그라츠','더 콘서트 호텔(The Concert Hotel)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Bruyne','Casablanca','2019-07-01','블랑카의나라','1.마라케시 2.사하라 사막투어 3.페스 Fes','프린스 드 파리 (Price de Paris)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('deGea','Madrid','2019-06-21','레알마드리드를 가다','1.시벨레스광장 2.솔 광장 3.마요르 광장','엑세 플라자(Exe Plaza)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Young','Frankfurt','2019-07-11','차범근의 나라로 떠나다','1.유로타워 2.뢰머광장 3.중앙역','the niu Charly');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Marcelo','Roma','2019-07-14','낭만의 나라로 내몸을 맡기다','1.바티칸 시티 투어 2.젤라또 맛집 3.아씨시 둘러보기','카사 카라(Casa Carra)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Neymar ','Oslo','2019-07-29','천연의 고등어 먹방','1.비겔란공원 2.카를요한거리 3.노벨평화센터','앵커 호스텔(Anker Hostel)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Kante','Kobenhavn','2019-06-19','리스본가즈아','1.티볼리공원 2.원형탑 3.아말리엔보르 궁전','그랜드 호텔(Grand Hotel)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Mbappe','Berlin','2019-07-24','베를린 장벽보러갔다옴','1.박물관섬 2.쿠담거리 3.샤를로텐부르크 궁전','호텔 로씨(Hotel Rossi)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Varane','Stockholm','2019-06-02','즐라탄과 축구하러온다','1.노르딕 박물관 2.감라스탄 3.시그투나','제너레이터 스톡홀름(Generator Stockholm)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('VanDijk','Budapest','2019-08-21','영화보고 다녀왔어요','1.에스테르곰 2.비셰그라드 3.브라티슬라바','안나 호텔 (Anna Hotel)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Rooney','Warszawa','2019-08-01','여자혼자다녀왔어요','1.올드타운 2.와지엔키공원 3.노비 시비아트','상가테 호텔 에어포트(Sangate Hotel Airport)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Aguero','Athinai','2019-10-18','전설의 나라에 다녀왔습니다','1.모나스티라키 광장 2.플라카 3.아고라 골목','더 스탠리 (The Stanley)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Gotze','Helsinki','2019-06-21','재미있는 여행이었음','1.우스펜스키 대성당 2.수오멘리나 요새 3.시벨리우스 공원','글로 호텔 아트(Glo Hotel Art)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Pogba','Istanbul','2019-06-27','형제의 나라로 간다','1.그랜드바자르 2.수오멘리나 요새 3.톱카프 궁전','Takim Celebi Residence');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Salah','Cairo','2019-07-17','피라미드탐사 하러 갑니다','1.기자 피라미드 2.호루스 신전 3.카르낙 신전','페어몬트 나일 시티(Fairmout nile City)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Fabregas','Kiev','2019-07-30', '러시아답사','1.클로버하우스 2.드바그루지아 3.히즈버거','우크라이나 호텔 (Ukraine Hotel)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Ozil','Dubai','2019-05-12', '석유의나라에 2박3일다녀왔어요','1.버즈칼리퍼 전망대 2.두바이분수 3.버지 앨 아랍 쥬메이라','로다 알 머루주 호텔 (Roda Al Murooj Hotel)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Mata','Karachi','2019-05-08', '여행다닐때 총조심','1.라호르 구경 2.훈자마을 3.라왈핀디','Aimys Villa Guest House');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Pato','Delhi','2019-05-15', '델리가서 같이 카레드실분','1.대통령 궁 2.레드포트 3.파하르간지','Tsampa House');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('DiMaria','Katmandu','2019-05-20', '만두먹방 3박4일 일정','1.타멜거리 2.더르바르 광장 3.스와얌브나트사원','Tsampa House');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Sanchez','Bangkok','2019-06-27', '방콕 자유여행 4박 5일 리얼일정','1.왓 프라깨우 2.카오산로드 3.소피텔파크 루프탑 디너','프린스 팰리스 호텔(Prince Palace Hotel)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Griezmann','Hanoi','2019-06-02', '5박6일 하노이 가족여행','1.호안끼엠 호수 2.동쑤언 시장 3.야시장 맥주','클래식 스트리트 호텔(Classic Street Hotel)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Maradona','Jakarta','2019-06-17', '인도네시아 모나스와 그주변','1.이스티크랄 이슬람 사원 2.브하라따 극장 3.파사라야 몰','Hotel Monopoli');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Pele','KualaLumpur','2019-07-01', '쿠알라룸푸르 3박 4일','1.잘란알 2.메르데카 광장 3.말라카','Setia Sky Residence');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('VanBasten','Singapore','2019-08-04', '싱가포르 3박4일 자유여행!','1.클락키 점보 레스토랑 2.싱가폴 리버크루즈 타기 3.리틀인디아','라이 밍 호텔 코스모랜드(Lai Ming Hotel Cosmoland)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Sterling','Hongkong','2019-09-28', '2일 3박 야무지게 여행하기','1.미드레벨 에스컬레이터 2.부타오라면 3.피크 타워','항 풍 호스텔(Hang Fung Hostel)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Alli','Beijing','2019-09-16', '가을여행으로 딱 최고의 비경','1.만리장성 2.자금성 3.동물원','베이징 프라임 호텔 왕푸징(Beijing Prime Hotel Wangfujing)');
+INSERT INTO yeogil.SCHEDULE(MEMBER_ID,CITY_NAME,S_DATE,S_TITLE,S_DAY,HOTEL_NAME) VALUES('Vieira','Manila','2019-09-24', '','1.만리장성 2.자금성 3.동물원','베이징 프라임 호텔 왕푸징(Beijing Prime Hotel Wangfujing)');

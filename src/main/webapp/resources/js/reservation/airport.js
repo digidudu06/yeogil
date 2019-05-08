@@ -94,32 +94,55 @@ airport = (()=>{
 					hotel.init();
 					});
 				});
+
 				
-				$('#asmbtn_01').text("항공권검색").click(()=>{
-					let arr = {departAirport:$('#sinput_01').val(),
-							arrivalAirport:$('#sinput_02').val(),
+				$('#asmbtn_01').text("항공권검색").click(function(e){
+					 e.preventDefault();
+					 $(compo.grid()).appendTo('#common_area');
+					/*let data = {
 							departDate:$('#sinput_03').val(),
 							arrivalDate:$('#sinput_04').val()};
-					if(arr.departAirport===""&&arr.arrivalAirport===""&&arr.departDate===""&&arr.arrivalDate===""){
-						alert("입력을 똑바로 해주세요 ^^");
+					if(data.departDate===""&&data.arrivalDate===""){
+						alert("모든 항목을 기입해주세요!");
 					}else{
 						$.ajax({
-							url: _+'/clink/airline',
-							type:'POST',
-							data:JSON.stringify(arr),
+							url: _+'/crawling/avation',
+							type:'post',
+							data:JSON.stringify(data),
 							dataType:'json',
 							contentType:'application/json',
-							success:d=>{
-								if(d.s === "s"){
-									alert("성공");
-								}
+							success: d =>{
+								alert("크롤링 중입니다");
+								$(compo.wells()).appendTo('#common_area');
+								$.each(d.allist,(i,j)=>{
+									
+									if(i<3){
+										$('<h4><img src="'+j.airImg+' width="20" height="20" alt=""></img>'+j.airportName+' '+j.departureTime+' '+j.arrivalTime+' '+j.departAirport+' '+j.arrivalAirport+' '+j.departDate+' '+j.arrivalDate+' '+j.price+'</h4><p><p><p>')
+										.appendTo('#pnbd_01');
+									}
+								});
+								
+								$.each(d.arlist,(i,j)=>{
+									if(i<3){
+										$('<h4> <img src="'+j.airImgR+' width="20" height="20" alt=""></img>'+j.airportNameR+' '+j.departureTimeR+' '+j.arrivalTimeR+' '+j.departAirportR+' '+j.arrivalAirportR+' '+j.departDateR+' '+j.arrivalDateR+' '+j.priceR+' '+'<button id="pp_02" type="button" class="btn btn-primary">결제하기</button></h4>')
+										.appendTo('#pnbd_02');
+									}
+								});
+								
+								$('#pp_02').attr('data-toggle','modal').attr('data-target','#myModal').click(function(e){
+									  e.preventDefault();
+							            $('#myModal').attr('style','display: block; z-index:99999;');
+							            $('.modal-dialog').attr('style','top:200px;')
+							            $('.modal-content').attr('style','margin:auto;');
+							            $('#modal_01').text("항공권 구매 완료");
+							            $('#modal_02').text("결제가 완료 되었습니다");
+								});
 							},
 							error:e=>{
 								alert('실패하였습니다.');
 							}
 						});
-					}
-				
+					}*/
 				});
 /*					$('#airpay_01').attr('data-toggle','modal').attr('data-target','#myModal').click(function(e){
 						  e.preventDefault();
