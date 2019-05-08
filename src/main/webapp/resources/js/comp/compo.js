@@ -828,13 +828,13 @@ compo = {
 			+'<div class="p_header_title">'
 				+'누구나 쉽게 일정을 계획할 수 있습니다.</div>'
 			+'<div class="p_header_img">'
-				+'<img id="p_header_img" src="/resources/img/main/plan/p_header_img_ko.jpg" alt="" />'
+				+'<img id="p_header_img" alt="" />'
 			+'</div>'
 			+'<div class="p_header_btn_box">'
 				
 				+'<div class="clear"></div>'
 			+'</div>'
-			+'<img class="p_header_hide_bg" id="p_header_hide_bg" src="/resources/img/main/plan/hide_bg.png" />'
+			+'<img class="p_header_hide_bg" id="p_header_hide_bg"/>'
 			+'</div>'
 			+'</div>'},
 			
@@ -870,7 +870,7 @@ compo = {
 				+'<div class="filter_set_btn" data-hide="area_tab" data="300">미국</div>'
 				+'<div class="filter_set_btn" data-hide="area_tab" data="203">프랑스</div>'
 				+'<div class="area_btn" data-on="off">'
-					+'<img id="area_btn" src="/res/img/main/plan/area_down.jpg" alt="">'
+					+'<img id="area_btn" alt="">'
 				+'</div>'
 				+'<div class="clear"></div>'
 			+'</div>'
@@ -888,7 +888,7 @@ compo = {
 					+'<div class="area_tab_btn" data-on="off" data-tab="sa">'
 					+'중남미					</div>'
 		
-		+'<img src="/res/img/main/plan/areatab_close.gif" class="areatab_close" alt="">'
+		+'<img class="areatab_close" alt="">'
 		+'<div class="areatab_line"></div>'
 		+'<div class="autobox">'
 						+'<input type="text" class="area_search" placeholder="여행지를 검색하세요.">'
@@ -1196,7 +1196,7 @@ compo = {
 					+'</div>'
 				+'</div>'
 				+'<div id="search_box" style="width:100%;height:51px;border-bottom:solid #d6d6d6 1px;"></div>'
-				+'<div id="country_list_box" style="height: 612px;"></div>'
+/*				+'<div id="country_list_box" style="height: 612px;"></div>'*/
 				+'<div id="city_list_box" style="height: 612px; display: none;">'
 				+'</div>'
 			+'</div>'
@@ -1576,7 +1576,7 @@ compo = {
 				+'<div class="ci_title_name fl">여행도시</div>'
 				+'<div class="pn_date_box fr" id="date_pick_btn" data="0">'
 					+'<div class="pn_date_info fl">출발일</div>'
-					+'<div class="pn_date_icon fr"><img src="/res/img/workspace/new/pn_cal_btn.png"></div>'
+					+'<div class="pn_date_icon fr"><img src="'+$.img()+'/map/pn_cal_btn.png"></div>'
 					+'<div class="clear"></div>'
 					+'<div id="date_pick"></div>'
 				+'</div>'

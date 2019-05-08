@@ -22,24 +22,15 @@ public class JiwooController {
 	@Autowired List<CityDTO> list2;
 	@Autowired Map<String,Object> map;
 	
-	/*
-	 * @SuppressWarnings("unchecked")
-	 * 
-	 * @GetMapping("/ccc/{continentName}") public Map<?,?> countrylist(@PathVariable
-	 * String continentName) { System.out.println("지우 컨트롤러 countrylist"); list =
-	 * (List<CountryDTO>) countryService.findCountries(continentName); map.clear();
-	 * map.put("ls",list); return map; }
-	 */
-	
 	@SuppressWarnings("unchecked")
 	@PostMapping("/cont/{continentName}")
 	public Map<?,?> countrylist1(@PathVariable String continentName) {
 		System.out.println("지우 컨트롤러 countrylist ::: "+continentName);
 		list = (List<CountryDTO>) countryService.findCountries(continentName);
-		System.out.println("안들어오니");
+		/* System.out.println("안들어오니"); */
 		map.clear();
 		map.put("ls",list);
-		System.out.println(list.toString());
+		/* System.out.println(list.toString()); */
 		return map;
 	}
 	
@@ -51,7 +42,7 @@ public class JiwooController {
 		
 		map.clear();
 		map.put("ls",list2);
-		System.out.println(list2.toString());
+		System.out.println(list2.toString()); 
 		return map;
 	}
 	
