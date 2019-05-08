@@ -380,7 +380,7 @@ sche = (()=>{
 				let html = ''; 
 				$.each(data.ls, function(key, val) {
 					html += '<div class="item" data-no="'+key+'" data="'+val.countrySeq+'" data-latlng="'+val.countryLat+','+val.countryLng+'" data-val="'+val.countryEname+'">';
-					html += '<div class="img_box fl"><img src="FFFF"/></div>';
+					html += '<div class="img_box fl"><img src=""/></div>';
 					html += '<div class="info_box fl"><div class="info_title">'+val.countryName	+'</div><div class="info_sub_title">'+val.countryEname+'</div></div>';
 					html += '<div class="clear"></div></div>';
 					add_marker_country(val.countryLat,val.countryLng,val.countryName,val.countryEname,val.countrySeq);

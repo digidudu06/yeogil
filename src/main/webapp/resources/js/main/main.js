@@ -37,9 +37,13 @@ main = (()=>{
 		$('#reservation').click(function(){
 				location.assign($.ctx()+'/reser');
 		});
-		$('#admin').click(function(){
-			location.assign($.ctx()+'/admin');
-	});
+		if(!(sessionStorage.getItem('memberId') === '1073491307' || sessionStorage.getItem('memberId') === '1075836473')){
+			$('#admin').hide();
+		}else{
+			$('#admin').click(function(){
+				location.assign($.ctx()+'/admin');
+			});
+		}
 //==================================================	
 		$.getScript(compojs,()=>{
 			$(compo.main_contents()).appendTo('#common_area');
@@ -54,7 +58,7 @@ main = (()=>{
 			}else{
 				$('.gnb_box').empty();
 				$(compo.logon()).appendTo('.gnb_box');
-				$('<img src="'+img+'/common/default_img.png" style="width: 30px;">').prependTo('.dropdown-toggle ');
+				$('<img src="'+img+'/common/logon_img.png" style="width: 30px;">').prependTo('.dropdown-toggle ');
 				$('#logout_btn').click(()=>{
 					alert('클릭 로그아웃!');
 					logout();
@@ -97,6 +101,7 @@ main = (()=>{
 	                              success:function(res){
 	                                  alert('성공');
 	                                 location.assign(_);
+	                                 sessionStorage.setItem('memberId', res.memberId);
 	                                 sessionStorage.setItem('nickname', res.nickname);
 	                                 sessionStorage.setItem('thumbnailImg', res.thumbnailImg);
 	                                 alert(sessionStorage.getItem('nickname')+'?????????'+sessionStorage.getItem('thumbnailImg'));

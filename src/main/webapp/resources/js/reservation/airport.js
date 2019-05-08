@@ -17,8 +17,6 @@ airport = (()=>{
 		let onCreate=()=>{
 			setContentView();
 		};
-		
-		
 		let setContentView =()=>{
 //==========================================메인 네비바
 			$('#home').click(function(){
@@ -62,6 +60,19 @@ airport = (()=>{
 			
 			$.getScript(compojs, ()=>{
 				$('#common_area').empty();
+				if(sessionStorage.getItem('session') === null){
+					$('#custom-login-btn').click(function loginWithKakao() {
+						login();
+					});
+				}else{
+					$('.gnb_box').empty();
+					$(compo.logon()).appendTo('.gnb_box');
+					$('<img src="'+img+'/common/logon_img.png" style="width: 30px;">').prependTo('.dropdown-toggle ');
+					$('#logout_btn').click(()=>{
+						alert('클릭 로그아웃!');
+						logout();
+					});
+				}
 				$('#common_area').css("background-image", "url('"+_+"/resources/img/background.jpg')");
 				$(compo.reservation()).appendTo('#common_area');
 				$('<button id="hbtn_01" class="btn btn-danger">호텔</button>').prependTo('#apbtn_01');
@@ -90,22 +101,25 @@ airport = (()=>{
 							departDate:$('#sinput_03').val(),
 							arrivalDate:$('#sinput_04').val()};
 					if(arr.departAirport===""&&arr.arrivalAirport===""&&arr.departDate===""&&arr.arrivalDate===""){
-						confirm("누락없이 채워주세요");
+						alert("입력을 똑바로 해주세요 ^^");
 					}else{
 						$.ajax({
 							url: _+'/clink/airline',
-							type:'post',
+							type:'POST',
 							data:JSON.stringify(arr),
 							dataType:'json',
 							contentType:'application/json',
 							success:d=>{
-								alert("2");
+								if(d.s === "s"){
+									alert("성공");
+								}
 							},
 							error:e=>{
-								alert("에러");
+								alert('실패하였습니다.');
 							}
 						});
 					}
+				
 				});
 /*					$('#airpay_01').attr('data-toggle','modal').attr('data-target','#myModal').click(function(e){
 						  e.preventDefault();
@@ -129,6 +143,51 @@ airport = (()=>{
 		        };//img반복끝*/
 			}); 
 		};//setContentView끝
+		let login = ()=>{
+			Kakao.init('0b0fec75e07cb3ea427be11fe3287c3b');
+			Kakao.Auth.login({
+				success: function(authObj) {
+					Kakao.API.request({
+						url: '/v1/user/me',
+						success: function(res) {
+							alert(JSON.stringify(res)); //<---- kakao.api.request 에서 불러온 결과값 json형태로 출력
+							alert(JSON.stringify(authObj)); //<----Kakao.Auth.createLoginButton에서 불러온 결과값 json형태로 출력
+							console.log(res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
+							console.log(res.kaccount_email);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
+							console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근
+							// res.properties.nickname으로도 접근 가능 )
+							console.log(authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
+							Kakao.Auth.setAccessToken(authObj.access_token, true);
+							sessionStorage.setItem('session', Kakao.Auth.getAccessToken());
+							$.ajax({
+								url:_+'/login',
+								type: 'POST',
+								data: JSON.stringify(res, authObj),
+								dataType:'json',
+								contentType : "application/json; charset=UTF-8",
+								success:function(res){
+									alert('성공');
+									location.assign(_+"/reser");
+									sessionStorage.setItem('nickname', res.nickname);
+	                                sessionStorage.setItem('thumbnailImg', res.thumbnailImg);
+								},
+								error:function(err){
+									login();
+								}
+							});
+						}
+					})
+				},
+				fail: function(err) {
+					alert(JSON.stringify(err));
+				}
+			});
+			
+		};
+		let logout=()=>{
+			sessionStorage.removeItem('session');
+			location.assign(_);
+		};
 		return {init:init,ext:ext};
 })();
 airport.$= {
