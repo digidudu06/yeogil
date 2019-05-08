@@ -15,10 +15,25 @@ mysche = (()=>{
 	let setContentView=()=>{
 		$.getScript(compojs,()=>{
 			$('#common_area').empty();
-			$(compo.mypage_sche()).appendTo('#common_area');
-			$('.plan_hidden_btn').click(function(){
-				mypage.init();
+			$(compo.mysche()).appendTo('#common_area');
+			$('#mysche_nav').css("padding-bottom","30px");
+			$('#my_cover').empty();
+			$('#my_cover').attr('style','background:url("https://img.earthtory.com/img/city_default/301/10024.jpg")');
+			
+			$('#edit_detail_plan').click(function(){
+				//기존스케쥴 담아서 이동하기
+				sche.init();
 			});
+			if(sessionStorage.getItem('thumbnailImg')==='default_img'){
+				$('.puser_img').attr("src",img+"/common/default_img.png");
+			}else{
+				$('.puser_img').attr("src",sessionStorage.getItem('thumbnailImg'));
+			}
+			$('.puser_name').text(sessionStorage.getItem('nickname'));
+			$('.plan_theme').remove();
+			
+			
+			
 		});
 	};
 	return {init:init};

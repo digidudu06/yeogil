@@ -52,11 +52,11 @@ sche = (()=>{
 			.appendTo('#country_list_title').attr('style','width:100%;');
 			$('<div class="clear"/>').appendTo('#country_list_title');
 			$('<div id="city_list_title">'
-			+'<div class="back_btn fl"></div>'
+			+'<div class="back_btn fl" id="back_btn"></div>'
 			+'<div class="fl cu_title" style="width:230px;padding-left:10px;font-size:15px;">city</div>'
 			+'<div class="clear"></div>'
 			+'</div>').appendTo('.title_box');
-
+			$('#back_btn').css("background", "url('"+img+"/map/back_btn.png')");
 			
 			$('#map').insertAfter('#clip_list').attr('style','height: 100%; position: relative;overflow: hidden;');
 			get("아시아");
@@ -253,6 +253,7 @@ sche = (()=>{
 	$('#country_list_box').on('click','.item',function(){
 		let _cu_srl = $(this).attr('data');
 		let _cu_name = $(this).attr('data-val');
+		let _cu_ename = $(this).attr('data-name');
 		alert('country list box'+_cu_srl);
 		deleteMarkers();
 		$('#country_list_box').hide();
@@ -260,7 +261,7 @@ sche = (()=>{
 		$('#city_list_box').show();
 		$('#city_list_title').attr('style','display: block;');
 		if(_cu_srl == 5){
-			get_ko_state(_cu_name);
+			get_ko_state(_cu_name,_cu_ename);
 			
 		}else{
 			get_city_list(_cu_srl,_cu_name);
@@ -379,7 +380,8 @@ sche = (()=>{
 				console.log(data);
 				let html = ''; 
 				$.each(data.ls, function(key, val) {
-					html += '<div class="item" data-no="'+key+'" data="'+val.countrySeq+'" data-latlng="'+val.countryLat+','+val.countryLng+'" data-val="'+val.countryEname+'">';
+					html += '<div class="item" data-no="'+key+'" data="'+val.countrySeq+'" data-latlng="'+
+					val.countryLat+','+val.countryLng+'" data-val="'+val.countryEname+'" data-name="'+val.countryName+'">';
 					html += '<div class="img_box fl"><img src="FFFF"/></div>';
 					html += '<div class="info_box fl"><div class="info_title">'+val.countryName	+'</div><div class="info_sub_title">'+val.countryEname+'</div></div>';
 					html += '<div class="clear"></div></div>';
@@ -523,7 +525,7 @@ sche = (()=>{
 	
 	function add_s_marker(_lat, _lng) {
 		console.log('add_s_marker');
-		var s_marker_img = '/res/img/workspace/new/select_marker.png';
+		var s_marker_img = img+'map/marker/ic_current.png';
 		var marker_position = new google.maps.LatLng(_lat,_lng);
 		var marker = new google.maps.Marker({
 			position: marker_position,
@@ -716,8 +718,9 @@ sche = (()=>{
 	
 	
 	
-	function get_ko_state(_cu_name){
-		$('#city_list_title .cu_title').text(_cu_name);
+	function get_ko_state(_cu_name,_cu_ename){
+	
+		$('#city_list_title .cu_title').text(_cu_ename);
 		$.ajax({
 			type: "post",
 			url: _+"/cont/country/"+_cu_name,
