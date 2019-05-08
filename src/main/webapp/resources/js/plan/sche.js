@@ -523,7 +523,7 @@ sche = (()=>{
 	
 	function add_s_marker(_lat, _lng) {
 		console.log('add_s_marker');
-		var s_marker_img = '/res/img/workspace/new/select_marker.png';
+		var s_marker_img = img + '/map/marker/ic_current.png';
 		var marker_position = new google.maps.LatLng(_lat,_lng);
 		var marker = new google.maps.Marker({
 			position: marker_position,
