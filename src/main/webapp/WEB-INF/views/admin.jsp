@@ -17,27 +17,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="https://code.highcharts.com/maps/highmaps.js"></script>
-<script src="https://code.highcharts.com/mapdata/index.js?1"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
-<script src="https://www.highcharts.com/samples/maps/demo/all-maps/jquery.combobox.js"></script>
-
 <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
-<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
   <!-- Bootstrap CSS -->
   <link href="<%=application.getContextPath()%>/resources/admin/css/bootstrap.min.css" rel="stylesheet">
   <!-- bootstrap theme -->
   <link href="<%=application.getContextPath()%>/resources/admin/css/bootstrap-theme.css" rel="stylesheet">
-  <!--external css-->
-  <!-- font icon -->
-  <link href="<%=application.getContextPath()%>/resources/admin/css/elegant-icons-style.css" rel="stylesheet" />
-  <link href="<%=application.getContextPath()%>/resources/admin/css/font-awesome.min.css" rel="stylesheet" />
-  <!-- full calendar css-->
-  <link href="<%=application.getContextPath()%>/resources/admin/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
-  <link href="<%=application.getContextPath()%>/resources/admin/assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
   <!-- Custom styles -->
   <link href="<%=application.getContextPath()%>/resources/admin/css/style.css" rel="stylesheet" >
 </head>
@@ -71,7 +56,7 @@
       </div>
     </aside>
     <!--sidebar end-->
-
+	
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
@@ -84,26 +69,6 @@
         <div class="row" id="f_temp">
         </div>
         <!--/.row-->
-        <div class="row">
-          <div class="col-lg-9 col-md-12">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h2><i class="fa fa-map-marker red"></i><strong>여행지 map chart</strong></h2>
-                <div class="panel-actions">
-                  <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
-                  <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                  <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
-                </div>
-              </div>
-              <div class="panel-body-map">
-                <div id="map">
-                
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Today status end -->
         <div class="col-lg-9 col-md-12">
             <div class="panel panel-default">
               <div class="panel-heading">
@@ -130,7 +95,30 @@
                 </table>
               </div>
             </div>
-        <div class="row">
+           </div>
+           <div class="col-lg-9 col-md-12">
+           	<div id="map" style="height: 500px;">
+           	</div> 
+           </div>
+       <!--  <div class="row">
+          <div class="col-lg-9 col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h2><i class="fa fa-map-marker red"></i><strong>여행지 map chart</strong></h2>
+                <div class="panel-actions">
+                  <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
+                  <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                  <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
+                </div>
+              </div>
+              <div class="panel-body-map">
+                
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <!-- Today status end -->
+        
 
           <!-- <div class="col-lg-9 col-md-12">
             <div class="panel panel-default">
@@ -159,9 +147,8 @@
                 </table>
               </div>
             </div> -->
-          </div>
           <!--/col-->
-        </div>
+        
         <!-- statics end -->
         <!-- project team & activity start -->
         <div class="row">
