@@ -6,14 +6,13 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.yeogil.web.domain.AirportLeaveDTO;
+import com.yeogil.web.domain.AirportReturnDTO;
 
 @Component
 public interface AirportLeaveService {
-	public void createCustomer(AirportLeaveDTO apldto);
-	public List<AirportLeaveDTO> findAllCustomers(HashMap<String, String> hash);
-	public List<AirportLeaveDTO> findSomeCustomers(HashMap<String, String> hash);
-	public AirportLeaveDTO findCustomer(AirportLeaveDTO apay);
-	public int countCustomer();
-	public void modifyCustomer(AirportLeaveDTO apldto);
-	public void removeCustomer(AirportLeaveDTO apldto);
+	public void insertAirport(AirportLeaveDTO aldto);
+	public List<AirportLeaveDTO> findAllAirport(HashMap<String, String> hash);
+	public List<AirportLeaveDTO> findSomeAirport(HashMap<String, String> hash);
+	public AirportLeaveDTO findAirport(AirportLeaveDTO aldto);
+	public int countAirport();
 }

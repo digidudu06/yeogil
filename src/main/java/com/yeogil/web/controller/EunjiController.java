@@ -26,10 +26,9 @@ public class EunjiController {
         @SuppressWarnings("unchecked")
         HashMap<String, Object> t = (HashMap<String, Object>) mem;
         map.put("id", t.get("id"));
-        
         String nickname = ((Map)t.get( "properties" )).get( "nickname" ).toString();
-        String thumbnailImg = (((Map)t.get( "properties" )).get( "thumbnailImg" )!=null)
-            ?((Map)t.get( "properties" )).get( "thumbnailImg" ).toString()
+        String thumbnailImg = (((Map)t.get( "properties" )).get( "thumbnail_image" )!=null)
+            ?((Map)t.get( "properties" )).get( "thumbnail_image" ).toString()
                     : "default_img";
             
         member.setMemberId(map.get("id").toString());

@@ -9,7 +9,7 @@ import com.yeogil.web.domain.HotelDTO;
 
 @Component
 public interface HotelService {
-	public void createCustomer(HotelDTO hotel);
+	public void createHotel(HotelDTO hotel);
 	public List<HotelDTO> findAllCustomers(HashMap<String, String> hash);
 	public List<HotelDTO> findSomeCustomers(HashMap<String, String> hash);
 	public HotelDTO findCustomer(HotelDTO hotel);

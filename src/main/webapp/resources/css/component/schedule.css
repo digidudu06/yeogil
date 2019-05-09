@@ -480,7 +480,7 @@ html, body {
 .back_btn {
 	width: 13px;
 	height: 23px;
-	background: url('/res/img/workspace/back_btn.png');
+	/* background: url('/res/img/workspace/back_btn.png'); */
 	margin-top: 22px;
 	cursor: pointer;
 }

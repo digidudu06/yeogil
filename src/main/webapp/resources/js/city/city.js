@@ -36,16 +36,17 @@ city = (()=>{
 						$('.country_detail').remove();
 						$('.city_detail').remove();
 						$('.spot_list').remove();
-						let arr = {x:$('.area_title span').text(),y:1}
+						let arr = {x:c.y,y:1}
 						tourist_main_city(arr);
 						break;
 					case 'tourist_city':
 						$('.country_detail').remove();
 						$('.city_detail').remove();
 						$('.spot_list').remove();
-						$(compo.tourist_city()).appendTo('#common_area');
-						$(compo.tourist_list()).appendTo('#common_area');
-	
+						let ar = {x:c.y,y:1}
+						attraction_list(ar);
+						
+						//$(compo.tourist_list()).appendTo('#common_area');
 						break;
 					case 'restaurant':
 						alert('관광지와 같은 기능입니다.');
@@ -62,6 +63,50 @@ city = (()=>{
 			});
 		});
 	};
+	let attraction_list = (arr)=>{
+		$.getScript(compojs,()=>{
+			$('.country_detail').empty();
+			$(compo.tourist_city()).appendTo('#common_area');
+			$(compo.attraction_list()).appendTo('#common_area');
+			$.getJSON(_+'/attraction/'+arr.x+'/'+arr.y,d=>{
+				$('<div>총<span>'+d.pxy.rowCount+'</span>개</div>').appendTo('.list_cnt');
+				$.each(d.ls,(i,j)=>{
+					$('<a class="box" id="'+j.attrEname+'">'
+					+'	<img src="'+j.attrImg+'" alt="" class="main_city_img">'
+					+'	<div class="city_right">'
+					+'		<div class="city_name">'+j.attrName+'</div>'
+					+'		<div class="city_name_en">'+j.attrEname+'</div>'
+					+'		<div class="spot_names">'+j.CITY_DNAME+'</div>'
+					+'	</div>'
+					+'	<div class="clear"></div>'
+					+'</a>'
+					).appendTo('.list')
+					.addClass('cursor');
+				 });
+				let i= 0;
+				for(i=d.pxy.startPage;i<=d.pxy.endPage;i++){
+					if(d.pxy.pageNum){
+						$('<button type="button" class="on">'+i+'</button>')
+						.addClass('cursor')
+						.appendTo('#paging')
+						.click(function(){
+							let a={x:arr.x,y:$(this).text()};
+							attraction_list(a);
+						});
+					}else{
+						$('<button type="button">'+i+'</button>')
+						.addClass('cursor')
+						.appendTo('#pagination')
+						.click(function(){
+							let a={x:arr.x,y:$(this).text()};
+							attraction_list(a);
+						});
+					}
+				}
+			});
+		});
+	};
+	/////////////////////////////////////////////////////////////////////////////////////////
 	let tourist_main_city = (arr)=>{
 		$.getScript(compojs,()=>{
 			$('.country_detail').empty();
@@ -83,8 +128,6 @@ city = (()=>{
 					.click(function (){
 							if(j.imgName === "Taipei"){
 								city_detail();
-								
-								
 							}else{
 								alert('타이베이를 눌러주세요 ㅎㅎ');
 							}

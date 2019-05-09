@@ -5,15 +5,16 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.yeogil.web.controller.Proxy;
 import com.yeogil.web.domain.AttractionDTO;
 
 @Repository
 public interface AttractionMapper {
 	public void insertAttraction(AttractionDTO att);
-	public List<AttractionDTO> selectAllAttractions(HashMap<String, Object> map);
-	public List<AttractionDTO> selectSomeAttractions(HashMap<String, Object> map);
+	public List<AttractionDTO> selectAllAttractions(Proxy pxy);
+	public List<AttractionDTO> selectSomeAttractions(Proxy pxy);
 	public AttractionDTO selectCustomer(AttractionDTO att);
-	public int countAttraction();
+	public int countAttraction(String countryName);
 	public void updateAttraction(AttractionDTO att);
 	public void deleteAttraction(AttractionDTO att);
 }
