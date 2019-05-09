@@ -34,6 +34,13 @@ airport = (()=>{
 			$('#reservation').click(function(){
 				location.assign($.ctx()+'/reser');
 			});
+			if(!(sessionStorage.getItem('memberId') === '1073491307' || sessionStorage.getItem('memberId') === '1075836473')){
+				$('#admin').hide();
+			}else{
+				$('#admin').click(function(){
+					location.assign($.ctx()+'/admin');
+				});
+			}
 	//==================================================
 			
 			$('.ej_css').remove();
@@ -187,10 +194,12 @@ airport = (()=>{
 								type: 'POST',
 								data: JSON.stringify(res, authObj),
 								dataType:'json',
+								dataType:'json',
 								contentType : "application/json; charset=UTF-8",
 								success:function(res){
 									alert('성공');
 									location.assign(_+"/reser");
+									sessionStorage.setItem('memberId', res.memberId);
 									sessionStorage.setItem('nickname', res.nickname);
 	                                sessionStorage.setItem('thumbnailImg', res.thumbnailImg);
 								},
@@ -209,6 +218,9 @@ airport = (()=>{
 		};
 		let logout=()=>{
 			sessionStorage.removeItem('session');
+			sessionStorage.removeItem('memberId');
+	        sessionStorage.removeItem('nickname');
+	        sessionStorage.removeItem('thumbnailImg');
 			location.assign(_);
 		};
 		return {init:init,ext:ext};

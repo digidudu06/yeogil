@@ -34,6 +34,13 @@ plan =(()=>{
 		$('#reservation').click(function(){
 				location.assign($.ctx()+'/reser');
 		});
+		if(!(sessionStorage.getItem('memberId') === '1073491307' || sessionStorage.getItem('memberId') === '1075836473')){
+			$('#admin').hide();
+		}else{
+			$('#admin').click(function(){
+				location.assign($.ctx()+'/admin');
+			});
+		}
 //==================================================	
 		$('#jw_css').remove();
 		$.getScript(compojs,()=>{
@@ -77,7 +84,7 @@ plan =(()=>{
 					if(sessionStorage.getItem('session') === null){
 						login();
 					}else{
-						mysche.init();
+						mypage.init();
 					}
 				});
 			
@@ -117,6 +124,7 @@ plan =(()=>{
 							success:function(res){
 								alert('성공');
 								location.assign(_+"/sche");
+								sessionStorage.setItem('memberId', res.memberId);
 								sessionStorage.setItem('nickname', res.nickname);
                                 sessionStorage.setItem('thumbnailImg', res.thumbnailImg);
 							},
@@ -135,6 +143,9 @@ plan =(()=>{
 	};
 	let logout=()=>{
 		sessionStorage.removeItem('session');
+		sessionStorage.removeItem('memberId');
+        sessionStorage.removeItem('nickname');
+        sessionStorage.removeItem('thumbnailImg');
 		location.assign(_);
 	};
 	return {init:init,cont:cont, login:login};

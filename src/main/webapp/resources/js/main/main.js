@@ -121,6 +121,9 @@ main = (()=>{
 	};
 	let logout=()=>{
         sessionStorage.removeItem('session');
+        sessionStorage.removeItem('memberId');
+        sessionStorage.removeItem('nickname');
+        sessionStorage.removeItem('thumbnailImg');
          location.assign($.ctx());
     };
 	return {init:init, login:login, logout:logout}

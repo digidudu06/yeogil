@@ -21,7 +21,6 @@ mysche = (()=>{
 			$('#my_cover').attr('style','background:url("https://img.earthtory.com/img/city_default/301/10024.jpg")');
 			
 			$('#edit_detail_plan').click(function(){
-				//기존스케쥴 담아서 이동하기
 				sche.init();
 			});
 			if(sessionStorage.getItem('thumbnailImg')==='default_img'){
@@ -31,6 +30,14 @@ mysche = (()=>{
 			}
 			$('.puser_name').text(sessionStorage.getItem('nickname'));
 			$('.plan_theme').remove();
+			
+			$.getJSON(_+'/memOneSchedules/'+sessionStorage.getItem('memberId'),d=>{
+				$.each(d.list, (i,j)=>{
+					
+					alert(j.MS_ATTR_NAME);
+					
+				});
+			});
 			
 			
 			

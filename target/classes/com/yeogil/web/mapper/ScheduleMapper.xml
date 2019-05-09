@@ -14,4 +14,21 @@
 		SELECT COUNT(*)
 		FROM yeogil.SCHEDULE
 	</select>
+	
+	<select id="selectMemAllSchedule" resultMap="result" parameterType="string">
+		SELECT *,(SELECT IMG_URL FROM IMAGE
+				WHERE IMG_NAME LIKE MEMSCH.MS_COUNTRY_NAME) IMG_URL
+		FROM MEMSCH	JOIN MEMBER ON MEMBER.MEMBER_ID = MEMSCH.MEMBER_ID
+			WHERE MEMBER.MEMBER_ID LIKE #{value}
+	</select>
+	
+	<select id="selectMemOneSchedules" resultMap="result" parameterType="string">
+		SELECT * 
+		FROM MEMSCHATTR 
+			JOIN MEMSCHCTIY ON MEMSCHATTR.MS_CTIY_SEQ = MEMSCHCTIY.MS_CTIY_SEQ
+			JOIN MEMSCH ON MEMSCH.MS_SEQ = MEMSCHCTIY.MS_SEQ
+			JOIN MEMBER ON MEMBER.MEMBER_ID = MEMSCH.MEMBER_ID
+		WHERE MEMBER.MEMBER_ID LIKE #{value}
+			AND MEMSCH.MS_TITLE LIKE '나의 첫 미국여행기'
+	</select>
 </mapper>

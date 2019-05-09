@@ -1,14 +1,18 @@
 package com.yeogil.web.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yeogil.web.domain.MemberDTO;
+import com.yeogil.web.mapper.ScheduleMapper;
 import com.yeogil.web.service.MemberServiceImpl;
 
 @RestController
@@ -16,6 +20,7 @@ public class EunjiController {
 	@Autowired MemberDTO member;
 	@Autowired Map<String, Object> map;
 	@Autowired MemberServiceImpl memberService;
+	@Autowired ScheduleMapper schMap;
 	
 	
 	@PostMapping("/login")
@@ -48,4 +53,27 @@ public class EunjiController {
         return member;
 
     }
+	
+	@GetMapping("/memOneSchedules/{id}")
+	public Map<?,?> memOneSchedules(@PathVariable String id) {
+		System.out.println("넘어왔냐 : "+id);
+		ISupplier is = () -> schMap.selectMemOneSchedules(id);
+		System.out.println("::::::::::::"+is.get());
+		List<?> list = (List<?>) is.get();
+		map.clear();
+		map.put("list",list);
+		return map;
+	}
+	
+	@GetMapping("/memAllSchedule/{id}")
+	public Map<?,?> memAllSchedule(@PathVariable String id) {
+		System.out.println("넘어왔냐 : "+id);
+		ISupplier is = () -> schMap.selectMemAllSchedule(id);
+		System.out.println("::::::::::::"+is.get());
+		List<?> list = (List<?>) is.get();
+		map.clear();
+		map.put("list",list);
+		return map;
+	}
+	
 }
