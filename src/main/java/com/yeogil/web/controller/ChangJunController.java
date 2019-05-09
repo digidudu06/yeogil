@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yeogil.web.domain.AirportReturnDTO;
 import com.yeogil.web.domain.CountryDTO;
 import com.yeogil.web.domain.ImageDTO;
+import com.yeogil.web.mapper.AttractionMapper;
 import com.yeogil.web.mapper.CityMapper;
 import com.yeogil.web.mapper.MemberMapper;
 import com.yeogil.web.mapper.ScheduleMapper;
@@ -24,6 +25,7 @@ import com.yeogil.web.service.CountryService;
 public class ChangJunController {
 	@Autowired CountryService countryService;
 	@Autowired CityMapper cityMapper;
+	@Autowired AttractionMapper attractionMapper;
 	@Autowired MemberMapper memberMapper;
 	@Autowired ScheduleMapper scheduleMapper;
 	@Autowired List<CountryDTO> list;
@@ -37,11 +39,6 @@ public class ChangJunController {
 		list = (List<CountryDTO>) countryService.findAllCountry();
 		map.clear();
 		map.put("ls",list);
-		ar = new AirportReturnDTO();
-		ar.setAirportNameR("");
-		
-		AirportReturnDTO aaa = new AirportReturnDTO();
-		aaa.setAirportNameR("");
 		return map;
 	}
 	
@@ -59,6 +56,27 @@ public class ChangJunController {
 		pxy.carryOut(map);
 		
 		IFunction i = (Object o) -> cityMapper.cjSelectAllCity(pxy);
+		List<?> ls = (List<?>) i.apply(pxy);
+		map.clear();
+		map.put("ls", ls);
+		map.put("pxy", pxy);
+		return map;
+	}
+	
+	@GetMapping("/attraction/{countryName}/{page}")
+	public Map<?,?> attractionlist(
+			@PathVariable String countryName,
+			@PathVariable String page) {
+		map.clear();
+		map.put("srch", countryName);
+		map.put("page_num", page);
+		map.put("page_size", "5");
+		map.put("block_size", "5");
+		ISupplier is = () -> attractionMapper.countAttraction(countryName);
+		map.put("row_count", is.get());
+		pxy.carryOut(map);
+		
+		IFunction i = (Object o) -> attractionMapper.selectAllAttractions(pxy);
 		List<?> ls = (List<?>) i.apply(pxy);
 		map.clear();
 		map.put("ls", ls);

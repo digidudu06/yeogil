@@ -3,5 +3,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yeogil.web.mapper.AttractionMapper">
-
+<resultMap id="result" type="hashmap">
+  <id property="attrSeq" column="ATTR_SEQ" />
+  <result property="attrName" column="ATTR_NAME" />
+  <result property="attrEname" column="ATTR_ENAME" />
+  <result property="attrLat" column="ATTR_LAT" />
+  <result property="attrLng" column="ATTR_LNG" />
+  <result property="cityEname" column="CITY_ENAME" />
+  <result property="attrImg" column="ATTR_IMG" />
+  <result property="countryName" column="COUNTRY_NAME" />
+</resultMap>
+	<select id="countAttraction" resultType="int" parameterType="string">
+	  	SELECT COUNT(*)
+		FROM yeogil.ATTRACTION
+		WHERE COUNTRY_NAME LIKE #{value}
+	</select>
+	<select id="selectAllAttractions" resultMap="result" parameterType="com.yeogil.web.controller.Proxy">
+	  	SELECT *
+		FROM yeogil.ATTRACTION
+		WHERE COUNTRY_NAME LIKE #{search}
+		LIMIT #{startRow}, #{pageSize}
+	</select>
 </mapper>
