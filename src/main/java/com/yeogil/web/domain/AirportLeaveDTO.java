@@ -13,7 +13,6 @@ public class AirportLeaveDTO {
 					arrivalAirport,//도착공항
 					departDate,//출발날짜
 					arrivalDate,//도착날짜
-					price,//항공예약가격 리턴가격과 같음
 					airImg//항공사로고
 					;
 					

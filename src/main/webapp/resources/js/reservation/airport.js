@@ -1,6 +1,5 @@
 var airport = airport || {};
 airport = (()=>{
-		
 		let _, js, css, img, compojs, hoteljs;
 		let ext= x =>{
 			airport.$.ext(x);
@@ -18,6 +17,7 @@ airport = (()=>{
 			setContentView();
 		};
 		let setContentView =()=>{
+			default_view();
 //==========================================메인 네비바
 			$('#home').click(function(){
 				location.assign($.ctx());
@@ -42,7 +42,6 @@ airport = (()=>{
 				});
 			}
 	//==================================================
-			
 			$('.ej_css').remove();
 			$('.cj_css').remove();
 			$('.jw_css').remove();
@@ -63,8 +62,8 @@ airport = (()=>{
 			  +'<link class="sw_css" rel="stylesheet" href="'+css+'/web/main.css" />'
 			  +'<link class="sw_css" rel="stylesheet" href="'+css+'/web/date_picker.css" /> ';
 			$(sw_css).appendTo('head');
-			
-			
+		};
+		let default_view=()=>{
 			$.getScript(compojs, ()=>{
 				$('#common_area').empty();
 				if(sessionStorage.getItem('session') === null){
@@ -101,78 +100,112 @@ airport = (()=>{
 					hotel.init();
 					});
 				});
-
+				 
 				
 				$('#asmbtn_01').text("항공권검색").click(function(e){
 					 e.preventDefault();
-					 $(compo.grid()).appendTo('#common_area');
-					/*let data = {
-							departDate:$('#sinput_03').val(),
-							arrivalDate:$('#sinput_04').val()};
-					if(data.departDate===""&&data.arrivalDate===""){
-						alert("모든 항목을 기입해주세요!");
-					}else{
-						$.ajax({
-							url: _+'/crawling/avation',
-							type:'post',
-							data:JSON.stringify(data),
-							dataType:'json',
-							contentType:'application/json',
-							success: d =>{
-								alert("크롤링 중입니다");
-								$(compo.wells()).appendTo('#common_area');
-								$.each(d.allist,(i,j)=>{
-									
-									if(i<3){
-										$('<h4><img src="'+j.airImg+' width="20" height="20" alt=""></img>'+j.airportName+' '+j.departureTime+' '+j.arrivalTime+' '+j.departAirport+' '+j.arrivalAirport+' '+j.departDate+' '+j.arrivalDate+' '+j.price+'</h4><p><p><p>')
-										.appendTo('#pnbd_01');
-									}
-								});
-								
-								$.each(d.arlist,(i,j)=>{
-									if(i<3){
-										$('<h4> <img src="'+j.airImgR+' width="20" height="20" alt=""></img>'+j.airportNameR+' '+j.departureTimeR+' '+j.arrivalTimeR+' '+j.departAirportR+' '+j.arrivalAirportR+' '+j.departDateR+' '+j.arrivalDateR+' '+j.priceR+' '+'<button id="pp_02" type="button" class="btn btn-primary">결제하기</button></h4>')
-										.appendTo('#pnbd_02');
-									}
-								});
-								
-								$('#pp_02').attr('data-toggle','modal').attr('data-target','#myModal').click(function(e){
-									  e.preventDefault();
-							            $('#myModal').attr('style','display: block; z-index:99999;');
-							            $('.modal-dialog').attr('style','top:200px;')
-							            $('.modal-content').attr('style','margin:auto;');
-							            $('#modal_01').text("항공권 구매 완료");
-							            $('#modal_02').text("결제가 완료 되었습니다");
-								});
-							},
-							error:e=>{
-								alert('실패하였습니다.');
-							}
-						});
-					}*/
+					 let data = {arrivalDate:$('#sinput_03').val(),
+								departDateR:$('#sinput_04').val()};//map자체
+						if(data.arrivalDate===""&&data.departDateR===""){
+							alert("모든 항목을 기입해주세요!");
+						}else{
+					 let page ='1';
+					 $.getJSON($.ctx()+'/airlist/'+ page, d=>{
+						 $(compo.wells()).appendTo('#common_area');
+						 $.each(d.al,(i,j)=>{
+							 $('<div><img src="'+j.airImg+'" width="30" height="30" alt=""></img>'+j.airportName+j.departureTime+'->'+j.arrivalTime+j.departAirport+'->'+j.arrivalAirport+j.departDate+'->'+j.arrivalDate+'</div>').appendTo('#pnbd_01');
+						 });
+						 $.each(d.ar,(i,j)=>{
+							 $('<div><img src="'+j.airImgR+'" width="20" height="20" alt=""></img>'+j.airportNameR+j.departureTimeR+'->'+j.arrivalTimeR+j.departAirportR+'->'+j.arrivalAirportR+j.departDateR+'->'+j.arrivalDateR+j.priceR+'<button id="apbtn_0'+i+++'" type="button" class="btn btn-danger" style="width:10; hight:10;">결제</button></div>').appendTo('#pnbd_02');
+							 /*$('#apbtn_01').attr('data-toggle','modal').attr('data-target','#myModal').click(function(e){
+								  e.preventDefault();
+						            $('#myModal').attr('style','display: block; z-index:99999;');
+						            $('.modal-dialog').attr('style','top:200px;')
+						            $('.modal-content').attr('style','margin:auto;');
+						            $('#modal_01').text("항공권 구매 완료");
+						            $('#modal_02').text("결제가 완료 되었습니다");
+							});*/
+						 });
+						 $('#apbtn_00').click(function(){
+								IMP.init('imp68242076');
+								IMP.request_pay({
+							    pg : 'inicis', // version 1.1.0부터 지원.
+							    pay_method : 'card',
+							    merchant_uid : 'merchant_' + new Date().getTime(),
+							    name : '주문명:결제테스트',
+							    amount : 14000,
+							    buyer_email : 'iamport@siot.do',
+							    buyer_name : '구매자이름',
+							    buyer_tel : '010-1234-5678',
+							    buyer_addr : '서울특별시 강남구 삼성동',
+							    buyer_postcode : '123-456',
+							    m_redirect_url : 'http://localhost:8080/web/reser/popup'
+							}, function(rsp) {
+							    if ( rsp.success ) {
+							        var msg = '결제가 완료되었습니다.';
+							        msg += '고유ID : ' + rsp.imp_uid;
+							        msg += '상점 거래ID : ' + rsp.merchant_uid;
+							        msg += '결제 금액 : ' + rsp.paid_amount;
+							        msg += '카드 승인번호 : ' + rsp.apply_num;
+							    } else {
+							        var msg = '결제에 실패하였습니다.';
+							        msg += '에러내용 : ' + rsp.error_msg;
+							    }
+							    alert(msg);
+							});
+							}); 
+					 });
+					} 
+//================================================================================================================항공크롤링 시작						
+/*let data = {
+		departDate:$('#sinput_03').val(),
+		arrivalDate:$('#sinput_04').val()};
+if(data.departDate===""&&data.arrivalDate===""){
+	alert("모든 항목을 기입해주세요!");
+}else{
+	$.ajax({
+		url: _+'/crawling/avation',
+		type:'post',
+		data:JSON.stringify(data),
+		dataType:'json',
+		contentType:'application/json',
+		success: d =>{
+			alert("크롤링 중입니다");
+			$(compo.wells()).appendTo('#common_area');
+			$.each(d.allist,(i,j)=>{
+				
+				if(i<3){
+					$('<h4><img src="'+j.airImg+' width="20" height="20" alt=""></img>'+j.airportName+' '+j.departureTime+' '+j.arrivalTime+' '+j.departAirport+' '+j.arrivalAirport+' '+j.departDate+' '+j.arrivalDate+' '+j.price+'</h4><p><p><p>')
+					.appendTo('#pnbd_01');
+				}
+			});
+			
+			$.each(d.arlist,(i,j)=>{
+				if(i<3){
+					$('<h4> <img src="'+j.airImgR+' width="20" height="20" alt=""></img>'+j.airportNameR+' '+j.departureTimeR+' '+j.arrivalTimeR+' '+j.departAirportR+' '+j.arrivalAirportR+' '+j.departDateR+' '+j.arrivalDateR+' '+j.priceR+' '+'<button id="pp_02" type="button" class="btn btn-primary">결제하기</button></h4>')
+					.appendTo('#pnbd_02');
+				}
+			});
+			
+			$('#apbtn_01').attr('data-toggle','modal').attr('data-target','#myModal').click(function(e){
+				  e.preventDefault();
+		            $('#myModal').attr('style','display: block; z-index:99999;');
+		            $('.modal-dialog').attr('style','top:200px;')
+		            $('.modal-content').attr('style','margin:auto;');
+		            $('#modal_01').text("항공권 구매 완료");
+		            $('#modal_02').text("결제가 완료 되었습니다");
+			});
+		},
+		error:e=>{
+			alert('실패하였습니다.');
+		}
+	});
+}*/
 				});
-/*					$('#airpay_01').attr('data-toggle','modal').attr('data-target','#myModal').click(function(e){
-						  e.preventDefault();
-				            $('#myModal').attr('style','display: block; z-index:99999;');
-				            $('.modal-dialog').attr('style','top:200px;')
-				            $('.modal-content').attr('style','margin:auto;');
-				            $('#modal_01').text("항공권 구매 완료");
-				            $('#modal_02').text("결제가 완료 되었습니다");
-					});//모달 끝
-				 });//항공권검색 눌렀을때
-		});//getScript끝 
-			let img = ()=>{
-		        return [{name : "img1",url : "http://image.edaily.co.kr/images/Photo/files/NP/S/2016/06/PS16060300126.jpg"},
-		                {name : "img2",url : "https://t1.daumcdn.net/cfile/tistory/220ACD49543246531D"},
-		                {name : "img3",url : "https://travelblog.expedia.co.kr/wp-content/uploads/2017/01/113.jpg"},
-		                {name : "img4",url : "https://travelblog.expedia.co.kr/wp-content/uploads/2017/01/113.jpg"},
-		                {name : "img5",url : "https://travelblog.expedia.co.kr/wp-content/uploads/2017/01/113.jpg"},
-		                {name : "img6",url : "https://travelblog.expedia.co.kr/wp-content/uploads/2017/01/113.jpg"},
-		                {name : "img7",url : "https://travelblog.expedia.co.kr/wp-content/uploads/2017/01/113.jpg"},
-		                {name : "img8",url : "https://travelblog.expedia.co.kr/wp-content/uploads/2017/01/113.jpg"}];
-		        };//img반복끝*/
-			}); 
-		};//setContentView끝
+//================================================================================================================항공크롤링 끝
+			}
+		);
+		};
 		let login = ()=>{
 			Kakao.init('0b0fec75e07cb3ea427be11fe3287c3b');
 			Kakao.Auth.login({
@@ -214,7 +247,6 @@ airport = (()=>{
 					alert(JSON.stringify(err));
 				}
 			});
-			
 		};
 		let logout=()=>{
 			sessionStorage.removeItem('session');
@@ -223,6 +255,7 @@ airport = (()=>{
 	        sessionStorage.removeItem('thumbnailImg');
 			location.assign(_);
 		};
+		
 		return {init:init,ext:ext};
 })();
 airport.$= {

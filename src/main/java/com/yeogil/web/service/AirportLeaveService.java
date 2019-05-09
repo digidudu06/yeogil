@@ -11,7 +11,7 @@ import com.yeogil.web.domain.AirportReturnDTO;
 @Component
 public interface AirportLeaveService {
 	public void insertAirport(AirportLeaveDTO aldto);
-	public List<AirportLeaveDTO> findAllAirport(HashMap<String, String> hash);
+	public List<AirportLeaveDTO> findAllAirport();
 	public List<AirportLeaveDTO> findSomeAirport(HashMap<String, String> hash);
 	public AirportLeaveDTO findAirport(AirportLeaveDTO aldto);
 	public int countAirport();
