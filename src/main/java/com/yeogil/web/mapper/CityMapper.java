@@ -18,4 +18,5 @@ public interface CityMapper {
 	public int countCity();
 	public void updateCity(CityDTO city);
 	public void deleteCity(CityDTO city);
+	//public List<ImageDTO> retriveImage();
 }

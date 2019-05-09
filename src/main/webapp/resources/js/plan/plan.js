@@ -117,6 +117,7 @@ plan =(()=>{
 							success:function(res){
 								alert('성공');
 								location.assign(_+"/sche");
+								sessionStorage.setItem('memberId', res.memberId);
 								sessionStorage.setItem('nickname', res.nickname);
                                 sessionStorage.setItem('thumbnailImg', res.thumbnailImg);
 							},

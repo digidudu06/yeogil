@@ -20,7 +20,7 @@
 	</select>
 	<select id="selectCountries" resultMap="result" parameterType="string" >
 		SELECT *
-		FROM yeogil.COUNTRY
-		WHERE CONTINENT_NAME LIKE #{value}
+		FROM (SELECT * FROM yeogil.COUNTRY WHERE CONTINENT_NAME LIKE #{value} order by COUNTRY_SEQ) as c join yeogil.IMAGE as i
+		WHERE COUNTRY_NAME like i.IMG_NAME
 	</select>
 </mapper>

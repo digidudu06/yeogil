@@ -519,7 +519,7 @@ body {
 	display: none;
 }
 
-#plan_title {
+/* #plan_title {
 	font-size: 17px;
 	color: #363636;
 	font-weight: bold;
@@ -530,7 +530,7 @@ body {
 	border-radius: 5px;
 	cursor: pointer;
 	padding-right: 30px;
-}
+} */
 
 #plan_title span img {
 	vertical-align: middle;
