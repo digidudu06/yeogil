@@ -14,7 +14,9 @@
   <result property="countryEname" column="COUNTRY_ENAME" />
 </resultMap>
 	<select id="selectAllCity" resultMap="result" parameterType="string">
-	  SELECT * FROM yeogil.CITY
+	  SELECT * 
+	  FROM (SELECT * FROM yeogil.CITY WHERE COUNTRY_ENAME LIKE #{value} order by CITY_SEQ) as c join yeogil.IMAGE as i
+	  WHERE CITY_ENAME like i.IMG_NAME
 	</select>
 	<select id="countCity" resultType="int">
 	  	SELECT COUNT(*)

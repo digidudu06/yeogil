@@ -39,6 +39,7 @@ sche = (()=>{
 		$('<link id="jw_css" rel="stylesheet" href="'+css+'/component/schedule.css"/>').appendTo('head');
 		$('#header').remove();
 		$('#schedule').remove();
+		
 		$.getScript(compojs,()=>{
 			$('#common_area').empty();
 			$(compo.sche_header()).appendTo('#common_area');
@@ -60,7 +61,7 @@ sche = (()=>{
 			
 			$('#map').insertAfter('#clip_list').attr('style','height: 100%; position: relative;overflow: hidden;');
 			get("아시아");
-
+	
 			$.each(mapNav(),(i,j)=>{
 				$('<li><img src="'+j.src+'" class="s"></br>'+j.val+'</img></li>').attr({'data':j.name,'data-val':j.val})
 					.appendTo('#cat_menu').click(function(){
@@ -100,7 +101,7 @@ sche = (()=>{
 			
 			$('<div id="country_list_box"/>')
 			.appendTo('#schedule_full_box')
-			.css("background-image", "url('"+_+"/resources/img/map/cu_next_icon.png')")
+			.css("background-image", "url('"+img+"/map/cu_next_icon.png')")
 			.attr('style','height: 569px;');
 			
 			$('<div id="city_list_box"/>').appendTo('#schedule_full_box').attr('style','height: 569px;display:none;');
@@ -109,11 +110,29 @@ sche = (()=>{
 		 	+'<div class="detail_plan_go_btn">상세 일정 만들기</div></div>').appendTo('#select_detail_view_city');
 			
 			$('.detail_plan_go_btn').click(function(){
-		 		// 다음페이지
-		 		alert($('#city_list_title').text());
-		 		alert($('#date_pick_btn').children().eq(0).text());
-		 		alert($('#selected_cities .s_cities .city_info .fl').text());
-		 		
+		/* 		$('.ci_title_name').empty();
+		 		$('.city_title').attr('style','padding:15px;');
+		 		$('<input type="text" class="form-control" placeholder="여행타이틀을 입력하세요">').prependTo('.ci_title_name');
+		*/
+				alert($('#plan_title').val());
+				let data = {ctr : $('#city_list_title').text(),
+							startDate : $('#date_pick_btn').children().eq(0).text(),
+							city : $('#selected_cities .s_cities .city_info .fl').text(),
+							planTitle: $('#plan_title').val()};
+				console.log(data);
+				alert(sessionStorage.getItem('memberId'));
+				$.ajax({
+					url: _+"/myplan/schedule/"+sessionStorage.getItem('memberId'),
+					type: "POST",
+					data : JSON.stringify(data),
+					dataType :"json",
+					contentType : "application/json; charset=UTF-8",
+					success: function(data) {
+						alert('성공!');
+					},error:function(data){
+						alert('실패!!!');
+					}
+				});
 		 		
 		 		//location.assign(_+'/workspace');
 		 		//desche.init();
@@ -127,11 +146,11 @@ sche = (()=>{
 	
 	let mapNav =()=>{
 		return [
-			{name:'as',val:'아시아',src:'https://www.earthtory.com/res/img/workspace/new/cat_as.png'},
-			{name:'eu',val:'유럽',src:'https://www.earthtory.com/res/img/workspace/new/cat_eu.png'},
-			{name:'oc',val:'남태평양',src:'https://www.earthtory.com/res/img/workspace/new/cat_oc.png'},
-			{name:'na',val:'북아메리카',src:'https://www.earthtory.com/res/img/workspace/new/cat_na.png'},
-			{name:'sa',val:'중남미',src:'https://www.earthtory.com/res/img/workspace/new/cat_sa.png'}
+			{name:'as',val:'아시아',src:img+'/map/cat_as.png'},
+			{name:'eu',val:'유럽',src:img+'/map/cat_eu.png'},
+			{name:'oc',val:'남태평양',src:img+'/map/cat_oc.png'},
+			{name:'na',val:'북아메리카',src:img+'/map/cat_na.png'},
+			{name:'sa',val:'중남미',src:img+'/map/cat_sa.png'}
 			];
 	};
 	
@@ -377,12 +396,12 @@ sche = (()=>{
 			data : data,
 			dataType :"json",
 			success: function(data) {
-				console.log(data);
+				//console.log(data);
 				let html = ''; 
 				$.each(data.ls, function(key, val) {
 					html += '<div class="item" data-no="'+key+'" data="'+val.countrySeq+'" data-latlng="'+
 					val.countryLat+','+val.countryLng+'" data-val="'+val.countryEname+'" data-name="'+val.countryName+'">';
-					html += '<div class="img_box fl"><img src=""/></div>';
+					html += '<div class="img_box fl"><img src="'+val.IMG_URL+'"/></div>';
 					html += '<div class="info_box fl"><div class="info_title">'+val.countryName	+'</div><div class="info_sub_title">'+val.countryEname+'</div></div>';
 					html += '<div class="clear"></div></div>';
 					add_marker_country(val.countryLat,val.countryLng,val.countryName,val.countryEname,val.countrySeq);
@@ -505,12 +524,13 @@ sche = (()=>{
 		let _lng = $(this).parent().attr('data-lng');
 		let ci_name = $(this).parent().attr('data-ci_name');
 		let _html ='';
-		_html = '<div class="s_cities" data-ci="'+ci_srl+'" data-day="2" data-lat="'+_lat+'" data-lng="'+_lng+'"><div class="city_route_info"><div class="city_distance_info fl">0Km</div><a href="http://flights.earthtory.com" target="_blank"><div class="city_air_search_btn fr">항공검색</div></a><div class="clear"></div></div>';
+		_html = '<div class="s_cities" data-ci="'+ci_srl+'" data-day="2" data-lat="'+_lat+'" data-lng="'+_lng+'"><div class="city_route_info" id="city_route"><div class="city_distance_info fl">0Km</div><a href="http://flights.earthtory.com" target="_blank"><div class="city_air_search_btn fr">항공검색</div></a><div class="clear"></div></div>';
 		_html += '<div class="city_info"><div class="del_city_btn fl"><img src="'+img+'/map/del_city_btn_a.png"></div><div class="fl">'+ci_name+'</div>';
 		_html += '<div class="fr city_set_day_box"><div class="fl city_set_minus_btn"><img src="'+img+'/map/city_item_minus_btn.png"></div><div class="fl city_set_day_info"><span>2</span>일</div>';
 		_html += '<div class="fl city_set_plus_btn"><img src="'+img+'/map/city_item_plus_btn.png"></div><div class="clear"></div></div><div class="clear"></div></div>';
 		_html += '</div>';
 		$('#selected_cities').append(_html);
+		$('.city_route_info').css("background","url('"+img+"/map/item_route_bg.png') no-repeat 20px 0px");
 		draw_city_route();
 	});
 	
@@ -525,7 +545,9 @@ sche = (()=>{
 	
 	function add_s_marker(_lat, _lng) {
 		console.log('add_s_marker');
-		var s_marker_img = img + '/map/marker/ic_current.png';
+
+		var s_marker_img = img+'/map/marker/ic_current.png';
+
 		var marker_position = new google.maps.LatLng(_lat,_lng);
 		var marker = new google.maps.Marker({
 			position: marker_position,
@@ -637,7 +659,7 @@ sche = (()=>{
 	}
 	
 	function setAllMap(map) {
-		console.log(markers);
+		//console.log(markers);
 		for (var i = 0; i < markers.length; i++) {
 			markers[i].setMap(map);
 		}
@@ -726,13 +748,13 @@ sche = (()=>{
 			url: _+"/cont/country/"+_cu_name,
 			dataType :"json",
 			success: function(data) {
-				console.log(data);
+				//console.log(data);
 				let html = '';
 				$.each(data.ls, function(key, val) {
 					
 					html += '<div class="item" data-no="'+key+'" data="'+val.citySeq+'" data-ci_name="'+val.cityName+'" data-lat="'+val.cityLat+'" data-lng="'+val.cityLng+'">';
 					// 이미지 가져오기
-					html += '<div class="img_box fl"><img src="img"></div>';
+					html += '<div class="img_box fl"><img src="'+val.imgUrl+'"></div>';
 					html += '<div class="info_box fl" style="width:140px;"><div class="info_title">'+val.cityName+'</div><div class="info_sub_title">'+val.cityEname+'</div></div>';
 					html += '<div class="spot_to_inspot"><img src= "'+img+'/map/spot_to_inspot_a.png"></div>';
 					html += '<div class="clear"></div></div>';

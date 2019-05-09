@@ -19,7 +19,7 @@ public class CityServiceImpl implements CityService{
 	}
 
 	@Override
-	public List<CityDTO> findAllCity(String countryName) {
+	public List<?> findAllCity(String countryName) {
 		return cityMapper.selectAllCity(countryName);
 	}
 

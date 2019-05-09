@@ -11,7 +11,7 @@ import com.yeogil.web.domain.CityDTO;
 @Component
 public interface CityService {
 	public void createCity(CityDTO city);
-	public List<CityDTO> findAllCity(String countryName);
+	public List<?> findAllCity(String countryName);
 	public List<CityDTO> findSomeCity(HashMap<String, Object> map);
 	public CityDTO findCity(CityDTO city);
 	public int countCity();
