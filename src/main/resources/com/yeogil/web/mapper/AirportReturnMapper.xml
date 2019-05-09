@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeogil.web.mapper.AirportReturnMapper">
+	<select id="selectAllAirport" resultType="com.yeogil.web.domain.AirportReturnDTO">
+	  SELECT
+	  		AIRPORT_NAMER airportNameR,
+	  		DEPARTURE_TIMER departureTimeR,
+	  		ARRIVAL_TIMER arrivalTimeR,
+	  		DEPART_DATER departDateR,
+	  		ARRIVAL_DATER arrivalDateR,
+	  		PRICER priceR,
+	  		AIR_IMGR airImgR,
+	  		ARRIVAL_AIRPORTR arrivalAirportR,
+	  		DEPART_AIRPORTR departAirportR
+	  FROM yeogil.AIRPORTRETURN
+	</select>
+</mapper>

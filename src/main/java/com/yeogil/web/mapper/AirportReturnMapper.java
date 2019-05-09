@@ -11,7 +11,7 @@ import com.yeogil.web.domain.AirportReturnDTO;
 @Repository
 public interface AirportReturnMapper {
 	public void createAirport(AirportReturnDTO ardto);
-	public List<AirportReturnDTO> selectAllAirport(HashMap<String, String> hash);
+	public List<AirportReturnDTO> selectAllAirport();
 	public List<AirportReturnDTO> selectSomeAirport(HashMap<String, String> hash);
 	public AirportReturnDTO selectAirport(AirportReturnDTO ardto);
 	public int countAirport();

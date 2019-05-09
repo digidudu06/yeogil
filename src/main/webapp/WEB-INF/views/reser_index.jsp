@@ -141,7 +141,7 @@
 <script src="<%=application.getContextPath()%>/resources/js/plan/mysche.js"></script>
 <script src="<%=application.getContextPath()%>/resources/js/reservation/airport.js"></script>
 <script src="<%=application.getContextPath()%>/resources/js/reservation/hotel.js"></script>
-
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 	airport.ext('<%=application.getContextPath()%>');
 </script>

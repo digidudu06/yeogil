@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.yeogil.web.domain.AirportReturnDTO;
 import com.yeogil.web.mapper.AirportReturnMapper;
 
+@Service
 public class AirportReturnServiceImpl implements AirportReturnService{
 	@Autowired AirportReturnMapper armap;
 	@Override
@@ -16,9 +18,8 @@ public class AirportReturnServiceImpl implements AirportReturnService{
 	}
 
 	@Override
-	public List<AirportReturnDTO> findAllAirport(HashMap<String, String> hash) {
-		List<AirportReturnDTO> ardto = armap.selectAllAirport(hash);
-		return ardto;
+	public List<AirportReturnDTO> findAllAirport() {
+		return armap.selectAllAirport();
 	}
 
 	@Override
