@@ -54,13 +54,15 @@ hotel =(()=>{
 					$('#hml_01').click(()=>{
 						setContentView();
 					});
+//========================================호텔검색눌렀을때
 					$('#hcheck_01').click(function(e){
-						 e.preventDefault();
+						e.preventDefault();
 						let data = {arrivalDate:$('#h_date_01').val(),
 								departDateR:$('#h_date_02').val()};//map자체
-						if(data.arrivalDate===""&&data.departDateR===""){
+						if(data.arrivalDate===""||data.departDateR===""){
 							alert("모든 항목을 기입해주세요!");
 						}else{
+//==========================================호텔 크롤링
 							$.ajax({
 								url: _+'/crawling/hvation',
 								type:'post',
@@ -68,83 +70,75 @@ hotel =(()=>{
 								dataType:'json',
 								contentType:'application/json',
 								success: d =>{
-									alert("성공");
 									$(compo.hresult()).appendTo('#common_area');
 									$.each(d.htlist,(i,j)=>{
 										if(i<9){
 											$('<div class="intro_box" style="height:320px"><img src="'+j.imgUrl
 													+'" width="348" height="170" alt=""></img>'
-													+'<div class="intro_title">'+j.hotelName+'</div>'
+													+'<div id="hicon'+i+'" class="intro_title">'+j.hotelName+'</div>'
 													+'<div class="btn-area">'
 													+'<div class="btn-wrap position-relative">'
-													+'<button id="hotel_p01" type="button" class="btn btn-primary" onclick="finishPaxInfo();">예약 및 결제진행</button><p>'+j.notice+'<p>'+j.price+'<p>'+j.roomType+''
+													+'<button id="hotel_p0'+i+'" type="button" class="btn btn-primary">예약 및 결제진행</button><p id="hnoti_0'+i+'">'+j.notice+'<p id="hprice_0'+i+'">'+j.price+'<p id="rtype_0'+i+'">'+j.roomType+''
 													+'</div>'
 													+'</div>'
-													
-													+'<div class="clear"></div>').attr('name',j.imgname).appendTo('.intro_list')
-													let that = $(this).attr('name');
+													+'<div class="clear"></div></div>').attr('name',j.imgname).appendTo('.intro_list').click(function(){
+													});
 										}
-							                    /* 	$('#hotel_p01').attr('data-toggle','modal').attr('data-target','#myModal').click(function(e){
-														  e.preventDefault();
-												            $('#myModal').attr('style','display: block; z-index:99999;');
-												            $('.modal-dialog').attr('style','top:200px;')
-												            $('.modal-content').attr('style','margin:auto;');
-												            $('#modal_01').text("호텔예약 완료");
-												            $('#modal_02').text("결제가 완료 되었습니다");
-													});*/
+										i++;
 									 });
-									 $('#hotel_p01').click(()=>{
-											IMP.init('imp68242076');
-											IMP.request_pay({
-										    pg : 'inicis', // version 1.1.0부터 지원.
-										    pay_method : 'card',
-										    merchant_uid : 'merchant_' + new Date().getTime(),
-										    name : '주문명:결제테스트',
-										    amount : 14000,
-										    buyer_email : 'iamport@siot.do',
-										    buyer_name : '구매자이름',
-										    buyer_tel : '010-1234-5678',
-										    buyer_addr : '서울특별시 강남구 삼성동',
-										    buyer_postcode : '123-456',
-										    m_redirect_url : 'http://localhost:8080/web/reser'
-										}, function(rsp) {
-										    if ( rsp.success ) {
-										        var msg = '결제가 완료되었습니다.';
-										        msg += '고유ID : ' + rsp.imp_uid;
-										        msg += '상점 거래ID : ' + rsp.merchant_uid;
-										        msg += '결제 금액 : ' + rsp.paid_amount;
-										        msg += '카드 승인번호 : ' + rsp.apply_num;
-										    } else {
-										        var msg = '결제에 실패하였습니다.';
-										        msg += '에러내용 : ' + rsp.error_msg;
-										    }
-										    alert(msg);
-										});
-										}); 
+									$('#hotel_p00').click(function(){
+										alert(sessionStorage.getItem('memberId'));
+										 ghxpf();
+									 });
 								},
-								error:e=>{
-									alert("에러");
-								}
+								error:e=>{}
 							});
-						
 						}
 					});
-					/*let img = ()=>{
-				        return [{name : "img1",url : "https://t-ec.bstatic.com/xdata/images/hotel/square600/71924697.webp?k=b996e4b63616d2606d1eb2989c8f4da9ea9b915f7fcc85a05aab750f5f53dc85&o="},
-				                {name : "img2",url : "https://t-ec.bstatic.com/xdata/images/hotel/square600/138494607.webp?k=55f2f4d4aa5bd8f1fd307d6278eaa78798e133676b1ff56bac1980f3229667ab&o="},
-				                {name : "img3",url : "https://t-ec.bstatic.com/xdata/images/hotel/square600/69674078.webp?k=4d359c9066ea39394701564b1501a19e5f62b75783d25e681ffbd55f1a1e3644&o="},
-				                {name : "img4",url : "https://t-ec.bstatic.com/xdata/images/hotel/square600/19056004.webp?k=67e9ffdf8091c3d61f3e2fa26ad7d4396993277d70f80493922551205a54f520&o="},
-				                {name : "img5",url : "https://s-ec.bstatic.com/xdata/images/hotel/square600/33463694.webp?k=a66a6a5e1e192209b322c506a142988bffe09c0ef142f01bce366af8e0421c9f&o="},
-				                {name : "img6",url : "https://s-ec.bstatic.com/xdata/images/hotel/square600/177523156.webp?k=c8b6cb853e37799669a0718488192078a12ef7812655eb2fd4ad4efc40bc05ef&o="}];
-				        };*/
 				});
 		};
-		/*let hotel_payment=()=>{
-			$.getScript($.js()+'/compo.js',()=>{
-				$('#hotel_clean').empty();
-				$(compo.airport_payment_top()).appendTo('#hotel_clean');
-				$(compo.airport_payment_mid()).appendTo('#hotel_clean');
-			});
-		};*/
+		let ghxpf=()=>{
+			let data = {hotelName:$('#hicon0').html(),
+						price:$('#hprice_00').html(),
+						roomType:$('#rtype_00').html(),
+						notice:$('#hnoti_00').html()};
+//=====================================호텔 정보저장
+				alert(sessionStorage.getItem('memberId'));
+				$.ajax({
+					url: _+'/sw/htsave/'+sessionStorage.getItem('memberId'),
+					type:'post',
+					data:JSON.stringify(data),
+					dataType:'json',
+					contentType:'application/json',
+					success: d =>{},
+					error: e =>{}
+					});
+					IMP.init('imp68242076');
+					IMP.request_pay({
+				    pg : 'inicis', // version 1.1.0부터 지원.
+				    pay_method : 'card',
+				    merchant_uid : 'merchant_' + new Date().getTime(),
+				    name : '주문명:결제테스트',
+				    amount : 14000,
+				    buyer_email : 'iamport@siot.do',
+				    buyer_name : '구매자이름',
+				    buyer_tel : '010-1234-5678',
+				    buyer_addr : '서울특별시 강남구 삼성동',
+				    buyer_postcode : '123-456',
+				    m_redirect_url : 'http://localhost:8080/web/reser'
+				}, function(rsp) {
+				    if ( rsp.success ) {
+				        var msg = '결제가 완료되었습니다.';
+				        msg += '고유ID : ' + rsp.imp_uid;
+				        msg += '상점 거래ID : ' + rsp.merchant_uid;
+				        msg += '결제 금액 : ' + rsp.paid_amount;
+				        msg += '카드 승인번호 : ' + rsp.apply_num;
+				    } else {
+				        var msg = '결제에 실패하였습니다.';
+				        msg += '에러내용 : ' + rsp.error_msg;
+				    }
+				    alert(msg);
+				});
+		};
 		return {init:init};
 })();

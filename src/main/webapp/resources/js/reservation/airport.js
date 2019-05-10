@@ -56,13 +56,14 @@ airport = (()=>{
 			  +'<link class="sw_css" rel="stylesheet" href="'+css+'/common/arstyle.css" />'
 //어스토리
 			  +'<link class="sw_css" rel="stylesheet" href="'+css+'/common/web/default_ko.css" />'
-			  +'<link class="sw_css" rel="stylesheet" href="'+css+'/common/web/gnb.css" />'
+			  +'<link class="sw_css" rel="stylesheet" href="'+css+'/common/web/gnb.css" />'	
 			  +'<link class="sw_css" rel="stylesheet" href="'+css+'/component/default.css" />'
-			  +'<link class="sw_css" rel="stylesheet" href="'+css+'/component/reset.css" />'
+			  +'<link class="sw_css" rel="stylesheet" href="'+css+'/component/reset.css" />'	
 			  +'<link class="sw_css" rel="stylesheet" href="'+css+'/web/main.css" />'
 			  +'<link class="sw_css" rel="stylesheet" href="'+css+'/web/date_picker.css" /> ';
 			$(sw_css).appendTo('head');
 		};
+		
 		let default_view=()=>{
 			$.getScript(compojs, ()=>{
 				$('#common_area').empty();
@@ -101,39 +102,66 @@ airport = (()=>{
 					});
 				});
 				 
-				
 				$('#asmbtn_01').text("항공권검색").click(function(e){
 					 e.preventDefault();
 					 let data = {arrivalDate:$('#sinput_03').val(),
 								departDateR:$('#sinput_04').val()};//map자체
-						if(data.arrivalDate===""&&data.departDateR===""){
+						if(data.arrivalDate===""||data.departDateR===""){
 							alert("모든 항목을 기입해주세요!");
 						}else{
 					 let page ='1';
 					 $.getJSON($.ctx()+'/airlist/'+ page, d=>{
-						 $(compo.wells()).appendTo('#common_area');
+						 $('<div id="adddiv_01"></div>').appendTo('#common_area');
+						 $('#adddiv_01').empty();
+						 $('<div><h1 style="font-size: 30px;text-align: center;"> 검색하신 항공편 입니다.</h1></br></br>'
+								 +'<div class="grid-container">'
+								 +'	<div class="item1">가는 항공편</br></br></br></div>'
+								 +'	<div class="item2">오는 항공편</br></br></br></div>'
+								 +'</div></div>').appendTo('#adddiv_01');
 						 $.each(d.al,(i,j)=>{
-							 $('<div><img src="'+j.airImg+'" width="30" height="30" alt=""></img>'+j.airportName+j.departureTime+'->'+j.arrivalTime+j.departAirport+'->'+j.arrivalAirport+j.departDate+'->'+j.arrivalDate+'</div>').appendTo('#pnbd_01');
+							 $('<div class="grid-inner" style="height: 50px">'
+									 +'<div id="aaa_0'+i+'"><img src="'+j.airImg+'" width="30" height="30" alt=""></div>'
+									 +'<div id="aab_0'+i+'">'+j.airportName+j.departureTime+'->'+j.arrivalTime
+									 			+'</br>'+j.departAirport+' -> '+j.arrivalAirport+'</div>'
+									 +'<div id="aac_0'+i+'">'+j.departDate+'->'+j.arrivalDate+'</div>'
+									 +'</div><div style="height: 30px" ></div>').appendTo('.item1');
+					     i++
 						 });
 						 $.each(d.ar,(i,j)=>{
-							 $('<div><img src="'+j.airImgR+'" width="20" height="20" alt=""></img>'+j.airportNameR+j.departureTimeR+'->'+j.arrivalTimeR+j.departAirportR+'->'+j.arrivalAirportR+j.departDateR+'->'+j.arrivalDateR+j.priceR+'<button id="apbtn_0'+i+++'" type="button" class="btn btn-danger" style="width:10; hight:10;">결제</button></div>').appendTo('#pnbd_02');
-							 /*$('#apbtn_01').attr('data-toggle','modal').attr('data-target','#myModal').click(function(e){
-								  e.preventDefault();
-						            $('#myModal').attr('style','display: block; z-index:99999;');
-						            $('.modal-dialog').attr('style','top:200px;')
-						            $('.modal-content').attr('style','margin:auto;');
-						            $('#modal_01').text("항공권 구매 완료");
-						            $('#modal_02').text("결제가 완료 되었습니다");
-							});*/
+							 $('<div class="grid-inner">'
+									 +'<div id="bba_0'+i+'"><img src="'+j.airImgR+'" width="30" height="30" alt=""></div>'
+									 +'<div id="bbb_0'+i+'">'+j.airportNameR+j.departureTimeR+'->'+j.arrivalTimeR
+									 			+'</br>'+j.departAirportR+' -> '+j.arrivalAirportR+'</div>'
+									 +'<div id="bbc_0'+i+'">'+j.arrivalAirportR+j.departDateR+'->'+j.arrivalDateR+'</br>\\'+j.priceR
+									 +'    <button title="'+j.priceR+'" id="apbtn_0'+i+'" type="button" class="btn btn-danger">결제</button></div></div>'
+									 +'<div style="height: 30px" ></div>').appendTo('.item2');
+						 i++
 						 });
 						 $('#apbtn_00').click(function(){
+							 let data = {hotelName:$('#hicon0').html(),
+										price:$('#hprice_00').html(),
+										roomType:$('#rtype_00').html(),
+										notice:$('#hnoti_00').html()};
+							 alert(sessionStorage.getItem('memberId'));
+							 $.ajax({
+									url: _+'/sw/airsave/'+sessionStorage.getItem('memberId'),
+									type:'post',
+									data:JSON.stringify(data),
+									dataType:'json',
+									contentType:'application/json',
+									success: d =>{},
+									error: e =>{}
+									});
+							 
+							 let a = $(this).attr('title');
+							 alert(a);
 								IMP.init('imp68242076');
 								IMP.request_pay({
 							    pg : 'inicis', // version 1.1.0부터 지원.
 							    pay_method : 'card',
 							    merchant_uid : 'merchant_' + new Date().getTime(),
 							    name : '주문명:결제테스트',
-							    amount : 14000,
+							    amount : a,
 							    buyer_email : 'iamport@siot.do',
 							    buyer_name : '구매자이름',
 							    buyer_tel : '010-1234-5678',
@@ -156,53 +184,7 @@ airport = (()=>{
 							}); 
 					 });
 					} 
-//================================================================================================================항공크롤링 시작						
-/*let data = {
-		departDate:$('#sinput_03').val(),
-		arrivalDate:$('#sinput_04').val()};
-if(data.departDate===""&&data.arrivalDate===""){
-	alert("모든 항목을 기입해주세요!");
-}else{
-	$.ajax({
-		url: _+'/crawling/avation',
-		type:'post',
-		data:JSON.stringify(data),
-		dataType:'json',
-		contentType:'application/json',
-		success: d =>{
-			alert("크롤링 중입니다");
-			$(compo.wells()).appendTo('#common_area');
-			$.each(d.allist,(i,j)=>{
-				
-				if(i<3){
-					$('<h4><img src="'+j.airImg+' width="20" height="20" alt=""></img>'+j.airportName+' '+j.departureTime+' '+j.arrivalTime+' '+j.departAirport+' '+j.arrivalAirport+' '+j.departDate+' '+j.arrivalDate+' '+j.price+'</h4><p><p><p>')
-					.appendTo('#pnbd_01');
-				}
-			});
-			
-			$.each(d.arlist,(i,j)=>{
-				if(i<3){
-					$('<h4> <img src="'+j.airImgR+' width="20" height="20" alt=""></img>'+j.airportNameR+' '+j.departureTimeR+' '+j.arrivalTimeR+' '+j.departAirportR+' '+j.arrivalAirportR+' '+j.departDateR+' '+j.arrivalDateR+' '+j.priceR+' '+'<button id="pp_02" type="button" class="btn btn-primary">결제하기</button></h4>')
-					.appendTo('#pnbd_02');
-				}
-			});
-			
-			$('#apbtn_01').attr('data-toggle','modal').attr('data-target','#myModal').click(function(e){
-				  e.preventDefault();
-		            $('#myModal').attr('style','display: block; z-index:99999;');
-		            $('.modal-dialog').attr('style','top:200px;')
-		            $('.modal-content').attr('style','margin:auto;');
-		            $('#modal_01').text("항공권 구매 완료");
-		            $('#modal_02').text("결제가 완료 되었습니다");
-			});
-		},
-		error:e=>{
-			alert('실패하였습니다.');
-		}
-	});
-}*/
 				});
-//================================================================================================================항공크롤링 끝
 			}
 		);
 		};
