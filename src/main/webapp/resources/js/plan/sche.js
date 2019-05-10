@@ -38,6 +38,7 @@ sche = (()=>{
 		$('<link id="jw_css" rel="stylesheet" href="'+css+'/web/date_picker.css" />').appendTo('head');
 		$('<link id="jw_css" rel="stylesheet" href="'+css+'/component/schedule.css"/>').appendTo('head');
 		$('#header').remove();
+		$('#footer').remove();
 		$('#schedule').remove();
 		
 		$.getScript(compojs,()=>{
@@ -61,8 +62,12 @@ sche = (()=>{
 			
 			$('#map').insertAfter('#clip_list').attr('style','height: 100%; position: relative;overflow: hidden;');
 			get("아시아");
+			$('#country_list_box .item').click(function(){
+				alert('ㅋ,ㄹ;ㄱ');
+			});
 	
 			$.each(mapNav(),(i,j)=>{
+				
 				$('<li><img src="'+j.src+'" class="s"></br>'+j.val+'</img></li>').attr({'data':j.name,'data-val':j.val})
 					.appendTo('#cat_menu').click(function(){
 					$('#country_list_title').empty();
@@ -109,27 +114,23 @@ sche = (()=>{
 			$('<div class="detail_city_bottom">'
 		 	+'<div class="detail_plan_go_btn">상세 일정 만들기</div></div>').appendTo('#select_detail_view_city');
 			
-			$('.detail_plan_go_btn').click(function(){
-		/* 		$('.ci_title_name').empty();
-		 		$('.city_title').attr('style','padding:15px;');
-		 		$('<input type="text" class="form-control" placeholder="여행타이틀을 입력하세요">').prependTo('.ci_title_name');
-		*/
-				alert($('#plan_title').val());
+			$('.detail_plan_go_btn').click(function(e){
+
 				let data = {ctr : $('#city_list_title').text(),
 							startDate : $('#date_pick_btn').children().eq(0).text(),
 							city : $('#selected_cities .s_cities .city_info .fl').text(),
 							planTitle: $('#plan_title').val()};
 				console.log(data);
-				alert(sessionStorage.getItem('memberId'));
+
 				$.ajax({
 					url: _+"/myplan/schedule/"+sessionStorage.getItem('memberId'),
 					type: "POST",
 					data : JSON.stringify(data),
 					dataType :"json",
 					contentType : "application/json; charset=UTF-8",
-					success: function(data) {
+					success: d => {
 						alert('성공!');
-					},error:function(data){
+					},error: e => {
 						alert('실패!!!');
 					}
 				});
@@ -262,6 +263,7 @@ sche = (()=>{
 		$('#cat_menu li').removeClass('on');
 		$(this).addClass('on');
 		deleteMarkers();
+		alert('후');
 		$('#city_list_box').hide();
 		$('#city_list_title').hide();
 		$('#country_list_box').show();
@@ -273,7 +275,6 @@ sche = (()=>{
 		let _cu_srl = $(this).attr('data');
 		let _cu_name = $(this).attr('data-val');
 		let _cu_ename = $(this).attr('data-name');
-		alert('country list box'+_cu_srl);
 		deleteMarkers();
 		$('#country_list_box').hide();
 		$('#country_list_title').hide();
@@ -326,7 +327,7 @@ sche = (()=>{
 	$('#selected_cities').on('click','.city_set_minus_btn',function(){
 		let _now_set = $(this).parent().find('.city_set_day_info span').text();
 		if(_now_set == '1'){
-			_chg_set = 0.5;
+			_chg_set = 1;
 		}else if(_now_set == '0.5'){
 			_chg_set = 0.5;
 		}else{
