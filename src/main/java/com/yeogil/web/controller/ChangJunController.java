@@ -17,7 +17,9 @@ import com.yeogil.web.domain.CountryDTO;
 import com.yeogil.web.domain.ImageDTO;
 import com.yeogil.web.mapper.AttractionMapper;
 import com.yeogil.web.mapper.CityMapper;
+import com.yeogil.web.mapper.CountryMapper;
 import com.yeogil.web.mapper.MemberMapper;
+import com.yeogil.web.mapper.MemschMapper;
 import com.yeogil.web.mapper.ScheduleMapper;
 import com.yeogil.web.service.CountryService;
 
@@ -27,6 +29,8 @@ public class ChangJunController {
 	@Autowired CityMapper cityMapper;
 	@Autowired AttractionMapper attractionMapper;
 	@Autowired MemberMapper memberMapper;
+	@Autowired MemschMapper memschMapper;
+	@Autowired CountryMapper countryMapper;
 	@Autowired ScheduleMapper scheduleMapper;
 	@Autowired List<CountryDTO> list;
 	@Autowired Map<String, Object> map;
@@ -85,23 +89,32 @@ public class ChangJunController {
 	}
 	
 	@GetMapping("/member/memcount")
-	public Map<?,?> memcount() throws Exception {
+	public Map<?,?> memcount() {
 		ISupplier is = () -> memberMapper.countMember();
 		map.clear();
 		map.put("memcount", is.get());
-		is = () -> scheduleMapper.countSchedules();
+		is = () -> memschMapper.countMemschs();
 		map.put("schecount", is.get());
 		
-		String countryimg = "https://namu.wiki/w/대만";
+		is = () -> memschMapper.topCountry();
+		map.put("top", is.get());
 		
-		Connection conn = Jsoup
-                .connect(countryimg)
-                .header("Content-Type", "application/json;charset=UTF-8")
-                .method(Connection.Method.GET)
-                .ignoreContentType(true);
+		is = () -> memschMapper.countryList();
+		map.put("clist", is.get());
 		
-		String imgurl = conn.get().select(".wiki-table tbody noscript img").attr("src");
-		map.put("flagimg", imgurl);
+
+		
+		return map;
+	}
+	
+	@GetMapping("/map/chart")
+	public Map<?,?> mapchart() {
+		System.out.println("mapchart 진입");
+		map.clear();
+		
+		ISupplier is = () -> memschMapper.countMemsch();
+		map.put("data", is.get());
+		System.out.println(is.get().toString());
 		return map;
 	}
 }

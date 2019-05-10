@@ -17,4 +17,5 @@ public interface CountryMapper {
 	public int countCountry();
 	public void updateCountry(CountryDTO count);
 	public void deleteCountry(CountryDTO count);
+	
 }

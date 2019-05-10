@@ -57,7 +57,7 @@ html, body {
 	height: 19px;
 	padding-left: 18px;
 	line-height: 19px;
-	background: url('/res/map/list_clip_icon.png') no-repeat;
+/* 	background: url('/res/map/list_clip_icon.png') no-repeat; */
 }
 
 .list_sub_info_line {
@@ -378,7 +378,7 @@ html, body {
 	height: 19px;
 	padding-left: 18px;
 	line-height: 19px;
-	background: url('/res/map/list_clip_icon.png') no-repeat;
+/* 	background: url('/res/map/list_clip_icon.png') no-repeat; */
 }
 
 .tooltip_star_rank {
@@ -660,7 +660,7 @@ html, body {
 	height: 22px;
 	padding-left: 22px;
 	line-height: 22px;
-	background: url('/res/map/detail_clip_icon.png') no-repeat;
+/* 	background: url('/res/map/detail_clip_icon.png') no-repeat; */
 }
 
 .review_avg {
