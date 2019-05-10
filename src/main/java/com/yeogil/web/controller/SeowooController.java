@@ -1,7 +1,6 @@
 package com.yeogil.web.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,7 +31,7 @@ public class SeowooController {
 	@GetMapping("/airlist/{page}")
 	public Map<?, ?> airpass(
 			@PathVariable String page)throws Exception{
-		System.out.println("서우 컨트롤러");
+		System.out.println("==========seowooC airportList===========");
 		map.clear();
 		allist = new ArrayList<AirportLeaveDTO>();
 		allist = airportLeaveService.findAllAirport();
@@ -44,11 +43,32 @@ public class SeowooController {
 		
 		return map;
 	}
-	/*
-	 * @PostMapping("/crawling/hvation") public Map<?, ?> hotelsave(
-	 * 
-	 * @RequestBody HotelDTO hdto){ System.out.println("서우 컨트롤러저장");
-	 * hotelService.createHotel(hdto); map.clear(); map.put("msg", "success");
-	 * return map; }
-	 */
+	
+	@PostMapping("/sw/htsave/{memberid}")
+	public Map<?, ?> htsave(
+			@PathVariable String memberid,
+			@RequestBody HotelDTO hdto){
+	System.out.println("==========seowooC 호텔 고객선택데이터저장===========");
+	hdto.getHotelName();
+	hdto.getRoomType();
+	hdto.getNotice();
+	hdto.getPrice();
+	
+	hdto.setHotelName(hdto.getHotelName());
+	hdto.setRoomType(hdto.getRoomType());
+	hdto.setNotice(hdto.getNotice());
+	hdto.setPrice(hdto.getPrice());
+	hotelService.createHotel(hdto);
+	return map; 
+	}
+	//aa
+	@PostMapping("/sw/airsave/{memberid}")
+	public Map<?, ?> airsave(
+			@PathVariable String memberid,
+			@RequestBody Map<?, ?> map){
+	System.out.println("==========seowooC 항공 고객선택데이터저장===========");
+		/* hotelService.createHotel(hdto); */
+	return map; 
+	}
+	 
 }

@@ -1679,15 +1679,5 @@ compo = {
 			+'    <div id="pnbd_02" class="panel-body">오는편</div>'
 			+'  </div>'
 			+'</div>'*/;
-
-		},
-		grid:()=>{
-			return '<div class="row">'
-			+'<div class="row">'
-			+'  <div class="col-md-6">.col-md-6</div>'
-			+'  <div class="col-md-5">.col-md-5</div>'
-			+'  <div class="col-md-1">.col-md-1</div>'
-			+'</div>'
-			;
 		}
 }

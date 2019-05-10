@@ -172,3 +172,30 @@
 .seo_booking-form .seo_submit-btn:focus {
 	opacity: 0.9;
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+  background-color: rgba(0,0,0,.0001);
+  padding: 10px;
+  font-size: 16px;
+}
+
+.grid-inner {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.grid-container > div {
+  text-align: center;
+}
+.item1 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.item2 {
+  grid-column-start: 3;
+  grid-column-end: 5;
+}

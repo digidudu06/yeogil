@@ -266,7 +266,7 @@ public class CrawlController {
 		  String hprice = s.select(".animated strong b").text();
 		  htdto.setPrice(hprice);
 		  System.out.println("호텔가격::"+hprice);
-		  hotelService.createHotel(htdto);
+		  
 		  htlist.add(htdto); 
 	  }
 	  map.clear();
