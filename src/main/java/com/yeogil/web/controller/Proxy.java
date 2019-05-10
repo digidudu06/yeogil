@@ -11,7 +11,7 @@ import lombok.Data;
 public class Proxy {
 	private int rowCount, pageNum, pageSize, blockSize, startRow, endRow, startPage, endPage, prevBlock, nextBlock;
 	private boolean existPrev, existNext;
-	private String search;
+	private String search, id, title;
 	public void carryOut(Map<?,?> paramMap) {
 		
 		search = (String) paramMap.get("srch");
@@ -64,5 +64,10 @@ public class Proxy {
 		}
 
 		System.out.println("prevBlock@@@@" + prevBlock + "  nextBlock@@@@" + nextBlock);
+	}
+	
+	public void memSche(Map<?,?> paramMap) {
+		id = (String) paramMap.get("id");
+		title = (String) paramMap.get("title");
 	}
 }

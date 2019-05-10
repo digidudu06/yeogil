@@ -20,18 +20,18 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/common/web/default_ko.css" type="text/css" />
-<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/component/reset.css" />
-<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/component/default.css" />
-<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/web/plan_v2.css" />
-<%-- <link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/web/date_picker.css" /> --%>
-<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/mypage/plan/plan_sub.css" />
-<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/mypage/plan/plan.css" />
-<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/mypage/top.css" />
-<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/common/web/gnb.css" />
-<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/city/header_v2.css" />
-<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/area/area.css" />
-<script src="<%=application.getContextPath()%>/resources/js/plan/markerwithlabel.js"></script>
+<link rel="stylesheet" href="${css}/common/web/default_ko.css" type="text/css" />
+<link rel="stylesheet" href="${css}/component/reset.css" />
+<link rel="stylesheet" href="${css}/component/default.css" />
+<link rel="stylesheet" href="${css}/web/plan_v2.css" />
+<%-- <link rel="stylesheet" href="${css}/web/date_picker.css" /> --%>
+<link rel="stylesheet" href="${css}/mypage/plan/plan_sub.css" />
+<link rel="stylesheet" href="${css}/mypage/plan/plan.css" />
+<link rel="stylesheet" href="${css}/mypage/top.css" />
+<link rel="stylesheet" href="${css}/common/web/gnb.css" />
+<link rel="stylesheet" href="${css}/city/header_v2.css" />
+<link rel="stylesheet" href="${css}/area/area.css" />
+<script src="${js}/plan/markerwithlabel.js"></script>
 
 </head>
 
@@ -129,14 +129,14 @@
 	</div>
 </body>
 
-<script	src="<%=application.getContextPath()%>/resources/js/comp/compo.js"></script>
-<script	src="<%=application.getContextPath()%>/resources/js/plan/sche.js"></script>
-<script	src="<%=application.getContextPath()%>/resources/js/plan/plan.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/yeogil.js"></script>
-<script	src="<%=application.getContextPath()%>/resources/js/plan/mypage.js"></script>
-<script	src="<%=application.getContextPath()%>/resources/js/plan/mysche.js"></script>
-<%-- <script src="<%=application.getContextPath()%>/resources/js/router.js"></script> --%>
+<script	src="${js}/comp/compo.js"></script>
+<script	src="${js}/plan/sche.js"></script>
+<script	src="${js}/plan/plan.js"></script>
+<script src="${js}/yeogil.js"></script>
+<script	src="${js}/plan/mypage.js"></script>
+<script	src="${js}/plan/mysche.js"></script>
+<%-- <script src="${js}/router.js"></script> --%>
 <script>
-	plan.cont('<%=application.getContextPath()%>');
+	plan.cont("${ctx}");
 </script>
 </html>

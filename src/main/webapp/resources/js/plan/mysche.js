@@ -1,13 +1,15 @@
 "use strict";
 var mysche = mysche || {};
 mysche = (()=>{
-	let _,js,compojs,img;
-	let init=()=>{
+	let _,js,compojs,img, title;
+	
+	let init= x=>{
 		_ = $.ctx();
 		js = $.js();
 		img = $.img();
 		compojs = js+'/comp/compo.js';
-		onCreate();
+		title = x;
+		onCreate(x);
 	};
 	let onCreate=()=>{
 		setContentView();
@@ -31,12 +33,45 @@ mysche = (()=>{
 			$('.puser_name').text(sessionStorage.getItem('nickname'));
 			$('.plan_theme').remove();
 			
-			$.getJSON(_+'/memOneSchedules/'+sessionStorage.getItem('memberId'),d=>{
+			$('.plan_title').empty();
+			$('.plan_title').text(title);
+			
+			let id = sessionStorage.getItem('memberId');
+			$.getJSON(_+'/memOneSchedule/' + id +'/'+ title, d=>{
+				$('.white').remove();
+				$('.gray').remove();
 				$.each(d.list, (i,j)=>{
-					
-					alert(j.MS_ATTR_NAME);
-					
+					$('	<tr id="sch'+i+'" class="white">'
+						+'		<td id="sche_date">'
+						+'			<div class="scht_date">'+j.MS_DATE+'</div>'
+						+'			<div class="scht_day">'+j.MS_DAY+'</div>'
+						+'		</td>'
+						+'		<td>'
+						+'			<div class="scht_city" style="padding-left: 0px; text-align: center;">'+j.MS_COUNTRY_NAME+'</div>'			
+						+'		</td>'
+						+'		<td>'
+						+'			<div class="scht_city" style="padding-left: 0px; text-align: center;">'+j.MS_CITY_NAME+'</div>'		
+						+'		</td>'
+						+'		<td id="'+j.MS_DAY+'" class="scht_vtop"></td>'
+						+'		<td></td>'
+						+'	</tr>').appendTo('tbody');
+					$.each(d.attr, (a,b)=>{
+						if($('#sch'+i).children().eq(3).attr('id')===b.MS_DAY){
+							$('<div class="scht_spotname">'+b.MS_ATTR_NAME+'</div>')
+								.appendTo('#'+$('#sch'+i).children().eq(3).attr('id'));
+						}
+					});
 				});
+				
+				/*$.each(d.attr, (a,b)=>{
+					if($("#Day"+(a+1)).attr('id')===b.MS_DAY){
+						alert(' b데이:: '+b.MS_ATTR_NAME);
+					}else{
+						
+					}
+					$().appendTo('#sche_date');
+				});*/
+				
 			});
 			
 			

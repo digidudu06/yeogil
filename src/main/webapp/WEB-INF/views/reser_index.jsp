@@ -45,7 +45,7 @@
 		<div id="header">
 			<div class="wrap">
 				<h1 id="home" class="logo fl" style="margin-top: 0px; margin-bottom: 0px; font-size: 0px;">
-					<img alt="여행의 시작! 어스토리" src="<%=application.getContextPath()%>/resources/img/common/logo1.png" style="width: 150px;">
+					<img alt="여행의 시작! 어스토리" src="${img}/common/logo1.png" style="width: 150px;">
 				</h1>
 				<ul class="gnb fl">
 					<a href="#" class="fl"><li id="tour">여행지</li></a>
@@ -131,20 +131,20 @@
 </div>
 
 
-<script src="<%=application.getContextPath()%>/resources/js/comp/compo.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/yeogil.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/main/main.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/tour/tour.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/city/city.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/plan/sche.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/plan/plan.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/plan/mypage.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/plan/mysche.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/reservation/airport.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/reservation/hotel.js"></script>
+<script src="${js}/comp/compo.js"></script>
+<script src="${js}/yeogil.js"></script>
+<script src="${js}/main/main.js"></script>
+<script src="${js}/tour/tour.js"></script>
+<script src="${js}/city/city.js"></script>
+<script src="${js}/plan/sche.js"></script>
+<script src="${js}/plan/plan.js"></script>
+<script src="${js}/plan/mypage.js"></script>
+<script src="${js}/plan/mysche.js"></script>
+<script src="${js}/reservation/airport.js"></script>
+<script src="${js}/reservation/hotel.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
-	airport.ext('<%=application.getContextPath()%>');
+	airport.ext("${ctx}");
 </script>
 </body>
 </html>

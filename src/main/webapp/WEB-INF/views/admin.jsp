@@ -20,11 +20,11 @@
 <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
 
   <!-- Bootstrap CSS -->
-  <link href="<%=application.getContextPath()%>/resources/admin/css/bootstrap.min.css" rel="stylesheet">
+  <link href="${css}/admin/css/bootstrap.min.css" rel="stylesheet">
   <!-- bootstrap theme -->
-  <link href="<%=application.getContextPath()%>/resources/admin/css/bootstrap-theme.css" rel="stylesheet">
+  <link href="${css}/admin/css/bootstrap-theme.css" rel="stylesheet">
   <!-- Custom styles -->
-  <link href="<%=application.getContextPath()%>/resources/admin/css/style.css" rel="stylesheet" >
+  <link href="${css}/admin/css/style.css" rel="stylesheet" >
 </head>
 
 <body>
@@ -158,9 +158,9 @@
     <!--main content end-->
   </section>
   <!-- container section start -->
-<script src="<%=application.getContextPath()%>/resources/js/admin.js"></script>
+<script src="${js}/admin.js"></script>
  <script>
- admin.ext('<%=application.getContextPath()%>');
+ admin.ext("${ctx}");
  </script>
 </body>
 </html>

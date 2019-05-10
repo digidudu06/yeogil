@@ -18,18 +18,18 @@
 	
 	<link class="cj_css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 	<link class="cj_css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link class="cj_css" rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/area/area.css"/>
-	<link class="cj_css" rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/area/area_main.css"/>
-	<link class="cj_css" rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/area/city_list.css">
-	<link class="cj_css" rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/city/header_v2.css" />
-	<link class="cj_css" rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/city/main.css" />
-	<link class="cj_css" rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/city/spot_list.css" />
-	<link class="cj_css" rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/common/web/default_ko.css" />
-	<link class="cj_css" rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/common/web/gnb.css" />
-	<link class="cj_css" rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/component/default.css" />
-	<link class="cj_css" rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/component/reset.css" />
-	<link class="cj_css" rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/web/main.css" />
-	<link class="cj_css" rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/web/date_picker.css" /> 
+	<link class="cj_css" rel="stylesheet" href="${css}/area/area.css"/>
+	<link class="cj_css" rel="stylesheet" href="${css}/area/area_main.css"/>
+	<link class="cj_css" rel="stylesheet" href="${css}/area/city_list.css">
+	<link class="cj_css" rel="stylesheet" href="${css}/city/header_v2.css" />
+	<link class="cj_css" rel="stylesheet" href="${css}/city/main.css" />
+	<link class="cj_css" rel="stylesheet" href="${css}/city/spot_list.css" />
+	<link class="cj_css" rel="stylesheet" href="${css}/common/web/default_ko.css" />
+	<link class="cj_css" rel="stylesheet" href="${css}/common/web/gnb.css" />
+	<link class="cj_css" rel="stylesheet" href="${css}/component/default.css" />
+	<link class="cj_css" rel="stylesheet" href="${css}/component/reset.css" />
+	<link class="cj_css" rel="stylesheet" href="${css}/web/main.css" />
+	<link class="cj_css" rel="stylesheet" href="${css}/web/date_picker.css" /> 
 	
   	
 </head>
@@ -39,7 +39,7 @@
 		<div id="header">
 			<div class="wrap">
 				<h1 id="home" class="logo fl" style="margin-top: 0px; margin-bottom: 0px; font-size: 0px;">
-					<img alt="여행의 시작! 어스토리" src="<%=application.getContextPath()%>/resources/img/common/logo1.png" style="width: 150px;">
+					<img alt="여행의 시작! 어스토리" src="${img}/common/logo1.png" style="width: 150px;">
 				</h1>
 				<ul class="gnb fl">
 					<a href="#" class="fl"><li id="tour">여행지</li></a>
@@ -125,19 +125,19 @@
 </div>
 
 </body>
-<script src="<%=application.getContextPath()%>/resources/js/comp/compo.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/yeogil.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/main/main.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/tour/tour.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/city/city.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/plan/sche.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/plan/plan.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/plan/mypage.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/plan/mysche.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/reservation/airport.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/reservation/hotel.js"></script>
-<script id="cj_dotdotdot" class="cj_css" src="<%=application.getContextPath()%>/resources/js/city/dotdotdot.js"></script>
+<script src="${js}/comp/compo.js"></script>
+<script src="${js}/yeogil.js"></script>
+<script src="${js}/main/main.js"></script>
+<script src="${js}/tour/tour.js"></script>
+<script src="${js}/city/city.js"></script>
+<script src="${js}/plan/sche.js"></script>
+<script src="${js}/plan/plan.js"></script>
+<script src="${js}/plan/mypage.js"></script>
+<script src="${js}/plan/mysche.js"></script>
+<script src="${js}/reservation/airport.js"></script>
+<script src="${js}/reservation/hotel.js"></script>
+<script id="cj_dotdotdot" class="cj_css" src="${js}/city/dotdotdot.js"></script>
 <script>
-	tour.cont('<%=application.getContextPath()%>');
+	tour.cont("${ctx}");
 </script>
 </html>

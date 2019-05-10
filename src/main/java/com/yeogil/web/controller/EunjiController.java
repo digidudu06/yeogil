@@ -21,7 +21,7 @@ public class EunjiController {
 	@Autowired Map<String, Object> map;
 	@Autowired MemberServiceImpl memberService;
 	@Autowired ScheduleMapper schMap;
-	
+	@Autowired Proxy pxy;
 	
 	@PostMapping("/login")
 	public MemberDTO login(@RequestBody Object mem) {
@@ -54,23 +54,29 @@ public class EunjiController {
 
     }
 	
-	@GetMapping("/memOneSchedules/{id}")
-	public Map<?,?> memOneSchedules(@PathVariable String id) {
-		System.out.println("넘어왔냐 : "+id);
-		ISupplier is = () -> schMap.selectMemOneSchedules(id);
-		System.out.println("::::::::::::"+is.get());
-		List<?> list = (List<?>) is.get();
+	@GetMapping("/memOneSchedule/{id}/{title}")
+	public Map<?,?> memOneSchedule(@PathVariable String id, @PathVariable String title) {
+		System.out.println("넘어왔냐 : "+id+" 타이틀 "+title);
 		map.clear();
+		map.put("id",id);
+		map.put("title",title);
+		pxy.memSche(map);
+		IFunction i1 = (Object o) -> schMap.selectMemOneSchedule(pxy);
+		List<?> list = (List<?>) i1.apply(pxy);
+		IFunction i2 = (Object o) -> schMap.selectMemOneScheAttr(pxy);
+		List<?> attr = (List<?>) i2.apply(pxy);
 		map.put("list",list);
+		map.put("attr",attr);
+		System.out.println("list:::::::::"+map.get("list"));
+		System.out.println("attr::::::::"+map.get("attr"));
 		return map;
 	}
 	
-	@GetMapping("/memAllSchedule/{id}")
-	public Map<?,?> memAllSchedule(@PathVariable String id) {
-		System.out.println("넘어왔냐 : "+id);
-		ISupplier is = () -> schMap.selectMemAllSchedule(id);
-		System.out.println("::::::::::::"+is.get());
-		List<?> list = (List<?>) is.get();
+	@GetMapping("/memAllSchedules/{id}")
+	public Map<?,?> memAllSchedules(@PathVariable String id) {
+		IFunction i = (Object o) -> schMap.selectMemAllSchedules(id);
+		System.out.println("::::::::::::"+i.apply(id));
+		List<?> list = (List<?>) i.apply(id);
 		map.clear();
 		map.put("list",list);
 		return map;

@@ -2,9 +2,11 @@ package com.yeogil.web.mapper;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import com.yeogil.web.controller.Proxy;
 import com.yeogil.web.domain.ArticleDTO;
 import com.yeogil.web.domain.ScheduleDTO;
 
@@ -13,8 +15,9 @@ public interface ScheduleMapper {
 	public void insertSchedule(ScheduleDTO sch);
 	public List<ScheduleDTO> selectAllSchedules(String id);
 	public List<ScheduleDTO> selectSomeSchedule(HashMap<String,Object> map);
-	public List<ScheduleDTO> selectMemAllSchedule(String id);
-	public List<ScheduleDTO> selectMemOneSchedules(String id);
+	public List<ScheduleDTO> selectMemAllSchedules(String id);
+	public List<ScheduleDTO> selectMemOneSchedule(Proxy pxy);
+	public List<ScheduleDTO> selectMemOneScheAttr(Proxy pxy);
 	public ScheduleDTO selectSchedule(ScheduleDTO sch);
 	public int countSchedules();
 	public void updateSchedule(ScheduleDTO sch);

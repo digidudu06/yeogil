@@ -9,18 +9,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-  
+
 <!-- 박은지 시작 -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<link class="ej_css" rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/common/web/default_ko.css" />
-	<link class="ej_css" rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/common/web/gnb.css" />
-	<link class="ej_css" rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/component/default.css" />
-	<link class="ej_css" rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/component/reset.css" />
-	<link class="ej_css" rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/web/main.css" />
+	<link class="ej_css" rel="stylesheet" href="${css}/common/web/default_ko.css" />
+	<link class="ej_css" rel="stylesheet" href="${css}/common/web/gnb.css" />
+	<link class="ej_css" rel="stylesheet" href="${css}/component/default.css" />
+	<link class="ej_css" rel="stylesheet" href="${css}/component/reset.css" />
+	<link class="ej_css" rel="stylesheet" href="${css}/web/main.css" />
   	
 </head>
 <body>
@@ -30,7 +30,7 @@
 		<div id="header">
 			<div class="wrap">
 				<h1 id="home" class="logo fl" style="margin-top: 0px; margin-bottom: 0px; font-size: 0px;">
-					<img alt="여행의 시작! 어스토리" src="<%=application.getContextPath()%>/resources/img/common/logo1.png" style="width: 150px;">
+					<img alt="여행의 시작! 어스토리" src="${img}/common/logo1.png" style="width: 150px;">
 				</h1>
 				<ul class="gnb fl">
 					<a href="#" class="fl"><li id="tour">여행지</li></a>
@@ -115,21 +115,21 @@
 
 <!-- 카카오 로그인 -->
 </div>
-<script src="<%=application.getContextPath()%>/resources/js/comp/compo.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/yeogil.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/main/main.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/tour/tour.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/city/city.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/plan/sche.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/plan/plan.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/plan/mypage.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/plan/mysche.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/reservation/airport.js"></script>
-<script src="<%=application.getContextPath()%>/resources/js/reservation/hotel.js"></script>
+<script src="${js}/comp/compo.js"></script>
+<script src="${js}/yeogil.js"></script>
+<script src="${js}/main/main.js"></script>
+<script src="${js}/tour/tour.js"></script>
+<script src="${js}/city/city.js"></script>
+<script src="${js}/plan/sche.js"></script>
+<script src="${js}/plan/plan.js"></script>
+<script src="${js}/plan/mypage.js"></script>
+<script src="${js}/plan/mysche.js"></script>
+<script src="${js}/reservation/airport.js"></script>
+<script src="${js}/reservation/hotel.js"></script>
 
 
 <script>
-	yeogil.init('<%=application.getContextPath()%>');
+	yeogil.init("${ctx}");
 </script>
 </body>
 </html>
