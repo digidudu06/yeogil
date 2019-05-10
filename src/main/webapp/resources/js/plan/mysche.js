@@ -63,15 +63,6 @@ mysche = (()=>{
 					});
 				});
 				
-				/*$.each(d.attr, (a,b)=>{
-					if($("#Day"+(a+1)).attr('id')===b.MS_DAY){
-						alert(' b데이:: '+b.MS_ATTR_NAME);
-					}else{
-						
-					}
-					$().appendTo('#sche_date');
-				});*/
-				
 			});
 			
 			
