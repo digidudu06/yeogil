@@ -1265,7 +1265,7 @@ compo = {
 		sche_detail :()=>{
 			return '<div id="select_detail_view_city" data="0">'
 			+'<div class="city_title">'
-				+'<div class="ci_title_name fl" style="padding-top: 13px; width: 70%"><input type="text" id="plan_title" class="form-control" placeholder="여행타이틀을 입력하세요"></div>'
+				+'<div class="ci_title_name fl" style="padding-top: 13px; width: 70%"><input type="text" id="plan_title" class="form-control" placeholder="여행타이틀을 입력하세요" style="width: 200px;"></div>'
 				+'<div class="pn_date_box fr" id="date_pick_btn" data="0">'
 					+'<div class="pn_date_info fl">출발일</div>'
 					+'<div class="pn_date_icon fr"><img src="'+$.img()+'/map/pn_cal_btn.png"></div>'

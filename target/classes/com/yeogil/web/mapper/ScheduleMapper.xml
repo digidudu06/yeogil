@@ -7,9 +7,29 @@
 <resultMap id="result" type="hashmap">
 	<id property="countrySeq" column="COUNTRY_SEQ"/>
 	<result property="countryName" column="COUNTRY_NAME"/>
+	<result property="ctr" column="MS_COUNTRY_NAME"/>
+	<result property="startDate" column="MS_DATE"/>
+	<result property="msDay" column="MS_DAY"/>
+	<result property="msCityName" column="MS_CITY_NAME"/>
   	<result property="countryEname" column="COUNTRY_ENAME"/>
   	<result property="continentName" column="CONTINENT_NAME"/>
+  	<result property="planTitle" column="MS_TITLE"/>
+  	<result property="member_id" column="MEMBER_ID"/>
+  	
 </resultMap>
+	<insert id="insertSchedule" parameterType="com.yeogil.web.domain.ScheduleDTO">
+		INSERT INTO yeogil.MEMSCH (MS_COUNTRY_NAME,MS_TITLE,MEMBER_ID)
+		VALUES(#{ctr},#{planTitle},#{member_id})
+	</insert>
+	<select id="lastsche" resultType="int" >
+		SELECT LAST_INSERT_ID()
+	</select>
+	
+	<insert id="insertSchedule2" parameterType="com.yeogil.web.domain.MemschCityDTO">
+		INSERT INTO yeogil.MEMSCHCTIY (MS_DATE,MS_CITY_NAME,MS_DAY,MS_SEQ)
+		VALUES(#{msDate},#{msCityName},#{msDay},#{msSeq})
+	</insert>
+
 	<select id="countSchedules" resultType="int" >
 		SELECT COUNT(*)
 		FROM yeogil.SCHEDULE
@@ -31,4 +51,6 @@
 		WHERE MEMBER.MEMBER_ID LIKE #{value}
 			AND MEMSCH.MS_TITLE LIKE '나의 첫 미국여행기'
 	</select>
+	
+	
 </mapper>
