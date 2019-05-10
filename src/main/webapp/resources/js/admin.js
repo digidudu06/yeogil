@@ -33,23 +33,41 @@ admin = (()=>{
 					+'<div class="count">'+d.schecount+'</div>'
 					+'<div class="title">저장된 일정수</div>'
 					+'</div></div>').appendTo('#f_temp');
+			
 			$('<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">'
 					+'<div class="info-box green-bg">'
-					+'<img src="'+d.flagimg+'" alt="" style="width:70px;height: 60px">'
-					+'<div class="count">'+d.schecount+'</div>'
+					+'<img src="'+d.top.countryFlag+'" alt="" style="width:70px;height: 60px">'
+					+'<div class="count">'+d.top.countryName+'</div>'
 					+'<div class="title">1등 여행지</div>'
 					+'</div></div>').appendTo('#f_temp');
 			
 			//나라 등록된 순위 더미값을 통해서 통계 내야한다.
-			$('<tr><td><img src='+d.flagimg+' style="height:18px; margin-top:-2px;"></td>'
-					+'<td>Germany</td>'
-					+'<td>2563</td>'
-					+'<td><div class="progress thin">'
-					+'<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%"></div>'
-					+'<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100" style="width: 27%"></div>'
-					+'</div></td></tr>').appendTo('#rank_list');
+			
+			$.each(d.clist,(i,j)=>{
+				$('<tr><td><img src='+j.countryFlag+' style="height:18px; margin-top:-2px;"></td>'
+						+'<td>'+j.countryName+'</td>'
+						+'<td>'+j.countryCount+'</td>'
+						+'<td><div class="progress thin">'
+						+'<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: '+Math.round((j.countryCount/d.schecount)*100)+'%">'+Math.round((j.countryCount/d.schecount)*100)+'%</div>'
+						+'<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: '+Math.round((((j.countryCount/d.schecount)*100)-100)*-1)+'%"></div>'
+						+'</div></td></tr>').appendTo('#rank_list');
+			});
 		});
 		
+		$.getJSON(_+'/map/chart',d=>{
+			let mapdata=[];
+			$.each(d.data,(i,j)=>{
+				mapdata.push({"name":j.countryName,"id":j.countryCode,"value":j.msCount, "color": "#ff2d55"}) ;
+			});
+			$.each(mapdata,(i,j)=>{
+				//alert(j.id);
+			});
+			word_map_chart(mapdata);
+		});
+		
+		
+	};
+	let word_map_chart = (mapData)=>{
 		am4core.ready(function() {
 
 			// Themes begin
@@ -62,6 +80,8 @@ admin = (()=>{
 			var title = chart.titles.create();
 			title.text = "[bold font-size: 20]Population of the World in 2011[/]\nsource: Gapminder";
 			title.textAlign = "middle";
+			
+			
 			//나타코드로 지도 그림
 			var latlong = {
 			  "AD": {"latitude":42.5, "longitude":1.5},
@@ -295,7 +315,7 @@ admin = (()=>{
 			  "VE": {"latitude":8, "longitude":-66},
 			  "VG": {"latitude":18.5, "longitude":-64.5},
 			  "VI": {"latitude":18.3333, "longitude":-64.8333},
-			  "VN": {"latitude":16, "longitude":106},
+			  "VN": {"latitude":14, "longitude":108},
 			  "VU": {"latitude":-16, "longitude":167},
 			  "WF": {"latitude":-13.3, "longitude":-176.2},
 			  "WS": {"latitude":-13.5833, "longitude":-172.3333},
@@ -307,8 +327,33 @@ admin = (()=>{
 			};
 			
 			// data값으로 원의 크기가 동적으로 그려짐 컬러는 인덱스에 따라 달라진다.
-			var mapData = [
-			 /* { "id":"AF", "name":"Afghanistan", "value":32358260, "color": chart.colors.getIndex(0) },
+			/*var mapData = [
+				{ "id":"JP", "name":"Japan", "value":126497241, "color": chart.colors.getIndex(0) },
+				{ "id":"HK", "name":"Hong Kong, China", "value":7122187, "color": chart.colors.getIndex(0) },
+				{ "id":"CN", "name":"China", "value":1347565324, "color": chart.colors.getIndex(0) },
+				{ "id":"TH", "name":"Thailand", "value":7, "color": chart.colors.getIndex(0) },
+				{ "id":"PL", "name":"Poland", "value":38298949, "color":chart.colors.getIndex(1) },
+				{ "id":"PH", "name":"Philippines", "value":94852030, "color": chart.colors.getIndex(0) },
+				{ "id":"FI", "name":"Finland", "value":5384770, "color":chart.colors.getIndex(1) },
+				{ "id":"ID", "name":"Indonesia", "value":242325638, "color": chart.colors.getIndex(0) },
+				{ "id":"IN", "name":"India", "value":1241491960, "color": chart.colors.getIndex(0) },
+				{ "id":"GB", "name":"United Kingdom", "value":36, "color":chart.colors.getIndex(1) },
+				{ "id":"SG", "name":"Singapore", "value":5187933, "color": chart.colors.getIndex(0) },
+				{ "id":"ES", "name":"Spain", "value":46454895, "color":chart.colors.getIndex(1) },
+				{ "id":"CH", "name":"Switzerland", "value":6, "color":chart.colors.getIndex(1) },
+				{ "id":"SE", "name":"Sweden", "value":6, "color":chart.colors.getIndex(1) },
+				{ "id":"LK", "name":"Sri Lanka", "value":21045394, "color": chart.colors.getIndex(0) },
+				{ "id":"BG", "name":"Bulgaria", "value":7446135, "color":chart.colors.getIndex(1) },
+				{ "id":"BE", "name":"Belgium", "value":10754056, "color":chart.colors.getIndex(1) },
+				{ "id":"VN", "name":"Vietnam", "value":66, "color": chart.colors.getIndex(0) },
+				{ "id":"MM", "name":"Myanmar", "value":48336763, "color": chart.colors.getIndex(0) },
+				{ "id":"ME", "name":"Montenegro", "value":632261, "color":chart.colors.getIndex(1) },
+				{ "id":"RU", "name":"Russia", "value":142835555, "color":chart.colors.getIndex(1) },
+				{ "id":"LA", "name":"Laos", "value":6288037, "color": chart.colors.getIndex(0) },
+				{ "id":"DE", "name":"Germany", "value":82162512, "color":chart.colors.getIndex(1) },
+				{ "id":"TW", "name":"Taiwan", "value":200, "color": chart.colors.getIndex(0) }
+				
+			  { "id":"AF", "name":"Afghanistan", "value":32358260, "color": chart.colors.getIndex(0) },
 			  { "id":"AL", "name":"Albania", "value":3215988, "color":chart.colors.getIndex(1) },
 			  { "id":"DZ", "name":"Algeria", "value":35980193, "color":chart.colors.getIndex(2) },
 			  { "id":"AO", "name":"Angola", "value":19618432, "color":chart.colors.getIndex(2) },
@@ -451,7 +496,7 @@ admin = (()=>{
 			  { "id":"LK", "name":"Sri Lanka", "value":21045394, "color": chart.colors.getIndex(0) },
 			  { "id":"SD", "name":"Sudan", "value":34735288, "color":chart.colors.getIndex(2) },
 			  { "id":"SR", "name":"Suriname", "value":529419, "color":chart.colors.getIndex(3) },
-			  { "id":"SZ", "name":"Swaziland", "value":1203330, "color":chart.colors.getIndex(2) },*/
+			  { "id":"SZ", "name":"Swaziland", "value":1203330, "color":chart.colors.getIndex(2) },
 			  { "id":"SE", "name":"Sweden", "value":6, "color":chart.colors.getIndex(1) },
 			  { "id":"CH", "name":"Switzerland", "value":6, "color":chart.colors.getIndex(1) },
 			  { "id":"SY", "name":"Syria", "value":4, "color": chart.colors.getIndex(0) },
@@ -477,7 +522,9 @@ admin = (()=>{
 			  { "id":"YE", "name":"Yemen, Rep.", "value":11, "color": chart.colors.getIndex(0) },
 			  { "id":"ZM", "name":"Zambia", "value":35, "color":chart.colors.getIndex(2) },
 			  { "id":"ZW", "name":"Zimbabwe", "value":63, "color":chart.colors.getIndex(2) }
-			];
+			];*/
+			
+			
 
 			// Add lat/long information to data
 			for(var i = 0; i < mapData.length; i++) {

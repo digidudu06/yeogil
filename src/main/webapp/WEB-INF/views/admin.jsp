@@ -62,7 +62,7 @@
         <!--overview start-->
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-laptop"></i> 통계</h3>
+            <h3 class="page-header" style="margin-left: 250px;"><i class="fa fa-laptop"></i> 통계</h3>
           </div>
         </div>
         <div class="row" id="f_temp">
@@ -134,9 +134,9 @@
                   <thead>
                     <tr>
                       <th></th>
-                      <th>City</th>
-                      <th>Users</th>
-                      <th>Performance</th>
+                      <th>도시</th>
+                      <th>여행객</th>
+                      <th>비율</th>
                     </tr>
                   </thead>
                   <tbody id="rank_list">

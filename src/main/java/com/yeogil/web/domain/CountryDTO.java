@@ -6,5 +6,5 @@ import lombok.Data;
 
 @Data @Component
 public class CountryDTO {
-	private String countrySeq,countryName,countryEname,continentName,countryLat,countryLng;
+	private String countrySeq,countryName,countryEname,continentName,countryLat,countryLng,countryFlag,countryCount;
 }
