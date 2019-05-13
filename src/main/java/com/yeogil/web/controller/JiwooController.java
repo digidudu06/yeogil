@@ -1,8 +1,6 @@
 package com.yeogil.web.controller;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -11,7 +9,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +22,7 @@ import com.yeogil.web.mapper.CityMapper;
 import com.yeogil.web.mapper.ScheduleMapper;
 import com.yeogil.web.service.CityService;
 import com.yeogil.web.service.CountryService;
+import com.yeogil.web.service.TransactionService;
 
 @RestController
 public class JiwooController {
@@ -38,6 +36,7 @@ public class JiwooController {
 	@Autowired ScheduleDTO schedule;
 	@Autowired ScheduleMapper schedulemapper;
 	@Autowired MemschCityDTO mcdto;
+	@Autowired TransactionService transactionservice;
 	
 	@SuppressWarnings("unchecked")
 	@PostMapping("/cont/{continentName}")
@@ -66,7 +65,7 @@ public class JiwooController {
 		return map;
 	}
 	
-	@Transactional
+	
 	@PostMapping("/myplan/schedule/{memberid}")
 	public ScheduleDTO storelist(
 			@PathVariable String memberid,
@@ -79,11 +78,8 @@ public class JiwooController {
         schedule.setCtr(ctr);
         schedule.setPlanTitle(planTitle);
         schedule.setMember_id(memberid);
-		IConsumer ic = (Object o) -> schedulemapper.insertSchedule(schedule);
-		ic.accept(schedule);
-		
-        ISupplier is = () -> schedulemapper.lastsche();
-        int lastsch = (int) is.get();
+        transactionservice.txinsert(schedule);
+        
 		// memsch에 db 저장 끝
 		Pattern p = Pattern.compile("(^[0-9]*$)");
         String[] aa = sche.getCity().split("");
@@ -91,7 +87,6 @@ public class JiwooController {
         String planday  = "";
         String startDate = sche.getStartDate();
         
-        //String msseq = ;
         
         // 날짜 계산
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
@@ -112,21 +107,16 @@ public class JiwooController {
                 }      
 
                 String ss = planday.replaceAll("일","");
-                cal.add(Calendar.DATE, Integer.parseInt(ss));
-                System.out.println(city);
-                System.out.println(format.format(cal.getTime()));
-
                 for(int a=0;a<Integer.parseInt(ss);a++) {
                 	mcdto = new MemschCityDTO();
                     mcdto.setMsCityName(city);
                     mcdto.setMsDate(format.format(cal.getTime()));
-                    mcdto.setMsSeq(lastsch);
+                    cal.add(Calendar.DATE, 1);
+                    mcdto.setMs_seq(schedule.getMs_seq());
                 	mcdto.setMsDay("Day"+day);
-                	ic = (Object o) -> schedulemapper.insertSchedule2(mcdto);
-                	ic.accept(mcdto);
+                	transactionservice.txinsert2(mcdto);
                 	day++;
                 }
-               
             }
             city="";
             planday="";

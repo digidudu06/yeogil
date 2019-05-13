@@ -14,7 +14,7 @@ import com.yeogil.web.domain.ScheduleDTO;
 @Repository
 public interface ScheduleMapper {
 	public void insertSchedule(ScheduleDTO sch);
-	public void insertSchedule2(MemschCityDTO sch);
+	public void insertSchedule2(MemschCityDTO mem);
 	public List<ScheduleDTO> selectAllSchedules(String id);
 	public List<ScheduleDTO> selectSomeSchedule(HashMap<String,Object> map);
 	public List<ScheduleDTO> selectMemAllSchedules(String id);

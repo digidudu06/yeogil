@@ -30,7 +30,7 @@
 		<div id="header">
 			<div class="wrap">
 				<h1 id="home" class="logo fl" style="margin-top: 0px; margin-bottom: 0px; font-size: 0px;">
-					<img alt="여행의 시작! 어스토리" src="${img}/common/logo1.png" style="width: 150px;">
+					<img alt="" src="${img}/common/logo1.png" style="width: 150px;">
 				</h1>
 				<ul class="gnb fl">
 					<a href="#" class="fl"><li id="tour">여행지</li></a>
