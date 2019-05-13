@@ -1529,7 +1529,7 @@ compo = {
 			+'				<div class="hseo_row">'
 			+'					<div class="hseo_col-md-7 col-md-push-5">'
 			+'						<div class="hseo_booking-cta">'
-			+'							<h1 id="htext_01">Make your reservation</h1>'
+			+'							<h1 id="htext_01">Make your reservation</h1><br><br>'
 										+'<p id="htext_02">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi facere, soluta magnam consectetur molestias itaque'
 											+'ad sint fugit architecto incidunt iste culpa perspiciatis possimus voluptates aliquid consequuntur cumque quasi.'
 			+'								Perspiciatis.'
@@ -1679,5 +1679,16 @@ compo = {
 			+'    <div id="pnbd_02" class="panel-body">오는편</div>'
 			+'  </div>'
 			+'</div>'*/;
+		},
+		progress:()=>{
+			return '<div class="container">'
+			+'  <h1></h1>'
+			+'  <p></p> '
+			+'  <div class="progress">'
+			+'    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">'
+			+'      조건에 맞는 검색 완료 100%'
+			+'    </div>'
+			+'  </div>'
+			+'</div>';
 		}
 }

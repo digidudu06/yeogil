@@ -177,9 +177,9 @@
   display: grid;
   grid-template-columns: auto auto auto auto;
   grid-gap: 10px;
-  background-color: rgba(0,0,0,.0001);
+  background-color: #f5f5f5;
   padding: 10px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .grid-inner {

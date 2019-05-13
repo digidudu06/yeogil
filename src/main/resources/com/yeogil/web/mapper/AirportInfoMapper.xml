@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeogil.web.mapper.AirportInfoMapper">
+	<select id="createAirportInfo" parameterType="com.yeogil.web.domain.AirportInfoDTO">
+	 INSERT INTO yeogil.AIRPORTINFO(
+		 							S_AIRPORT_NAME,
+		 							S_DEPARTURE_TIME,
+		 							S_ARRIVAL_TIME,
+		 							S_DEPART_AIRPORT,
+		 							S_ARRIVAL_AIRPORT,
+		 							S_DEPART_DATE,
+		 							S_ARRIVAL_DATE,
+		 							S_AIRPORT_NAMER,
+		 							S_DEPARTURE_TIMER,
+		 							S_ARRIVAL_TIMER,
+		 							S_DEPART_DATER,
+		 							S_ARRIVAL_DATER,
+		 							S_PRICER,
+		 							S_ARRIVAL_AIRPORTR,
+		 							S_DEPART_AIRPORTR) 
+							VALUES(#{sAirportName},
+									#{sDepartureTime},
+									#{sArrivalTime},
+									#{sDepartAirport},
+									#{sArrivalAirport},
+									#{sDepartDate},
+									#{sArrivalDate},
+									#{sAirportNamer},
+									#{sDepartureTimer},
+									#{sArrivalTimer},
+									#{sDepartDater},
+									#{sArrivalDater},
+									#{sPricer},
+									#{sArrivalAirportr},
+									#{sDepartAirportr}
+									)
+	</select>
+</mapper>

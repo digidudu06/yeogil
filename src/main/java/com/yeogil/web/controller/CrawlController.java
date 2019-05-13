@@ -139,96 +139,10 @@ public class CrawlController {
 		return map;
 	}
 	
-//==================================================================================== 항공크롤링 시작
-	/*
-	 * @PostMapping("/crawling/avation") public Map<?, ?> avation(@RequestBody
-	 * AirportReturnDTO apdto) throws Exception {
-	 * 
-	 * 고객이 정한 날짜 받기 System.out.println("===CrawlController진입==="); String feeddate =
-	 * apdto.getDepartDate(); String feeddate2 = apdto.getArrivalDate();
-	 * System.out.println(feeddate); System.out.println(feeddate2);
-	 * 
-	 * URL지정 String airinfor = "https://www.kayak.co.kr/flights/ICN-TPE/" + feeddate
-	 * + "/" + feeddate2 + ""; Connection conn =
-	 * Jsoup.connect(airinfor).header("Content-Type",
-	 * "application/json;charset=UTF-8")
-	 * .method(Connection.Method.GET).ignoreContentType(true);
-	 * 
-	 * String info = conn.get().select(".Base-Results-HorizonResult").text();
-	 * 
-	 * Elements info1 = conn.get().select(".Base-Results-HorizonResult");
-	 * 
-	 * List<AirportReturnDTO> alist = new ArrayList<>(); AirportReturnDTO apdto1 =
-	 * null;
-	 * 
-	 * for (Element s : info1) { apdto1 = new AirportReturnDTO();
-	 * 
-	 * apdto1.setDepartDate(feeddate); apdto1.setArrivalDate(feeddate);
-	 * apdto1.setDepartDateR(feeddate2); apdto1.setArrivalDateR(feeddate2);
-	 * 
-	 *//*** 항공사로고 ***/
-
-	/*
-	 * 
-	 * 한국->목적지 항공사로고 String himgurl =
-	 * conn.get().select(".leg-carrier img").attr("src"); apdto1.setAirImg(himgurl);
-	 * System.out.println("갈때항공이미지::" + himgurl);
-	 * 
-	 * 목적지->한국 항공사로고 String himgurlR =
-	 * conn.get().select(".leg-carrier").attr("src"); apdto1.setAirImgR(himgurlR);
-	 * System.out.println("갈때항공이미지::" + himgurlR);
-	 * 
-	 *//*** 출발시간 ***//*
-	 * 
-	 * 출발시간 String deptime1 = s.select(".depart-time").text(); String[] deptime =
-	 * deptime1.split(" "); 한국->타지 출발 apdto1.setDepartureTime(deptime[0]); 타지->한국 출발
-	 * apdto1.setDepartureTimeR(deptime[1]); System.out.println("한국->타지출발 시간::" +
-	 * deptime[0]); System.out.println("타지->한국출발 시간::" + deptime[1]);
-	 * 
-	 * 도착시간 String artime1 = s.select(".arrival-time").text(); String[] artime =
-	 * artime1.split(" "); 한국->타지 도착 apdto1.setArrivalTime(artime[0]); 타지->한국 도착
-	 * apdto1.setArrivalTimeR(artime[1]); System.out.println("한국->타지 도착시간::" +
-	 * artime[0]); System.out.println("타지->한국도착 시간::" + artime[1]);
-	 * 
-	 * 항공사이름 String apname1 = s.select(".with-gutter .bottom").text(); String[]
-	 * apname = apname1.split(" "); 한국->타지 항공사이름 apdto1.setAirportName(apname[0]);
-	 * System.out.println("한국->타지 항공사이름" + apname[0]);
-	 * 
-	 * String apname2 = s.select(".flight .bottom").text(); String[] apname3 =
-	 * apname2.split(" "); 타지->한국 항공사이름 apdto1.setAirportNameR(apname3[0]);
-	 * System.out.println("타지->한국 항공사이름" + apname3[0]);
-	 * 
-	 * 공항이름 String stname1 = s.select(".with-gutter .duration .bottom").text();
-	 * String[] stname = stname1.split(" "); 한국->타지 출발공항
-	 * apdto1.setDepartAirport(stname[0]); 한국->타지 도착공항
-	 * apdto1.setArrivalAirport(stname[2]); System.out.println("한국->타지 출발공항" +
-	 * stname[0]); System.out.println("한국->타지 도착공항" + stname[2]);
-	 * 
-	 * String stname3 = s.select(".flight .duration .bottom").text(); String[]
-	 * stname4 = stname3.split(" "); 타지->한국 출발공항
-	 * apdto1.setDepartAirportR(stname4[2]); 타지->한국 도착공항
-	 * apdto1.setArrivalAirportR(stname4[0]); System.out.println("타지->한국 출발공항" +
-	 * stname4[2]); System.out.println("타지->한국 도착공항" + stname4[0]);
-	 * 
-	 * 고객이정한 시작날짜 String dpdate = apdto1.getDepartDate(); 고객이정한 종료날짜 String ardate =
-	 * apdto1.getArrivalDate(); System.out.println("출발날짜::" + dpdate);
-	 * System.out.println("도착날짜::" + ardate);
-	 * 
-	 * 가격 올때갈때 한번에 계산이기때문에 가격은 둘다 같음 String tprice1 =
-	 * s.select(".result-column .option-text").text(); String[] tprice =
-	 * tprice1.split(" "); 항공가격 apdto1.setPrice(tprice[0]);
-	 * apdto1.setPriceR(tprice[0]); System.out.println("가격::" + tprice[0]);
-	 * alist.add(apdto1); } map.clear(); map.put("alist", alist);
-	 * System.out.println("alist값" + alist.toString()); return map; }
-//==========================================================================================================항공크롤링 끝
-	 
-//==========================================================================================================호텔크롤링
-/*===호텔크롤링 시작===*/
 	  @PostMapping("/crawling/hvation")
 	  public Map<?, ?> hvation(
 			  @RequestBody Map<String, String> param) throws Exception { 
-	  System.out.println("havation들어옴");
-	  System.out.println("havation들어옴");
+	  System.out.println("==========Crawl C/호텔크롤링===========");
 	  
 	  String hotelimg = "https://www.booking.com/searchresults.ko.html?aid=376440&label=bdot-SIcScZhJX6z_*YtUYg62hwS267777897793%3Apl%3Ata%3Ap1%3Ap22%2C347%2C000%3Aac%3Aap1t1%3Aneg%3Afi%3Atikwd-325272469656%3Alp1009871%3Ali%3Adec%3Adm&sid=73cb87113c97f85a4ff960c4dfab755b&sb=1&src=searchresults&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.ko.html%3Faid%3D376440%3Blabel%3Dbdot-SIcScZhJX6z_%252AYtUYg62hwS267777897793%253Apl%253Ata%253Ap1%253Ap22%252C347%252C000%253Aac%253Aap1t1%253Aneg%253Afi%253Atikwd-325272469656%253Alp1009871%253Ali%253Adec%253Adm%3Bsid%3D73cb87113c97f85a4ff960c4dfab755b%3Btmpl%3Dsearchresults%3Bcheckin_month%3D6%3Bcheckin_monthday%3D17%3Bcheckin_year%3D2019%3Bcheckout_month%3D6%3Bcheckout_monthday%3D21%3Bcheckout_year%3D2019%3Bcity%3D-2637882%3Bclass_interval%3D1%3Bdest_id%3D-2637882%3Bdest_type%3Dcity%3Bdtdisc%3D0%3Bfrom_sf%3D1%3Bgroup_adults%3D2%3Bgroup_children%3D0%3Binac%3D0%3Bindex_postcard%3D0%3Blabel_click%3Dundef%3Bno_rooms%3D1%3Boffset%3D0%3Bpostcard%3D0%3Broom1%3DA%252CA%3Bsb_price_type%3Dtotal%3Bshw_aparth%3D1%3Bslp_r_match%3D0%3Bsrc%3Dsearchresults%3Bsrc_elem%3Dsb%3Bsrpvid%3Dd414a88ad13800f8%3Bss%3D%25ED%2583%2580%25EC%259D%25B4%25EB%25B2%25A0%25EC%259D%25B4%3Bss_all%3D0%3Bssb%3Dempty%3Bsshis%3D0%3Bssne%3D%25ED%2583%2580%25EC%259D%25B4%25EB%25B2%25A0%25EC%259D%25B4%3Bssne_untouched%3D%25ED%2583%2580%25EC%259D%25B4%25EB%25B2%25A0%25EC%259D%25B4%26%3B&ss=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&is_ski_area=0&ssne=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&ssne_untouched=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&city=-2637882&checkin_year=2019&checkin_month=5&checkin_monthday=13&checkout_year=2019&checkout_month=5&checkout_monthday=17&group_adults=2&group_children=0&no_rooms=1&from_sf=1";
 	  
@@ -242,31 +156,21 @@ public class CrawlController {
 	  
 	  for (Element s : httext1) {
 		  htdto = new HotelDTO();
-		  /*호텔이미지*/
+		  /*IMAGE*/
 		  String imgurl = s.select(".hotel_image").attr("src");
 		  htdto.setImgUrl(imgurl);
-		  System.out.println("호텔이미지::"+imgurl);
-		  
-		  /*호텔이름*/
+		  /*NAME*/
 		  String deptime1 = s.select(".sr-hotel__name").text();
 		  htdto.setHotelName(deptime1);
-		  System.out.println("호텔이름::"+deptime1.toString());
-		  
-		  /*타입*/
+		  /*ROOMTYPE*/
 		  String sold = s.select(".room_link").text();
 		  htdto.setRoomType(sold);
-		  System.out.println("메세지::"+sold);
-		  
-		  /*알림*/
+		  /*NOTICE*/
 		  String notice = s.select(".fe_banner__title").text();
 		  htdto.setNotice(notice);
-		  System.out.println("알림::"+notice);
-		  
-		  /*가격*/
+		  /*PRICE*/
 		  String hprice = s.select(".animated strong b").text();
 		  htdto.setPrice(hprice);
-		  System.out.println("호텔가격::"+hprice);
-		  
 		  htlist.add(htdto); 
 	  }
 	  map.clear();
@@ -274,4 +178,3 @@ public class CrawlController {
 	  return map; 
 	  }
 }
-//=====================================================================호텔 크롤링 끝

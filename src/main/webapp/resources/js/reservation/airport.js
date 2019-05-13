@@ -107,41 +107,42 @@ airport = (()=>{
 					 let data = {arrivalDate:$('#sinput_03').val(),
 								departDateR:$('#sinput_04').val()};//map자체
 						if(data.arrivalDate===""||data.departDateR===""){
-							alert("모든 항목을 기입해주세요!");
+							alert("모든항목을 기입해주세요");
 						}else{
 					 let page ='1';
 					 $.getJSON($.ctx()+'/airlist/'+ page, d=>{
 						 $('<div id="adddiv_01"></div>').appendTo('#common_area');
 						 $('#adddiv_01').empty();
-						 $('<div><h1 style="font-size: 30px;text-align: center;"> 검색하신 항공편 입니다.</h1></br></br>'
-								 +'<div class="grid-container">'
+						 $('<div><h1 id="addpro" style="font-size: 30px;text-align: center;"> 검색하신 항공편 입니다.</h1></br></br>'
+								 +'<br><br><div class="grid-container">'
 								 +'	<div class="item1">가는 항공편</br></br></br></div>'
 								 +'	<div class="item2">오는 항공편</br></br></br></div>'
 								 +'</div></div>').appendTo('#adddiv_01');
 						 $.each(d.al,(i,j)=>{
 							 $('<div class="grid-inner" style="height: 50px">'
 									 +'<div id="aaa_0'+i+'"><img src="'+j.airImg+'" width="30" height="30" alt=""></div>'
-									 +'<div id="aab_0'+i+'">'+j.airportName+j.departureTime+'->'+j.arrivalTime
-									 			+'</br>'+j.departAirport+' -> '+j.arrivalAirport+'</div>'
-									 +'<div id="aac_0'+i+'">'+j.departDate+'->'+j.arrivalDate+'</div>'
+									 +'<div id="aab_0'+i+'">'+j.airportName+' '+j.departureTime+' -> '+j.arrivalTime
+									 +'</br>'+' '+j.departAirport+' -> '+j.arrivalAirport+'</div>'
+									 +'<div id="aac_0'+i+'">'+j.departDate+' -> '+j.arrivalDate+'</div>'
 									 +'</div><div style="height: 30px" ></div>').appendTo('.item1');
 					     i++
 						 });
 						 $.each(d.ar,(i,j)=>{
 							 $('<div class="grid-inner">'
 									 +'<div id="bba_0'+i+'"><img src="'+j.airImgR+'" width="30" height="30" alt=""></div>'
-									 +'<div id="bbb_0'+i+'">'+j.airportNameR+j.departureTimeR+'->'+j.arrivalTimeR
-									 			+'</br>'+j.departAirportR+' -> '+j.arrivalAirportR+'</div>'
-									 +'<div id="bbc_0'+i+'">'+j.arrivalAirportR+j.departDateR+'->'+j.arrivalDateR+'</br>\\'+j.priceR
-									 +'    <button title="'+j.priceR+'" id="apbtn_0'+i+'" type="button" class="btn btn-danger">결제</button></div></div>'
+									 +'<div id="bbb_0'+i+'">'+j.airportNameR+' '+j.departureTimeR+' -> '+j.arrivalTimeR
+									 +'</br>'+' '+j.departAirportR+' -> '+j.arrivalAirportR+'</div>'
+									 +'<div id="bbc_0'+i+'">'+j.departDateR+' -> '+j.arrivalDateR+' '+'</br>\\'+' '+j.priceR
+									 +'<button title="'+' '+j.priceR+'" id="apbtn_0'+i+'" type="button" class="btn btn-danger"> 결제</button></div></div>'
 									 +'<div style="height: 30px" ></div>').appendTo('.item2');
 						 i++
 						 });
 						 $('#apbtn_00').click(function(){
-							 let data = {hotelName:$('#hicon0').html(),
-										price:$('#hprice_00').html(),
-										roomType:$('#rtype_00').html(),
-										notice:$('#hnoti_00').html()};
+							 let data = { 
+									 airportName:$('#aab_00').text(),
+									 departureTime:$('#aac_00').text(),
+									 airportNameR:$('#bbb_00').text(),
+									 departureTimeR:$('#bbc_00').text()};
 							 alert(sessionStorage.getItem('memberId'));
 							 $.ajax({
 									url: _+'/sw/airsave/'+sessionStorage.getItem('memberId'),
@@ -155,7 +156,33 @@ airport = (()=>{
 							 
 							 let a = $(this).attr('title');
 							 alert(a);
-								IMP.init('imp68242076');
+							 IMP.init('imp68242076');
+								IMP.request_pay({
+							    pg : 'inicis', // version 1.1.0부터 지원.
+							    pay_method : 'card',
+							    merchant_uid : 'merchant_' + new Date().getTime(),
+							    name : '주문명:결제테스트',
+							    amount : 14000,
+							    buyer_email : 'iamport@siot.do',
+							    buyer_name : '구매자이름',
+							    buyer_tel : '010-1234-5678',
+							    buyer_addr : '서울특별시 강남구 삼성동',
+							    buyer_postcode : '123-456',
+							    m_redirect_url : 'http://localhost:8080/web/reser'
+							}, function(rsp) {
+							    if ( rsp.success ) {
+							        var msg = '결제가 완료되었습니다.';
+							        msg += '고유ID : ' + rsp.imp_uid;
+							        msg += '상점 거래ID : ' + rsp.merchant_uid;
+							        msg += '결제 금액 : ' + rsp.paid_amount;
+							        msg += '카드 승인번호 : ' + rsp.apply_num;
+							    } else {
+							        var msg = '결제에 실패하였습니다.';
+							        msg += '에러내용 : ' + rsp.error_msg;
+							    }
+							    alert(msg);
+							});
+								/*IMP.init('imp68242076');
 								IMP.request_pay({
 							    pg : 'inicis', // version 1.1.0부터 지원.
 							    pay_method : 'card',
@@ -180,7 +207,7 @@ airport = (()=>{
 							        msg += '에러내용 : ' + rsp.error_msg;
 							    }
 							    alert(msg);
-							});
+							});*/
 							}); 
 					 });
 					} 
