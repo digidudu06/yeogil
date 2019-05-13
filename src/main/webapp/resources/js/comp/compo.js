@@ -1197,7 +1197,7 @@ compo = {
 			+'				<div class="hseo_row">'
 			+'					<div class="hseo_col-md-7 col-md-push-5">'
 			+'						<div class="hseo_booking-cta">'
-			+'							<h1 id="htext_01">Make your reservation</h1>'
+			+'							<h1 id="htext_01">Make your reservation</h1><br><br>'
 										+'<p id="htext_02">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi facere, soluta magnam consectetur molestias itaque'
 											+'ad sint fugit architecto incidunt iste culpa perspiciatis possimus voluptates aliquid consequuntur cumque quasi.'
 			+'								Perspiciatis.'
@@ -1348,14 +1348,5 @@ compo = {
 			+'  </div>'
 			+'</div>'*/;
 
-		},
-		grid:()=>{
-			return '<div class="row">'
-			+'<div class="row">'
-			+'  <div class="col-md-6">.col-md-6</div>'
-			+'  <div class="col-md-5">.col-md-5</div>'
-			+'  <div class="col-md-1">.col-md-1</div>'
-			+'</div>'
-			;
 		}
 }
