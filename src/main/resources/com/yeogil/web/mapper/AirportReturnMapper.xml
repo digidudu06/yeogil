@@ -14,6 +14,6 @@
 	  		AIR_IMGR airImgR,
 	  		ARRIVAL_AIRPORTR arrivalAirportR,
 	  		DEPART_AIRPORTR departAirportR
-	  FROM yeogil.AIRPORTRETURN
+	  FROM AIRPORTRETURN
 	</select>
 </mapper>

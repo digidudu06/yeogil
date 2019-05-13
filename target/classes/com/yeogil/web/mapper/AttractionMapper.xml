@@ -15,12 +15,12 @@
 </resultMap>
 	<select id="countAttraction" resultType="int" parameterType="string">
 	  	SELECT COUNT(*)
-		FROM yeogil.ATTRACTION
+		FROM ATTRACTION
 		WHERE COUNTRY_NAME LIKE #{value}
 	</select>
 	<select id="selectAllAttractions" resultMap="result" parameterType="com.yeogil.web.controller.Proxy">
 	  	SELECT *
-		FROM yeogil.ATTRACTION
+		FROM ATTRACTION
 		WHERE COUNTRY_NAME LIKE #{search}
 		LIMIT #{startRow}, #{pageSize}
 	</select>

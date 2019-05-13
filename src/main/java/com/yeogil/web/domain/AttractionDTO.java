@@ -7,5 +7,5 @@ import lombok.Data;
 @Data @Component
 public class AttractionDTO {
 	private String attrSeq,attrName
-	,attrEname,attrLat,attrLng,cityEname,attrImg,countryName;
+	,attrEname,attrLat,attrLng,cityName,cityEname,attrImg,countryName;
 }

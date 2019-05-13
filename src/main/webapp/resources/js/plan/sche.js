@@ -130,7 +130,9 @@ sche = (()=>{
 					contentType : "application/json; charset=UTF-8",
 					success: d => {
 						alert('성공!');
-						mysche.init(d);
+						console.log(d);
+						console.log(data);
+						mysche.init(data.planTitle);
 					},error: e => {
 						alert('실패!!!');
 					}
@@ -434,6 +436,7 @@ sche = (()=>{
 	}
 	
 	function get_city_list(_cu_srl,_cu_name){
+		alert('get_city_list');
 		//let _ct_code = $('#cat_menu li.on').attr('data');
 		$('#city_list_title .cu_title').text(_cu_name);
 		console.log(_cu_srl);

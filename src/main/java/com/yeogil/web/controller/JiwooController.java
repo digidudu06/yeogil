@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yeogil.web.domain.AttractionDTO;
 import com.yeogil.web.domain.CityDTO;
 import com.yeogil.web.domain.CountryDTO;
+import com.yeogil.web.domain.MemschAttrDTO;
 import com.yeogil.web.domain.MemschCityDTO;
 import com.yeogil.web.domain.ScheduleDTO;
 import com.yeogil.web.mapper.CityMapper;
@@ -32,8 +34,10 @@ public class JiwooController {
 	@Autowired Proxy pxy;
 	@Autowired List<CountryDTO> list;
 	@Autowired List<CityDTO> list2;
+	@Autowired List<AttractionDTO> schList;
 	@Autowired Map<String,Object> map;
 	@Autowired ScheduleDTO schedule;
+	@Autowired MemschAttrDTO attr;
 	@Autowired ScheduleMapper schedulemapper;
 	@Autowired MemschCityDTO mcdto;
 	@Autowired TransactionService transactionservice;
@@ -42,13 +46,16 @@ public class JiwooController {
 	@PostMapping("/cont/{continentName}")
 	public Map<?,?> countrylist1(@PathVariable String continentName) {
 		System.out.println("지우 컨트롤러 countrylist ::: "+continentName);
-		list = (List<CountryDTO>) countryService.findCountries(continentName);
-		/* System.out.println("안들어오니"); */
+		map.clear();
+		map.put("srch", continentName);
+		map.put("page_size", "5");
+		map.put("block_size", "5");
+		map.put("row_count", 5);
+		pxy.carryOut(map);
+		list = (List<CountryDTO>) countryService.findCountries(pxy);
 		map.clear();
 		map.put("ls",list);
 		System.out.println(list.toString());
-        
-		/* System.out.println(list.toString()); */
 		return map;
 	}
 	
@@ -67,7 +74,7 @@ public class JiwooController {
 	
 	
 	@PostMapping("/myplan/schedule/{memberid}")
-	public ScheduleDTO storelist(
+	public Map<?,?> storelist(
 			@PathVariable String memberid,
 			@RequestBody ScheduleDTO sche
 			) throws Exception{
@@ -97,6 +104,7 @@ public class JiwooController {
         
         int s =0;
         int day = 1;
+         
         for(int i =0;i<aa.length-1;i++) {
             Matcher m = p.matcher(aa[i]);
             if(m.find()) {
@@ -115,13 +123,30 @@ public class JiwooController {
                     mcdto.setMs_seq(schedule.getMs_seq());
                 	mcdto.setMsDay("Day"+day);
                 	transactionservice.txinsert2(mcdto);
+                	for(int v=0;v<Integer.parseInt(ss);v++) {
+                		//schedule = new ScheduleDTO();
+                    	schedule.setCity(mcdto.getMsCityName());
+                    	schedule.setContinetn_seq(Integer.parseInt(ss));
+                    	
+                    	schList = transactionservice.scheList(schedule);
+                    	System.out.println(schList.toString());
+                    	
+                    	attr = new MemschAttrDTO();
+                		attr.setMsAttrName(schList.get(v).getAttrName());
+                		attr.setMs_ctiy_seq(mcdto.getMs_ctiy_seq());
+                		System.out.println(attr.getMsAttrName());
+                		transactionservice.txinsert3(attr);
+						/*
+						 * for(int z=0;z<schList.size();z++) { }
+						 */
+                	}
                 	day++;
+                	//attr=null;
                 }
             }
             city="";
             planday="";
         }
-		return sche;
-		
+		return map;
 	}
 }
