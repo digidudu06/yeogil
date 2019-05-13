@@ -32,7 +32,7 @@
   <section id="container" class="">
     <header class="header dark-bg">
       <!--logo start-->
-      <a class="logo">여길가자 <span class="lite">관리자</span></a>
+      <a class="logo cursor" id="cj_home">여길가자 <span class="lite">관리자</span></a>
       <!--logo end-->
 
       <div class="top-nav notification-row">
@@ -47,7 +47,7 @@
           <li class="active">
             <a>
             	<i class="icon_house_alt"></i>
-           		<span>Dashboard</span>
+           		<span>통계</span>
            </a>
           </li>
         </ul>
