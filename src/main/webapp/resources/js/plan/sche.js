@@ -24,9 +24,6 @@ sche = (()=>{
 		img = $.img();
 		css = $.css();
 		compojs = js+'/comp/compo.js';
-		/*marker_img = img+'/map/marker/normal_marker.png';
-		marker_img_on = img+'/map/marker/ic_current.png';
-		marker_img_sk = '/res/img/worldmap/skt_pin.png';*/
 		onCreate();
 	};
 	let onCreate=()=>{
@@ -45,6 +42,9 @@ sche = (()=>{
 			$('#common_area').empty();
 			$(compo.sche_header()).appendTo('#common_area');
 			$('#home').attr({src:img+"/common/logo1.png",style:"width:150px;"});
+			
+			
+			
 			$(compo.sche_content()).appendTo('#common_area');
 			$('#cat_menu').empty();
 			$('#schedule_full_box').empty();
@@ -62,12 +62,10 @@ sche = (()=>{
 			
 			$('#map').insertAfter('#clip_list').attr('style','height: 100%; position: relative;overflow: hidden;');
 			get("아시아");
-			$('#country_list_box .item').click(function(){
-				alert('ㅋ,ㄹ;ㄱ');
-			});
-	
 			$.each(mapNav(),(i,j)=>{
-				
+				$('#country_list_box #Taiwan').click(function(){
+					alert('jj');
+				});
 				$('<li><img src="'+j.src+'" class="s"></br>'+j.val+'</img></li>').attr({'data':j.name,'data-val':j.val})
 					.appendTo('#cat_menu').click(function(){
 					$('#country_list_title').empty();
@@ -97,6 +95,7 @@ sche = (()=>{
 					$('<div class="fl ct_title">'+j.val+'</div>')
 						.appendTo('#country_list_title').attr('style','width:100%;');
 					$('<div class="clear"/>').appendTo('#country_list_title');
+					
 				});
 				$('[data=as]').addClass('on');
 			});
@@ -109,12 +108,13 @@ sche = (()=>{
 			.css("background-image", "url('"+img+"/map/cu_next_icon.png')")
 			.attr('style','height: 569px;');
 			
-			$('<div id="city_list_box"/>').appendTo('#schedule_full_box').attr('style','height: 569px;display:none;');
+			$('<div id="city_list_box"/>').appendTo('#schedule_full_box')
+			.attr('style','height: 569px;display:none;');
 			$(compo.sche_detail()).appendTo('#right_full_box');
 			$('<div class="detail_city_bottom">'
 		 	+'<div class="detail_plan_go_btn">상세 일정 만들기</div></div>').appendTo('#select_detail_view_city');
 			
-			$('.detail_plan_go_btn').click(function(e){
+			$('.detail_plan_go_btn').click(function(){
 
 				let data = {ctr : $('#city_list_title').text(),
 							startDate : $('#date_pick_btn').children().eq(0).text(),
@@ -130,17 +130,17 @@ sche = (()=>{
 					contentType : "application/json; charset=UTF-8",
 					success: d => {
 						alert('성공!');
+						mysche.init(d);
 					},error: e => {
 						alert('실패!!!');
 					}
 				});
-		 		
-		 		//location.assign(_+'/workspace');
-		 		//desche.init();
-		 	});
-			
+			});
 			$('#map_close').click(function(){
-				plan.init();
+				location.assign($.ctx()+'/sche');
+			});
+			$('#home').click(function(){
+				location.assign($.ctx());
 			});
 		});
 	};
@@ -270,7 +270,23 @@ sche = (()=>{
 		$('#country_list_title').show();
 		get_country_list();
 	});
-	
+/*	
+	$('#Taiwan').on('click',function(){
+		alert('클릭했');
+		console.log('윽');
+		_cu_srl = $(this).attr('data');
+		_cu_name = $(this).attr('data-val');
+		deleteMarkers();
+		$('#country_list_box').hide();
+		$('#country_list_title').hide();
+		$('#city_list_box').show();
+		$('#city_list_title').show();
+		if(_cu_srl == 205){
+			get_ko_state(_cu_name);
+
+		}else{
+			get_city_list(_cu_srl,_cu_name);
+	});*/
 	$('#country_list_box').on('click','.item',function(){
 		let _cu_srl = $(this).attr('data');
 		let _cu_name = $(this).attr('data-val');
@@ -291,16 +307,14 @@ sche = (()=>{
 	
 	$('#city_list_title').on('click','.back_btn',function(){
 		deleteMarkers();
-		_go_state = $(this).attr('data-go_state');
+		let _go_state = $(this).attr('data-go_state');
 		if(_go_state == '1'){
 			get_ko_state('대한민국');
-			alert('1');
 		}else{
 			$('#city_list_box').hide();
 			$('#city_list_title').hide();
 			$('#country_list_box').show();
 			$('#country_list_title').show();
-			alert('2');
 			get_country_list();
 		}
 	});
@@ -369,7 +383,10 @@ sche = (()=>{
 		}
 	});
 	
-	
+/*	$( function() {
+		$( "#sortable" ).sortable();
+		$( "#sortable" ).disableSelection();
+	} );*/
 	
 	function initialize() {
 		var styles = [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#46bcec"},{"visibility":"on"}]}];
@@ -384,7 +401,6 @@ sche = (()=>{
 		
 		get_country_list();
 	}
-/*	google.maps.event.addDomListener(window, 'load', initialize);*/
 	
 	function get_country_list(){
 		let _ct_code = $('#cat_menu li.on').attr('data');
@@ -400,7 +416,7 @@ sche = (()=>{
 				//console.log(data);
 				let html = ''; 
 				$.each(data.ls, function(key, val) {
-					html += '<div class="item" data-no="'+key+'" data="'+val.countrySeq+'" data-latlng="'+
+					html += '<div class="item" id="'+val.countryEname+'" data-no="'+key+'" data="'+val.countrySeq+'" data-latlng="'+
 					val.countryLat+','+val.countryLng+'" data-val="'+val.countryEname+'" data-name="'+val.countryName+'">';
 					html += '<div class="img_box fl"><img src="'+val.IMG_URL+'"/></div>';
 					html += '<div class="info_box fl"><div class="info_title">'+val.countryName	+'</div><div class="info_sub_title">'+val.countryEname+'</div></div>';
@@ -612,8 +628,8 @@ sche = (()=>{
 		$('#selected_cities .s_cities').each(function() {
 			let _lat = $(this).attr('data-lat');
 			let _lng = $(this).attr('data-lng');
-			console.log(_lat);
-			var latlng = new google.maps.LatLng(parseFloat(_lat), parseFloat(_lng));
+			console.log('1::'+_lat+'::2::'+_lng);
+			let latlng = new google.maps.LatLng(parseFloat(_lat), parseFloat(_lng));
 			markerarray.push(latlng);
 			console.log(markerarray);
 			let _this_latlng = _lat+','+_lng;
@@ -706,7 +722,6 @@ sche = (()=>{
 		var dlatlng = d_latlng.split(',');
 		let lat2 = dlatlng[0];
 		let lon2 = dlatlng[1];
-		
 		var radlat1 = Math.PI * lat1/180
 		var radlat2 = Math.PI * lat2/180
 		var radlon1 = Math.PI * lon1/180
@@ -745,8 +760,8 @@ sche = (()=>{
 	
 		$('#city_list_title .cu_title').text(_cu_ename);
 		$.ajax({
-			type: "post",
 			url: _+"/cont/country/"+_cu_name,
+			type: "post",
 			dataType :"json",
 			success: function(data) {
 				//console.log(data);
@@ -754,7 +769,6 @@ sche = (()=>{
 				$.each(data.ls, function(key, val) {
 					
 					html += '<div class="item" data-no="'+key+'" data="'+val.citySeq+'" data-ci_name="'+val.cityName+'" data-lat="'+val.cityLat+'" data-lng="'+val.cityLng+'">';
-					// 이미지 가져오기
 					html += '<div class="img_box fl"><img src="'+val.imgUrl+'"></div>';
 					html += '<div class="info_box fl" style="width:140px;"><div class="info_title">'+val.cityName+'</div><div class="info_sub_title">'+val.cityEname+'</div></div>';
 					html += '<div class="spot_to_inspot"><img src= "'+img+'/map/spot_to_inspot_a.png"></div>';

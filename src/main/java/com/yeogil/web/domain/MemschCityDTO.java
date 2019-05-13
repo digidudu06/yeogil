@@ -6,6 +6,6 @@ import lombok.Data;
 
 @Data @Component
 public class MemschCityDTO {
-	private String msCtiySeq,msDay,msCityName,msDate;
-	private int msSeq;
+	private String msDay,msCityName,msDate;
+	private int msCtiySeq,ms_seq;
 }
