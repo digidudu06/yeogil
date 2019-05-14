@@ -4,8 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yeogil.web.mapper.AirportInfoMapper">
 	<select id="createAirportInfo" parameterType="com.yeogil.web.domain.AirportInfoDTO">
-	 INSERT INTO AIRPORTINFO(
-		 							S_AIRPORT_NAME,
+	 INSERT INTO AIRPORTINFO( S_AIRPORT_NAME,
 		 							S_DEPARTURE_TIME,
 		 							S_ARRIVAL_TIME,
 		 							S_DEPART_AIRPORT,
