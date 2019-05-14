@@ -13,6 +13,6 @@
 	  		DEPART_DATE departDate,
 	  		ARRIVAL_DATE arrivalDate,
 	  		AIR_IMG airImg
-	  FROM yeogil.AIRPORTLEAVE
+	  FROM AIRPORTLEAVE
 	</select>
 </mapper>

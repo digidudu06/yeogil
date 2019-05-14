@@ -13,14 +13,14 @@
   <result property="countryLat" column="COUNTRY_LAT"/>
 </resultMap>
 	<select id="selectAllCountry" resultMap="result">
-	  SELECT * FROM yeogil.COUNTRY
+	  SELECT * FROM COUNTRY
 	</select>
 	<select id="countCountry" resultType="int">
-	  SELECT COUNT(*) AS COUNT FROM yeogil.COUNTRY
+	  SELECT COUNT(*) AS COUNT FROM COUNTRY
 	</select>
 	<select id="selectCountries" resultMap="result" parameterType="string" >
 		SELECT *
-		FROM (SELECT * FROM yeogil.COUNTRY WHERE CONTINENT_NAME LIKE #{value} order by COUNTRY_SEQ) as c join yeogil.IMAGE as i
+		FROM (SELECT * FROM COUNTRY WHERE CONTINENT_NAME LIKE #{value} order by COUNTRY_SEQ) as c join IMAGE as i
 		WHERE COUNTRY_NAME like i.IMG_NAME
 	</select>
 </mapper>
