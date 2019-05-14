@@ -130,7 +130,7 @@ sche = (()=>{
 					contentType : "application/json; charset=UTF-8",
 					success: d => {
 						alert('성공!');
-						mysche.init(d);
+						mysche.init(d.planTitle);
 					},error: e => {
 						alert('실패!!!');
 					}

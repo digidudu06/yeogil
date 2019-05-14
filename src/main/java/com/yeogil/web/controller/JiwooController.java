@@ -48,7 +48,6 @@ public class JiwooController {
 		map.put("ls",list);
 		System.out.println(list.toString());
         
-		/* System.out.println(list.toString()); */
 		return map;
 	}
 	
@@ -121,6 +120,7 @@ public class JiwooController {
             city="";
             planday="";
         }
+        System.out.println("sche:::::::"+schedule);
 		return sche;
 		
 	}

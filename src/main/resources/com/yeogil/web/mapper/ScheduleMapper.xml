@@ -8,7 +8,7 @@
 </resultMap>
 
 	<insert id="insertSchedule" parameterType="com.yeogil.web.domain.ScheduleDTO">
-		INSERT INTO yeogil.MEMSCH (MS_SEQ ,MS_COUNTRY_NAME,MS_TITLE,MEMBER_ID)
+		INSERT INTO MEMSCH (MS_SEQ ,MS_COUNTRY_NAME,MS_TITLE,MEMBER_ID)
 		VALUES(0,#{ctr},#{planTitle},#{member_id})
 		<selectKey resultType="int" keyProperty="ms_seq" order="AFTER" >
 			SELECT LAST_INSERT_ID()
@@ -16,13 +16,13 @@
 	</insert>
 
 	<insert id="insertSchedule2" parameterType="com.yeogil.web.domain.MemschCityDTO">
-		INSERT INTO yeogil.MEMSCHCTIY (MS_CTIY_SEQ,MS_DATE,MS_CITY_NAME,MS_DAY,MS_SEQ)
+		INSERT INTO MEMSCHCTIY (MS_CTIY_SEQ,MS_DATE,MS_CITY_NAME,MS_DAY,MS_SEQ)
 		VALUES(0,#{msDate},#{msCityName},#{msDay},#{ms_seq})
 	</insert>
 
 	<select id="countSchedules" resultType="int" >
 		SELECT COUNT(*)
-		FROM yeogil.SCHEDULE
+		FROM SCHEDULE
 	</select>
 
 	<select id="selectMemOneSchedule" resultMap="result" parameterType="com.yeogil.web.controller.Proxy">

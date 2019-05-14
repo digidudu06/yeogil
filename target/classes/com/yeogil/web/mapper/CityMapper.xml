@@ -15,17 +15,17 @@
 </resultMap>
 	<select id="selectAllCity" resultMap="result" parameterType="string">
 	  SELECT * 
-	  FROM (SELECT * FROM yeogil.CITY WHERE COUNTRY_ENAME LIKE #{value} order by CITY_SEQ) as c join yeogil.IMAGE as i
+	  FROM (SELECT * FROM CITY WHERE COUNTRY_ENAME LIKE #{value} order by CITY_SEQ) as c join IMAGE as i
 	  WHERE CITY_ENAME like i.IMG_NAME
 	</select>
 	<select id="countCity" resultType="int">
 	  	SELECT COUNT(*)
-		FROM yeogil.IMAGE JOIN yeogil.CITY as c 
+		FROM IMAGE JOIN CITY as c 
 		WHERE IMG_NAME LIKE c.CITY_ENAME
 	</select>
 	<select id="cjSelectAllCity" resultMap="result" parameterType="com.yeogil.web.controller.Proxy">
 	  	SELECT *
-		FROM (SELECT * FROM yeogil.CITY WHERE COUNTRY_ENAME LIKE #{search} order by CITY_SEQ) as c join yeogil.IMAGE as i
+		FROM (SELECT * FROM CITY WHERE COUNTRY_ENAME LIKE #{search} order by CITY_SEQ) as c join IMAGE as i
 		WHERE CITY_ENAME like i.IMG_NAME
 		order by c.CITY_SEQ
 		LIMIT #{startRow}, #{pageSize}
@@ -52,13 +52,10 @@
 		OR P.UNIT LIKE #{search}
 		ORDER BY rownum DESC 
 		LIMIT #{startRow}, #{pageSize}
-		<!-- $는 '포함된 상태, #은 '이 포함되지 않은 상태
-		쿼리에서 '%${search}%'을 쓰면,
-		자바에서 String srch = "%"+search+"%"을 따로 할 필요 없다. -->
 	</select>
 	
 	<select id="selectCities" resultMap="result" parameterType="string">
-	  	SELECT * FROM yeogil.CITY 
+	  	SELECT * FROM CITY 
 		WHERE COUNTRY_ENAME LIKE #{value};
 	</select>
 </mapper>

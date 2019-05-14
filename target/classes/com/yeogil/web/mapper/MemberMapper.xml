@@ -10,13 +10,13 @@
   <result property="thumbnailImg" column="THUMBNAIL_IMAGE" />
 </resultMap>
 	<insert id="insertMember">
-		INSERT INTO yeogil.MEMBER(MEMBER_ID,NICKNAME,THUMBNAIL_IMAGE) 
+		INSERT INTO MEMBER(MEMBER_ID,NICKNAME,THUMBNAIL_IMAGE) 
 		VALUES(#{memberId},#{nickname},#{thumbnailImg})
 	</insert>
 	
 	<select id="existMember" parameterType="com.yeogil.web.domain.MemberDTO" resultType="boolean">
 		SELECT if(COUNT(*)>0,'true','false')
-		FROM yeogil.MEMBER
+		FROM MEMBER
 		WHERE MEMBER_ID LIKE #{memberId}
 	</select>
 	
@@ -25,7 +25,7 @@
 			flushCache="true"
 			statementType="PREPARED"
 			timeout="20">
-			UPDATE yeogil.MEMBER 
+			UPDATE MEMBER
 				SET NICKNAME = #{nickname}
 					,THUMBNAIL_IMAGE = #{thumbnailImg}
 			WHERE MEMBER_ID LIKE #{memberId}
@@ -33,6 +33,6 @@
 	
 	<select id="countMember" resultType="int">
 		SELECT COUNT(*)
-		FROM yeogil.MEMBER
+		FROM MEMBER
 	</select>
 </mapper>
