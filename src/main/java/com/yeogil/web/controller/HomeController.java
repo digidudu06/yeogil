@@ -20,7 +20,6 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpSession session, HttpServletRequest request) {
-		System.out.println("홈컨트롤러");
 		String ctx = request.getContextPath();
 		session.setAttribute("ctx", ctx); 
 		session.setAttribute("css", ctx+"/resources/css");
@@ -31,25 +30,21 @@ public class HomeController {
 	
 	@RequestMapping(value = "/tour", method = RequestMethod.GET)
 	public String changjun(Locale locale, Model model) {
-		System.out.println("=====투어 컨트롤러=====");
 		return "tour_index";
 	}
 	
 	@RequestMapping(value = "/sche", method = RequestMethod.GET)
 	public String jiwoo(Locale locale, Model model) {
-		System.out.println("=====맵 컨트롤러=====");
 		return "map_sche";
 	}
 	
 	@RequestMapping(value = "/reser", method = RequestMethod.GET)
 	public String seowoo(Locale locale, Model model) {
-		System.out.println("=====ReserController진입=====");
 		return "reser_index";
 	}
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String admin(Locale locale, Model model) {
-		System.out.println("=====admincontroller진입=====");
 		return "admin";
 	}
 

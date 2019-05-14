@@ -45,7 +45,6 @@ public class JiwooController {
 	@SuppressWarnings("unchecked")
 	@PostMapping("/cont/{continentName}")
 	public Map<?,?> countrylist1(@PathVariable String continentName) {
-		System.out.println("지우 컨트롤러 countrylist ::: "+continentName);
 		map.clear();
 		map.put("srch", continentName);
 		map.put("page_size", "5");
@@ -55,13 +54,11 @@ public class JiwooController {
 		list = (List<CountryDTO>) countryService.findCountries(pxy);
 		map.clear();
 		map.put("ls",list);
-		System.out.println(list.toString());
 		return map;
 	}
 	
 	@PostMapping("/cont/country/{countryName}")
 	public Map<?,?> citylist(@PathVariable String countryName) {
-		System.out.println("지우 컨트롤러 citylist ::::"+countryName);
 		
 		IFunction i = (Object o) -> cityMapper.selectAllCity(countryName);
 		List<?> ls = (List<?>) i.apply(countryName);
@@ -78,7 +75,6 @@ public class JiwooController {
 			@PathVariable String memberid,
 			@RequestBody ScheduleDTO sche
 			) throws Exception{
-		System.out.println("=======내 계획========"+sche.toString());
 		String ctr = sche.getCtr();
         String planTitle = sche.getPlanTitle();
         
@@ -128,12 +124,10 @@ public class JiwooController {
                     	schedule.setContinetn_seq(Integer.parseInt(ss));
                     	
                     	schList = transactionservice.scheList(schedule);
-                    	System.out.println(schList.toString());
                     	
                     	attr = new MemschAttrDTO();
                 		attr.setMsAttrName(schList.get(v).getAttrName());
                 		attr.setMs_ctiy_seq(mcdto.getMs_ctiy_seq());
-                		System.out.println(attr.getMsAttrName());
                 		transactionservice.txinsert3(attr);
 						/*
 						 * for(int z=0;z<schList.size();z++) { }

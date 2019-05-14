@@ -76,7 +76,6 @@ airport = (()=>{
 					$(compo.logon()).appendTo('.gnb_box');
 					$('<img src="'+img+'/common/logon_img.png" style="width: 30px;">').prependTo('.dropdown-toggle ');
 					$('#logout_btn').click(()=>{
-						alert('클릭 로그아웃!');
 						logout();
 					});
 				}
@@ -143,7 +142,6 @@ airport = (()=>{
 									 departureTime:$('#aac_00').text(),
 									 airportNameR:$('#bbb_00').text(),
 									 departureTimeR:$('#bbc_00').text()};
-							 alert(sessionStorage.getItem('memberId'));
 							 $.ajax({
 									url: _+'/sw/airsave/'+sessionStorage.getItem('memberId'),
 									type:'post',
@@ -155,7 +153,6 @@ airport = (()=>{
 									});
 							 
 							 let a = $(this).attr('title');
-							 alert(a);
 							 IMP.init('imp68242076');
 								IMP.request_pay({
 							    pg : 'inicis', // version 1.1.0부터 지원.
@@ -180,34 +177,7 @@ airport = (()=>{
 							        var msg = '결제에 실패하였습니다.';
 							        msg += '에러내용 : ' + rsp.error_msg;
 							    }
-							    alert(msg);
 							});
-								/*IMP.init('imp68242076');
-								IMP.request_pay({
-							    pg : 'inicis', // version 1.1.0부터 지원.
-							    pay_method : 'card',
-							    merchant_uid : 'merchant_' + new Date().getTime(),
-							    name : '주문명:결제테스트',
-							    amount : a,
-							    buyer_email : 'iamport@siot.do',
-							    buyer_name : '구매자이름',
-							    buyer_tel : '010-1234-5678',
-							    buyer_addr : '서울특별시 강남구 삼성동',
-							    buyer_postcode : '123-456',
-							    m_redirect_url : 'http://localhost:8080/web/reser/popup'
-							}, function(rsp) {
-							    if ( rsp.success ) {
-							        var msg = '결제가 완료되었습니다.';
-							        msg += '고유ID : ' + rsp.imp_uid;
-							        msg += '상점 거래ID : ' + rsp.merchant_uid;
-							        msg += '결제 금액 : ' + rsp.paid_amount;
-							        msg += '카드 승인번호 : ' + rsp.apply_num;
-							    } else {
-							        var msg = '결제에 실패하였습니다.';
-							        msg += '에러내용 : ' + rsp.error_msg;
-							    }
-							    alert(msg);
-							});*/
 							}); 
 					 });
 					} 
@@ -222,13 +192,6 @@ airport = (()=>{
 					Kakao.API.request({
 						url: '/v1/user/me',
 						success: function(res) {
-							alert(JSON.stringify(res)); //<---- kakao.api.request 에서 불러온 결과값 json형태로 출력
-							alert(JSON.stringify(authObj)); //<----Kakao.Auth.createLoginButton에서 불러온 결과값 json형태로 출력
-							console.log(res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
-							console.log(res.kaccount_email);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
-							console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근
-							// res.properties.nickname으로도 접근 가능 )
-							console.log(authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
 							Kakao.Auth.setAccessToken(authObj.access_token, true);
 							sessionStorage.setItem('session', Kakao.Auth.getAccessToken());
 							$.ajax({
@@ -239,7 +202,6 @@ airport = (()=>{
 								dataType:'json',
 								contentType : "application/json; charset=UTF-8",
 								success:function(res){
-									alert('성공');
 									location.assign(_+"/reser");
 									sessionStorage.setItem('memberId', res.memberId);
 									sessionStorage.setItem('nickname', res.nickname);

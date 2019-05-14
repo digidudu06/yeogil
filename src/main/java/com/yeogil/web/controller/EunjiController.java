@@ -25,9 +25,6 @@ public class EunjiController {
 	
 	@PostMapping("/login")
 	public MemberDTO login(@RequestBody Object mem) {
-        System.out.println("===================은지 컨트롤러 진입====================");
-        System.out.println(mem.toString());
-        
         @SuppressWarnings("unchecked")
         HashMap<String, Object> t = (HashMap<String, Object>) mem;
         map.put("id", t.get("id"));
@@ -40,7 +37,6 @@ public class EunjiController {
         member.setNickname(nickname);
         member.setThumbnailImg(thumbnailImg);
         
-        System.out.println(member);
         IPredicate ip = (Object o)-> memberService.existMember(member);
         if(!(ip.test(member))) {// 아이디 없으면
             IConsumer ic = (Object o) -> memberService.createMember(member);
@@ -56,7 +52,6 @@ public class EunjiController {
 	
 	@GetMapping("/memOneSchedule/{id}/{title}")
 	public Map<?,?> memOneSchedule(@PathVariable String id, @PathVariable String title) {
-		System.out.println("넘어왔냐 : "+id+" 타이틀 "+title);
 		map.clear();
 		map.put("id",id);
 		map.put("title",title);
@@ -67,15 +62,12 @@ public class EunjiController {
 		List<?> attr = (List<?>) i2.apply(pxy);
 		map.put("list",list);
 		map.put("attr",attr);
-		System.out.println("list:::::::::"+map.get("list"));
-		System.out.println("attr::::::::"+map.get("attr"));
 		return map;
 	}
 	
 	@GetMapping("/memAllSchedules/{id}")
 	public Map<?,?> memAllSchedules(@PathVariable String id) {
 		IFunction i = (Object o) -> schMap.selectMemAllSchedules(id);
-		System.out.println("::::::::::::"+i.apply(id));
 		List<?> list = (List<?>) i.apply(id);
 		map.clear();
 		map.put("list",list);

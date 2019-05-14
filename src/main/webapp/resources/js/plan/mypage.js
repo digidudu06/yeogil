@@ -62,7 +62,6 @@ mypage = (()=>{
 						+'	</div>'
 						+'</a>').appendTo('.plan_inner')
 						.click(function(){
-							alert(j.MS_TITLE);
 							mysche.init(j.MS_TITLE);
 						});
 			});

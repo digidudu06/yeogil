@@ -129,7 +129,7 @@ city = (()=>{
 							if(j.imgName === "Taipei"){
 								city_detail();
 							}else{
-								alert('타이베이를 눌러주세요 ㅎㅎ');
+								alert('타이베이를 눌러주세요');
 							}
 						});
 				 });

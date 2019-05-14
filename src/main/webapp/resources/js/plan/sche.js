@@ -64,7 +64,6 @@ sche = (()=>{
 			get("아시아");
 			$.each(mapNav(),(i,j)=>{
 				$('#country_list_box #Taiwan').click(function(){
-					alert('jj');
 				});
 				$('<li><img src="'+j.src+'" class="s"></br>'+j.val+'</img></li>').attr({'data':j.name,'data-val':j.val})
 					.appendTo('#cat_menu').click(function(){
@@ -120,7 +119,6 @@ sche = (()=>{
 							startDate : $('#date_pick_btn').children().eq(0).text(),
 							city : $('#selected_cities .s_cities .city_info .fl').text(),
 							planTitle: $('#plan_title').val()};
-				console.log(data);
 
 				$.ajax({
 					url: _+"/myplan/schedule/"+sessionStorage.getItem('memberId'),
@@ -129,10 +127,8 @@ sche = (()=>{
 					dataType :"json",
 					contentType : "application/json; charset=UTF-8",
 					success: d => {
-						alert('성공!');
 						mysche.init(data.planTitle);
 					},error: e => {
-						alert('실패!!!');
 					}
 				});
 			});
@@ -241,7 +237,6 @@ sche = (()=>{
 				maxDate: '+1Y',
 				hideIfNoPrevNext: true,
 				onSelect: function (dateText, inst) {
-					console.log(dateText);
 					$('#date_pick_btn .pn_date_info').text(dateText);
 					$('#date_pick_btn').attr('data',dateText);
 					$('#date_pick').fadeOut();
@@ -253,7 +248,6 @@ sche = (()=>{
 					var between_day = date_gap(_this_start_day, _this_select_day);
 					
 					if(between_day > 29){
-						alert('');
 						$('.ht_checkin').val('');
 					}        
 				}
@@ -263,30 +257,13 @@ sche = (()=>{
 		$('#cat_menu li').removeClass('on');
 		$(this).addClass('on');
 		deleteMarkers();
-		alert('후');
 		$('#city_list_box').hide();
 		$('#city_list_title').hide();
 		$('#country_list_box').show();
 		$('#country_list_title').show();
 		get_country_list();
 	});
-/*	
-	$('#Taiwan').on('click',function(){
-		alert('클릭했');
-		console.log('윽');
-		_cu_srl = $(this).attr('data');
-		_cu_name = $(this).attr('data-val');
-		deleteMarkers();
-		$('#country_list_box').hide();
-		$('#country_list_title').hide();
-		$('#city_list_box').show();
-		$('#city_list_title').show();
-		if(_cu_srl == 205){
-			get_ko_state(_cu_name);
-
-		}else{
-			get_city_list(_cu_srl,_cu_name);
-	});*/
+	
 	$('#country_list_box').on('click','.item',function(){
 		let _cu_srl = $(this).attr('data');
 		let _cu_name = $(this).attr('data-val');
@@ -413,7 +390,6 @@ sche = (()=>{
 			data : data,
 			dataType :"json",
 			success: function(data) {
-				//console.log(data);
 				let html = ''; 
 				$.each(data.ls, function(key, val) {
 					html += '<div class="item" id="'+val.countryEname+'" data-no="'+key+'" data="'+val.countrySeq+'" data-latlng="'+
@@ -426,7 +402,6 @@ sche = (()=>{
 				$('#country_list_box').html(html);
 				
 			},error:function(data){
-				console.log(data);
 			},complete:function(){
 				fitBoundsToVisibleMarkers();
 			}
@@ -434,10 +409,7 @@ sche = (()=>{
 	}
 	
 	function get_city_list(_cu_srl,_cu_name){
-		alert('get_city_list');
-		//let _ct_code = $('#cat_menu li.on').attr('data');
 		$('#city_list_title .cu_title').text(_cu_name);
-		console.log(_cu_srl);
 		var data = {'ci_cu':_cu_srl,"option":"DETAIL"}
 		$.ajax({
 			type: "post",
@@ -445,8 +417,6 @@ sche = (()=>{
 			data : data,
 			dataType :"json",
 			success: function(data) {
-				alert(data.ls.cityEname);
-				console.log(data);
 				let html = '';
 				$.each(data.ls, function(key, val) {
 					html += '<div class="item" data-no="'+key+'" data="'+val.citySeq+'" data-ci_name="'+val.cityName+'" data-lat="'+val.cityLat+'" data-lng="'+val.cityLng+'">';
@@ -460,12 +430,10 @@ sche = (()=>{
 				
 				
 			},error:function(data){
-				console.log(data);
 			},complete:function(){
 				fitBoundsToVisibleMarkers();
 			}
 		});
-		console.log(_ct_code);
 	}
 	
 	function add_marker_country(countryLat, countryLng, countryName, countryEname, countrySeq) {
@@ -518,7 +486,6 @@ sche = (()=>{
 		});
 		markers.push(marker);
 		google.maps.event.addListener(marker, 'click', function() {
-			console.log(cityName);
 			let _html = '';
 			if(is_state == '1'){
 				deleteMarkers();
@@ -562,8 +529,6 @@ sche = (()=>{
 	});
 	
 	function add_s_marker(_lat, _lng) {
-		console.log('add_s_marker');
-
 		var s_marker_img = img+'/map/marker/ic_current.png';
 
 		var marker_position = new google.maps.LatLng(_lat,_lng);
@@ -602,17 +567,11 @@ sche = (()=>{
 			}
 		}).disableSelection();
 		
-		console.log(markerarray);
-		console.log(wayp);
-		console.log('');
-		
 		
 		s_deleteMarkers();
 		
 		
 		if(markerarray.length > 0){
-			console.log('라인지우기');
-	//	             markerarray.setMap(null);
 			wayp.setMap(null);
 			markerarray = [];
 		}
@@ -629,10 +588,8 @@ sche = (()=>{
 		$('#selected_cities .s_cities').each(function() {
 			let _lat = $(this).attr('data-lat');
 			let _lng = $(this).attr('data-lng');
-			console.log('1::'+_lat+'::2::'+_lng);
 			let latlng = new google.maps.LatLng(parseFloat(_lat), parseFloat(_lng));
 			markerarray.push(latlng);
-			console.log(markerarray);
 			let _this_latlng = _lat+','+_lng;
 			add_s_marker(_lat, _lng);
 			if(i == 0){
@@ -677,7 +634,6 @@ sche = (()=>{
 	}
 	
 	function setAllMap(map) {
-		//console.log(markers);
 		for (var i = 0; i < markers.length; i++) {
 			markers[i].setMap(map);
 		}
@@ -697,7 +653,6 @@ sche = (()=>{
 	
 	
 	function s_setAllMap(map) {
-		console.log(markers);
 		for (var i = 0; i < s_markers.length; i++) {
 			s_markers[i].setMap(map);
 		}
@@ -716,7 +671,6 @@ sche = (()=>{
 	}
 	
 	function distance_calc(s_latlng,d_latlng){
-		console.log('distance_calc');
 		var slatlng = s_latlng.split(',');
 		let lat1 = slatlng[0];
 		let lon1 = slatlng[1];
@@ -765,7 +719,6 @@ sche = (()=>{
 			type: "post",
 			dataType :"json",
 			success: function(data) {
-				//console.log(data);
 				let html = '';
 				$.each(data.ls, function(key, val) {
 					
@@ -779,7 +732,6 @@ sche = (()=>{
 				$('#city_list_box').html(html);
 				$('#city_list_title .back_btn').attr('data-go_state','0');
 			},error:function(data){
-				//console.log(data);
 			},complete:function(){
 				fitBoundsToVisibleMarkers();
 			}
@@ -788,37 +740,6 @@ sche = (()=>{
 		
 	}
 	
-	 //citySeq,cityName,cityEname,cityLat,cityLng,imgName,imgUrl,countryEname
-	/*function get_ko_city_in_state(st_srl, st_name){
-		$('#city_list_title .cu_title').text(st_name);
-		$.ajax({
-			type: "get",
-			url: "/api/city/get_ko_city_in_state",
-			dataType :"json",
-			data:{'st_srl':st_srl},
-			success: function(data) {
-				console.log(data);
-				html = '';
-				
-				$.each(data.response_data, function(key, val) {
-					html += '<div class="item" data-no="'+key+'" data="'+val.ci_srl+'" data-ci_name="'+val.ci_name+'" data-lat="'+val.ci_lat+'" data-lng="'+val.ci_lng+'" data-is_state="0">';
-					html += '<div class="img_box fl"><img src="'+val.ci_image+'"></div>';
-					html += '<div class="info_box fl"><div class="info_title">'+val.ci_name+'</div><div class="info_sub_title">'+val.ci_name_en+'</div></div>';
-					html += '<div class="spot_to_inspot"><img src="/res/img/workspace/new/spot_to_inspot_a.png"></div>';
-					html += '<div class="clear"></div></div>';
-					add_marker_city(val.ci_lat,val.ci_lng,val.ci_name,val.ci_name_en,val.ci_srl);
-				});
-				$('#city_list_box').html(html);
-				$('#city_list_title .back_btn').attr('data-go_state','1');
-				
-				
-			},error:function(data){
-				//console.log(data);
-			},complete:function(){
-				fitBoundsToVisibleMarkers();
-			}
-		});
-	}*/
 };
 	return {init:init,get:get};
 	

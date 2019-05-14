@@ -60,7 +60,7 @@ hotel =(()=>{
 						let data = {arrivalDate:$('#h_date_01').val(),
 								departDateR:$('#h_date_02').val()};//map자체
 						if(data.arrivalDate===""||data.departDateR===""){
-							alert("모든 항목을 기입해주세요!");
+							alert("모든 항목을 기입해주세요");
 						}else{
 //==========================================호텔 크롤링
 							$.ajax({
@@ -87,7 +87,6 @@ hotel =(()=>{
 										i++;
 									 });
 									$('#hotel_p00').click(function(){
-										alert(sessionStorage.getItem('memberId'));
 										 ghxpf();
 									 });
 								},
@@ -103,7 +102,6 @@ hotel =(()=>{
 						roomType:$('#rtype_00').html(),
 						notice:$('#hnoti_00').html()};
 //=====================================호텔 정보저장
-				alert(sessionStorage.getItem('memberId'));
 				$.ajax({
 					url: _+'/sw/htsave/'+sessionStorage.getItem('memberId'),
 					type:'post',
@@ -137,7 +135,6 @@ hotel =(()=>{
 				        var msg = '결제에 실패하였습니다.';
 				        msg += '에러내용 : ' + rsp.error_msg;
 				    }
-				    alert(msg);
 				});
 		};
 		return {init:init};
