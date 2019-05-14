@@ -89,7 +89,6 @@
                     </tr>
                   </thead>
                   <tbody id="rank_list">
-                  
                   </tbody>
                 </table>
               </div>
@@ -99,55 +98,6 @@
            	<div id="map" style="height: 500px;">
            	</div> 
            </div>
-       <!--  <div class="row">
-          <div class="col-lg-9 col-md-12">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h2><i class="fa fa-map-marker red"></i><strong>여행지 map chart</strong></h2>
-                <div class="panel-actions">
-                  <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
-                  <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                  <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
-                </div>
-              </div>
-              <div class="panel-body-map">
-                
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <!-- Today status end -->
-        
-
-          <!-- <div class="col-lg-9 col-md-12">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h2><i class="fa fa-flag-o red"></i><strong>여행지 순위</strong></h2>
-                <div class="panel-actions">
-                  <a class="btn-setting"><i class="fa fa-rotate-right"></i></a>
-                  <a class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                  <a class="btn-close"><i class="fa fa-times"></i></a>
-                </div>
-              </div>
-              <div class="panel-body">
-                <table class="table bootstrap-datatable countries">
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th>도시</th>
-                      <th>여행객</th>
-                      <th>비율</th>
-                    </tr>
-                  </thead>
-                  <tbody id="rank_list">
-                  
-                  
-                  </tbody>
-                </table>
-              </div>
-            </div> -->
-          <!--/col-->
-        
         <!-- statics end -->
         <!-- project team & activity start -->
         <div class="row">

@@ -21,11 +21,12 @@ public class Proxy {
 		String _pageSize = (String)paramMap.get("page_size");
 		this.pageSize = (_pageSize == null) ? 5 : Integer.parseInt(_pageSize);
 		System.out.println("2........:::페이지 넘:::" + this.pageNum + ":::::페이지 사이즈:::::" + this.pageSize+" if전_pageSize ::: "+_pageSize);
-
+		
 		String _blockSize = (String)paramMap.get("block_size");
 		this.blockSize = (_blockSize == null) ? 5 : Integer.parseInt(_blockSize);
 		
 		this.rowCount = (int) paramMap.get("row_count");
+		
 		System.out.println("전체 카운트" + this.rowCount);
 		int nmg = rowCount % pageSize;
 		int pageCount = (nmg==0)? rowCount/pageSize : rowCount/pageSize+1;

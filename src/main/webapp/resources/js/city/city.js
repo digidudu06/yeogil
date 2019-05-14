@@ -282,7 +282,7 @@ city = (()=>{
 				}
 			});
 		});
-		topten();
+		$('<div style="height: 100px;"></div>').appendTo('#common_area');
 	};
 	let topten = ()=>{
 		$(compo.city_topten()).insertAfter('.city_detail');

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yeogil.web.controller.Proxy;
 import com.yeogil.web.domain.CountryDTO;
 import com.yeogil.web.mapper.CountryMapper;
 
@@ -56,8 +57,8 @@ public class CountryServiceImpl implements CountryService{
 	}
 
 	@Override
-	public List<?> findCountries(String continentEname) {
-		return countryMapper.selectCountries(continentEname);
+	public List<?> findCountries(Proxy pxy) {
+		return countryMapper.selectCountries(pxy);
 	}
 
 }
