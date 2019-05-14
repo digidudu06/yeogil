@@ -254,7 +254,6 @@ city = (()=>{
 			.attr("width","80")
 			.attr("height","90")
 			.appendTo('.temp_left');
-			
 			$('.exchange_box input[data-no=1]').val(d.e.tai);
 			$('.exchange_box input[data-no=2]').val(d.e.kor);
 			$(function(){
