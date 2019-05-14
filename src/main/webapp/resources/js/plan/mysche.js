@@ -16,7 +16,7 @@ mysche = (()=>{
 	};
 	let setContentView=()=>{
 		$.getScript(compojs,()=>{
-			$('<div id="header"/>').appendTo('#wrapper');
+			$('<div id="header"/>').prependTo('#wrapper');
 			$('#common_area').empty();
 			$(compo.mysche()).appendTo('#common_area');
 			$('#mysche_nav').css("padding-bottom","30px");

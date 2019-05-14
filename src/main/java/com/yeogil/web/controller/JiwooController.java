@@ -129,19 +129,22 @@ public class JiwooController {
                     	schedule.setContinetn_seq(Integer.parseInt(ss));
                     	
                     	schList = transactionservice.scheList(schedule);
-                    	System.out.println(schList.toString());
+                    	System.out.println("----->"+schList.toString());
                     	
                     	attr = new MemschAttrDTO();
                 		attr.setMsAttrName(schList.get(v).getAttrName());
                 		attr.setMs_ctiy_seq(mcdto.getMs_ctiy_seq());
-                		System.out.println(attr.getMsAttrName());
-                		transactionservice.txinsert3(attr);
-						/*
-						 * for(int z=0;z<schList.size();z++) { }
-						 */
+						
+						  for(int z=0;z<schList.size()+1;z++) { 
+							  
+							  transactionservice.txinsert3(attr);
+							  System.out.println(attr.toString());
+						  }
+						 
+						  System.out.println(attr.getMsAttrName());
                 	}
                 	day++;
-                	//attr=null;
+                	attr=null;
                 }
             }
             city="";
