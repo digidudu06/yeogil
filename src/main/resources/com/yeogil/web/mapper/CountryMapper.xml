@@ -18,9 +18,9 @@
 	<select id="countCountry" resultType="int">
 	  SELECT COUNT(*) AS COUNT FROM COUNTRY
 	</select>
-	<select id="selectCountries" resultMap="result" parameterType="string" >
+	<select id="selectCountries" resultMap="result" parameterType="com.yeogil.web.controller.Proxy" >
 		SELECT *
-		FROM (SELECT * FROM COUNTRY WHERE CONTINENT_NAME LIKE #{value} order by COUNTRY_SEQ) as c join IMAGE as i
+		FROM (SELECT * FROM COUNTRY WHERE CONTINENT_NAME LIKE #{search} order by COUNTRY_SEQ) as c join IMAGE as i
 		WHERE COUNTRY_NAME like i.IMG_NAME
 	</select>
 </mapper>

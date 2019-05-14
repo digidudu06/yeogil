@@ -25,7 +25,8 @@
 			flushCache="true"
 			statementType="PREPARED"
 			timeout="20">
-			UPDATE MEMBER
+
+			UPDATE MEMBER 
 				SET NICKNAME = #{nickname}
 					,THUMBNAIL_IMAGE = #{thumbnailImg}
 			WHERE MEMBER_ID LIKE #{memberId}

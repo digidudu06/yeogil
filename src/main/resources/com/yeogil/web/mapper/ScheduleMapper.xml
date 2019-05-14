@@ -16,8 +16,16 @@
 	</insert>
 
 	<insert id="insertSchedule2" parameterType="com.yeogil.web.domain.MemschCityDTO">
-		INSERT INTO MEMSCHCTIY (MS_CTIY_SEQ,MS_DATE,MS_CITY_NAME,MS_DAY,MS_SEQ)
-		VALUES(0,#{msDate},#{msCityName},#{msDay},#{ms_seq})
+		INSERT INTO MEMSCHCTIY (MS_DATE,MS_CITY_NAME,MS_DAY,MS_SEQ)
+		VALUES(#{msDate},#{msCityName},#{msDay},#{ms_seq})
+		<selectKey resultType="int" keyProperty="ms_ctiy_seq" order="AFTER" >
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<insert id="insertSchedule3" parameterType="com.yeogil.web.domain.MemschAttrDTO">
+		INSERT INTO MEMSCHATTR (MS_ATTR_NAME,MS_CTIY_SEQ)
+		VALUES(#{msAttrName},#{ms_ctiy_seq})
 	</insert>
 
 	<select id="countSchedules" resultType="int" >
@@ -46,11 +54,16 @@
 		WHERE MEMBER.MEMBER_ID LIKE #{id}
 			AND MEMSCH.MS_TITLE LIKE #{title}
 	</select>
-	
 	<select id="selectMemAllSchedules" resultMap="result" parameterType="string">
 		SELECT *,(SELECT IMG_URL FROM IMAGE
 				WHERE IMG_NAME LIKE MEMSCH.MS_COUNTRY_NAME) IMG_URL
 		FROM MEMSCH	JOIN MEMBER ON MEMBER.MEMBER_ID = MEMSCH.MEMBER_ID
 			WHERE MEMBER.MEMBER_ID LIKE #{value}
+	</select>
+	<select id="scheList" resultType="com.yeogil.web.domain.AttractionDTO" parameterType="com.yeogil.web.domain.ScheduleDTO">
+		SELECT ATTR_NAME attrName,CITY_NAME cityName
+		FROM ATTRACTION
+		WHERE CITY_NAME LIKE #{city}
+		LIMIT #{continetn_seq}
 	</select>
 </mapper>

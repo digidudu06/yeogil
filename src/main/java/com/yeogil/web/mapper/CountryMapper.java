@@ -5,13 +5,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.yeogil.web.controller.Proxy;
 import com.yeogil.web.domain.CountryDTO;
 
 @Repository
 public interface CountryMapper {
 	public void insertCountry(CountryDTO count);
 	public List<?> selectAllCountry();
-	public List<?> selectCountries(String continentEname);
+	public List<?> selectCountries(Proxy pxy);
 	public List<CountryDTO> selectSomeCountry(HashMap<String, Object> map);
 	public CountryDTO selectCustomer(CountryDTO count);
 	public int countCountry();
