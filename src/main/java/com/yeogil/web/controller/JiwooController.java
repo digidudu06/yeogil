@@ -124,7 +124,6 @@ public class JiwooController {
                 	mcdto.setMsDay("Day"+day);
                 	transactionservice.txinsert2(mcdto);
                 	for(int v=0;v<Integer.parseInt(ss);v++) {
-                		//schedule = new ScheduleDTO();
                     	schedule.setCity(mcdto.getMsCityName());
                     	schedule.setContinetn_seq(Integer.parseInt(ss));
                     	
@@ -149,6 +148,5 @@ public class JiwooController {
         }
 
 		return map;
-
 	}
 }

@@ -19,7 +19,6 @@ public class AirportLeaveServiceImpl implements AirportLeaveService{
 
 	@Override
 	public List<AirportLeaveDTO> findAllAirport() {
-
 		return almap.selectAllAirport();
 	}
 

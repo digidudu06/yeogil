@@ -118,13 +118,6 @@
 		
 		<div class="clear"></div>
 	</div>
-
-	<div class="footer_bottom">
-		<div class="wrap">
-			Copyright ⓒ 2015 Earthtory.com, All Rights Reserved.
-						<div style="float:right;">제휴문의: wonwoo@earthtory.com | 02-6441-4100</div><div class="clear"></div>
-		</div>
-	</div>
 </div>
 
 <!-- 카카오 로그인 -->

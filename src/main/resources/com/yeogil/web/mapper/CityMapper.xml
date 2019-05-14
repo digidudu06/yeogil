@@ -25,7 +25,7 @@
 	</select>
 	<select id="cjSelectAllCity" resultMap="result" parameterType="com.yeogil.web.controller.Proxy">
 	  	SELECT *
-		FROM (SELECT * FROM CITY WHERE COUNTRY_ENAME LIKE #{search} order by CITY_SEQ) as c join IMAGE as i
+		FROM (SELECT * FROM CITY WHERE COUNTRY_ENAME LIKE #{search} order by CITY_SEQ) as c JOIN IMAGE as i
 		WHERE CITY_ENAME like i.IMG_NAME
 		order by c.CITY_SEQ
 		LIMIT #{startRow}, #{pageSize}
