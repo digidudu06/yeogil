@@ -70,9 +70,10 @@ public class TransactionServiceImpl implements TransactionService {
 		                    mcdto.setMs_seq(schedule.getMs_seq());
 		                	mcdto.setMsDay("Day"+day);
 		                	schedulemapper.insertSchedule2(mcdto);
-		                	
+
 		                	for(int v=0;v<Integer.parseInt(ss);v++) {
 		                    	schedule.setCity(mcdto.getMsCityName());
+		                    	
 		                    	schedule.setContinetn_seq(Integer.parseInt(ss));
 		                    	
 		                    	schList = schedulemapper.scheList(schedule);
@@ -84,7 +85,7 @@ public class TransactionServiceImpl implements TransactionService {
 		                		attr.setMs_ctiy_seq(mcdto.getMs_ctiy_seq());
 		                		schedulemapper.insertSchedule3(attr);
 		                		
-		                		//System.out.println("==attr==>"+attr.toString());
+		                		System.out.println("==attr==>"+attr.toString());
 							
 								
 //								 for(int z=0;z<schList.size()+1;z++) {}

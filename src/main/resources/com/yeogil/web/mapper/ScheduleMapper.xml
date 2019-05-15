@@ -64,6 +64,6 @@
 		SELECT ATTR_NAME attrName,CITY_NAME cityName
 		FROM ATTRACTION
 		WHERE CITY_NAME LIKE #{city}
-		LIMIT #{continetn_seq}
+		LIMIT #{continetn_seq},2
 	</select>
 </mapper>
