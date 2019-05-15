@@ -17,6 +17,7 @@
 	  SELECT * 
 	  FROM (SELECT * FROM CITY WHERE COUNTRY_ENAME LIKE #{value} order by CITY_SEQ) as c join IMAGE as i
 	  WHERE CITY_ENAME like i.IMG_NAME
+	  ORDER BY CITY_SEQ
 	</select>
 	<select id="countCity" resultType="int">
 	  	SELECT COUNT(*)

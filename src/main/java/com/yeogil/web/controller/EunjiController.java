@@ -26,7 +26,6 @@ public class EunjiController {
 	
 	@PostMapping("/login")
 	public MemberDTO login(@RequestBody Object mem) {
-		System.out.println(mem.toString());
         @SuppressWarnings("unchecked")
         HashMap<String, Object> t = (HashMap<String, Object>) mem;
         map.put("id", t.get("id"));

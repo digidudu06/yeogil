@@ -40,6 +40,7 @@
 	margin-left:10px;
 	margin-right:10px;
 	float:left;
+    cursor: pointer;
 }
 
 .p_header_hide_bg{

@@ -70,11 +70,6 @@ mysche = (()=>{
 			});
 			
 			$('#edit_detail_plan').click(function(){
-//				$.getJSON(_+'/deleteSchedule/'+ aa, d=>{
-//					alert('d'+d);
-//					sche.init();
-//				});
-//				
 				 $.ajax({
                      url:_+'/deleteSchedule',
                      type: 'POST',

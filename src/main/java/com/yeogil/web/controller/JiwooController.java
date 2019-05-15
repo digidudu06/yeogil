@@ -77,69 +77,17 @@ public class JiwooController {
 			) throws Exception{
 		String ctr = sche.getCtr();
         String planTitle = sche.getPlanTitle();
+        String startDate = sche.getStartDate();
+        String city = sche.getCity();
         
         schedule.setCtr(ctr);
         schedule.setPlanTitle(planTitle);
         schedule.setMember_id(memberid);
+        schedule.setStartDate(startDate);
+        schedule.setCity(city);
+        System.out.println("==jiwoo cotrl==>"+schedule.toString());
         transactionservice.txinsert(schedule);
-        
-		// memsch에 db 저장 끝
-		Pattern p = Pattern.compile("(^[0-9]*$)");
-        String[] aa = sche.getCity().split("");
-        String city = "";
-        String planday  = "";
-        String startDate = sche.getStartDate();
-        
-        
-        // 날짜 계산
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-        startDate = startDate.replaceAll("-", "");
-        Calendar cal = Calendar.getInstance();
-        Date date = format.parse(startDate);
-        cal.setTime(date);
-        
-        int s =0;
-        int day = 1;
-         
-        for(int i =0;i<aa.length-1;i++) {
-            Matcher m = p.matcher(aa[i]);
-            if(m.find()) {
-            	planday = aa[i]+aa[i+1];
-                for(int j=s;j<i;j++) {
-                    city += aa[j];
-                    s=i+2;
-                }      
-
-                String ss = planday.replaceAll("일","");
-                for(int a=0;a<Integer.parseInt(ss);a++) {
-                	mcdto = new MemschCityDTO();
-                    mcdto.setMsCityName(city);
-                    mcdto.setMsDate(format.format(cal.getTime()));
-                    cal.add(Calendar.DATE, 1);
-                    mcdto.setMs_seq(schedule.getMs_seq());
-                	mcdto.setMsDay("Day"+day);
-                	transactionservice.txinsert2(mcdto);
-                	for(int v=0;v<Integer.parseInt(ss);v++) {
-                    	schedule.setCity(mcdto.getMsCityName());
-                    	schedule.setContinetn_seq(Integer.parseInt(ss));
-                    	
-                    	schList = transactionservice.scheList(schedule);
-                    	
-                    	attr = new MemschAttrDTO();
-                		attr.setMsAttrName(schList.get(v).getAttrName());
-                		attr.setMs_ctiy_seq(mcdto.getMs_ctiy_seq());
-                		transactionservice.txinsert3(attr);
-						/*
-						 * for(int z=0;z<schList.size();z++) { }
-						 */
-                	}
-                	day++;
-                	//attr=null;
-                }
-            }
-            city="";
-            planday="";
-        }
+		
 
 		return map;
 	}
