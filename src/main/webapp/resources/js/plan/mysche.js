@@ -45,7 +45,7 @@ mysche = (()=>{
 			$('.gray').remove();
 			let aa = [];
 			$.each(d.list, (i,j)=>{
-				aa.push({city_seq:j.MS_CTIY_SEQ});
+				aa.push({"citySeq":j.MS_CTIY_SEQ});
 				$('	<tr id="sch'+i+'" class="white">'
 					+'		<td id="sche_date">'
 					+'			<div class="scht_date">'+j.MS_DATE+'</div>'

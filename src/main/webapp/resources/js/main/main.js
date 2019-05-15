@@ -37,7 +37,7 @@ main = (()=>{
 		$('#reservation').click(function(){
 			location.assign($.ctx()+'/reser');
 		});
-		if(!(sessionStorage.getItem('memberId') === '1076783255')){
+		if(!(sessionStorage.getItem('memberId') === '1073491307')){
 			$('#admin').hide();
 		}else{
 			$('#admin').click(function(){

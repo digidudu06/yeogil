@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yeogil.web.domain.AttractionDTO;
+import com.yeogil.web.domain.CityDTO;
 import com.yeogil.web.domain.MemschAttrDTO;
 import com.yeogil.web.domain.MemschCityDTO;
 import com.yeogil.web.domain.ScheduleDTO;
@@ -70,9 +71,10 @@ public class TransactionServiceImpl implements TransactionService {
 		                    mcdto.setMs_seq(schedule.getMs_seq());
 		                	mcdto.setMsDay("Day"+day);
 		                	schedulemapper.insertSchedule2(mcdto);
-		                	
+
 		                	for(int v=0;v<Integer.parseInt(ss);v++) {
 		                    	schedule.setCity(mcdto.getMsCityName());
+		                    	
 		                    	schedule.setContinetn_seq(Integer.parseInt(ss));
 		                    	
 		                    	schList = schedulemapper.scheList(schedule);
@@ -84,7 +86,7 @@ public class TransactionServiceImpl implements TransactionService {
 		                		attr.setMs_ctiy_seq(mcdto.getMs_ctiy_seq());
 		                		schedulemapper.insertSchedule3(attr);
 		                		
-		                		//System.out.println("==attr==>"+attr.toString());
+		                		System.out.println("==attr==>"+attr.toString());
 							
 								
 //								 for(int z=0;z<schList.size()+1;z++) {}
@@ -99,8 +101,18 @@ public class TransactionServiceImpl implements TransactionService {
 	}
 
 	@Override
-	public void removeMemSch() {
+	public void removeMemSch(List<CityDTO> aa) {
+		String memSeq = schedulemapper.selectMemSeq(aa.get(0).getCitySeq());
+		System.out.println(memSeq);
+		int i = 0;
+		for(i=0;i<aa.size();i++) {
+			System.out.println(aa.get(i).getCitySeq());
+			schedulemapper.deleteScheAttrs(aa.get(i).getCitySeq());
+			schedulemapper.deleteScheCities(aa.get(i).getCitySeq());
+		}
+		schedulemapper.deleteSche(memSeq);
 		
 	}
+
 
 }
