@@ -102,6 +102,7 @@ public class TransactionServiceImpl implements TransactionService {
 
 	@Override
 	public void removeMemSch(List<CityDTO> aa) {
+		System.out.println(aa.toString());
 		String memSeq = schedulemapper.selectMemSeq(aa.get(0).getCitySeq());
 		System.out.println(memSeq);
 		int i = 0;

@@ -35,13 +35,17 @@ tour = (()=>{
 		$('#reservation').click(function(){
 				location.assign($.ctx()+'/reser');
 		});
-		if(!(sessionStorage.getItem('memberId') === '1073491307' || sessionStorage.getItem('memberId') === '1075836473')){
+		
+		$('#admin').click(function(){
+			location.assign($.ctx()+'/admin');
+		});
+		/*if(!(sessionStorage.getItem('memberId') === '1073491307')){
 			$('#admin').hide();
 		}else{
 			$('#admin').click(function(){
 				location.assign($.ctx()+'/admin');
 			});
-		}
+		}*/
 //==================================================
 		$.getScript(compojs,()=>{
 			$(compo.tourist_area()).appendTo('#common_area');

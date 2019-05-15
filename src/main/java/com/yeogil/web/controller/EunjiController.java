@@ -80,8 +80,9 @@ public class EunjiController {
 	}
 	
 	@PostMapping("/deleteSchedule")
-	public void deleteSchedule(@RequestBody List<CityDTO> aa) {
+	public Map<?,?> deleteSchedule(@RequestBody List<CityDTO> aa) {
 		transactionservice.removeMemSch(aa);
+		return map;
 	}
 	
 }
