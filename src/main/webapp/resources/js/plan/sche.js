@@ -107,7 +107,8 @@ sche = (()=>{
 			$('<div class="detail_city_bottom">'
 		 	+'<div class="detail_plan_go_btn">상세 일정 만들기</div></div>').appendTo('#select_detail_view_city');
 			
-			$('<div class="detail_plan_go_btn_1" id="attr_select">관광지선택</div>').appendTo('#selected_cities');
+//			$('.detail_plan_go_btn_1').empty();
+//			$('<div class="detail_plan_go_btn_1" id="attr_select">관광지선택</div>').appendTo('.city_set_day_box');
 			/*$('#attr_select').click(function(){
 				alert('클릭클릭');
 				let html2 ='';
@@ -545,19 +546,46 @@ sche = (()=>{
 			let _lat = $(this).parent().attr('data-lat');
 			let _lng = $(this).parent().attr('data-lng');
 			let ci_name = $(this).parent().attr('data-ci_name');
-			let _html ='';
+			
+/*			let _html ='';
 			_html = '<div class="s_cities" data-ci="'+ci_srl+'" data-day="2" data-lat="'+_lat+'" data-lng="'+_lng+'"><div class="city_route_info" id="city_route"><div class="city_distance_info fl">0Km</div><a href="http://flights.earthtory.com" target="_blank"><div class="city_air_search_btn fr">항공검색</div></a><div class="clear"></div></div>';
 			_html += '<div class="city_info"><div class="del_city_btn fl"><img src="'+img+'/map/del_city_btn_a.png"></div><div class="fl">'+ci_name+'</div>';
 			_html += '<div class="fr city_set_day_box"><div class="fl city_set_minus_btn"><img src="'+img+'/map/city_item_minus_btn.png"></div><div class="fl city_set_day_info"><span>1</span>일 </div>';
-			_html += '<div class="fl city_set_plus_btn"><img src="'+img+'/map/city_item_plus_btn.png"></div><div class="detail_plan_go_btn_1">관광지선택</div><div class="clear"></div></div><div class="clear"></div></div>';
+			_html += '<div class="fl city_set_plus_btn"><img src="'+img+'/map/city_item_plus_btn.png"></div><div class="detail_plan_go_btn_1" name="'+ci_name+'">관광지선택</div><div class="clear"></div></div><div class="clear"></div></div>';
 			_html += '</div>';
-			$('#selected_cities').append(_html);
+			$('#selected_cities').append(_html);*/
+			
+			$('<div class="s_cities" data-ci="'+ci_srl+'" data-day="2" data-lat="'+_lat+'" data-lng="'+_lng+'"><div class="city_route_info" id="city_route"><div class="city_distance_info fl">0Km</div><a href="http://flights.earthtory.com" target="_blank"><div class="city_air_search_btn fr">항공검색</div></a><div class="clear"></div></div>'
+					+'<div class="city_info"><div class="del_city_btn fl"><img src="'+img+'/map/del_city_btn_a.png"></div><div class="fl">'+ci_name+'</div>'
+					+'<div class="fr city_set_day_box"><div class="fl city_set_minus_btn"><img src="'+img+'/map/city_item_minus_btn.png"></div><div class="fl city_set_day_info"><span>1</span>일 </div>'
+					+'<div class="fl city_set_plus_btn"><img src="'+img+'/map/city_item_plus_btn.png"></div><div class="detail_plan_go_btn_1" name="'+ci_name+'">관광지선택</div><div class="clear"></div></div><div class="clear"></div></div>'
+					+'</div>'
+					).appendTo('#selected_cities')
+					.addClass('cursor').click(function(){
+						$(compo.sche_detail()).appendTo('#right_full_box').attr("style","left: 450px;display: block; width:300px;").attr("id","select_detail_view_attr");
+						$('#select_detail_view_attr #plan_title').remove();
+						$('#select_detail_view_attr .pn_date_info').remove();
+						$('#select_detail_view_attr img').remove();
+					});
+			
 			$('.city_route_info').css("background","url('"+img+"/map/item_route_bg.png') no-repeat 20px 0px");
 			draw_city_route();
-			
-			
 		});
-		
+		/*function attr_add(){
+			$('.detail_plan_go_btn_1').click(function(){
+				alert('클릭클릭');
+				
+				let html2 ='';
+				
+				html2 = '<div id="select_detail_view_city" data="0">'
+				+'<div class="city_title">'
+					+'<div class="ci_title_name fl" style="padding-top: 13px; width: 70%"><input type="text" id="plan_title" class="form-control" placeholder="여행타이틀을 입력하세요" style="width: 220px;"></div>'
+					+'</div>'
+					+'<div class="clear"></div>'
+				+'</div>';
+				$('#select_detail_view_city').append(html2);
+			});
+		}*/
 		
 		$('#city_list_box').on('click','.item.state',function(){
 			_is_state = $(this).attr('data-is_state');
@@ -622,7 +650,11 @@ sche = (()=>{
 			}else{
 				$('#select_detail_view_city').hide("slide", { direction: "left" }, 200);
 			}
-			
+			if(now_select_city_cnt > 0){
+				$('#select_detail_view_attr').attr('style','display:block;').show("slide", { direction: "left" }, 200);
+			}else{
+				$('#select_detail_view_attr').hide("slide", { direction: "left" }, 200);
+			}
 			var i = 0;
 			$('#selected_cities .s_cities').each(function() {
 				let _lat = $(this).attr('data-lat');

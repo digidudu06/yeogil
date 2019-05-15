@@ -847,19 +847,8 @@ compo = {
 				+'<div class="clear"></div>'
 			+'</div>'
 			+'<div id="selected_cities" data="0">'
-							 /*<div class="s_cities" data-lat="0" data-lng="0"><div class="city_info"><div class="del_city_btn fl"><img src="/res/img/workspace/new/del_city_btn_a.png"></div>
-							 <div class="fl">서울</div>
-							 	<div class="fr city_set_day_box"><div class="fl city_set_minus_btn"><img src="/res/img/workspace/new/city_item_minus_btn.png"></div>
-							 	<div class="fl city_set_day_info"><span>2</span>일</div><div class="fl city_set_plus_btn"><img src="/res/img/workspace/new/city_item_plus_btn.png"></div><div class="clear"></div></div>
-							 	<div class="clear"></div></div>
-							 	<div class="city_route_info"><div class="city_distance_info fl">10.5Km</div><div class="city_air_search_btn fr">항공검색</div><div class="clear"></div></div></div>-->*/
 		 	+'</div>'
-				/*+'<div class="detail_city_bottom">'
-				 	+'<div class="detail_plan_go_btn" onclick="et_modal("500px","70px","1","0","/ko/modal/create_new_plan?is_exist_city_route=true","2","1");">상세 일정 만들기</div>'
-				+'</div>'*/
 		+'</div>'
-		+'<div class="clear"></div>'
-
 		},
 		mypage_sche : ()=>{
 		    return '<div>'
