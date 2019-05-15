@@ -24,20 +24,22 @@ public class AirportLeaveServiceImpl implements AirportLeaveService{
 
 	@Override
 	public List<AirportLeaveDTO> findSomeAirport(HashMap<String, String> hash) {
-		List<AirportLeaveDTO> allist = almap.selectSomeAirport(hash);
-		return allist;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public AirportLeaveDTO findAirport(AirportLeaveDTO aldto) {
-		AirportLeaveDTO apldto = almap.selectAirport(aldto);
-		return apldto;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public int countAirport() {
-		almap.countAirport();
+		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	
 
 }

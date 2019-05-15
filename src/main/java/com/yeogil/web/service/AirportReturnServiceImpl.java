@@ -24,19 +24,19 @@ public class AirportReturnServiceImpl implements AirportReturnService{
 
 	@Override
 	public List<AirportReturnDTO> findSomeAirport(HashMap<String, String> hash) {
-		List<AirportReturnDTO> ardto = armap.selectSomeAirport(hash);
-		return ardto;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public AirportReturnDTO findAirport(AirportReturnDTO ardto) {
-		AirportReturnDTO aprdto = armap.selectAirport(ardto);
-		return aprdto;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public int countAirport() {
-		armap.countAirport();
+		// TODO Auto-generated method stub
 		return 0;
 	}
 

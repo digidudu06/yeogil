@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yeogil.web.domain.AirportInfoDTO;
 import com.yeogil.web.domain.MemberDTO;
+import com.yeogil.web.mapper.AirportInfoMapper;
 import com.yeogil.web.mapper.ScheduleMapper;
 import com.yeogil.web.service.MemberServiceImpl;
 
@@ -22,6 +24,7 @@ public class EunjiController {
 	@Autowired Map<String, Object> map;
 	@Autowired MemberServiceImpl memberService;
 	@Autowired ScheduleMapper schMap;
+	@Autowired AirportInfoMapper aiMap;
 	@Autowired Proxy pxy;
 	
 	@PostMapping("/login")
@@ -61,8 +64,14 @@ public class EunjiController {
 		List<?> list = (List<?>) i1.apply(pxy);
 		IFunction i2 = (Object o) -> schMap.selectMemOneScheAttr(pxy);
 		List<?> attr = (List<?>) i2.apply(pxy);
+		/*
+		 * IFunction i3 = (Object o) -> aiMap.selectAllAirportInfo(pxy); List<?> ahres =
+		 * (List<?>) i3.apply(pxy);
+		 */
+		
 		map.put("list",list);
 		map.put("attr",attr);
+		/* map.put("ahres",ahres); */
 		return map;
 	}
 	
