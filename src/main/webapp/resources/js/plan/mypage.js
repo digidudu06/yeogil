@@ -17,6 +17,9 @@ mypage = (()=>{
 			$('#common_area').empty();
 			$(compo.mypage_sche()).appendTo('#common_area');
 			$('#my_top_menu').empty();
+			$('#ejcreat_sche').click(()=>{
+				sche.init();
+			});
 			
 			if(sessionStorage.getItem('thumbnailImg')==='default_img'){
 				$('.my_img').attr("src",img+"/common/default_img.png");

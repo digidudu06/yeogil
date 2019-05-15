@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,7 @@ public class EunjiController {
 	
 	@PostMapping("/login")
 	public MemberDTO login(@RequestBody Object mem) {
+		System.out.println(mem.toString());
         @SuppressWarnings("unchecked")
         HashMap<String, Object> t = (HashMap<String, Object>) mem;
         map.put("id", t.get("id"));
@@ -71,6 +73,13 @@ public class EunjiController {
 		List<?> list = (List<?>) i.apply(id);
 		map.clear();
 		map.put("list",list);
+		return map;
+	}
+	
+	@PostMapping("/deleteSchedule")
+	public Map<?,?> deleteSchedule(@RequestBody Object aa) {
+		System.out.println(aa.toString());
+		
 		return map;
 	}
 	

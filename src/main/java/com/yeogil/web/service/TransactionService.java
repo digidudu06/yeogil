@@ -17,4 +17,7 @@ public interface TransactionService {
 	public void txinsert2(MemschCityDTO mem);
 	public void txinsert3(MemschAttrDTO attr);
 	public List<AttractionDTO> scheList(ScheduleDTO sch);
+	
+	public void removeMemSch();
+
 }

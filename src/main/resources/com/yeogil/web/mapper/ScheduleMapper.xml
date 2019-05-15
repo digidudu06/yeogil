@@ -46,7 +46,7 @@
 	</select>
 	
 	<select id="selectMemOneScheAttr" resultMap="result" parameterType="com.yeogil.web.controller.Proxy">
-		SELECT MS_ATTR_NAME, MS_DAY
+		SELECT MS_ATTR_NAME, MS_DAY, MEMSCH.MS_SEQ
 		FROM MEMSCHATTR 
 			JOIN MEMSCHCTIY ON MEMSCHATTR.MS_CTIY_SEQ = MEMSCHCTIY.MS_CTIY_SEQ
 			JOIN MEMSCH ON MEMSCH.MS_SEQ = MEMSCHCTIY.MS_SEQ

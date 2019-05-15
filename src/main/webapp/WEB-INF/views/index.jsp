@@ -53,56 +53,54 @@
 		<div id="common_area"></div>
 
 <!-- footer -->
-<div id="footer">
-	<div class="wrap">
-		<div class="footer_col fl">
-			<div class="footer_title">어스토리</div>
-			<a href="">여행지</a>
-			<a href="">일정만들기</a>
-			<a href="" target="_blank">호텔</a>
-			<a href="">Q&amp;A</a>
-			<a href="">여행TIP</a>
-			<a href="">모바일</a><!--모바일-->
-		</div>
-
-		<div class="footer_col fl">
-			<div class="footer_title">회사이야기</div>
-			<a href="">회사소개</a>
-			<a href="">이용방법</a>
-			<a href="">광고 및 제휴</a>
-		</div>
-
-		<div class="footer_col fl">
-			<div class="footer_title">고객센터</div>
-			<a href="">FAQ</a>
-			<a href="">문의하기</a>
-			<a href="">이용약관</a>
-			<a href="">개인정보 처리방침</a>
-		</div>
-				<div class="footer_col fl" style="margin-right:0px;">
-			<div class="footer_title" style="border-bottom:0px;margin-bottom:0px;">&nbsp;</div>
-		
-			<div class="fl footer_lang_box" id="footer_lang_sel_box" data-is_open="0" data-h="ko/ko">한국어</div>
-			<div id="lang_chage_item_box">
-				<a href="" class="prevent_href lang_change_item" data="ko">한국어</a>
-				<a href="" class="prevent_href lang_change_item" data="ja">日本語</a>
-				<a href="" class="prevent_href lang_change_item" data="en">English</a>
+	<div id="footer">
+		<div class="wrap">
+			<div class="footer_col fl">
+				<div class="footer_title">여길가자</div>
+				<a>여행지</a>
+				<a>일정만들기</a>
+				<a target="_blank">호텔</a>
+				<a>Q&amp;A</a>
+				<a>여행TIP</a>
+				<a>모바일</a><!--모바일-->
 			</div>
-			<div class="fl footer_currency_box" id="footer_currency_sel_box" data-is_open="0">KRW</div>
-			<div id="currency_change_item_box">
-				<a class="currency_change_item" data="KRW">KRW</a>
-				<a class="currency_change_item" data="JPY">JPY</a>
-				<a class="currency_change_item" data="USD">USD</a>
+	
+			<div class="footer_col fl">
+				<div class="footer_title">회사이야기</div>
+				<a>회사소개</a>
+				<a>이용방법</a>
+				<a>광고 및 제휴</a>
 			</div>
-			<div class="clear" style="padding-bottom:20px"></div>
+	
+			<div class="footer_col fl">
+				<div class="footer_title">고객센터</div>
+				<a>FAQ</a>
+				<a>문의하기</a>
+				<a>이용약관</a>
+				<a>개인정보 처리방침</a>
+			</div>
+					<div class="footer_col fl" style="margin-right:0px;">
+				<div class="footer_title" style="border-bottom:0px;margin-bottom:0px;">&nbsp;</div>
+			
+				<div class="fl footer_lang_box" id="footer_lang_sel_box" data-is_open="0" data-h="ko/ko">한국어</div>
+				<div id="lang_chage_item_box">
+					<a class="prevent_href lang_change_item" data="ko">한국어</a>
+					<a class="prevent_href lang_change_item" data="ja">日本語</a>
+					<a class="prevent_href lang_change_item" data="en">English</a>
+				</div>
+				<div class="fl footer_currency_box" id="footer_currency_sel_box" data-is_open="0">KRW</div>
+				<div id="currency_change_item_box">
+					<a class="currency_change_item" data="KRW">KRW</a>
+					<a class="currency_change_item" data="JPY">JPY</a>
+					<a class="currency_change_item" data="USD">USD</a>
+				</div>
+				<div class="clear" style="padding-bottom:20px"></div>
+				<div class="clear"></div>
+			</div>
+			
 			<div class="clear"></div>
 		</div>
-		
-		<div class="clear"></div>
 	</div>
-</div>
-
-<!-- 카카오 로그인 -->
 </div>
 <script src="${js}/comp/compo.js"></script>
 <script src="${js}/yeogil.js"></script>
