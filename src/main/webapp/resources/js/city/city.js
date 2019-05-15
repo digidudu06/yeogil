@@ -45,8 +45,6 @@ city = (()=>{
 						$('.spot_list').remove();
 						let ar = {x:c.y,y:1}
 						attraction_list(ar);
-						
-						//$(compo.tourist_list()).appendTo('#common_area');
 						break;
 					case 'restaurant':
 						alert('관광지와 같은 기능입니다.');
@@ -55,8 +53,10 @@ city = (()=>{
 						alert('관광지와 같은 기능입니다.');
 						break;
 					case 'calendar':
+						location.assign($.ctx()+'/sche');
 						break;
-					case 'map':
+					case 'reservasion':
+						location.assign($.ctx()+'/reser');
 						break;
 					}
 				});
@@ -164,7 +164,7 @@ city = (()=>{
 		{name :"restaurant",text :"음식점"},
 		{name :"shopping",text :"쇼핑"},
 		{name :"calendar",text :"여행일정"},
-		{name :"map",text :"지도보기"}
+		{name :"reservasion",text :"호텔 항공"}
 		];
 	};
 	let country_detail = (x)=>{
@@ -228,12 +228,23 @@ city = (()=>{
 						+'<div class="city_desc">'+j.detail+'</div>'
 						+'<img class="city_img" src="'+j.url+'" width="346" height="240"></img>'
 						+'</a>')
-						.appendTo('.city_list');
+						.addClass('cursor')
+						.appendTo('.city_list')
+						.click(function (){
+							if(j.name === "타이베이"){
+								city_detail(j.name);
+							}else{
+								alert('타이베이를 눌러주세요');
+							}
+						});;
 			 });
+			
+			$('<div class="cjtooltip"><span class="rtooltiptext">타이베이를 눌러주세요</span></a>').appendTo('.area_title_center');
+			
 		});
 		
 	};
-	let city_detail = ()=>{
+	let city_detail = (c)=>{
 		$.getScript(compojs,()=>{
 			$('.country_detail').remove();
 			$(compo.city_detail()).insertAfter('.silver');
@@ -245,7 +256,6 @@ city = (()=>{
 			.attr("width","624")
 			.attr("height","369")
 			.appendTo('.img_box');
-			
 		});
 		$.getJSON(_+'/crawling/weather',d=>{
 			
@@ -282,7 +292,24 @@ city = (()=>{
 				}
 			});
 		});
-		$('<div style="height: 100px;"></div>').appendTo('#common_area');
+		$('<div class="area_bg line white city_detail">'
+			+'<div class="wrap">'
+			+'<div class="area_title_center">타이베이 여행지</div>'
+			+'<div class="city_list"></div>'
+			+'<div class="clear"></div>'
+			+'</div>').appendTo('#common_area');
+		
+		$.getJSON(_+'/attraction/some/'+c,d=>{
+			$.each(d.img,(i,j)=>{
+				$('<a class="city_box">'
+						+'<div class="city_title">'+j.attrName+'</div>'
+						+'<div class="city_desc">'+j.detail+'</div>'
+						+'<img class="city_img" src="'+j.attrImg+'" width="346" height="240"></img>'
+						+'</a>')
+						.css({'font-size':'30px'})
+						.appendTo('.city_list');
+			 });
+		});
 	};
 	let topten = ()=>{
 		$(compo.city_topten()).insertAfter('.city_detail');

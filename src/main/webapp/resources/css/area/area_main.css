@@ -219,7 +219,6 @@
 .country_inner_box{
 	padding:15px;
 	height:168px;
-	border-bottom:1px solid #dfdfdf;
 }
 
 .country_inner_box.noline{
@@ -325,6 +324,7 @@
 	font-size:30px;
 	color:#363636;
 	margin-bottom:20px;
+	height: 80px;
 }
 
 .city_box{

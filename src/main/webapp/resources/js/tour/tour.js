@@ -59,31 +59,7 @@ tour = (()=>{
 					logout();
 				});
 			}
-			
-			$.getScript(utiljs,()=>{
-				$('.search_area').empty();
-				$('<div id="custom-search-input">'
-						+'    <div class="input-group col-md-12">'
-						+'        <input type="text" id="city_search" class="search-query form-control" placeholder="도시명으로 검색">'
-						+'        <span class="input-group-btn" style="width:auto">'
-						+'            <button id="search_btn" class="btn btn-danger" type="button">'
-						+'                <span class=" glyphicon glyphicon-search"></span>'
-						+'            </button>'
-						+'        </span>'
-						+'    </div>'
-						+'</div>').prependTo('.search_area');
-				
-				$('#search_btn').on('click',e=>{
-					e.preventDefault();
-					let search = $('#city_search').val();
-					if($.fn.nullChecker([search])){
-						alert('검색어를 입력해주세요.');
-					}else{
-						city_detail(search);
-					}
-				});
-			});
-			
+			$('.search_area').empty();
 			$('#area_top').css("background-image", "url('"+_+"/resources/img/component/bgb01.jpg')");
 			$('#area_top_name_as').css("background", "url('"+_+"/resources/img/common/as.gif') no-repeat");
 			$('#area_top_name_eu').css("background", "url('"+_+"/resources/img/common/eu.gif') no-repeat");
@@ -93,21 +69,31 @@ tour = (()=>{
 					if(j.continentName === "아시아"){
 						let c = {x:j.countryName,y:j.countryEname};
 						
-						$('<a class="area_n_link">'+j.countryName+'&nbsp;<span>'+j.countryEname+'</span></a>')
-						.addClass('cursor')
-						.appendTo('#asia')
-						.attr("data-tooltip-text","대만을 눌러주세요!")
-						.attr('id',j.countryEname)
-						.click(function (){
-							if(j.countryName === "대만"){
-								$.getScript(cityjs,()=>{
-									city.onCreate(c);
-								});
-							}else{
-								alert('대만을 눌러주세요');
-							}
-							
-						});
+						if(j.countryName === "대만"){
+							$('<a class="area_n_link">'+j.countryName+'&nbsp;<span>'+j.countryEname+'</span><span class="tooltiptext">대만을 눌러주세요</span></a>')
+							.addClass('cursor')
+							.addClass('cjtooltip')
+							.appendTo('#asia')
+							.attr('id',j.countryEname)
+							.click(function (){
+								if(j.countryName === "대만"){
+									$.getScript(cityjs,()=>{
+										city.onCreate(c);
+									});
+								}else{
+									alert('대만을 눌러주세요');
+								}
+							});
+						}else{
+							$('<a class="area_n_link">'+j.countryName+'&nbsp;<span>'+j.countryEname+'</span></a>')
+							.addClass('cursor')
+							.appendTo('#asia')
+							.attr("data-tooltip-text","대만을 눌러주세요!")
+							.attr('id',j.countryEname)
+							.click(function (){
+									alert('대만을 눌러주세요');
+							});
+						}
 					}else{
 						$('<a class="area_n_link">'+j.countryName+'&nbsp;<span>'+j.countryEname+'</span></a>')
 						.addClass('cursor')
@@ -116,7 +102,7 @@ tour = (()=>{
 						.attr('id',j.countryEname)
 						.click(function (){
 							alert('대만을 눌러주세요');
-						});;
+						});
 					}
 				});
 				
@@ -186,7 +172,7 @@ tour = (()=>{
 		$('<a class="nav_btn cursor"> > 타이베이</a>').appendTo('.area_nav');
 		
 		$('<img alt=""></img>')
-		.attr("src",_+"/resources/img/component/taipai.jpg")
+		.attr("src","http://www.iwt.or.kr/wp/wp-content/uploads/2017/11/%EB%8C%80%EB%A7%8C-%EC%A7%80%EB%8F%84-.jpg")
 		.attr("width","624")
 		.attr("height","369")
 		.appendTo('.img_box');

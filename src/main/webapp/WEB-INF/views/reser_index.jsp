@@ -9,7 +9,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-  
+  <link rel="shortcut icon" href="${img}/favicon.ico">
 <!-- 박은지 시작 -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -70,29 +70,28 @@
 <div id="footer">
 	<div class="wrap">
 		<div class="footer_col fl">
-			<div class="footer_title">어스토리</div>
-			<a href="/ko/area">여행지</a>
-			<a href="/ko/plan">일정만들기</a>
-			<!--//<a href="/ko/hotel">호텔</a>-->
-			<a href="https://www.agoda.com/?cid=1607809" target="_blank">호텔</a>
-						<a href="/ko/community/qa">Q&amp;A</a>
-			<a href="/ko/community/tips">여행TIP</a>
-						<a href="/ko/mobile">모바일</a><!--모바일-->
+			<div class="footer_title">여길가자</div>
+			<a>여행지</a>
+			<a>일정만들기</a>
+			<a target="_blank">호텔</a>
+						<a>Q&amp;A</a>
+			<a>여행TIP</a>
+			<a>모바일</a>
 		</div>
 
 		<div class="footer_col fl">
 			<div class="footer_title">회사이야기</div>
-			<a href="/ko/helpdesk/about">회사소개</a>
-			<a href="/ko/helpdesk/intro">이용방법</a>
-			<a href="/ko/helpdesk/contact">광고 및 제휴</a>
+			<a>회사소개</a>
+			<a>이용방법</a>
+			<a>광고 및 제휴</a>
 		</div>
 
 		<div class="footer_col fl">
 			<div class="footer_title">고객센터</div>
-			<a href="/ko/helpdesk/faq">FAQ</a>
-			<a href="/ko/helpdesk">문의하기</a>
-			<a href="/ko/helpdesk/policy">이용약관</a>
-			<a href="/ko/helpdesk/personal_info">개인정보 처리방침</a>
+			<a>FAQ</a>
+			<a>문의하기</a>
+			<a>이용약관</a>
+			<a>개인정보 처리방침</a>
 		</div>
 				<div class="footer_col fl" style="margin-right:0px;">
 			<div class="footer_title" style="border-bottom:0px;margin-bottom:0px;">&nbsp;</div>
@@ -101,16 +100,12 @@
 									한국어
 							</div>
 			<div id="lang_chage_item_box">
-				<a href="/ko/" class="prevent_href lang_change_item" data="ko">한국어</a>
-				<a href="/ja/" class="prevent_href lang_change_item" data="ja">日本語</a>
-				<a href="/" class="prevent_href lang_change_item" data="en">English</a>
+				<a class="prevent_href lang_change_item" data="ko">한국어</a>
 			</div>
 			<div class="fl footer_currency_box" id="footer_currency_sel_box" data-is_open="0">				
 				KRW			</div>
 			<div id="currency_change_item_box">
 				<a class="currency_change_item" data="KRW">KRW</a>
-				<a class="currency_change_item" data="JPY">JPY</a>
-				<a class="currency_change_item" data="USD">USD</a>
 			</div>
 			<div class="clear" style="padding-bottom:20px"></div>
 			<div class="clear"></div>

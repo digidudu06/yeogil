@@ -101,18 +101,31 @@ public class ChangJunController {
 		
 		is = () -> memschMapper.countryList();
 		map.put("clist", is.get());
-		
-
-		
 		return map;
 	}
 	
 	@GetMapping("/map/chart")
 	public Map<?,?> mapchart() {
 		map.clear();
-		
 		ISupplier is = () -> memschMapper.countMemsch();
 		map.put("data", is.get());
 		return map;
 	}
+	
+	@GetMapping("/attraction/some/{cityName}")
+	public Map<?,?> attractionSome(@PathVariable String cityName) {
+		map.clear();
+		map.put("srch", cityName);
+		map.put("page_num", "1");
+		map.put("page_size", "5");
+		map.put("block_size", "5");
+		map.put("row_count", 3);
+		pxy.carryOut(map);
+		map.clear();
+		IFunction i = (Object o) -> attractionMapper.selectCityAttractions(pxy);
+		List<?> ls = (List<?>) i.apply(pxy);
+		map.put("img", ls);
+		return map;
+	}
+	
 }
