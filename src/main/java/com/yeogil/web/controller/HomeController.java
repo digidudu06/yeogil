@@ -25,13 +25,13 @@ public class HomeController {
 		session.setAttribute("css", ctx+"/resources/css");
 		session.setAttribute("js", ctx+"/resources/js");
 		session.setAttribute("img", ctx+"/resources/img");
-		return "intro";
-	}
-	
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String index(Locale locale, Model model) {
 		return "index";
 	}
+	
+	/*
+	 * @RequestMapping(value = "/index", method = RequestMethod.GET) public String
+	 * index(Locale locale, Model model) { return "index"; }
+	 */
 	
 	@RequestMapping(value = "/tour", method = RequestMethod.GET)
 	public String changjun(Locale locale, Model model) {

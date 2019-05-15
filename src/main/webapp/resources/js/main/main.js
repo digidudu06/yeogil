@@ -37,13 +37,21 @@ main = (()=>{
 		$('#reservation').click(function(){
 			location.assign($.ctx()+'/reser');
 		});
-		if(!(sessionStorage.getItem('memberId') === '1076783255')){
+		
+		/*$('#my_sch_navi').click(function(){
+			location.assign($.ctx()+'/sche');
+		});*/
+		
+		$('#admin').click(function(){
+			location.assign($.ctx()+'/admin');
+		});
+		/*if(!(sessionStorage.getItem('memberId') === '1073491307')){
 			$('#admin').hide();
 		}else{
 			$('#admin').click(function(){
 				location.assign($.ctx()+'/admin');
 			});
-		}
+		}*/
 //==================================================	
 		$.getScript(compojs,()=>{
 			$(compo.main_contents()).appendTo('#common_area');

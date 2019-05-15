@@ -54,16 +54,84 @@
 		WHERE MEMBER.MEMBER_ID LIKE #{id}
 			AND MEMSCH.MS_TITLE LIKE #{title}
 	</select>
+	
 	<select id="selectMemAllSchedules" resultMap="result" parameterType="string">
 		SELECT *,(SELECT IMG_URL FROM IMAGE
 				WHERE IMG_NAME LIKE MEMSCH.MS_COUNTRY_NAME) IMG_URL
 		FROM MEMSCH	JOIN MEMBER ON MEMBER.MEMBER_ID = MEMSCH.MEMBER_ID
 			WHERE MEMBER.MEMBER_ID LIKE #{value}
 	</select>
+	
 	<select id="scheList" resultType="com.yeogil.web.domain.AttractionDTO" parameterType="com.yeogil.web.domain.ScheduleDTO">
 		SELECT ATTR_NAME attrName,CITY_NAME cityName
 		FROM ATTRACTION
 		WHERE CITY_NAME LIKE #{city}
 		LIMIT #{continetn_seq},2
 	</select>
+	
+	<select id="countMemsch" resultType="com.yeogil.web.domain.MemschDTO">
+	  	SELECT COUNTRY_CODE countryCode,COUNT(MS_COUNTRY_NAME) msCount,COUNTRY_NAME countryName
+		FROM COUNTRY JOIN MEMSCH
+		WHERE MS_COUNTRY_NAME LIKE COUNTRY_NAME
+		GROUP BY COUNTRY_CODE,COUNTRY_NAME
+	</select>
+	
+	<select id="countMemschs" resultType="int" >
+		SELECT COUNT(*)
+		FROM MEMSCH
+	</select>
+	
+	<select id="topCountry" resultType="com.yeogil.web.domain.CountryDTO" >
+		SELECT COUNTRY_NAME countryName,COUNTRY_FLAG countryFlag
+		FROM COUNTRY c JOIN (select MS_COUNTRY_NAME ,COUNT(MS_COUNTRY_NAME) cou
+								FROM MEMSCH
+								GROUP BY MS_COUNTRY_NAME
+								ORDER BY cou desc) d
+		WHERE c.COUNTRY_NAME LIKE d.MS_COUNTRY_NAME AND COUNTRY_FLAG IS NOT NULL
+		LIMIT 1
+	</select>
+	
+	<select id="countryList" resultType="com.yeogil.web.domain.CountryDTO" >
+		SELECT COUNTRY_NAME countryName,COUNTRY_FLAG countryFlag, cou countryCount
+		FROM COUNTRY c JOIN (select MS_COUNTRY_NAME ,COUNT(MS_COUNTRY_NAME) cou
+								FROM MEMSCH
+								GROUP BY MS_COUNTRY_NAME
+								ORDER BY cou desc) d
+		WHERE c.COUNTRY_NAME LIKE d.MS_COUNTRY_NAME AND COUNTRY_FLAG IS NOT NULL
+	</select>
+	
+	<select id="selectMemSeq" resultType="string" parameterType="string">
+		SELECT MS_SEQ
+		FROM MEMSCHCTIY
+		WHERE MS_CTIY_SEQ LIKE #{value}
+	</select>
+	
+	<delete
+		id="deleteScheAttrs"
+		parameterType="string"
+		flushCache="true"
+		statementType="PREPARED">
+			DELETE FROM MEMSCHATTR
+			WHERE MS_CTIY_SEQ LIKE #{value}
+	</delete>
+	
+	<delete
+		id="deleteScheCities"
+		parameterType="string"
+		flushCache="true"
+		statementType="PREPARED">
+			DELETE FROM MEMSCHCTIY
+			WHERE MS_CTIY_SEQ LIKE #{value}
+	</delete>
+	
+	<delete
+		id="deleteSche"
+		parameterType="string"
+		flushCache="true"
+		statementType="PREPARED">
+			DELETE FROM MEMSCH
+			WHERE MS_SEQ LIKE ${value}
+	</delete>
+	
+	
 </mapper>

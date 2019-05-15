@@ -3,31 +3,5 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yeogil.web.mapper.MemschMapper">
-	<select id="countMemsch" resultType="com.yeogil.web.domain.MemschDTO">
-	  	SELECT COUNTRY_CODE countryCode,COUNT(MS_COUNTRY_NAME) msCount,COUNTRY_NAME countryName
-		FROM COUNTRY JOIN MEMSCH
-		WHERE MS_COUNTRY_NAME LIKE COUNTRY_NAME
-		GROUP BY COUNTRY_CODE,COUNTRY_NAME
-	</select>
-	<select id="countMemschs" resultType="int" >
-		SELECT COUNT(*)
-		FROM MEMSCH
-	</select>
-	<select id="topCountry" resultType="com.yeogil.web.domain.CountryDTO" >
-		SELECT COUNTRY_NAME countryName,COUNTRY_FLAG countryFlag
-		FROM COUNTRY c JOIN (select MS_COUNTRY_NAME ,COUNT(MS_COUNTRY_NAME) cou
-								FROM MEMSCH
-								GROUP BY MS_COUNTRY_NAME
-								ORDER BY cou desc) d
-		WHERE c.COUNTRY_NAME LIKE d.MS_COUNTRY_NAME AND COUNTRY_FLAG IS NOT NULL
-		LIMIT 1
-	</select>
-	<select id="countryList" resultType="com.yeogil.web.domain.CountryDTO" >
-		SELECT COUNTRY_NAME countryName,COUNTRY_FLAG countryFlag, cou countryCount
-		FROM COUNTRY c JOIN (select MS_COUNTRY_NAME ,COUNT(MS_COUNTRY_NAME) cou
-								FROM MEMSCH
-								GROUP BY MS_COUNTRY_NAME
-								ORDER BY cou desc) d
-		WHERE c.COUNTRY_NAME LIKE d.MS_COUNTRY_NAME AND COUNTRY_FLAG IS NOT NULL
-	</select>
+
 </mapper>

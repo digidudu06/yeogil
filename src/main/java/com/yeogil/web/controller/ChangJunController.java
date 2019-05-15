@@ -93,13 +93,13 @@ public class ChangJunController {
 		ISupplier is = () -> memberMapper.countMember();
 		map.clear();
 		map.put("memcount", is.get());
-		is = () -> memschMapper.countMemschs();
+		is = () -> scheduleMapper.countMemschs();
 		map.put("schecount", is.get());
 		
-		is = () -> memschMapper.topCountry();
+		is = () -> scheduleMapper.topCountry();
 		map.put("top", is.get());
 		
-		is = () -> memschMapper.countryList();
+		is = () -> scheduleMapper.countryList();
 		map.put("clist", is.get());
 		return map;
 	}
@@ -107,7 +107,7 @@ public class ChangJunController {
 	@GetMapping("/map/chart")
 	public Map<?,?> mapchart() {
 		map.clear();
-		ISupplier is = () -> memschMapper.countMemsch();
+		ISupplier is = () -> scheduleMapper.countMemsch();
 		map.put("data", is.get());
 		return map;
 	}

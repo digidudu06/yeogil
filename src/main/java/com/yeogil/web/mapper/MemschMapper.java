@@ -10,8 +10,5 @@ import com.yeogil.web.domain.MemschDTO;
 
 @Repository
 public interface MemschMapper {
-	public List<MemschDTO> countMemsch();
-	public int countMemschs();
-	public CountryDTO topCountry();
-	public List<CountryDTO> countryList();
+	
 }

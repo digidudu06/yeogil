@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yeogil.web.domain.AttractionDTO;
+import com.yeogil.web.domain.CityDTO;
 import com.yeogil.web.domain.MemschAttrDTO;
 import com.yeogil.web.domain.MemschCityDTO;
 import com.yeogil.web.domain.ScheduleDTO;
@@ -100,8 +101,19 @@ public class TransactionServiceImpl implements TransactionService {
 	}
 
 	@Override
-	public void removeMemSch() {
+	public void removeMemSch(List<CityDTO> aa) {
+		System.out.println(aa.toString());
+		String memSeq = schedulemapper.selectMemSeq(aa.get(0).getCitySeq());
+		System.out.println(memSeq);
+		int i = 0;
+		for(i=0;i<aa.size();i++) {
+			System.out.println(aa.get(i).getCitySeq());
+			schedulemapper.deleteScheAttrs(aa.get(i).getCitySeq());
+			schedulemapper.deleteScheCities(aa.get(i).getCitySeq());
+		}
+		schedulemapper.deleteSche(memSeq);
 		
 	}
+
 
 }

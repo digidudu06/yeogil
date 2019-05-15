@@ -815,5 +815,3 @@ sche = (()=>{
 	return {init:init,get:get,getkor:getkor};
 	
 })();
-
-
