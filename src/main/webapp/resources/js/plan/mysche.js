@@ -37,6 +37,9 @@ mysche = (()=>{
 			$('.plan_title').empty();
 			$('.plan_title').text(title);
 			
+//			$('.plan_datetheme').empty();
+//			$('.plan_datetheme').text(title);
+			
 			let id = sessionStorage.getItem('memberId');
 			$.getJSON(_+'/memOneSchedule/' + id +'/'+ title, d=>{
 				$('.white').remove();

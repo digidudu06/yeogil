@@ -4,8 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yeogil.web.mapper.AirportLeaveMapper">
 	<select id="selectAllAirport" resultType="com.yeogil.web.domain.AirportLeaveDTO">
-	  SELECT
-	  		AIRPORT_NAME airportName,
+	  SELECT AIRPORT_NAME airportName,
 	  		DEPARTURE_TIME departureTime,
 	  		ARRIVAL_TIME arrivalTime,
 	  		DEPART_AIRPORT departAirport,

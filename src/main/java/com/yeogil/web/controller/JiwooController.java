@@ -45,7 +45,6 @@ public class JiwooController {
 	@SuppressWarnings("unchecked")
 	@PostMapping("/cont/{continentName}")
 	public Map<?,?> countrylist1(@PathVariable String continentName) {
-		System.out.println("지우 컨트롤러 countrylist ::: "+continentName);
 		map.clear();
 		map.put("srch", continentName);
 		map.put("page_size", "5");
@@ -55,13 +54,11 @@ public class JiwooController {
 		list = (List<CountryDTO>) countryService.findCountries(pxy);
 		map.clear();
 		map.put("ls",list);
-		System.out.println(list.toString());
 		return map;
 	}
 	
 	@PostMapping("/cont/country/{countryName}")
 	public Map<?,?> citylist(@PathVariable String countryName) {
-		System.out.println("지우 컨트롤러 citylist ::::"+countryName);
 		
 		IFunction i = (Object o) -> cityMapper.selectAllCity(countryName);
 		List<?> ls = (List<?>) i.apply(countryName);
@@ -78,78 +75,20 @@ public class JiwooController {
 			@PathVariable String memberid,
 			@RequestBody ScheduleDTO sche
 			) throws Exception{
-		System.out.println("=======내 계획========"+sche.toString());
 		String ctr = sche.getCtr();
         String planTitle = sche.getPlanTitle();
+        String startDate = sche.getStartDate();
+        String city = sche.getCity();
         
         schedule.setCtr(ctr);
         schedule.setPlanTitle(planTitle);
         schedule.setMember_id(memberid);
+        schedule.setStartDate(startDate);
+        schedule.setCity(city);
+        System.out.println("==jiwoo cotrl==>"+schedule.toString());
         transactionservice.txinsert(schedule);
-        
-		// memsch에 db 저장 끝
-		Pattern p = Pattern.compile("(^[0-9]*$)");
-        String[] aa = sche.getCity().split("");
-        String city = "";
-        String planday  = "";
-        String startDate = sche.getStartDate();
-        
-        
-        // 날짜 계산
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-        startDate = startDate.replaceAll("-", "");
-        Calendar cal = Calendar.getInstance();
-        Date date = format.parse(startDate);
-        cal.setTime(date);
-        
-        int s =0;
-        int day = 1;
-         
-        for(int i =0;i<aa.length-1;i++) {
-            Matcher m = p.matcher(aa[i]);
-            if(m.find()) {
-            	planday = aa[i]+aa[i+1];
-                for(int j=s;j<i;j++) {
-                    city += aa[j];
-                    s=i+2;
-                }      
+		
 
-                String ss = planday.replaceAll("일","");
-                for(int a=0;a<Integer.parseInt(ss);a++) {
-                	mcdto = new MemschCityDTO();
-                    mcdto.setMsCityName(city);
-                    mcdto.setMsDate(format.format(cal.getTime()));
-                    cal.add(Calendar.DATE, 1);
-                    mcdto.setMs_seq(schedule.getMs_seq());
-                	mcdto.setMsDay("Day"+day);
-                	transactionservice.txinsert2(mcdto);
-                	for(int v=0;v<Integer.parseInt(ss);v++) {
-                		//schedule = new ScheduleDTO();
-                    	schedule.setCity(mcdto.getMsCityName());
-                    	schedule.setContinetn_seq(Integer.parseInt(ss));
-                    	
-                    	schList = transactionservice.scheList(schedule);
-                    	System.out.println("----->"+schList.toString());
-                    	
-                    	attr = new MemschAttrDTO();
-                		attr.setMsAttrName(schList.get(v).getAttrName());
-                		attr.setMs_ctiy_seq(mcdto.getMs_ctiy_seq());
-						
-						  for(int z=0;z<schList.size()+1;z++) { 
-							  
-							  transactionservice.txinsert3(attr);
-							  System.out.println(attr.toString());
-						  }
-						 
-						  System.out.println(attr.getMsAttrName());
-                	}
-                	day++;
-                	attr=null;
-                }
-            }
-            city="";
-            planday="";
-        }
 		return map;
 	}
 }

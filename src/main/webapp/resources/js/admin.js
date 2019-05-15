@@ -59,9 +59,6 @@ admin = (()=>{
 			$.each(d.data,(i,j)=>{
 				mapdata.push({"name":j.countryName,"id":j.countryCode,"value":j.msCount, "color": "#ff2d55"}) ;
 			});
-			$.each(mapdata,(i,j)=>{
-				//alert(j.id);
-			});
 			word_map_chart(mapdata);
 		});
 		

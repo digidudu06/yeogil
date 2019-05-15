@@ -33,7 +33,6 @@ public class SeowooController {
 	@GetMapping("/airlist/{page}")
 	public Map<?, ?> airpass(
 			@PathVariable String page)throws Exception{
-		System.out.println("==========seowoo C/list===========");
 		map.clear();
 		allist = new ArrayList<AirportLeaveDTO>();
 		allist = airportLeaveService.findAllAirport();
@@ -49,7 +48,6 @@ public class SeowooController {
 	public Map<?, ?> htsave(
 			@PathVariable String memberid,
 			@RequestBody HotelDTO hdto){
-	System.out.println("==========seowoo C/호텔저장===========");
 	hdto.getHotelName();
 	hdto.getRoomType();
 	hdto.getNotice();
@@ -67,7 +65,6 @@ public class SeowooController {
 	public Map<?, ?> airsave(
 			@PathVariable String memberid,
 			@RequestBody Map<String, Object> map){
-	System.out.println("==========seowoo C/항공저장===========");
 	String as1 = (String) map.get("airportName");
 	String as2 = (String) map.get("departureTime");
 	String as3 = (String) map.get("airportNameR");

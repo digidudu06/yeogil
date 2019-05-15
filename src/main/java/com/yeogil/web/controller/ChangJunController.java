@@ -109,12 +109,10 @@ public class ChangJunController {
 	
 	@GetMapping("/map/chart")
 	public Map<?,?> mapchart() {
-		System.out.println("mapchart 진입");
 		map.clear();
 		
 		ISupplier is = () -> memschMapper.countMemsch();
 		map.put("data", is.get());
-		System.out.println(is.get().toString());
 		return map;
 	}
 }

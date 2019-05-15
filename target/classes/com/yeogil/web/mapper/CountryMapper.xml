@@ -20,7 +20,7 @@
 	</select>
 	<select id="selectCountries" resultMap="result" parameterType="com.yeogil.web.controller.Proxy" >
 		SELECT *
-		FROM (SELECT * FROM COUNTRY WHERE CONTINENT_NAME LIKE #{search} order by COUNTRY_SEQ) as c join IMAGE as i
+		FROM (SELECT * FROM COUNTRY WHERE CONTINENT_NAME LIKE #{search} order by COUNTRY_SEQ) as c JOIN IMAGE as i
 		WHERE COUNTRY_NAME like i.IMG_NAME
 	</select>
 </mapper>

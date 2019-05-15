@@ -129,7 +129,7 @@ city = (()=>{
 							if(j.imgName === "Taipei"){
 								city_detail();
 							}else{
-								alert('타이베이를 눌러주세요 ㅎㅎ');
+								alert('타이베이를 눌러주세요');
 							}
 						});
 				 });
@@ -282,7 +282,7 @@ city = (()=>{
 				}
 			});
 		});
-		topten();
+		$('<div style="height: 100px;"></div>').appendTo('#common_area');
 	};
 	let topten = ()=>{
 		$(compo.city_topten()).insertAfter('.city_detail');
