@@ -35,7 +35,7 @@ main = (()=>{
 		});
 		
 		$('#reservation').click(function(){
-				location.assign($.ctx()+'/reser');
+			location.assign($.ctx()+'/reser');
 		});
 		if(!(sessionStorage.getItem('memberId') === '1073491307' || sessionStorage.getItem('memberId') === '1075836473')){
 			$('#admin').hide();

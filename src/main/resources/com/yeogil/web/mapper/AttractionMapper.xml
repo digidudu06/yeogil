@@ -24,4 +24,10 @@
 		WHERE COUNTRY_NAME LIKE #{search}
 		LIMIT #{startRow}, #{pageSize}
 	</select>
+		<select id="selectCityAttractions" resultMap="result" parameterType="com.yeogil.web.controller.Proxy">
+	  	SELECT *
+		FROM ATTRACTION
+		WHERE CITY_NAME LIKE #{search}
+		LIMIT 6
+	</select>
 </mapper>

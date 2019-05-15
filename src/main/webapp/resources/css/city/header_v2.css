@@ -1,17 +1,12 @@
 .area_bg{
 	width:100%;
-	background:white;
+	background:#f8f8fa;
 	padding-top:40px;
 	padding-bottom:40px;
 }
 
 .area_bg.top.silver{
-	/* background:url('/res/img/common/top_bg.png') repeat-x #f8f8fa; */
 	padding-top:8px;
-}
-
-.area_bg.line{
-	border-top:1px solid #eaeaea;
 }
 
 .area_bg.silver{

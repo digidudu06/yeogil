@@ -9,7 +9,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
   <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-  
+  <link rel="shortcut icon" href="${img}/favicon.ico">
 <!-- 박은지 시작 -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -99,14 +99,10 @@
 				<div class="fl footer_lang_box" id="footer_lang_sel_box" data-is_open="0" data-h="ko/ko">한국어</div>
 				<div id="lang_chage_item_box">
 					<a class="prevent_href lang_change_item" data="ko">한국어</a>
-					<a class="prevent_href lang_change_item" data="ja">日本語</a>
-					<a class="prevent_href lang_change_item" data="en">English</a>
 				</div>
 				<div class="fl footer_currency_box" id="footer_currency_sel_box" data-is_open="0">KRW</div>
 				<div id="currency_change_item_box">
 					<a class="currency_change_item" data="KRW">KRW</a>
-					<a class="currency_change_item" data="JPY">JPY</a>
-					<a class="currency_change_item" data="USD">USD</a>
 				</div>
 				<div class="clear" style="padding-bottom:20px"></div>
 				<div class="clear"></div>
