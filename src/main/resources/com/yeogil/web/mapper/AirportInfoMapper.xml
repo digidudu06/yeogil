@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yeogil.web.mapper.AirportInfoMapper">
-	<select id="createAirportInfo" parameterType="com.yeogil.web.domain.AirportInfoDTO">
+	<insert id="createAirportInfo" parameterType="com.yeogil.web.domain.AirportInfoDTO">
 	 INSERT INTO AIRPORTINFO( S_AIRPORT_NAME,
 		 							S_DEPARTURE_TIME,
 		 							S_ARRIVAL_TIME,
@@ -35,5 +35,24 @@
 									#{sArrivalAirportr},
 									#{sDepartAirportr}
 									)
-	</select>
+	</insert>
+	<!-- <select id="selectAllAirportInfo" parameterType="com.yeogil.web.controller.Proxy" resultMap="Proxy">
+	SELECT
+	  		S_AIRPORT_NAME sAirportName,
+	  		S_DEPARTURE_TIME sDepartureTime,
+	  		S_ARRIVAL_TIME sArrivalTime,
+	  		S_DEPART_AIRPORT sDepartAirport,
+	  		S_ARRIVAL_AIRPORT sArrivalAirport,
+	  		S_DEPART_DATE sDepartDate,
+	  		S_ARRIVAL_DATE sArrivalDate,
+	  		S_AIRPORT_NAMER sAirportNamer,
+	  		S_DEPARTURE_TIMER sDepartureTimer,
+	  		S_ARRIVAL_TIMER sArrivalTimer,
+	  		S_DEPART_DATER sDepartDater,
+	  		S_ARRIVAL_DATER sArrivalDater,
+	  		S_PRICER sPricer,
+	  		S_ARRIVAL_AIRPORTR sArrivalAirportr,
+	  		S_DEPART_AIRPORTR sDepartAirportr
+	  FROM AIRPORTINFO
+	</select> -->
 </mapper>

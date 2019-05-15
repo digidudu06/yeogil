@@ -62,6 +62,12 @@ mysche = (()=>{
 								.appendTo('#'+$('#sch'+i).children().eq(3).attr('id'));
 						}
 					});
+					/*$.each(d.ahres, (e,f)=>{
+						if($('#sch'+i).children().eq(4).attr('id')===b.MS_DAY){
+							$('<div class="scht_spotname">'+f.S_AIRPORT_NAME+'</div>')
+								.appendTo('#'+$('#sch'+i).children().eq(3).attr('id'));
+						}
+					});*/
 				});
 				
 			});
