@@ -111,17 +111,17 @@ airport = (()=>{
 						}else{
 							$(document).ready(function() {
 								 /* $('#hcheck_01').bind('click', function() {*/
-								    $('html, body').animate({scrollTop: '700'}, 5000);
+								    $('html, body').animate({scrollTop: '800'}, 2000);
 								  /*});*/
 							});
 					 let page ='1';
 					 $.getJSON($.ctx()+'/airlist/'+ page, d=>{
 						 $('<div id="adddiv_01"></div>').appendTo('#common_area');
 						 $('#adddiv_01').empty();
-						 $('<div><h1 id="addpro" style="font-size: 30px;text-align: center;"><div class="seoseo_03">검색하신 항공편입니다</div></h1></br></br>'
-								 +'<br><br><div class="grid-container">'
-								 +'	<div class="item1">가는 항공편</br></br></br></div>'
-								 +'	<div class="item2">오는 항공편</br></br></br></div>'
+						 $('<div><h1 id="addpro" style="font-size: 30px;text-align: center;margin-bottom: 0px;"><div class="seoseo_03" style="height: 50px;">검색하신 항공편입니다</div></h1>'
+								 +'<div class="grid-container">'
+								 +'	<div class="item1"><h3>가는 항공편</h3></br></br></br></div>'
+								 +'	<div class="item2"><h3>오는 항공편</h3></br></br></br></div>'
 								 +'</div></div>').appendTo('#adddiv_01');
 						 $.each(d.al,(i,j)=>{
 							 $('<div class="grid-inner" style="height: 50px">'

@@ -52,11 +52,17 @@ public class SeowooController {
 	hdto.getRoomType();
 	hdto.getNotice();
 	hdto.getPrice();
+	hdto.getCityName();
+	hdto.getStartDate();
+	hdto.getEndDate();
 	
 	hdto.setHotelName(hdto.getHotelName());
 	hdto.setRoomType(hdto.getRoomType());
 	hdto.setNotice(hdto.getNotice());
 	hdto.setPrice(hdto.getPrice());
+	hdto.setCityName(hdto.getCityName());
+	hdto.setStartDate(hdto.getStartDate());
+	hdto.setEndDate(hdto.getEndDate());
 	hotelService.createHotel(hdto);
 	return map; 
 	}

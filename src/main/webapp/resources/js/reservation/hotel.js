@@ -48,57 +48,49 @@ hotel =(()=>{
 					$('#hml_01').click(()=>{
 						setContentView();
 					});
-					//sdfsdf
+					
 //========================================호텔검색눌렀을때
 					$('#hcheck_01').click(function(e){
 						e.preventDefault();
-						let data = {arrivalDate:$('#h_date_01').val(),
-								departDateR:$('#h_date_02').val(),
-								cityName:$('#hdes_01').next().val(),
+						let data = {
+								arrivalDate:$('#h_date_01').val(),
+								departDateR:$('#h_date_02').val()
 								};//map자체
-						alert(data.cityName);
 						if(data.arrivalDate===""||data.departDateR===""){
 							alert("모든 항목을 기입해주세요");
 						}else{
 							$(document).ready(function() {
 								 /* $('#hcheck_01').bind('click', function() {*/
-								    $('html, body').animate({scrollTop: '900'}, 5000);
+								    $('html, body').animate({scrollTop: '900'}, 2000);
 								  /*});*/
 							});
 //==========================================호텔 크롤링
-							$.ajax({
-								url: _+'/crawling/hvation/'+sessionStorage.getItem('memberId'),
-								type:'post',
-								data:JSON.stringify(data),
-								dataType:'json',
-								contentType:'application/json',
-								success: d =>{
-									$(compo.hresult()).appendTo('#common_area');
-									$.each(d.htlist,(i,j)=>{
-										if(i<9){
-											$('<div class="intro_box" style="height:320px"><img src="'+j.imgUrl
-													+'" width="348" height="170" alt=""></img><br>'
-													+'<div id="hicon'+i+'" class="intro_title">'+j.hotelName+'</div>'
-													+'<div class="btn-area">'
-													+'<div class="btn-wrap position-relative">'
-													+'<button id="hotel_p0'+i+'" type="button" class="btn btn-primary">예약 및 결제진행</button><p id="hnoti_0'+i+'">'+j.notice+'<p id="hprice_0'+i+'">'+j.price+'<p id="rtype_0'+i+'">'+j.roomType+''
-													+'</div>'
-													+'</div>'
-													+'<div class="clear"></div></div>').attr('name',j.imgname).appendTo('.intro_list').click(function(){
-														if(sessionStorage.getItem('session') === null){
-															 login();
-														 }else{
-															 pay();
-														 }
-														
-													});
-										}
-										i++;
-										
-									 });
-								},
-								error:e=>{}
+							$.getJSON(_+'/crawling/hvation',d=>{
+								$(compo.hresult()).appendTo('#common_area');
+								$.each(d.htlist,(i,j)=>{
+									if(i<9){
+										$('<div class="intro_box" style="height:320px"><img src="'+j.imgUrl
+												+'" width="348" height="170" alt=""></img><br>'
+												+'<div id="hicon'+i+'" class="intro_title">'+j.hotelName+'</div>'
+												+'<div class="btn-area">'
+												+'<div class="btn-wrap position-relative">'
+												+'<button id="hotel_p0'+i+'" type="button" class="btn btn-primary">예약 및 결제진행</button><p id="hnoti_0'+i+'">'+j.notice+'<p id="hprice_0'+i+'">'+j.price+'<p id="rtype_0'+i+'">'+j.roomType+''
+												+'</div>'
+												+'</div>'
+												+'<div class="clear"></div></div>').attr('name',j.imgname).appendTo('.intro_list').click(function(){
+													if(sessionStorage.getItem('session') === null){
+														 login();
+													 }else{
+														 pay();
+													 }
+													
+												});
+									}
+									i++;
+									
+								 });
 							});
+							
 						}
 					});
 				});
@@ -137,14 +129,16 @@ hotel =(()=>{
 				}
 			});
 		};
+		//s
 		let pay=()=>{
 			let data = {hotelName:$('#hicon0').html(),
 					price:$('#hprice_00').html(),
 					roomType:$('#rtype_00').html(),
 					notice:$('#hnoti_00').html(),
-					cityName:$('#nation_01').text(),
+					cityName:$('#hdes_01').next().val(),
+					startDate:$('#h_date_01').val(),
+					endDate:$('#h_date_02').val()
 					};
-			alert(data.cityName);
 //=====================================호텔 정보저장
 			$.ajax({
 				url: _+'/sw/htsave/'+sessionStorage.getItem('memberId'),
