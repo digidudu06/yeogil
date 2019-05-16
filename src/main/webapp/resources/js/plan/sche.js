@@ -564,7 +564,7 @@ sche = (()=>{
 								
 								$('<div class="detail_city_bottom"><div class="detail_plan_go_btn">관광지 선택 완료</div></div>')
 							 	.appendTo('#select_detail_view_attr').click(function(){
-							 		
+
 							 		let aa = $('#s_attrs .spot_to_inspot img[src="'+img+'/map/check_img.png"]').prev().text();
 							 		alert(aa);
 							 		
