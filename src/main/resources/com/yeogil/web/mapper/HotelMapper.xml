@@ -4,15 +4,27 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yeogil.web.mapper.HotelMapper">
 	<select id="insertHotel" parameterType="com.yeogil.web.domain.HotelDTO">
-	 INSERT INTO HOTEL(HOTEL_NAME,
+	 INSERT INTO HOTEL(
+	 							HOTEL_NAME,
 	 							PRICE,
 	 							ROOM_TYPE,
 	 							NOTICE,
-	 							IMG_URL) 
-							VALUES(#{hotelName},
-									#{price},
-									#{roomType},
-									#{notice},
-									#{imgUrl})
+	 							IMG_URL,
+	 							MEMBER_ID,
+	 							CITY_NAME,
+	 							START_DATE,
+	 							END_DATE
+	 							) 
+						VALUES(
+								#{hotelName},
+								#{price},
+								#{roomType},
+								#{notice},
+								#{imgUrl},
+								#{memberId},
+								#{cityName},
+								#{startDate},
+								#{endDate}
+								)
 	</select>
 </mapper>

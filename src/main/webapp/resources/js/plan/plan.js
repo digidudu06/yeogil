@@ -32,7 +32,7 @@ plan =(()=>{
 		});
 		
 		$('#reservation').click(function(){
-				location.assign($.ctx()+'/reser');
+			location.assign($.ctx()+'/reser');
 		});
 		
 		$('#admin').click(function(){

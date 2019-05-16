@@ -48,96 +48,132 @@ hotel =(()=>{
 					$('#hml_01').click(()=>{
 						setContentView();
 					});
-					//sdfsdf
+					
 //========================================호텔검색눌렀을때
 					$('#hcheck_01').click(function(e){
 						e.preventDefault();
-						let data = {arrivalDate:$('#h_date_01').val(),
-								departDateR:$('#h_date_02').val(),
-								cityName:$('#hdes_01').next().val(),
+						let data = {
+								arrivalDate:$('#h_date_01').val(),
+								departDateR:$('#h_date_02').val()
 								};//map자체
-						alert(data.cityName);
 						if(data.arrivalDate===""||data.departDateR===""){
 							alert("모든 항목을 기입해주세요");
 						}else{
 							$(document).ready(function() {
 								 /* $('#hcheck_01').bind('click', function() {*/
-								    $('html, body').animate({scrollTop: '900'}, 5000);
+								    $('html, body').animate({scrollTop: '900'}, 2000);
 								  /*});*/
 							});
 //==========================================호텔 크롤링
-							$.ajax({
-								url: _+'/crawling/hvation/'+sessionStorage.getItem('memberId'),
-								type:'post',
-								data:JSON.stringify(data),
-								dataType:'json',
-								contentType:'application/json',
-								success: d =>{
-									$(compo.hresult()).appendTo('#common_area');
-									$.each(d.htlist,(i,j)=>{
-										if(i<9){
-											$('<div class="intro_box" style="height:320px"><img src="'+j.imgUrl
-													+'" width="348" height="170" alt=""></img><br>'
-													+'<div id="hicon'+i+'" class="intro_title">'+j.hotelName+'</div>'
-													+'<div class="btn-area">'
-													+'<div class="btn-wrap position-relative">'
-													+'<button id="hotel_p0'+i+'" type="button" class="btn btn-primary">예약 및 결제진행</button><p id="hnoti_0'+i+'">'+j.notice+'<p id="hprice_0'+i+'">'+j.price+'<p id="rtype_0'+i+'">'+j.roomType+''
-													+'</div>'
-													+'</div>'
-													+'<div class="clear"></div></div>').attr('name',j.imgname).appendTo('.intro_list').click(function(){
-														let data = {hotelName:$('#hicon0').html(),
-																price:$('#hprice_00').html(),
-																roomType:$('#rtype_00').html(),
-																notice:$('#hnoti_00').html(),
-																cityName:$('#nation_01').text(),
-																};
-														alert(data.cityName);
-										//=====================================호텔 정보저장
-														$.ajax({
-															url: _+'/sw/htsave/'+sessionStorage.getItem('memberId'),
-															type:'post',
-															data:JSON.stringify(data),
-															dataType:'json',
-															contentType:'application/json',
-															success: d =>{
-																IMP.init('imp68242076');
-																 IMP.request_pay({
-																	    pg : 'kcp',
-																	    pay_method : 'samsung',
-																	    merchant_uid : 'merchant_' + new Date().getTime(),
-																	    name : '(주)여길가자 - 항공권예매',
-																	    amount : 100,
-																	    buyer_email : 'iamport@siot.do',
-																	    buyer_name : '구매자이름',
-																	    buyer_tel : '010-1234-5678',
-																	    buyer_addr : '서울특별시 강남구 삼성동',
-																	    buyer_postcode : '123-456'
-																	}, function(rsp) {
-																	    if ( rsp.success ) {
-																	        var msg = '결제가 완료되었습니다.';
-																	        msg += 'imp68242076 : ' + rsp.imp_uid;
-																	        msg += '상점 거래ID : ' + rsp.merchant_uid;
-																	        msg += '결제 금액 : ' + rsp.paid_amount;
-																	        msg += '카드 승인번호 : ' + rsp.apply_num;
-																	    } else {
-																	        var msg = '결제에 실패하였습니다.';
-																	        msg += '에러내용 : ' + rsp.error_msg;
-																	    }
-																	    alert(msg);
-																	});
-															},
-															error: e =>{}
-															});	
-													});
-										}
-										i++;
-										
-									 });
-								},
-								error:e=>{}
+							$.getJSON(_+'/crawling/hvation',d=>{
+								$(compo.hresult()).appendTo('#common_area');
+								$.each(d.htlist,(i,j)=>{
+									if(i<9){
+										$('<div class="intro_box" style="height:320px"><img src="'+j.imgUrl
+												+'" width="348" height="170" alt=""></img><br>'
+												+'<div id="hicon'+i+'" class="intro_title">'+j.hotelName+'</div>'
+												+'<div class="btn-area">'
+												+'<div class="btn-wrap position-relative">'
+												+'<button id="hotel_p0'+i+'" type="button" class="btn btn-primary">예약 및 결제진행</button><p id="hnoti_0'+i+'">'+j.notice+'<p id="hprice_0'+i+'">'+j.price+'<p id="rtype_0'+i+'">'+j.roomType+''
+												+'</div>'
+												+'</div>'
+												+'<div class="clear"></div></div>').attr('name',j.imgname).appendTo('.intro_list').click(function(){
+													if(sessionStorage.getItem('session') === null){
+														 login();
+													 }else{
+														 pay();
+													 }
+													
+												});
+									}
+									i++;
+									
+								 });
 							});
+							
 						}
 					});
+				});
+		};
+		let login = ()=>{
+			Kakao.init('0b0fec75e07cb3ea427be11fe3287c3b');
+			Kakao.Auth.login({
+				success: function(authObj) {
+					Kakao.API.request({
+						url: '/v1/user/me',
+						success: function(res) {
+							Kakao.Auth.setAccessToken(authObj.access_token, true);
+							sessionStorage.setItem('session', Kakao.Auth.getAccessToken());
+							$.ajax({
+								url:_+'/login',
+								type: 'POST',
+								data: JSON.stringify(res, authObj),
+								dataType:'json',
+								dataType:'json',
+								contentType : "application/json; charset=UTF-8",
+								success:function(res){
+									hotel.init();
+									sessionStorage.setItem('memberId', res.memberId);
+									sessionStorage.setItem('nickname', res.nickname);
+	                                sessionStorage.setItem('thumbnailImg', res.thumbnailImg);
+								},
+								error:function(err){
+									login();
+								}
+							});
+						}
+					})
+				},
+				fail: function(err) {
+					alert(JSON.stringify(err));
+				}
+			});
+		};
+		//s
+		let pay=()=>{
+			let data = {hotelName:$('#hicon0').html(),
+					price:$('#hprice_00').html(),
+					roomType:$('#rtype_00').html(),
+					notice:$('#hnoti_00').html(),
+					cityName:$('#hdes_01').next().val(),
+					startDate:$('#h_date_01').val(),
+					endDate:$('#h_date_02').val()
+					};
+//=====================================호텔 정보저장
+			$.ajax({
+				url: _+'/sw/htsave/'+sessionStorage.getItem('memberId'),
+				type:'post',
+				data:JSON.stringify(data),
+				dataType:'json',
+				contentType:'application/json',
+				success: d =>{
+					IMP.init('imp68242076');
+					 IMP.request_pay({
+						    pg : 'kcp',
+						    pay_method : 'samsung',
+						    merchant_uid : 'merchant_' + new Date().getTime(),
+						    name : '(주)여길가자 - 항공권예매',
+						    amount : 100,
+						    buyer_email : 'iamport@siot.do',
+						    buyer_name : '구매자이름',
+						    buyer_tel : '010-1234-5678',
+						    buyer_addr : '서울특별시 강남구 삼성동',
+						    buyer_postcode : '123-456'
+						}, function(rsp) {
+						    if ( rsp.success ) {
+						        var msg = '결제가 완료되었습니다.';
+						        msg += 'imp68242076 : ' + rsp.imp_uid;
+						        msg += '상점 거래ID : ' + rsp.merchant_uid;
+						        msg += '결제 금액 : ' + rsp.paid_amount;
+						        msg += '카드 승인번호 : ' + rsp.apply_num;
+						    } else {
+						        var msg = '결제에 실패하였습니다.';
+						        msg += '에러내용 : ' + rsp.error_msg;
+						    }
+						    alert(msg);
+						});
+				},
+				error: e =>{}
 				});
 		};
 		return {init:init};
