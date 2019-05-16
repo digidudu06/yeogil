@@ -16,8 +16,6 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
-
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -25,11 +23,11 @@
 <link rel="stylesheet" href="${css}/component/reset.css" />
 <link rel="stylesheet" href="${css}/component/default.css" />
 <link rel="stylesheet" href="${css}/web/plan_v2.css" />
-<%-- <link rel="stylesheet" href="${css}/web/date_picker.css" /> --%>
 <link rel="stylesheet" href="${css}/mypage/plan/plan_sub.css" />
 <link rel="stylesheet" href="${css}/mypage/plan/plan.css" />
 <link rel="stylesheet" href="${css}/mypage/top.css" />
 <link rel="stylesheet" href="${css}/common/web/gnb.css" />
+<link rel="stylesheet" href="${css}/common/tooltiptext.css" />
 <link rel="stylesheet" href="${css}/city/header_v2.css" />
 <link rel="stylesheet" href="${css}/area/area.css" />
 <script src="${js}/plan/placeholder.js"></script>

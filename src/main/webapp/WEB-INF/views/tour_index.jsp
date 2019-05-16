@@ -27,6 +27,7 @@
 	<link class="cj_css" rel="stylesheet" href="${css}/city/spot_list.css" />
 	<link class="cj_css" rel="stylesheet" href="${css}/common/web/default_ko.css" />
 	<link class="cj_css" rel="stylesheet" href="${css}/common/web/gnb.css" />
+	<link class="cj_css" rel="stylesheet" href="${css}/common/tooltiptext.css" />
 	<link class="cj_css" rel="stylesheet" href="${css}/component/default.css" />
 	<link class="cj_css" rel="stylesheet" href="${css}/component/reset.css" />
 	<link class="cj_css" rel="stylesheet" href="${css}/web/main.css" />
@@ -40,7 +41,7 @@
 		<div id="header">
 			<div class="wrap">
 				<h1 id="home" class="logo fl" style="margin-top: 0px; margin-bottom: 0px; font-size: 0px;">
-					<img alt="여행의 시작! 어스토리" src="${img}/common/logo1.png" style="width: 150px;">
+					<img src="${img}/common/logo1.png" style="width: 150px;">
 				</h1>
 				<ul class="gnb fl">
 					<a href="#" class="fl"><li id="tour">여행지</li></a>

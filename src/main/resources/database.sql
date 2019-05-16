@@ -67,7 +67,7 @@ CREATE TABLE ATTRACTION (
 	ATTR_LNG 		VARCHAR(50) NOT NULL,
 	CITY_NAME 		VARCHAR(50) NOT NULL,
 	CITY_ENAME 		VARCHAR(50) NOT NULL,
-	ATTR_IMG 		VARCHAR(200) NOT NULL,
+	ATTR_IMG 		VARCHAR(300) NOT NULL,
 	COUNTRY_NAME 	VARCHAR(50) NOT NULL,
 	PRIMARY KEY (ATTR_SEQ)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -178,7 +178,7 @@ INSERT INTO AIRPORTRETURN (AIRPORT_NAMER, DEPARTURE_TIMER, ARRIVAL_TIMER, DEPART
 
 
 INSERT INTO ATTRACTION (ATTR_NAME, ATTR_ENAME, ATTR_LAT, ATTR_LNG, CITY_NAME, CITY_ENAME, ATTR_IMG, COUNTRY_NAME) VALUES ('지미 공원', 'jimmy liao park', '24.752621', '121.757009','이란', 'yilan', 'https://media-cdn.tripadvisor.com/media/photo-s/09/76/9a/c0/jimi-square-yilan-station.jpg','Taiwan');
-INSERT INTO ATTRACTION (ATTR_NAME, ATTR_ENAME, ATTR_LAT, ATTR_LNG, CITY_NAME, CITY_ENAME, ATTR_IMG, COUNTRY_NAME) VALUES ('블럭 박물관', 'brick ark museum', '24.731912', '121.763866','이란', 'yilan', 'https://img-https://lh5.googleusercontent.com/p/AF1QipMreWxfcamZRksA3D-8AoWCnoJo2Eis57XJpLBx=w239-h160-k-no','Taiwan');
+INSERT INTO ATTRACTION (ATTR_NAME, ATTR_ENAME, ATTR_LAT, ATTR_LNG, CITY_NAME, CITY_ENAME, ATTR_IMG, COUNTRY_NAME) VALUES ('블럭 박물관', 'brick ark museum', '24.731912', '121.763866','이란', 'yilan', 'https://scontent-yyz1-1.cdninstagram.com/vp/d6bea61489a11f2a4002920c10979d12/5CF6D431/t51.2885-15/sh0.08/e35/s640x640/17267499_313342932414364_9049965983569018880_n.jpg?_nc_ht=scontent-yyz1-1.cdninstagram.com','Taiwan');
 INSERT INTO ATTRACTION (ATTR_NAME, ATTR_ENAME, ATTR_LAT, ATTR_LNG, CITY_NAME, CITY_ENAME, ATTR_IMG, COUNTRY_NAME) VALUES ('동먼 시장', 'dongmen market', '24.757973', '121.758757','이란', 'yilan', 'https://thumb-wishbeen.akamaized.net/pS81QltfBRtCAt2Vez-gHdHGyFA=/898x420/smart/filters:no_upscale()/img-wishbeen.akamaized.net/spot/1422161128878_6792290366_fe81773f8b_o.jpg','Taiwan');
 INSERT INTO ATTRACTION (ATTR_NAME, ATTR_ENAME, ATTR_LAT, ATTR_LNG, CITY_NAME, CITY_ENAME, ATTR_IMG, COUNTRY_NAME) VALUES ('후 카페', 'who cafe', '24.753095', '121.747070 ','이란', 'yilan', 'https://lh5.googleusercontent.com/p/AF1QipMI9QWPxO7esM4JKY43_X8PFmCv2ONFBT69E4Y3=w408-h302-k-no','Taiwan');
 INSERT INTO ATTRACTION (ATTR_NAME, ATTR_ENAME, ATTR_LAT, ATTR_LNG, CITY_NAME, CITY_ENAME, ATTR_IMG, COUNTRY_NAME) VALUES ('충렬사', 'taipei martyrs shrine', '22.626468', '120.273867','가오슝', 'Kaohsiung', 'https://lh5.googleusercontent.com/p/AF1QipO26nRZeWJbikJe8T3Z_2LjY-aftZQpbcFzyvUq=w408-h273-k-no','Taiwan');
@@ -203,11 +203,11 @@ INSERT INTO ATTRACTION (ATTR_NAME, ATTR_ENAME, ATTR_LAT, ATTR_LNG, CITY_NAME, CI
 INSERT INTO CONTINENT(CONTINENET_NAME) VALUES('유럽');
 INSERT INTO CONTINENT(CONTINENET_NAME) VALUES('아시아');
 
+INSERT INTO COUNTRY(COUNTRY_NAME,COUNTRY_ENAME,COUNTRY_LAT,COUNTRY_LNG,CONTINENT_NAME,COUNTRY_CODE,COUNTRY_FLAG) VALUES('대만','Taiwan','23.69781','120.960515','아시아','TW','http://weekly.chosun.com/up_fd/wc_News/2131/limg_org/2131_40_01.jpg');
 INSERT INTO COUNTRY(COUNTRY_NAME,COUNTRY_ENAME,COUNTRY_LAT,COUNTRY_LNG,CONTINENT_NAME) VALUES('마카오','Macau','22.198592','113.543206','아시아');
 INSERT INTO COUNTRY(COUNTRY_NAME,COUNTRY_ENAME,COUNTRY_LAT,COUNTRY_LNG,CONTINENT_NAME,COUNTRY_CODE) VALUES('인도네시아','Indonesia','-7.7955798','110.3694896','아시아','ID');
 INSERT INTO COUNTRY(COUNTRY_NAME,COUNTRY_ENAME,COUNTRY_LAT,COUNTRY_LNG,CONTINENT_NAME) VALUES('몰디브','Maldives','4.17528','73.50889','아시아');
 INSERT INTO COUNTRY(COUNTRY_NAME,COUNTRY_ENAME,COUNTRY_LAT,COUNTRY_LNG,CONTINENT_NAME,COUNTRY_CODE,COUNTRY_FLAG) VALUES('라오스','Laos','17.96333','102.61444','아시아','LA','http://cfile206.uf.daum.net/image/211610335138D360053483');
-INSERT INTO COUNTRY(COUNTRY_NAME,COUNTRY_ENAME,COUNTRY_LAT,COUNTRY_LNG,CONTINENT_NAME,COUNTRY_CODE,COUNTRY_FLAG) VALUES('대만','Taiwan','23.69781','120.960515','아시아','TW','http://weekly.chosun.com/up_fd/wc_News/2131/limg_org/2131_40_01.jpg');
 INSERT INTO COUNTRY(COUNTRY_NAME,COUNTRY_ENAME,COUNTRY_LAT,COUNTRY_LNG,CONTINENT_NAME,COUNTRY_CODE,COUNTRY_FLAG) VALUES('베트남','Vietnam','21.03333','105.85000','아시아','VN','http://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Vietnam.svg/450px-Flag_of_Vietnam.svg.png');
 INSERT INTO COUNTRY(COUNTRY_NAME,COUNTRY_ENAME,COUNTRY_LAT,COUNTRY_LNG,CONTINENT_NAME) VALUES('스리랑카','Sri Lanka','6.93444','79.84278','아시아');
 INSERT INTO COUNTRY(COUNTRY_NAME,COUNTRY_ENAME,COUNTRY_LAT,COUNTRY_LNG,CONTINENT_NAME,COUNTRY_CODE,COUNTRY_FLAG) VALUES('싱가포르','Singapore','1.28333','103.85','아시아','SG','https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Flag_of_Singapore.svg/225px-Flag_of_Singapore.svg.png');
@@ -234,12 +234,14 @@ INSERT INTO COUNTRY(COUNTRY_NAME,COUNTRY_ENAME,COUNTRY_LAT,COUNTRY_LNG,CONTINENT
 
 
 INSERT INTO CITY(CITY_NAME,CITY_ENAME,CITY_LAT,CITY_LNG,CITY_DNAME,COUNTRY_ENAME) VALUES('타이베이','Taipei','25.04776','121.53185','타이베이는 타이완 북쪽의 타이베이 분지에 위치한다. 남쪽으로 신뎬시(新店溪), 서쪽으로 단수이허와 경계를 접한다. 서쪽은 대체로 낮은 평야이고 남쪽과 동쪽, 북쪽을 향해 경사져 있으며 특히 북쪽에는 타이완에서 가장 높은 화산이자 양밍 산으로 지정되어 있는 해발 1,120m의 치싱 산이 있다. ','Taiwan');
+INSERT INTO CITY(CITY_NAME,CITY_ENAME,CITY_LAT,CITY_LNG,CITY_DNAME,COUNTRY_ENAME) VALUES('가오슝','Kaohsiung','22.6272784','120.3014353','타이베이와는 다른 가오슝의 철도는 넓고 타이베이와는 달리 교통 정체는 심하지 않다. 하지만 가오슝 주변에는 중공업이 발달한 곳이 널리 있고 대기 오염은 심각하다. 가오슝은 타이완 석유가 대부분 수입하는 주요 항으로 중공업이 발달해 있다. ','Taiwan');
+INSERT INTO CITY(CITY_NAME,CITY_ENAME,CITY_LAT,CITY_LNG,CITY_DNAME,COUNTRY_ENAME) VALUES('화롄','Hualien','23.977','121.604','대만 원주민들은 이 곳을 킬라이(奇萊)나 투루모안(多羅滿)이라고 불렀다. 한족이 이 곳에 도달한 건 19세기 중반이었으며, 그들이 본 강 삼각주의 거친 물살을 보고 후이란(洄瀾)이란 이름을 붙였다.','Taiwan');
 INSERT INTO CITY(CITY_NAME,CITY_ENAME,CITY_LAT,CITY_LNG,CITY_DNAME,COUNTRY_ENAME) VALUES('타이난','Tainan','22.9998999','120.2268758','대만에서 가장 오래된 도시이자 타이완 섬에서 가장 먼저 개발된 도시이며 면적은 2,192km²이다. 네덜란드인이 이 지역을 개발한 이래 네덜란드를 몰아낸 정씨 왕국과, 이를 흡수한 청나라 모두 타이난을 중심으로 타이완 섬을 통치했다','Taiwan');
 INSERT INTO CITY(CITY_NAME,CITY_ENAME,CITY_LAT,CITY_LNG,CITY_DNAME,COUNTRY_ENAME) VALUES('이란','Yilan','24.7021073','121.7377502','이란 시는 옛날에는 대만 원주민 평포족 카발란족의 거주지였다. 기록에서의 첫 등장은 1625년에 스페인 선교사인 하닌트 에스키발(Hahint Esquival)이 작성한 동대만 지명 일람 중의 kibanurn라는 기록이다. 이것은 이란 평원에 거주하고 있던 크발란(Kvalan)이며 평지의 거주자를 의미한다고 한다.','Taiwan');
 INSERT INTO CITY(CITY_NAME,CITY_ENAME,CITY_LAT,CITY_LNG,CITY_DNAME,COUNTRY_ENAME) VALUES('타이중','Taitung','24.2554817','120.6003376','타이중 시는 청나라 말기에 발전하기 시작했다. 1890년에 류밍촨(劉銘傳)이 지금의 타이중 시 지역에서 성과 행정관청을 지었고 타이완이 성(省)이 된 후에 타이완의 성회(省會)로 할 예정이었다. 다음 타이완 순무(巡撫)가 이 계획을 중지했지만 타이중은 청나라시대에 타이완에서 가장 큰 성이었다.','Taiwan');
-INSERT INTO CITY(CITY_NAME,CITY_ENAME,CITY_LAT,CITY_LNG,CITY_DNAME,COUNTRY_ENAME) VALUES('가오슝','Kaohsiung','22.6272784','120.3014353','타이베이와는 다른 가오슝의 철도는 넓고 타이베이와는 달리 교통 정체는 심하지 않다. 하지만 가오슝 주변에는 중공업이 발달한 곳이 널리 있고 대기 오염은 심각하다. 가오슝은 타이완 석유가 대부분 수입하는 주요 항으로 중공업이 발달해 있다. ','Taiwan');
+
 INSERT INTO CITY(CITY_NAME,CITY_ENAME,CITY_LAT,CITY_LNG,CITY_DNAME,COUNTRY_ENAME) VALUES('신베이','New Taipei City','25.0169826','121.4627868','대만(중화민국)의 6대 직할시 중 하나. 예전엔 타이완 성 타이베이 현(臺北縣)이었지만, 2010년 12월 25일 직할시로 승격되면서 타이베이 시와의 중복을 피하기 위해 명칭 공모를 하였고 그 중 가장 많은 표를 얻은 신베이로 개칭되었다. ','Taiwan');
-INSERT INTO CITY(CITY_NAME,CITY_ENAME,CITY_LAT,CITY_LNG,CITY_DNAME,COUNTRY_ENAME) VALUES('화롄','Hualien','23.977','121.604','대만 원주민들은 이 곳을 킬라이(奇萊)나 투루모안(多羅滿)이라고 불렀다. 한족이 이 곳에 도달한 건 19세기 중반이었으며, 그들이 본 강 삼각주의 거친 물살을 보고 후이란(洄瀾)이란 이름을 붙였다.','Taiwan');
+
 INSERT INTO CITY(CITY_NAME,CITY_ENAME,CITY_LAT,CITY_LNG,CITY_DNAME,COUNTRY_ENAME) VALUES('타이동','Taidong','22.7972447','121.0713702','타이둥 지역이 역사 사료 안에서 최초로 확인되는 것은, 네덜란드 통치 시대인 1636년이다. 대항해시대로 불린 당시 포르투갈, 스페인, 네덜란드가 새로운 시장을 얻기 위해 타이완 섬에 내항했다. 네덜란드는 1624년, 대원(大員, 현재의 타이난 시 안핑 구)에 질란디아성(Zeelandia)을 축성 해, 타이완 남부를 지배하기 시작했다.','Taiwan');
 
 
@@ -540,7 +542,7 @@ INSERT INTO MEMSCH(MS_COUNTRY_NAME,MS_TITLE,MEMBER_ID) VALUES('대만','둘이�
 INSERT INTO MEMSCH(MS_COUNTRY_NAME,MS_TITLE,MEMBER_ID) VALUES('대만','가보자','1075836473');
 INSERT INTO MEMSCH(MS_COUNTRY_NAME,MS_TITLE,MEMBER_ID) VALUES('대만','만족스런 대만여행','1075836473');
 INSERT INTO MEMSCH(MS_COUNTRY_NAME,MS_TITLE,MEMBER_ID) VALUES('대만','나의 대만으로','1075836473');
-INSERT INTO MEMSCH(MS_COUNTRY_NAME,MS_TITLE,MEMBER_ID) VALUES('대만','대만좋아요','1075836473');
+INSERT INTO MEMSCH(MS_COUNTRY_NAME,MS_TITLE,MEMBER_ID) VALUES('대만','대만좋아요','1073491307');
 
 INSERT INTO MEMSCH(MS_COUNTRY_NAME,MS_TITLE,MEMBER_ID) VALUES('러시아','러시아이 좋아.','1075836473');
 INSERT INTO MEMSCH(MS_COUNTRY_NAME,MS_TITLE,MEMBER_ID) VALUES('러시아','러시아이 좋아요.','1075836473');
@@ -2142,17 +2144,24 @@ INSERT INTO MEMSCH(MS_COUNTRY_NAME,MS_TITLE,MEMBER_ID) VALUES('베트남','나�
 INSERT INTO MEMSCH(MS_COUNTRY_NAME,MS_TITLE,MEMBER_ID) VALUES('베트남','레츠고 베트남 좋습니다.','1075836473');
 INSERT INTO MEMSCH(MS_COUNTRY_NAME,MS_TITLE,MEMBER_ID) VALUES('베트남','가자 베트남','1075836473');
 INSERT INTO MEMSCH(MS_COUNTRY_NAME,MS_TITLE,MEMBER_ID) VALUES ('미국', '나의 첫 미국여행기', '1073491307');
+INSERT INTO MEMSCH(MS_COUNTRY_NAME,MS_TITLE,MEMBER_ID) VALUES ('미국', '미국여행기', '1076783255');
 
 
-INSERT INTO MEMSCHCTIY (MS_DAY, MS_CITY_NAME, MS_DATE, MS_SEQ) VALUES ('Day1', '타이베이', '190530', '2');
-INSERT INTO MEMSCHCTIY (MS_DAY, MS_CITY_NAME, MS_DATE, MS_SEQ) VALUES ('Day2', '가오슝', '190531', '2');
-INSERT INTO MEMSCHCTIY (MS_DAY, MS_CITY_NAME, MS_DATE, MS_SEQ) VALUES ('Day3', '타이중', '190601', '2');
+INSERT INTO MEMSCHCTIY (MS_DAY, MS_CITY_NAME, MS_DATE, MS_SEQ) VALUES ('Day1', '타이베이', '190530', '297');
+INSERT INTO MEMSCHCTIY (MS_DAY, MS_CITY_NAME, MS_DATE, MS_SEQ) VALUES ('Day2', '가오슝', '190531', '297');
+INSERT INTO MEMSCHCTIY (MS_DAY, MS_CITY_NAME, MS_DATE, MS_SEQ) VALUES ('Day3', '타이중', '190601', '297');
 
 INSERT INTO MEMSCHCTIY (MS_DAY, MS_CITY_NAME, MS_DATE, MS_SEQ) VALUES ('Day1', '라스베이거스', '190613', '1886');
 INSERT INTO MEMSCHCTIY (MS_DAY, MS_CITY_NAME, MS_DATE, MS_SEQ) VALUES ('Day2', '라스베이거스', '190614', '1886');
 INSERT INTO MEMSCHCTIY (MS_DAY, MS_CITY_NAME, MS_DATE, MS_SEQ) VALUES ('Day3', '시카고', '190615', '1886');
 INSERT INTO MEMSCHCTIY (MS_DAY, MS_CITY_NAME, MS_DATE, MS_SEQ) VALUES ('Day4', '시카고', '190616', '1886');
 INSERT INTO MEMSCHCTIY (MS_DAY, MS_CITY_NAME, MS_DATE, MS_SEQ) VALUES ('Day5', '시카고', '190617', '1886');
+
+INSERT INTO MEMSCHCTIY (MS_DAY, MS_CITY_NAME, MS_DATE, MS_SEQ) VALUES ('Day1', '라스베이거스', '190613', '1887');
+INSERT INTO MEMSCHCTIY (MS_DAY, MS_CITY_NAME, MS_DATE, MS_SEQ) VALUES ('Day2', '라스베이거스', '190614', '1887');
+INSERT INTO MEMSCHCTIY (MS_DAY, MS_CITY_NAME, MS_DATE, MS_SEQ) VALUES ('Day3', '시카고', '190615', '1887');
+INSERT INTO MEMSCHCTIY (MS_DAY, MS_CITY_NAME, MS_DATE, MS_SEQ) VALUES ('Day4', '시카고', '190616', '1887');
+INSERT INTO MEMSCHCTIY (MS_DAY, MS_CITY_NAME, MS_DATE, MS_SEQ) VALUES ('Day5', '시카고', '190617', '1887');
 
 
 INSERT INTO MEMSCHATTR (MS_ATTR_NAME, MS_CTIY_SEQ) VALUES ('스펀 폭포', '1');
@@ -2178,6 +2187,19 @@ INSERT INTO MEMSCHATTR (MS_ATTR_NAME, MS_CTIY_SEQ) VALUES ('링컨 공원 동물
 INSERT INTO MEMSCHATTR (MS_ATTR_NAME, MS_CTIY_SEQ) VALUES ('오크 스트리트 비치', '8');
 INSERT INTO MEMSCHATTR (MS_ATTR_NAME, MS_CTIY_SEQ) VALUES ('시카고 워터 타워', '8');
 
+INSERT INTO MEMSCHATTR (MS_ATTR_NAME, MS_CTIY_SEQ) VALUES ('네바다', '9');
+INSERT INTO MEMSCHATTR (MS_ATTR_NAME, MS_CTIY_SEQ) VALUES ('벨라지오 호텔', '9');
+INSERT INTO MEMSCHATTR (MS_ATTR_NAME, MS_CTIY_SEQ) VALUES ('패션쇼 몰', '10');
+INSERT INTO MEMSCHATTR (MS_ATTR_NAME, MS_CTIY_SEQ) VALUES ('빅샷', '10');
+INSERT INTO MEMSCHATTR (MS_ATTR_NAME, MS_CTIY_SEQ) VALUES ('히스토리 뮤지엄', '10');
+INSERT INTO MEMSCHATTR (MS_ATTR_NAME, MS_CTIY_SEQ) VALUES ('시카고 대학', '11');
+INSERT INTO MEMSCHATTR (MS_ATTR_NAME, MS_CTIY_SEQ) VALUES ('밀레니엄 공원', '11');
+INSERT INTO MEMSCHATTR (MS_ATTR_NAME, MS_CTIY_SEQ) VALUES ('시카고 박물관', '12');
+INSERT INTO MEMSCHATTR (MS_ATTR_NAME, MS_CTIY_SEQ) VALUES ('쉐드 수족관', '12');
+INSERT INTO MEMSCHATTR (MS_ATTR_NAME, MS_CTIY_SEQ) VALUES ('링컨 공원 동물원', '13');
+INSERT INTO MEMSCHATTR (MS_ATTR_NAME, MS_CTIY_SEQ) VALUES ('오크 스트리트 비치', '13');
+INSERT INTO MEMSCHATTR (MS_ATTR_NAME, MS_CTIY_SEQ) VALUES ('시카고 워터 타워', '13');
+
 
 INSERT INTO IMAGE (IMG_NAME,IMG_URL) VALUES('Taipei','http://img.earthtory.com/img/city_images/92/taipei_1425530262.jpg');
 INSERT INTO IMAGE (IMG_NAME,IMG_URL) VALUES('Tainan','http://mw2.google.com/mw-panoramio/photos/medium/44455874.jpg');
@@ -2188,11 +2210,11 @@ INSERT INTO IMAGE (IMG_NAME,IMG_URL) VALUES('New Taipei City','http://cdn.tour-n
 INSERT INTO IMAGE (IMG_NAME,IMG_URL) VALUES('Hualien','http://mw2.google.com/mw-panoramio/photos/medium/52508599.jpg');
 INSERT INTO IMAGE (IMG_NAME,IMG_URL) VALUES('Taidong','http://mw2.google.com/mw-panoramio/photos/medium/19492276.jpg'); 
 
+INSERT INTO IMAGE (IMG_NAME, IMG_URL) VALUES ('대만', 'http://img.earthtory.com/img/city_images/91/kaohsiung_1425362055.jpg');
 INSERT INTO IMAGE (IMG_NAME, IMG_URL) VALUES ('마카오', 'http://img.earthtory.com/img/city_images/10024/bali_1425369234.jpg');
 INSERT INTO IMAGE (IMG_NAME, IMG_URL) VALUES ('인도네시아', 'http://img.earthtory.com/img/city_images/10024/bali_1425369234.jpg');
 INSERT INTO IMAGE (IMG_NAME, IMG_URL) VALUES ('몰디브', 'http://mw2.google.com/mw-panoramio/photos/medium/95176248.jpg');
 INSERT INTO IMAGE (IMG_NAME, IMG_URL) VALUES ('라오스', 'http://mw2.google.com/mw-panoramio/photos/medium/1608334.jpg');
-INSERT INTO IMAGE (IMG_NAME, IMG_URL) VALUES ('대만', 'http://img.earthtory.com/img/city_images/91/kaohsiung_1425362055.jpg');
 INSERT INTO IMAGE (IMG_NAME, IMG_URL) VALUES ('베트남', 'http://t1.daumcdn.net/liveboard/realfood/0da027dd0f3a4933b63a192146ba1d5c.JPG');
 INSERT INTO IMAGE (IMG_NAME, IMG_URL) VALUES ('스리랑카', 'http://mw2.google.com/mw-panoramio/photos/medium/37604876.jpg');
 INSERT INTO IMAGE (IMG_NAME, IMG_URL) VALUES ('싱가포르', 'https://travelblog.expedia.co.kr/wp-content/uploads/2016/08/09.jpg');

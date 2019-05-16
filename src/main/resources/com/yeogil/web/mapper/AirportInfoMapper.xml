@@ -36,23 +36,4 @@
 									#{sDepartAirportr}
 									)
 	</insert>
-	<!-- <select id="selectAllAirportInfo" parameterType="com.yeogil.web.controller.Proxy" resultMap="Proxy">
-	SELECT
-	  		S_AIRPORT_NAME sAirportName,
-	  		S_DEPARTURE_TIME sDepartureTime,
-	  		S_ARRIVAL_TIME sArrivalTime,
-	  		S_DEPART_AIRPORT sDepartAirport,
-	  		S_ARRIVAL_AIRPORT sArrivalAirport,
-	  		S_DEPART_DATE sDepartDate,
-	  		S_ARRIVAL_DATE sArrivalDate,
-	  		S_AIRPORT_NAMER sAirportNamer,
-	  		S_DEPARTURE_TIMER sDepartureTimer,
-	  		S_ARRIVAL_TIMER sArrivalTimer,
-	  		S_DEPART_DATER sDepartDater,
-	  		S_ARRIVAL_DATER sArrivalDater,
-	  		S_PRICER sPricer,
-	  		S_ARRIVAL_AIRPORTR sArrivalAirportr,
-	  		S_DEPART_AIRPORTR sDepartAirportr
-	  FROM AIRPORTINFO
-	</select> -->
 </mapper>

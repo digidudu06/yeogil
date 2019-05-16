@@ -12,6 +12,7 @@ public interface AttractionMapper {
 	public void insertAttraction(AttractionDTO att);
 	public List<AttractionDTO> selectAllAttractions(Proxy pxy);
 	public List<AttractionDTO> selectCityAttractions(Proxy pxy);
+	public List<AttractionDTO> selectOneCityAttractions(String att);
 	public AttractionDTO selectCustomer(AttractionDTO att);
 	public int countAttraction(String countryName);
 	public void updateAttraction(AttractionDTO att);
