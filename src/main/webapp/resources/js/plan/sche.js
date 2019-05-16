@@ -546,15 +546,7 @@ sche = (()=>{
 			let _lat = $(this).parent().attr('data-lat');
 			let _lng = $(this).parent().attr('data-lng');
 			let ci_name = $(this).parent().attr('data-ci_name');
-			
-/*			let _html ='';
-			_html = '<div class="s_cities" data-ci="'+ci_srl+'" data-day="2" data-lat="'+_lat+'" data-lng="'+_lng+'"><div class="city_route_info" id="city_route"><div class="city_distance_info fl">0Km</div><a href="http://flights.earthtory.com" target="_blank"><div class="city_air_search_btn fr">항공검색</div></a><div class="clear"></div></div>';
-			_html += '<div class="city_info"><div class="del_city_btn fl"><img src="'+img+'/map/del_city_btn_a.png"></div><div class="fl">'+ci_name+'</div>';
-			_html += '<div class="fr city_set_day_box"><div class="fl city_set_minus_btn"><img src="'+img+'/map/city_item_minus_btn.png"></div><div class="fl city_set_day_info"><span>1</span>일 </div>';
-			_html += '<div class="fl city_set_plus_btn"><img src="'+img+'/map/city_item_plus_btn.png"></div><div class="detail_plan_go_btn_1" name="'+ci_name+'">관광지선택</div><div class="clear"></div></div><div class="clear"></div></div>';
-			_html += '</div>';
-			$('#selected_cities').append(_html);*/
-			
+
 			$('<div class="s_cities" data-ci="'+ci_srl+'" data-day="2" data-lat="'+_lat+'" data-lng="'+_lng+'"><div class="city_route_info" id="city_route"><div class="city_distance_info fl">0Km</div><a href="http://flights.earthtory.com" target="_blank"><div class="city_air_search_btn fr">항공검색</div></a><div class="clear"></div></div>'
 					+'<div class="city_info"><div class="del_city_btn fl"><img src="'+img+'/map/del_city_btn_a.png"></div><div class="fl">'+ci_name+'</div>'
 					+'<div class="fr city_set_day_box"><div class="fl city_set_minus_btn"><img src="'+img+'/map/city_item_minus_btn.png"></div><div class="fl city_set_day_info"><span>1</span>일 </div>'
@@ -562,30 +554,46 @@ sche = (()=>{
 					+'</div>'
 					).appendTo('#selected_cities')
 					.addClass('cursor').click(function(){
+						alert(ci_name);
+						let data = ci_name;
+						$.ajax({
+							url: _+"/cont/country/city/"+ci_name,
+							type: "POST",
+							data : JSON.stringify(data),
+							dataType :"json",
+							contentType : "application/json; charset=UTF-8",
+							success: d => {
+								$.each(d.ls,(i,j)=>{
+									$('<div class="s_attrs"><div class="img_box fl">'
+											+'<img src="'+j.attrImg+'" width="65" height="55"></div>'
+											+'<div class="info_box fl"><div class="info_title">'+attrName+'</div>'
+											+'<div class="info_sub_title">Taipei</div></div>'
+											+'<div class="spot_to_inspot"><img src="/web/resources/img/map/spot_to_inspot_a.png"></div>'
+											+'<div class="clear"></div>'
+											+'</div>').appendTo('#selected_attr');
+									
+								});
+							},error: e => {
+								alert('실패');
+							}
+						});
+						
 						$(compo.sche_detail()).appendTo('#right_full_box').attr("style","left: 450px;display: block; width:300px;").attr("id","select_detail_view_attr");
 						$('#select_detail_view_attr #plan_title').remove();
 						$('#select_detail_view_attr .pn_date_info').remove();
 						$('#select_detail_view_attr img').remove();
+						
+						$('#select_detail_view_attr .city_title').attr("id","attr_title");
+						$('#select_detail_view_attr #selected_cities').attr("id","selected_attr");
+						
+						$('#attr_title').children().eq(0).text(ci_name).attr("style","padding-top: 0px");
+						
 					});
 			
 			$('.city_route_info').css("background","url('"+img+"/map/item_route_bg.png') no-repeat 20px 0px");
 			draw_city_route();
 		});
-		/*function attr_add(){
-			$('.detail_plan_go_btn_1').click(function(){
-				alert('클릭클릭');
-				
-				let html2 ='';
-				
-				html2 = '<div id="select_detail_view_city" data="0">'
-				+'<div class="city_title">'
-					+'<div class="ci_title_name fl" style="padding-top: 13px; width: 70%"><input type="text" id="plan_title" class="form-control" placeholder="여행타이틀을 입력하세요" style="width: 220px;"></div>'
-					+'</div>'
-					+'<div class="clear"></div>'
-				+'</div>';
-				$('#select_detail_view_city').append(html2);
-			});
-		}*/
+	
 		
 		$('#city_list_box').on('click','.item.state',function(){
 			_is_state = $(this).attr('data-is_state');

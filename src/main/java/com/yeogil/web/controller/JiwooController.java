@@ -1,12 +1,7 @@
 package com.yeogil.web.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +15,7 @@ import com.yeogil.web.domain.CountryDTO;
 import com.yeogil.web.domain.MemschAttrDTO;
 import com.yeogil.web.domain.MemschCityDTO;
 import com.yeogil.web.domain.ScheduleDTO;
+import com.yeogil.web.mapper.AttractionMapper;
 import com.yeogil.web.mapper.CityMapper;
 import com.yeogil.web.mapper.ScheduleMapper;
 import com.yeogil.web.service.CityService;
@@ -38,6 +34,7 @@ public class JiwooController {
 	@Autowired Map<String,Object> map;
 	@Autowired ScheduleDTO schedule;
 	@Autowired MemschAttrDTO attr;
+	@Autowired AttractionMapper attractionmapper;
 	@Autowired ScheduleMapper schedulemapper;
 	@Autowired MemschCityDTO mcdto;
 	@Autowired TransactionService transactionservice;
@@ -69,6 +66,21 @@ public class JiwooController {
 		return map;
 	}
 	
+	@PostMapping("/cont/country/city/{cityName}")
+	public Map<?,?> attrlist(@PathVariable String cityName) {
+		System.out.println("===jiwoo cotr attr list==="+cityName);
+		
+		  IFunction i = (Object o) -> attractionmapper.selectOneCityAttractions(cityName);
+		  List<?> ls = (List<?>) i.apply(cityName);
+		  
+		  	System.out.println(ls.toString());
+		
+		
+		  map.clear(); 
+		  map.put("ls",ls);
+		 
+		return map;
+	}
 	
 	@PostMapping("/myplan/schedule/{memberid}")
 	public Map<?,?> storelist(
