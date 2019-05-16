@@ -18,6 +18,7 @@ public interface ScheduleMapper {
 	public void insertSchedule(ScheduleDTO sch);
 	public void insertSchedule2(MemschCityDTO mem);
 	public void insertSchedule3(MemschAttrDTO mem);
+	public void insertSchedules(ScheduleDTO sch);
 	
 	public List<AttractionDTO> scheList(ScheduleDTO attr);
 	public List<ScheduleDTO> selectAllSchedules(String id);
