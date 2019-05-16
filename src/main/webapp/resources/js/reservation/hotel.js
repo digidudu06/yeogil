@@ -23,14 +23,7 @@ hotel =(()=>{
 				  +'<meta name="viewport" content="width=device-width, initial-scale=1">'
 				  +'<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">'
 				  +'<link class="sw_css" rel="stylesheet" href="'+css+'/common/hbootstrap.min.css" />'
-				  +'<link class="sw_css" rel="stylesheet" href="'+css+'/common/hstyle.css" />'
-	//어스토리	
-				  +'<link class="sw_css" rel="stylesheet" href="'+css+'/common/web/default_ko.css" />'
-				  +'<link class="sw_css" rel="stylesheet" href="'+css+'/common/web/gnb.css" />'
-				  +'<link class="sw_css" rel="stylesheet" href="'+css+'/component/default.css" />'
-				  +'<link class="sw_css" rel="stylesheet" href="'+css+'/component/reset.css" />'
-				  +'<link class="sw_css" rel="stylesheet" href="'+css+'/web/main.css" />'
-				  +'<link class="sw_css" rel="stylesheet" href="'+css+'/web/date_picker.css" /> ';
+				  +'<link class="sw_css" rel="stylesheet" href="'+css+'/common/hstyle.css" />';
 				$(sw_css).appendTo('head');
 				
 				$.getScript(compojs, ()=>{
@@ -54,22 +47,26 @@ hotel =(()=>{
 					$('#hml_01').click(()=>{
 						setContentView();
 					});
+					//sdfsdf
 //========================================호텔검색눌렀을때
 					$('#hcheck_01').click(function(e){
 						e.preventDefault();
 						let data = {arrivalDate:$('#h_date_01').val(),
-								departDateR:$('#h_date_02').val()};//map자체
+								departDateR:$('#h_date_02').val(),
+								cityName:$('#hdes_01').next().val(),
+								};//map자체
+						alert(data.cityName);
 						if(data.arrivalDate===""||data.departDateR===""){
 							alert("모든 항목을 기입해주세요");
 						}else{
 							$(document).ready(function() {
-								  $('#hcheck_01').bind('click', function() {
-								    $('html, body').animate({scrollTop: '1000'}, 1000);
-								  });
+								 /* $('#hcheck_01').bind('click', function() {*/
+								    $('html, body').animate({scrollTop: '900'}, 5000);
+								  /*});*/
 							});
 //==========================================호텔 크롤링
 							$.ajax({
-								url: _+'/crawling/hvation',
+								url: _+'/crawling/hvation/'+sessionStorage.getItem('memberId'),
 								type:'post',
 								data:JSON.stringify(data),
 								dataType:'json',
@@ -79,7 +76,7 @@ hotel =(()=>{
 									$.each(d.htlist,(i,j)=>{
 										if(i<9){
 											$('<div class="intro_box" style="height:320px"><img src="'+j.imgUrl
-													+'" width="348" height="170" alt=""></img>'
+													+'" width="348" height="170" alt=""></img><br>'
 													+'<div id="hicon'+i+'" class="intro_title">'+j.hotelName+'</div>'
 													+'<div class="btn-area">'
 													+'<div class="btn-wrap position-relative">'
@@ -87,12 +84,53 @@ hotel =(()=>{
 													+'</div>'
 													+'</div>'
 													+'<div class="clear"></div></div>').attr('name',j.imgname).appendTo('.intro_list').click(function(){
+														let data = {hotelName:$('#hicon0').html(),
+																price:$('#hprice_00').html(),
+																roomType:$('#rtype_00').html(),
+																notice:$('#hnoti_00').html(),
+																cityName:$('#nation_01').text(),
+																};
+														alert(data.cityName);
+										//=====================================호텔 정보저장
+														$.ajax({
+															url: _+'/sw/htsave/'+sessionStorage.getItem('memberId'),
+															type:'post',
+															data:JSON.stringify(data),
+															dataType:'json',
+															contentType:'application/json',
+															success: d =>{
+																IMP.init('imp68242076');
+																 IMP.request_pay({
+																	    pg : 'kcp',
+																	    pay_method : 'samsung',
+																	    merchant_uid : 'merchant_' + new Date().getTime(),
+																	    name : '(주)여길가자 - 항공권예매',
+																	    amount : 100,
+																	    buyer_email : 'iamport@siot.do',
+																	    buyer_name : '구매자이름',
+																	    buyer_tel : '010-1234-5678',
+																	    buyer_addr : '서울특별시 강남구 삼성동',
+																	    buyer_postcode : '123-456'
+																	}, function(rsp) {
+																	    if ( rsp.success ) {
+																	        var msg = '결제가 완료되었습니다.';
+																	        msg += 'imp68242076 : ' + rsp.imp_uid;
+																	        msg += '상점 거래ID : ' + rsp.merchant_uid;
+																	        msg += '결제 금액 : ' + rsp.paid_amount;
+																	        msg += '카드 승인번호 : ' + rsp.apply_num;
+																	    } else {
+																	        var msg = '결제에 실패하였습니다.';
+																	        msg += '에러내용 : ' + rsp.error_msg;
+																	    }
+																	    alert(msg);
+																	});
+															},
+															error: e =>{}
+															});	
 													});
 										}
 										i++;
-									 });
-									$('#hotel_p00').click(function(){
-										 ghxpf();
+										
 									 });
 								},
 								error:e=>{}
@@ -100,50 +138,6 @@ hotel =(()=>{
 						}
 					});
 				});
-		};
-		let ghxpf=()=>{
-			let data = {hotelName:$('#hicon0').html(),
-						price:$('#hprice_00').html(),
-						roomType:$('#rtype_00').html(),
-						notice:$('#hnoti_00').html()};
-//=====================================호텔 정보저장
-				$.ajax({
-					url: _+'/sw/htsave/'+sessionStorage.getItem('memberId'),
-					type:'post',
-					data:JSON.stringify(data),
-					dataType:'json',
-					contentType:'application/json',
-					success: d =>{
-						IMP.init('imp68242076');
-						 IMP.request_pay({
-							    pg : 'kcp',
-							    pay_method : 'samsung',
-							    merchant_uid : 'merchant_' + new Date().getTime(),
-							    name : '(주)여길가자 - 항공권예매',
-							    amount : 100,
-							    buyer_email : 'iamport@siot.do',
-							    buyer_name : '구매자이름',
-							    buyer_tel : '010-1234-5678',
-							    buyer_addr : '서울특별시 강남구 삼성동',
-							    buyer_postcode : '123-456'
-							}, function(rsp) {
-							    if ( rsp.success ) {
-							        var msg = '결제가 완료되었습니다.';
-							        msg += 'imp68242076 : ' + rsp.imp_uid;
-							        msg += '상점 거래ID : ' + rsp.merchant_uid;
-							        msg += '결제 금액 : ' + rsp.paid_amount;
-							        msg += '카드 승인번호 : ' + rsp.apply_num;
-							    } else {
-							        var msg = '결제에 실패하였습니다.';
-							        msg += '에러내용 : ' + rsp.error_msg;
-							    }
-
-							    alert(msg);
-							});
-					},
-					error: e =>{}
-					});
-					
 		};
 		return {init:init};
 })();

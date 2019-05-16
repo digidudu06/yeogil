@@ -435,7 +435,7 @@ compo = {
 		+'	</div>'
 		+'</div>';
 	},
-//	정지우
+// 정지우
 		plan_header : ()=>{
 			return '<div class="plan_header" id="plan_header">'
 			+'<div class="wrap">'
@@ -791,11 +791,15 @@ compo = {
 			return '<div id="full_wrap" style="width: 100%; height: 733px;">'
 			+'<div class="fl left_full_box">'
 			+'<ul class="fl" id="cat_menu" data="" data-member_srl="1376703">'
-				/*+'<li data="as" data-val="아시아" class=""><img id="asia" src="/res/img/workspace/new/cat_as.png" class="s"><br>아시아</li>'
-				+'<li data="eu" data-val="유럽" class="on"><img src="/res/img/workspace/new/cat_eu.png" class="s"><br>유럽</li>'
-				+'<li data="oc" data-val="남태평양" class=""><img src="/res/img/workspace/new/cat_oc.png" class="s"><br>남태평양</li>'
-				+'<li data="na" data-val="북아메리카" class=""><img src="/res/img/workspace/new/cat_na.png" class="s"><br>북아메리카</li>'
-				+'<li data="sa" data-val="중남미" class=""><img src="/res/img/workspace/new/cat_sa.png" class="s" style="padding-bottom:7px;"><br>중남미</li>'*/
+				/*
+				 * +'<li data="as" data-val="아시아" class=""><img id="asia"
+				 * src="/res/img/workspace/new/cat_as.png" class="s"><br>아시아</li>' +'<li data="eu" data-val="유럽" class="on"><img
+				 * src="/res/img/workspace/new/cat_eu.png" class="s"><br>유럽</li>' +'<li data="oc" data-val="남태평양" class=""><img
+				 * src="/res/img/workspace/new/cat_oc.png" class="s"><br>남태평양</li>' +'<li data="na" data-val="북아메리카" class=""><img
+				 * src="/res/img/workspace/new/cat_na.png" class="s"><br>북아메리카</li>' +'<li data="sa" data-val="중남미" class=""><img
+				 * src="/res/img/workspace/new/cat_sa.png" class="s"
+				 * style="padding-bottom:7px;"><br>중남미</li>'
+				 */
 			+'</ul>'
 			+'<div class="fl" id="schedule_full_box" style="width:265px" data="0">'
 				+'<div class="title_box">'
@@ -810,7 +814,7 @@ compo = {
 					+'</div>'
 				+'</div>'
 				+'<div id="search_box" style="width:100%;height:51px;border-bottom:solid #d6d6d6 1px;"></div>'
-/*				+'<div id="country_list_box" style="height: 612px;"></div>'*/
+/* +'<div id="country_list_box" style="height: 612px;"></div>' */
 				+'<div id="city_list_box" style="height: 612px; display: none;">'
 				+'</div>'
 			+'</div>'
@@ -847,16 +851,32 @@ compo = {
 				+'<div class="clear"></div>'
 			+'</div>'
 			+'<div id="selected_cities" data="0">'
-							 /*<div class="s_cities" data-lat="0" data-lng="0"><div class="city_info"><div class="del_city_btn fl"><img src="/res/img/workspace/new/del_city_btn_a.png"></div>
-							 <div class="fl">서울</div>
-							 	<div class="fr city_set_day_box"><div class="fl city_set_minus_btn"><img src="/res/img/workspace/new/city_item_minus_btn.png"></div>
-							 	<div class="fl city_set_day_info"><span>2</span>일</div><div class="fl city_set_plus_btn"><img src="/res/img/workspace/new/city_item_plus_btn.png"></div><div class="clear"></div></div>
-							 	<div class="clear"></div></div>
-							 	<div class="city_route_info"><div class="city_distance_info fl">10.5Km</div><div class="city_air_search_btn fr">항공검색</div><div class="clear"></div></div></div>-->*/
+							 /*
+								 * <div class="s_cities" data-lat="0"
+								 * data-lng="0"><div class="city_info"><div
+								 * class="del_city_btn fl"><img
+								 * src="/res/img/workspace/new/del_city_btn_a.png"></div>
+								 * <div class="fl">서울</div> <div class="fr
+								 * city_set_day_box"><div class="fl
+								 * city_set_minus_btn"><img
+								 * src="/res/img/workspace/new/city_item_minus_btn.png"></div>
+								 * <div class="fl city_set_day_info"><span>2</span>일</div><div
+								 * class="fl city_set_plus_btn"><img
+								 * src="/res/img/workspace/new/city_item_plus_btn.png"></div><div
+								 * class="clear"></div></div> <div
+								 * class="clear"></div></div> <div
+								 * class="city_route_info"><div
+								 * class="city_distance_info fl">10.5Km</div><div
+								 * class="city_air_search_btn fr">항공검색</div><div
+								 * class="clear"></div></div></div>-->
+								 */
 		 	+'</div>'
-				/*+'<div class="detail_city_bottom">'
-				 	+'<div class="detail_plan_go_btn" onclick="et_modal("500px","70px","1","0","/ko/modal/create_new_plan?is_exist_city_route=true","2","1");">상세 일정 만들기</div>'
-				+'</div>'*/
+				/*
+				 * +'<div class="detail_city_bottom">' +'<div
+				 * class="detail_plan_go_btn"
+				 * onclick="et_modal("500px","70px","1","0","/ko/modal/create_new_plan?is_exist_city_route=true","2","1");">상세
+				 * 일정 만들기</div>' +'</div>'
+				 */
 		+'</div>'
 		+'<div class="clear"></div>'
 
@@ -982,7 +1002,7 @@ compo = {
 			+'			</div>'
 			+'</div>'
 		},
-//		전서우
+// 전서우
 		reservation: ()=>{
 			return '	<div id="booking" class="seo_section">'
 			+'		<div class="seo_section-center">'
@@ -1231,13 +1251,7 @@ compo = {
 			+'      </tr>'
 			+'    </tbody>'
 			+'  </table>'
-			+'</div>' 
-			/*'<div class="container">'
-			+'  <div class="panel panel-default">'
-			+'    <div id="pnbd_01" class="panel-body">가는편</div>'
-			+'    <div id="pnbd_02" class="panel-body">오는편</div>'
-			+'  </div>'
-			+'</div>'*/;
-
-		}
+			+'</div>';
+		},
+		
 }

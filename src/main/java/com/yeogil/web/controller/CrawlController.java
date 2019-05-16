@@ -1,12 +1,8 @@
 package com.yeogil.web.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -15,6 +11,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -138,8 +135,9 @@ public class CrawlController {
 		return map;
 	}
 	
-	  @PostMapping("/crawling/hvation")
+	  @PostMapping("/crawling/hvation/{memberid}")
 	  public Map<?, ?> hvation(
+			  @PathVariable String memberid,
 			  @RequestBody Map<String, String> param) throws Exception { 
 	  
 	  String hotelimg = "https://www.booking.com/searchresults.ko.html?aid=376440&label=bdot-SIcScZhJX6z_*YtUYg62hwS267777897793%3Apl%3Ata%3Ap1%3Ap22%2C347%2C000%3Aac%3Aap1t1%3Aneg%3Afi%3Atikwd-325272469656%3Alp1009871%3Ali%3Adec%3Adm&sid=b6dbc68cd60ad07bc4e658438e804c14&sb=1&src=searchresults&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Fsearchresults.ko.html%3Faid%3D376440%3Blabel%3Dbdot-SIcScZhJX6z_%252AYtUYg62hwS267777897793%253Apl%253Ata%253Ap1%253Ap22%252C347%252C000%253Aac%253Aap1t1%253Aneg%253Afi%253Atikwd-325272469656%253Alp1009871%253Ali%253Adec%253Adm%3Bsid%3Db6dbc68cd60ad07bc4e658438e804c14%3Btmpl%3Dsearchresults%3Bcheckin_month%3D5%3Bcheckin_monthday%3D13%3Bcheckin_year%3D2019%3Bcheckout_month%3D5%3Bcheckout_monthday%3D17%3Bcheckout_year%3D2019%3Bcity%3D-2637882%3Bclass_interval%3D1%3Bdest_id%3D-2637882%3Bdest_type%3Dcity%3Bdtdisc%3D0%3Bfrom_sf%3D1%3Bgroup_adults%3D2%3Bgroup_children%3D0%3Binac%3D0%3Bindex_postcard%3D0%3Blabel_click%3Dundef%3Bno_rooms%3D1%3Boffset%3D0%3Bpostcard%3D0%3Broom1%3DA%252CA%3Bsb_price_type%3Dtotal%3Bshw_aparth%3D1%3Bslp_r_match%3D0%3Bsrc%3Dsearchresults%3Bsrc_elem%3Dsb%3Bsrpvid%3D29e20872e80a0121%3Bss%3D%25ED%2583%2580%25EC%259D%25B4%25EB%25B2%25A0%25EC%259D%25B4%3Bss_all%3D0%3Bssb%3Dempty%3Bsshis%3D0%3Bssne%3D%25ED%2583%2580%25EC%259D%25B4%25EB%25B2%25A0%25EC%259D%25B4%3Bssne_untouched%3D%25ED%2583%2580%25EC%259D%25B4%25EB%25B2%25A0%25EC%259D%25B4%26%3B&ss=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&is_ski_area=0&ssne=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&ssne_untouched=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&city=-2637882&checkin_year=2019&checkin_month=6&checkin_monthday=3&checkout_year=2019&checkout_month=6&checkout_monthday=7&group_adults=2&group_children=0&no_rooms=1&from_sf=1";
@@ -171,7 +169,14 @@ public class CrawlController {
 		  htdto.setPrice(hprice);
 		  htlist.add(htdto); 
 	  }
+	  
+	  
+	  
 	  map.clear();
+	  param.get("cityName");
+	  htdto.setMemberId(memberid);
+	  htdto.setCityName(param.get("cityName"));
+	  System.out.println("");
 	  map.put("htlist", htlist);
 	  return map; 
 	  }

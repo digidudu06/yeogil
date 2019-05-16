@@ -16,7 +16,12 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  	
+	<link class="sw_css" rel="stylesheet" href="${css}/common/web/default_ko.css">
+	<link class="sw_css" rel="stylesheet" href="${css}/common/web/gnb.css">	
+	<link class="sw_css" rel="stylesheet" href="${css}/component/default.css">
+	<link class="sw_css" rel="stylesheet" href="${css}/component/reset.css">	
+	<link class="sw_css" rel="stylesheet" href="${css}/web/main.css" />
+	<link class="sw_css" rel="stylesheet" href="${css}/web/date_picker.css" /> 
 </head>
 <body>
 <!-- 모달 -->
