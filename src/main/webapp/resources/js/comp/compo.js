@@ -435,7 +435,7 @@ compo = {
 		+'	</div>'
 		+'</div>';
 	},
-//	정지우
+// 정지우
 		plan_header : ()=>{
 			return '<div class="plan_header" id="plan_header">'
 			+'<div class="wrap">'
@@ -791,11 +791,15 @@ compo = {
 			return '<div id="full_wrap" style="width: 100%; height: 733px;">'
 			+'<div class="fl left_full_box">'
 			+'<ul class="fl" id="cat_menu" data="" data-member_srl="1376703">'
-				/*+'<li data="as" data-val="아시아" class=""><img id="asia" src="/res/img/workspace/new/cat_as.png" class="s"><br>아시아</li>'
-				+'<li data="eu" data-val="유럽" class="on"><img src="/res/img/workspace/new/cat_eu.png" class="s"><br>유럽</li>'
-				+'<li data="oc" data-val="남태평양" class=""><img src="/res/img/workspace/new/cat_oc.png" class="s"><br>남태평양</li>'
-				+'<li data="na" data-val="북아메리카" class=""><img src="/res/img/workspace/new/cat_na.png" class="s"><br>북아메리카</li>'
-				+'<li data="sa" data-val="중남미" class=""><img src="/res/img/workspace/new/cat_sa.png" class="s" style="padding-bottom:7px;"><br>중남미</li>'*/
+				/*
+				 * +'<li data="as" data-val="아시아" class=""><img id="asia"
+				 * src="/res/img/workspace/new/cat_as.png" class="s"><br>아시아</li>' +'<li data="eu" data-val="유럽" class="on"><img
+				 * src="/res/img/workspace/new/cat_eu.png" class="s"><br>유럽</li>' +'<li data="oc" data-val="남태평양" class=""><img
+				 * src="/res/img/workspace/new/cat_oc.png" class="s"><br>남태평양</li>' +'<li data="na" data-val="북아메리카" class=""><img
+				 * src="/res/img/workspace/new/cat_na.png" class="s"><br>북아메리카</li>' +'<li data="sa" data-val="중남미" class=""><img
+				 * src="/res/img/workspace/new/cat_sa.png" class="s"
+				 * style="padding-bottom:7px;"><br>중남미</li>'
+				 */
 			+'</ul>'
 			+'<div class="fl" id="schedule_full_box" style="width:265px" data="0">'
 				+'<div class="title_box">'
@@ -810,7 +814,7 @@ compo = {
 					+'</div>'
 				+'</div>'
 				+'<div id="search_box" style="width:100%;height:51px;border-bottom:solid #d6d6d6 1px;"></div>'
-/*				+'<div id="country_list_box" style="height: 612px;"></div>'*/
+/* +'<div id="country_list_box" style="height: 612px;"></div>' */
 				+'<div id="city_list_box" style="height: 612px; display: none;">'
 				+'</div>'
 			+'</div>'
@@ -971,7 +975,7 @@ compo = {
 			+'			</div>'
 			+'</div>'
 		},
-//		전서우
+// 전서우
 		reservation: ()=>{
 			return '	<div id="booking" class="seo_section">'
 			+'		<div class="seo_section-center">'
@@ -1220,13 +1224,7 @@ compo = {
 			+'      </tr>'
 			+'    </tbody>'
 			+'  </table>'
-			+'</div>' 
-			/*'<div class="container">'
-			+'  <div class="panel panel-default">'
-			+'    <div id="pnbd_01" class="panel-body">가는편</div>'
-			+'    <div id="pnbd_02" class="panel-body">오는편</div>'
-			+'  </div>'
-			+'</div>'*/;
-
-		}
+			+'</div>';
+		},
+		
 }

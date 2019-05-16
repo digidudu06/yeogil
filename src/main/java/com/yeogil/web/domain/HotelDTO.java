@@ -10,5 +10,7 @@ public class HotelDTO {
 					price,
 					roomType,
 					notice,
-					imgUrl;
+					imgUrl,
+					cityName,
+					memberId;
 }

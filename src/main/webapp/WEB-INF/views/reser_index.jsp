@@ -16,7 +16,12 @@
   	<link rel="stylesheet" href="${css}/common/tooltiptext.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  	
+	<link class="sw_css" rel="stylesheet" href="${css}/common/web/default_ko.css">
+	<link class="sw_css" rel="stylesheet" href="${css}/common/web/gnb.css">	
+	<link class="sw_css" rel="stylesheet" href="${css}/component/default.css">
+	<link class="sw_css" rel="stylesheet" href="${css}/component/reset.css">	
+	<link class="sw_css" rel="stylesheet" href="${css}/web/main.css" />
+	<link class="sw_css" rel="stylesheet" href="${css}/web/date_picker.css" /> 
 </head>
 <body>
 <!-- 모달 -->
@@ -48,10 +53,10 @@
 					<img src="${img}/common/logo1.png" style="width: 150px;">
 				</h1>
 				<ul class="gnb fl">
-					<a href="#" class="fl"><li id="tour">여행지</li></a>
-					<a href="#" class="fl"><li id="plan">일정만들기</li></a>
-					<a href="#" class="fl"><li id="reservation">항공·호텔</li></a>
-					<a href="#" class="fl"><li id="admin" >관리자</li></a>
+					<a class="fl"><li id="tour">여행지</li></a>
+					<a class="fl"><li id="plan">일정만들기</li></a>
+					<a class="fl"><li id="reservation">항공·호텔</li></a>
+					<a class="fl"><li id="admin" >관리자</li></a>
 				</ul>
 					<div class="fr gnb_box" style="padding-top: 10px;">
 					<a id="custom-login-btn" href="javascript:loginWithKakao()">

@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.yeogil.web.controller.Proxy;
 import com.yeogil.web.domain.AirportInfoDTO;
 import com.yeogil.web.mapper.AirportInfoMapper;
 
@@ -19,8 +18,8 @@ public class AirportInfoServiceImpl implements AirportInfoService{
 	}
 
 	@Override
-	public List<AirportInfoDTO> findAllAirportInfo(Proxy pxy) {
-		/* List<AirportInfoDTO> list = aimap.selectAllAirportInfo(pxy); */
+	public List<AirportInfoDTO> findAllAirportInfo() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

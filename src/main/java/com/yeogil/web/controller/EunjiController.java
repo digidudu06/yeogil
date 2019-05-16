@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yeogil.web.domain.CityDTO;
 import com.yeogil.web.domain.MemberDTO;
-import com.yeogil.web.mapper.AirportInfoMapper;
 import com.yeogil.web.mapper.ScheduleMapper;
 import com.yeogil.web.service.MemberServiceImpl;
 import com.yeogil.web.service.TransactionService;
@@ -24,7 +23,6 @@ public class EunjiController {
 	@Autowired Map<String, Object> map;
 	@Autowired MemberServiceImpl memberService;
 	@Autowired ScheduleMapper schMap;
-	@Autowired AirportInfoMapper aiMap;
 	@Autowired Proxy pxy;
 	@Autowired TransactionService transactionservice;
 	
@@ -84,5 +82,4 @@ public class EunjiController {
 		transactionservice.removeMemSch(aa);
 		return map;
 	}
-	
 }
