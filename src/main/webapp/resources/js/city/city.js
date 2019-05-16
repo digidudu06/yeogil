@@ -106,7 +106,6 @@ city = (()=>{
 			});
 		});
 	};
-	/////////////////////////////////////////////////////////////////////////////////////////
 	let tourist_main_city = (arr)=>{
 		$.getScript(compojs,()=>{
 			$('.country_detail').empty();
@@ -127,7 +126,7 @@ city = (()=>{
 					.addClass('cursor')
 					.click(function (){
 							if(j.imgName === "Taipei"){
-								city_detail();
+								city_detail(j.cityName);
 							}else{
 								alert('타이베이를 눌러주세요');
 							}
@@ -170,6 +169,9 @@ city = (()=>{
 	let country_detail = (x)=>{
 		$.getScript(compojs,()=>{
 			$(compo.country_detail()).appendTo('#common_area');
+			$('#tour_btn').click(function(){
+				location.assign($.ctx()+'/tour');
+			});
 			$('.country_title').text(x.x);
 			$.getJSON(_+"/crawling/country",d=>{
 				$('.country_flag').attr("src",d.c);
@@ -238,18 +240,20 @@ city = (()=>{
 							}
 						});;
 			 });
-			
 			$('<div class="cjtooltip"><span class="rtooltiptext">타이베이를 눌러주세요</span></a>').appendTo('.area_title_center');
-			
 		});
-		
 	};
 	let city_detail = (c)=>{
 		$.getScript(compojs,()=>{
 			$('.country_detail').remove();
 			$(compo.city_detail()).insertAfter('.silver');
 			$('.area_nav').next().html('<b>타이베이</b>');
-			$('<a class="nav_btn cursor"> > 타이베이</a>').appendTo('.area_nav');
+			$('.area_nav').empty();
+			$('<a id="tour_btn" class="nav_btn cursor"> 여행지 </a> > 대만 > '+c).appendTo('.area_nav');
+			
+			$('#tour_btn').click(function(){
+				location.assign($.ctx()+'/tour');
+			});
 			
 			$('<img alt=""></img>')
 			.attr("src",_+"/resources/img/component/taipai.jpg")
@@ -303,7 +307,6 @@ city = (()=>{
 			$.each(d.img,(i,j)=>{
 				$('<a class="city_box">'
 						+'<div class="city_title">'+j.attrName+'</div>'
-						+'<div class="city_desc">'+j.detail+'</div>'
 						+'<img class="city_img" src="'+j.attrImg+'" width="346" height="240"></img>'
 						+'</a>')
 						.css({'font-size':'30px'})
