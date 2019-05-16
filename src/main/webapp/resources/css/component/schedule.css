@@ -372,12 +372,12 @@ html, body {
 }
 
 .detail_plan_go_btn_1 {
-    width: 50px;
+	width: 70px;
     height: 30px;
     line-height: 30px;
     text-align: center;
     color: #fff;
-    font-size: 5px;
+    font-size: 11px;
     margin: 0 auto;
     background: #49b2e9;
     border: solid #3099dd 1px;
