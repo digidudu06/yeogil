@@ -74,16 +74,16 @@ sche = (()=>{
 						get("아시아");
 						break;
 					case "eu":
-						get("유럽");
+						alert('아시아를 눌러주세요');
 						break;
 					case "oc":
-						get("남태평양");
+						alert('아시아를 눌러주세요');
 						break;
 					case "na":
-						get("북아메리카");
+						alert('아시아를 눌러주세요');
 						break;
 					case "sa":
-						get("중남미");
+						alert('아시아를 눌러주세요');
 						break;
 					}
 					$('<div class="fl ct_title">'+j.val+'</div>')
@@ -107,25 +107,11 @@ sche = (()=>{
 			$('<div class="detail_city_bottom">'
 		 	+'<div class="detail_plan_go_btn">상세 일정 만들기</div></div>').appendTo('#select_detail_view_city');
 			
-//			$('.detail_plan_go_btn_1').empty();
-//			$('<div class="detail_plan_go_btn_1" id="attr_select">관광지선택</div>').appendTo('.city_set_day_box');
-			/*$('#attr_select').click(function(){
-				alert('클릭클릭');
-				let html2 ='';
-				html2 = '<div class="s_cities" data-ci="'+ci_srl+'" data-day="2" data-lat="'+_lat+'" data-lng="'+_lng+'"><div class="city_route_info" id="city_route"><div class="city_distance_info fl">0Km</div><a href="http://flights.earthtory.com" target="_blank"><div class="city_air_search_btn fr">항공검색</div></a><div class="clear"></div></div>';
-				html2 += '<div class="city_info"><div class="del_city_btn fl"><img src="'+img+'/map/del_city_btn_a.png"></div><div class="fl">'+ci_name+'</div>';
-				html2 += '<div class="fr city_set_day_box"><div class="fl city_set_minus_btn"><img src="'+img+'/map/city_item_minus_btn.png"></div><div class="fl city_set_day_info"><span>1</span>일 </div>';
-				html2 += '<div class="fl city_set_plus_btn"><img src="'+img+'/map/city_item_plus_btn.png"></div><div class="detail_plan_go_btn_1">관광지선택</div><div class="clear"></div></div><div class="clear"></div></div>';
-				html2 += '</div>';
-				$('#selected_cities').append(_html);
-			});*/
-			
 			$('.detail_plan_go_btn').click(function(){
 				let data = {ctr : $('#city_list_title').text(),
 							startDate : $('#date_pick_btn').children().eq(0).text(),
 							city : $('#selected_cities .s_cities .city_info .fl').text(),
 							planTitle: $('#plan_title').val()};
-				alert('ctr :: '+data.ctr+'::startDate::'+data.startDate+'::city::'+data.city+'::planTitle::'+data.planTitle);
 
 				$.ajax({
 					url: _+"/myplan/schedule/"+sessionStorage.getItem('memberId'),
@@ -554,7 +540,7 @@ sche = (()=>{
 					+'</div>'
 					).appendTo('#selected_cities')
 					.addClass('cursor').click(function(){
-						alert(ci_name);
+						$('#select_detail_view_attr').remove();
 						let data = ci_name;
 						$.ajax({
 							url: _+"/cont/country/city/"+ci_name,
@@ -564,15 +550,53 @@ sche = (()=>{
 							contentType : "application/json; charset=UTF-8",
 							success: d => {
 								$.each(d.ls,(i,j)=>{
-									$('<div class="s_attrs"><div class="img_box fl">'
+									console.log(d);
+									$('<div class="s_attrs" id="s_attrs"><div class="img_box fl">'
 											+'<img src="'+j.attrImg+'" width="65" height="55"></div>'
-											+'<div class="info_box fl"><div class="info_title">'+attrName+'</div>'
+											+'<div class="info_box fl"><div class="info_title">'+j.attrName+'</div>'
 											+'<div class="info_sub_title">Taipei</div></div>'
-											+'<div class="spot_to_inspot"><img src="/web/resources/img/map/spot_to_inspot_a.png"></div>'
+											+'<div class="spot_to_inspot"><img src="'+img+'/map/spot_to_inspot_a.png"></div>'
 											+'<div class="clear"></div>'
-											+'</div>').appendTo('#selected_attr');
-									
-								});
+											+'</div>').appendTo('#selected_attr').click(function(){
+												$(this).find(".spot_to_inspot img").attr("src",img+"/map/check_img.png");
+											});
+									});
+								
+								$('<div class="detail_city_bottom"><div class="detail_plan_go_btn">관광지 선택 완료</div></div>')
+							 	.appendTo('#select_detail_view_attr').click(function(){
+							 		
+							 		let aa = $('#s_attrs .spot_to_inspot img[src="'+img+'/map/check_img.png"]').prev().text();
+							 		alert(aa);
+							 		
+//							 		$($('#s_attrs .spot_to_inspot img[src="'+img+'/map/check_img.png"]').length).each((i,j)=>{
+//							 			alert();
+//							 		});
+							 		
+							 		
+//							 		$($('#s_attrs .spot_to_inspot img').attr("src") === img+"/map/check_img.png").each((i,j)=>{
+//							 			alert(i);
+//							 		});
+//							 		if($('#s_attrs .spot_to_inspot img').attr("src") === img+"/map/check_img.png"){
+//							 			aa+=1;
+//							 		}
+							 		
+							 		let data = {attrName : $('.s_attrs .info_box').children().eq(0).text()};
+							 		alert(data.attrName);
+							 		$.ajax({
+							 			url:_+"/cont/country/city/cityName/"+data.attrName,
+							 			type: "POST",
+										data : JSON.stringify(data),
+										dataType :"json",
+										contentType : "application/json; charset=UTF-8",
+										success:d=>{
+											alert('성공~');
+											$('#select_detail_view_attr').remove();
+										},
+										error:e=>{
+											alert('실패~');
+										}
+							 		});
+							 	});
 							},error: e => {
 								alert('실패');
 							}
@@ -587,6 +611,8 @@ sche = (()=>{
 						$('#select_detail_view_attr #selected_cities').attr("id","selected_attr");
 						
 						$('#attr_title').children().eq(0).text(ci_name).attr("style","padding-top: 0px");
+						
+
 						
 					});
 			
