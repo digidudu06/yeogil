@@ -82,6 +82,24 @@ public class JiwooController {
 		return map;
 	}
 	
+	@PostMapping("/cont/country/city/cityName/{attrName}")
+	public Map<?,?> attrstore(@PathVariable String attrName) {
+		System.out.println("===jiwoo cotr attr store==="+attrName);
+		
+		/*
+		 * IFunction i = (Object o) ->
+		 * attractionmapper.selectOneCityAttractions(cityName); List<?> ls = (List<?>)
+		 * i.apply(cityName);
+		 * 
+		 * System.out.println(ls.toString());
+		 * 
+		 * 
+		 * map.clear(); map.put("ls",ls);
+		 */
+		 
+		return map;
+	}
+	
 	@PostMapping("/myplan/schedule/{memberid}")
 	public Map<?,?> storelist(
 			@PathVariable String memberid,

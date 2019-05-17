@@ -11,6 +11,8 @@ public class HotelDTO {
 					roomType,
 					notice,
 					imgUrl,
+					memberId,
 					cityName,
-					memberId;
+					startDate,
+					endDate;
 }

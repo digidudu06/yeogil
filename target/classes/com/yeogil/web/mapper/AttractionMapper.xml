@@ -30,7 +30,7 @@
 		WHERE CITY_NAME LIKE #{search}
 		LIMIT 6
 	</select>
-		<select id="selectOneCityAttractions" resultMap="result" parameterType="string">
+	<select id="selectOneCityAttractions" resultMap="result" parameterType="string">
 	  	SELECT *
 		FROM ATTRACTION
 		WHERE CITY_NAME LIKE #{value}

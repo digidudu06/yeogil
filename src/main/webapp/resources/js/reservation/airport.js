@@ -111,17 +111,17 @@ airport = (()=>{
 						}else{
 							$(document).ready(function() {
 								 /* $('#hcheck_01').bind('click', function() {*/
-								    $('html, body').animate({scrollTop: '700'}, 5000);
+								    $('html, body').animate({scrollTop: '800'}, 2000);
 								  /*});*/
 							});
 					 let page ='1';
 					 $.getJSON($.ctx()+'/airlist/'+ page, d=>{
 						 $('<div id="adddiv_01"></div>').appendTo('#common_area');
 						 $('#adddiv_01').empty();
-						 $('<div><h1 id="addpro" style="font-size: 30px;text-align: center;"><div class="seoseo_03">검색하신 항공편입니다</div></h1></br></br>'
-								 +'<br><br><div class="grid-container">'
-								 +'	<div class="item1">가는 항공편</br></br></br></div>'
-								 +'	<div class="item2">오는 항공편</br></br></br></div>'
+						 $('<div><h1 id="addpro" style="font-size: 30px;text-align: center;margin-bottom: 0px;"><div class="seoseo_03" style="height: 50px;">검색하신 항공편입니다</div></h1>'
+								 +'<div class="grid-container">'
+								 +'	<div class="item1"><h3>가는 항공편</h3></br></br></br></div>'
+								 +'	<div class="item2"><h3>오는 항공편</h3></br></br></br></div>'
 								 +'</div></div>').appendTo('#adddiv_01');
 						 $.each(d.al,(i,j)=>{
 							 $('<div class="grid-inner" style="height: 50px">'
@@ -140,54 +140,14 @@ airport = (()=>{
 									 +'<div class="seoseo_01" id="bbc_0'+i+'">'+j.departDateR+' -> '+j.arrivalDateR+' '+'</br>'+' '+'<div class="seoseo_02">'+j.priceR+'원'+'</div>'
 									 +'<button title="'+' '+j.priceR+'" id="apbtn_0'+i+'" type="button" class="btn btn-danger"> 결제</button></div></div>'
 									 +'<div style="height: 30px" ></div>').appendTo('.item2').click(function(){
-										 let data = { 
-												 airportName:$('#aab_00').text(),
-												 departureTime:$('#aac_00').text(),
-												 airportNameR:$('#bbb_00').text(),
-												 departureTimeR:$('#bbc_00').text()};
-										 $.ajax({
-												url: _+'/sw/airsave/'+sessionStorage.getItem('memberId'),
-												type:'post',
-												data:JSON.stringify(data),
-												dataType:'json',
-												contentType:'application/json',
-												success: d =>{
-													let a = $(this).attr('title');
-													 IMP.init('imp68242076');
-													 IMP.request_pay({
-														    pg : 'kcp',
-														    pay_method : 'samsung',
-														    merchant_uid : 'merchant_' + new Date().getTime(),
-														    name : '(주)여길가자 - 항공권예매',
-														    amount : 100,
-														    buyer_email : 'sseoooh@naver.com',
-														    buyer_name : '홍길동',
-														    buyer_tel : '010-1234-5678',
-														    buyer_addr : '서울특별시 강남구 삼성동 여길가자 빌딩 6층',
-														    buyer_postcode : '123-456'
-														}, function(rsp) {
-														    if ( rsp.success ) {
-														        var msg = '결제가 완료되었습니다.';
-														        msg += 'imp68242076 : ' + rsp.imp_uid;
-														        msg += '상점 거래ID : ' + rsp.merchant_uid;
-														        msg += '결제 금액 : ' + rsp.paid_amount;
-														        msg += '카드 승인번호 : ' + rsp.apply_num;
-														    } else {
-														        var msg = '결제에 실패하였습니다.';
-														        msg += '에러내용 : ' + rsp.error_msg;
-														    }
-
-														    alert(msg);
-														});
-												},
-												error: e =>{}
-												});
-										 
-										}); ;
+										 if(sessionStorage.getItem('session') === null){
+											 login();
+										 }else{
+											 pay();
+										 }
+										});
 						 i++
 						 });
-						
-						 
 					 });
 					} 
 				});
@@ -235,7 +195,50 @@ airport = (()=>{
 	        sessionStorage.removeItem('thumbnailImg');
 			location.assign(_);
 		};
-		
+		let pay=()=>{
+			let data = { 
+					 airportName:$('#aab_00').text(),
+					 departureTime:$('#aac_00').text(),
+					 airportNameR:$('#bbb_00').text(),
+					 departureTimeR:$('#bbc_00').text()};
+			 $.ajax({
+					url: _+'/sw/airsave/'+sessionStorage.getItem('memberId'),
+					type:'post',
+					data:JSON.stringify(data),
+					dataType:'json',
+					contentType:'application/json',
+					success: d =>{
+						let a = $(this).attr('title');
+						 IMP.init('imp68242076');
+						 IMP.request_pay({
+							    pg : 'kcp',
+							    pay_method : 'samsung',
+							    merchant_uid : 'merchant_' + new Date().getTime(),
+							    name : '(주)여길가자 - 항공권예매',
+							    amount : 100,
+							    buyer_email : 'sseoooh@naver.com',
+							    buyer_name : '홍길동',
+							    buyer_tel : '010-1234-5678',
+							    buyer_addr : '서울특별시 강남구 삼성동 여길가자 빌딩 6층',
+							    buyer_postcode : '123-456'
+							}, function(rsp) {
+							    if ( rsp.success ) {
+							        var msg = '결제가 완료되었습니다.';
+							        msg += 'imp68242076 : ' + rsp.imp_uid;
+							        msg += '상점 거래ID : ' + rsp.merchant_uid;
+							        msg += '결제 금액 : ' + rsp.paid_amount;
+							        msg += '카드 승인번호 : ' + rsp.apply_num;
+							    } else {
+							        var msg = '결제에 실패하였습니다.';
+							        msg += '에러내용 : ' + rsp.error_msg;
+							    }
+
+							    alert(msg);
+							});
+					},
+					error: e =>{}
+					});	
+		};
 		return {init:init,ext:ext};
 })();
 airport.$= {

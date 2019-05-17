@@ -232,6 +232,14 @@ html, body {
 	width: 248px;
 	position: relative;
 }
+#s_attrs{
+	padding: 15px;
+	cursor: pointer;
+	border-bottom: solid #a7a7a7 1px;
+	background-color: #fff;
+	width: 300px;
+	position: relative;
+}
 
 #city_list_box .item:hover {
 	background-color: #f7f7f7;
