@@ -1,7 +1,13 @@
 package com.yeogil.web.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,7 +62,6 @@ public class JiwooController {
 	
 	@PostMapping("/cont/country/{countryName}")
 	public Map<?,?> citylist(@PathVariable String countryName) {
-		
 		IFunction i = (Object o) -> cityMapper.selectAllCity(countryName);
 		List<?> ls = (List<?>) i.apply(countryName);
 		
@@ -68,57 +73,81 @@ public class JiwooController {
 	
 	@PostMapping("/cont/country/city/{cityName}")
 	public Map<?,?> attrlist(@PathVariable String cityName) {
-		System.out.println("===jiwoo cotr attr list==="+cityName);
-		
 		  IFunction i = (Object o) -> attractionmapper.selectOneCityAttractions(cityName);
 		  List<?> ls = (List<?>) i.apply(cityName);
 		  
-		  	System.out.println(ls.toString());
-		
-		
 		  map.clear(); 
 		  map.put("ls",ls);
 		 
 		return map;
 	}
 	
-	@PostMapping("/cont/country/city/cityName/{attrName}")
-	public Map<?,?> attrstore(@PathVariable String attrName) {
-		System.out.println("===jiwoo cotr attr store==="+attrName);
+	@PostMapping("/cont/country/attr/{memberid}")
+	public void attrstore(@PathVariable String memberid,
+			@RequestBody List<AttractionDTO> attr) {
 		
-		/*
-		 * IFunction i = (Object o) ->
-		 * attractionmapper.selectOneCityAttractions(cityName); List<?> ls = (List<?>)
-		 * i.apply(cityName);
-		 * 
-		 * System.out.println(ls.toString());
-		 * 
-		 * 
-		 * map.clear(); map.put("ls",ls);
-		 */
-		 
-		return map;
+		for(int i=0;i<attr.size();i++) {
+			ScheduleDTO sch = new ScheduleDTO();
+			sch.setAttrName(attr.get(i).getAttrName());
+			sch.setMember_id(memberid);
+			schedulemapper.insertSchedules(sch);
+		}
 	}
 	
 	@PostMapping("/myplan/schedule/{memberid}")
 	public Map<?,?> storelist(
 			@PathVariable String memberid,
-			@RequestBody ScheduleDTO sche
+			@RequestBody Object m
 			) throws Exception{
-		String ctr = sche.getCtr();
-        String planTitle = sche.getPlanTitle();
-        String startDate = sche.getStartDate();
-        String city = sche.getCity();
-        
-        schedule.setCtr(ctr);
-        schedule.setPlanTitle(planTitle);
-        schedule.setMember_id(memberid);
-        schedule.setStartDate(startDate);
-        schedule.setCity(city);
-        System.out.println("==jiwoo cotrl==>"+schedule.toString());
-        transactionservice.txinsert(schedule);
 		
-
+		@SuppressWarnings("unchecked")
+		List<Object> li = (List<Object>) m;
+		
+		@SuppressWarnings("unchecked")
+		HashMap<String, Object> t = (HashMap<String, Object>) li.get(0);
+		String cities = (String) t.get("city");
+		String[] aaaaa = cities.split(" ");
+		String city = "";
+		
+		Pattern p = Pattern.compile("(^[0-9]*$)");
+		String[] aa = aaaaa[0].split("");
+		for(int i =0;i<aa.length-1;i++) {
+			Matcher mm = p.matcher(aa[i]);
+			if(mm.find()) {
+				for(int j=0;j<i;j++) {
+					city += aa[j];
+				}
+			}
+		}
+		
+		@SuppressWarnings("unchecked")
+		HashMap<String, Object> t2 = (HashMap<String, Object>) li.get(1);
+		List<?> list = (List<?>) t2.get("attr");
+		String[] attrName = new String[list.size()];
+		String startDate = ((String) t.get("startDate")).replaceAll("-", "");
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+		Calendar cal = Calendar.getInstance();
+		Date date = format.parse(startDate);
+		cal.setTime(date);
+		
+		for(int i=0;i<list.size();i++) {
+			ScheduleDTO sche = new ScheduleDTO();
+	        sche.setMember_id(memberid);
+			
+			@SuppressWarnings("unchecked")
+			HashMap<String, Object> t3 = (HashMap<String, Object>) list.get(i);
+			sche.setAttrName((String) t3.get("attrName"));
+			
+			sche.setPlanTitle((String) t.get("planTitle"));
+			String temp = attractionmapper.selectCityName(sche.getAttrName());
+			if(!city.equals(temp)) {
+				cal.add(Calendar.DATE, 1);
+				city=temp;
+			}
+			sche.setStartDate(format.format(cal.getTime()));
+			transactionservice.txinsert(sche);
+		}
 		return map;
 	}
 }

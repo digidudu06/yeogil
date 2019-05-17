@@ -35,4 +35,12 @@
 		FROM ATTRACTION
 		WHERE CITY_NAME LIKE #{value}
 	</select>
+	<select id="selectCityName" resultType="string" parameterType="string">
+	  	SELECT CITY_NAME
+		FROM ATTRACTION
+		WHERE ATTR_NAME LIKE #{value}
+	</select>	
+	
+	
+	
 </mapper>

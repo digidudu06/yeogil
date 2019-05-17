@@ -108,32 +108,30 @@ sche = (()=>{
 			$('<div class="detail_city_bottom">'
 		 	+'<div class="detail_plan_go_btn">상세 일정 만들기</div></div>').appendTo('#select_detail_view_city');
 			
-			$('.detail_plan_go_btn').click(function(){
-				
-				let data = {ctr : $('#city_list_title').text(),
-							startDate : $('#date_pick_btn').children().eq(0).text(),
-							city : $('#selected_cities .s_cities .city_info .fl').text(),
-							planTitle: $('#plan_title').val()};
-				
-				alert(data.ctr);
-				alert(data.startDate);
-				alert(data.city);
-				alert(data.planTitle);
-				$.each(attr_data,(i,j)=>{
-					alert(j.attrName);
-				})
-
-				$.ajax({
-					url: _+"/myplan/schedule/"+sessionStorage.getItem('memberId'),
-					type: "POST",
-					data : JSON.stringify(data),
-					dataType :"json",
-					contentType : "application/json; charset=UTF-8",
-					success: d => {
-						mysche.init(data.planTitle);
-					},error: e => {
-					}
-				});
+			$('.detail_plan_go_btn').click(function(e){
+				e.preventDefault();
+//				let deplan = {planTitle:$('#plan_title').val(),
+//						startDate:$('#date_pick_btn').val()};
+//					if(deplan.planTitle===""||deplan.startDate===""){
+//						alert("모든항목을 기입해주세요");
+//					}else{
+						let data = [{"ctr" : $('#city_list_title').text(),
+							"startDate" : $('#date_pick_btn').children().eq(0).text(),
+							"city" : $('#selected_cities .s_cities .city_info .fl').text(),
+							"planTitle": $('#plan_title').val()},
+							{"attr" : attr_data}]
+						$.ajax({
+							url: _+"/myplan/schedule/"+sessionStorage.getItem('memberId'),
+							type: "POST",
+							data : JSON.stringify(data),
+							dataType :"json",
+							contentType : "application/json; charset=UTF-8",
+							success: d => {
+								mysche.init(data.planTitle);
+							},error: e => {
+							}
+						});
+//					};
 			});
 			$('#map_close').click(function(){
 				location.assign($.ctx()+'/sche');

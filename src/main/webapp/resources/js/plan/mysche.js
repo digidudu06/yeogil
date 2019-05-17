@@ -67,7 +67,6 @@ mysche = (()=>{
 					}
 				});
 			});
-			//ss
 			$('#edit_detail_plan').click(function(){
 				 $.ajax({
                      url:_+'/deleteSchedule',

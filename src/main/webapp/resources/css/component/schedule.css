@@ -300,7 +300,6 @@ html, body {
 	font-size: 15px;
 	line-height: 39px;
 	border-radius: 5px;
-	cursor: move;
 }
 
 .city_route_info {
@@ -541,18 +540,18 @@ html, body {
 #country_list_title .sub {
 	cursor: pointer;
 }
-
+/* 
 .ui-sortable-helper {
 	border: solid #1a7ad9 1px;
 	background: #f7f7f7;
 	height: 86px;
-}
-
+} */
+/* 
 .ui-draggable-dragging {
 	border: solid #1a7ad9 1px;
 	background: #f7f7f7;
 	height: 86px;
-}
+} */
 
 .ui-state-highlight {
 	background: #fff;

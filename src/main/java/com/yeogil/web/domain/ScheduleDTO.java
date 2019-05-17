@@ -7,5 +7,5 @@ import lombok.Data;
 @Component @Data
 public class ScheduleDTO {
 	private int sche_seq,continetn_seq,member_seq,ms_seq,attr_seq;
-	private String ctr,startDate,city,planTitle,member_id,day,endDate,countryName;
+	private String ctr,startDate,city,planTitle,member_id,day,endDate,countryName,attrName;
 }

@@ -5,33 +5,19 @@
 <mapper namespace="com.yeogil.web.mapper.ScheduleMapper">
 <resultMap id="result" type="hashmap">
 </resultMap>
+	<insert id="insertSchedules" parameterType="com.yeogil.web.domain.ScheduleDTO">
+		INSERT INTO SCHEDULES (START_DATE,MEMBER_ID,PLAN_TITLE,ATTR_SEQ) 
+		VALUES (#{startDate},#{member_id},#{planTitle},(SELECT ATTR_SEQ
+															FROM ATTRACTION
+															WHERE ATTR_NAME LIKE #{attrName}))
 
-	<insert id="insertSchedule" parameterType="com.yeogil.web.domain.ScheduleDTO">
-		INSERT INTO MEMSCH (MS_SEQ ,MS_COUNTRY_NAME,MS_TITLE,MEMBER_ID)
-		VALUES(0,#{ctr},#{planTitle},#{member_id})
-		<selectKey resultType="int" keyProperty="ms_seq" order="AFTER" >
-			SELECT LAST_INSERT_ID()
-		</selectKey>
-	</insert>
-
-	<insert id="insertSchedule2" parameterType="com.yeogil.web.domain.MemschCityDTO">
-		INSERT INTO MEMSCHCTIY (MS_DATE,MS_CITY_NAME,MS_DAY,MS_SEQ)
-		VALUES(#{msDate},#{msCityName},#{msDay},#{ms_seq})
-		<selectKey resultType="int" keyProperty="ms_ctiy_seq" order="AFTER" >
-			SELECT LAST_INSERT_ID()
-		</selectKey>
 	</insert>
 	
-	<insert id="insertSchedule3" parameterType="com.yeogil.web.domain.MemschAttrDTO">
-		INSERT INTO MEMSCHATTR (MS_ATTR_NAME,MS_CTIY_SEQ)
-		VALUES(#{msAttrName},#{ms_ctiy_seq})
-	</insert>
-
 	<select id="countSchedules" resultType="int" >
 		SELECT COUNT(*)
 		FROM SCHEDULE
 	</select>
-
+	
 	<select id="selectMemOneSchedule" resultMap="result" parameterType="com.yeogil.web.controller.Proxy">
 		SELECT START_DATE
 				,MEMBER_ID
