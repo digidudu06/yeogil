@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yeogil.web.domain.CityDTO;
+import com.yeogil.web.domain.HotelDTO;
 import com.yeogil.web.domain.MemberDTO;
+import com.yeogil.web.domain.ScheduleDTO;
+import com.yeogil.web.mapper.HotelMapper;
 import com.yeogil.web.mapper.ScheduleMapper;
 import com.yeogil.web.service.MemberServiceImpl;
 import com.yeogil.web.service.TransactionService;
@@ -22,7 +25,9 @@ public class EunjiController {
 	@Autowired MemberDTO member;
 	@Autowired Map<String, Object> map;
 	@Autowired MemberServiceImpl memberService;
+	@Autowired HotelMapper hotelMapper;
 	@Autowired ScheduleMapper schMap;
+	@Autowired List<HotelDTO> holist;
 	@Autowired Proxy pxy;
 	@Autowired TransactionService transactionservice;
 	
@@ -60,11 +65,24 @@ public class EunjiController {
 		map.put("title",title);
 		pxy.memSche(map);
 		IFunction i1 = (Object o) -> schMap.selectMemOneSchedule(pxy);
-		List<?> list = (List<?>) i1.apply(pxy);
+		
+		@SuppressWarnings("unchecked")
+		List<ScheduleDTO> list = (List<ScheduleDTO>) i1.apply(pxy);
 		IFunction i2 = (Object o) -> schMap.selectMemOneScheAttr(pxy);
 		List<?> attr = (List<?>) i2.apply(pxy);
+		
+		for(int i=0;i<list.size();i++) {
+			HotelDTO ho = new HotelDTO();
+			ho.setCityName(list.get(i).getCity());
+			ho.setStartDate(list.get(i).getStartDate());
+			holist.add(hotelMapper.selectHotel(ho));
+		}
+		//ss
+		System.out.println(holist.toString());
+		
 		map.put("list",list);
 		map.put("attr",attr);
+		map.put("holist", holist);
 		return map;
 	}
 	

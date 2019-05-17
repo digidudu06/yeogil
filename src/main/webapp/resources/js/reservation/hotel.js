@@ -53,9 +53,10 @@ hotel =(()=>{
 						e.preventDefault();
 						let data = {
 								arrivalDate:$('#h_date_01').val(),
-								departDateR:$('#h_date_02').val()
+								departDateR:$('#h_date_02').val(),
+								dest:$('.hseo_form-control').val()
 								};//map자체
-						if(data.arrivalDate===""||data.departDateR===""){
+						if(data.arrivalDate===""||data.departDateR===""||data.dest===""){
 							alert("모든 항목을 기입해주세요");
 						}else{
 							$(document).ready(function() {
@@ -65,7 +66,9 @@ hotel =(()=>{
 							});
 //==========================================호텔 크롤링
 							$.getJSON(_+'/crawling/hvation',d=>{
+								
 								$(compo.hresult()).appendTo('#common_area');
+								$('#hotel_clean').remove();
 								$.each(d.htlist,(i,j)=>{
 									if(i<9){
 										$('<div class="intro_box" style="height:320px"><img src="'+j.imgUrl

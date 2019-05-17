@@ -19,6 +19,7 @@ airport = (()=>{
 		};
 		let setContentView =()=>{
 			default_view();
+			
 //==========================================메인 네비바
 			$('#home').click(function(){
 				location.assign($.ctx());
