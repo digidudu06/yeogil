@@ -95,8 +95,6 @@ plan =(()=>{
 				});
 			
 			$('<img/>').attr('src',img+'/component/p_header_btn_img2.jpg').appendTo('#btn_2');
-			
-			$(compo.plan_content()).appendTo('#common_area');
 			$('#area_btn').attr('src',img+'/component/area_down.jpg');
 			$('#city_btn').attr('src',img+'/component/area_down.jpg');
 			//안나와 아이콘
