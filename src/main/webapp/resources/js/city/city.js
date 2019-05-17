@@ -17,6 +17,8 @@ city = (()=>{
 		$.getScript(compojs,()=>{
 			$('#common_area').empty();
 			$(compo.common_menu()).appendTo('#common_area');
+			$('<a id="tour_btn" class="nav_btn cursor">여행지</a> > <b4>'+c.x+'</b4>').appendTo('.area_nav');
+			//$('.area_nav').text(c.x);
 			$('<b>'+c.x+'</b><span>'+c.y+'</span>').appendTo('.area_title');
 			country_detail(c);
 			$.each(common_navi(),(i,j)=>{
@@ -106,7 +108,6 @@ city = (()=>{
 			});
 		});
 	};
-	/////////////////////////////////////////////////////////////////////////////////////////
 	let tourist_main_city = (arr)=>{
 		$.getScript(compojs,()=>{
 			$('.country_detail').empty();
@@ -127,7 +128,8 @@ city = (()=>{
 					.addClass('cursor')
 					.click(function (){
 							if(j.imgName === "Taipei"){
-								city_detail();
+								let ar = {x:"대만",y:j.cityName}
+								city_detail(ar);
 							}else{
 								alert('타이베이를 눌러주세요');
 							}
@@ -170,6 +172,9 @@ city = (()=>{
 	let country_detail = (x)=>{
 		$.getScript(compojs,()=>{
 			$(compo.country_detail()).appendTo('#common_area');
+			$('#tour_btn').click(function(){
+				location.assign($.ctx()+'/tour');
+			});
 			$('.country_title').text(x.x);
 			$.getJSON(_+"/crawling/country",d=>{
 				$('.country_flag').attr("src",d.c);
@@ -202,7 +207,7 @@ city = (()=>{
 			});
 			
 			$('<img></img>')
-			.attr("src",_+"/resources/img/component/taiwan01.png")
+			.attr("src","http://www.iwt.or.kr/wp/wp-content/uploads/2017/11/%EB%8C%80%EB%A7%8C-%EC%A7%80%EB%8F%84-.jpg")
 			.attr("width","628")
 			.attr("height","369")
 			.appendTo('.img_box');
@@ -232,24 +237,26 @@ city = (()=>{
 						.appendTo('.city_list')
 						.click(function (){
 							if(j.name === "타이베이"){
-								city_detail(j.name);
+								let arr = {x:x.x,y:j.name}
+								city_detail(arr);
 							}else{
 								alert('타이베이를 눌러주세요');
 							}
 						});;
 			 });
-			
 			$('<div class="cjtooltip"><span class="rtooltiptext">타이베이를 눌러주세요</span></a>').appendTo('.area_title_center');
-			
 		});
-		
 	};
 	let city_detail = (c)=>{
 		$.getScript(compojs,()=>{
 			$('.country_detail').remove();
 			$(compo.city_detail()).insertAfter('.silver');
 			$('.area_nav').next().html('<b>타이베이</b>');
-			$('<a class="nav_btn cursor"> > 타이베이</a>').appendTo('.area_nav');
+			$('.area_nav').empty();
+			$('<a id="tour_btn" class="nav_btn cursor">여행지</a> > <b4>'+c.x+'</b4> > <b4>'+c.y+'</b4>').appendTo('.area_nav');
+			$('#tour_btn').click(function(){
+				location.assign($.ctx()+'/tour');
+			});
 			
 			$('<img alt=""></img>')
 			.attr("src",_+"/resources/img/component/taipai.jpg")
@@ -299,11 +306,10 @@ city = (()=>{
 			+'<div class="clear"></div>'
 			+'</div>').appendTo('#common_area');
 		
-		$.getJSON(_+'/attraction/some/'+c,d=>{
+		$.getJSON(_+'/attraction/some/'+c.y,d=>{
 			$.each(d.img,(i,j)=>{
 				$('<a class="city_box">'
 						+'<div class="city_title">'+j.attrName+'</div>'
-						+'<div class="city_desc">'+j.detail+'</div>'
 						+'<img class="city_img" src="'+j.attrImg+'" width="346" height="240"></img>'
 						+'</a>')
 						.css({'font-size':'30px'})
