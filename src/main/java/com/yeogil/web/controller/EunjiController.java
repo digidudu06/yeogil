@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yeogil.web.domain.CityDTO;
 import com.yeogil.web.domain.MemberDTO;
 import com.yeogil.web.mapper.ScheduleMapper;
 import com.yeogil.web.service.MemberServiceImpl;
@@ -63,6 +62,10 @@ public class EunjiController {
 		List<?> list = (List<?>) i1.apply(pxy);
 		IFunction i2 = (Object o) -> schMap.selectMemOneScheAttr(pxy);
 		List<?> attr = (List<?>) i2.apply(pxy);
+		
+		System.out.println(list.toString());
+//		schMap.selectHotel(list);
+		
 		map.put("list",list);
 		map.put("attr",attr);
 		return map;
