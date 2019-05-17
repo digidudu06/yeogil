@@ -22,7 +22,7 @@ body{
 .my_top_cover_shadow{
 	width:100%;
 	height:4px;
-	background:url('/res/img/mypage/common/my_cover_shadow.png') repeat-x;
+	background:url('') repeat-x;
 	left:0px;
 	top:0px;
 	z-index:10;

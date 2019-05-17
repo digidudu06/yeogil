@@ -78,8 +78,9 @@ public class EunjiController {
 	}
 	
 	@PostMapping("/deleteSchedule")
-	public Map<?,?> deleteSchedule(@RequestBody List<CityDTO> aa) {
-		transactionservice.removeMemSch(aa);
+	public Map<?,?> deleteSchedule(@RequestBody Map<?,?> data) {
+		pxy.memSche(data);
+		schMap.deleteSche(pxy);
 		return map;
 	}
 }

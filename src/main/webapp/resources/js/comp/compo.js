@@ -918,7 +918,7 @@ compo = {
 			+'			<div class="cover_bleft">'
 			+'				<div class="plan_title">'
 			+'					서레					'
-			+'					<img src="/res/img/mypage/plan/sub/sb_edit.png" alt="" class="sb_edit" id="plan_info_edit">'
+			+'					<img alt="" class="sb_edit" id="plan_info_edit">'
 			+'				</div>'
 			+'			</div>'
 			+'					</div>'

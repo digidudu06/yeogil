@@ -10,5 +10,4 @@ import com.yeogil.web.domain.ScheduleDTO;
 @Component
 public interface TransactionService {
 	public void txinsert(ScheduleDTO sche) throws Exception;
-	public void removeMemSch(List<CityDTO> aa);
 }

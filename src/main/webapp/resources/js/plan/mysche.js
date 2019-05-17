@@ -35,35 +35,33 @@ mysche = (()=>{
 			$('.plan_title').empty();
 			$('.plan_title').text(title);
 			
-			let data = {x:id, y:title};
+			let data = {"id":id, "title":title};
 			memOneSchedule(data);
 		});
 	};
 	let memOneSchedule=(data)=>{
-		$.getJSON(_+'/memOneSchedule/' + data.x +'/'+ data.y, d=>{
+		$.getJSON(_+'/memOneSchedule/' + data.id +'/'+ data.title, d=>{
 			$('.white').remove();
 			$('.gray').remove();
-			let aa = [];
 			$.each(d.list, (i,j)=>{
-				aa.push({"citySeq":j.MS_CTIY_SEQ});
 				$('	<tr id="sch'+i+'" class="white">'
 					+'		<td id="sche_date">'
-					+'			<div class="scht_date">'+j.MS_DATE+'</div>'
-					+'			<div class="scht_day">'+j.MS_DAY+'</div>'
+					+'			<div class="scht_date">'+j.START_DATE+'</div>'
+					+'			<div class="scht_day"> Day'+(i+1)+'</div>'
 					+'		</td>'
 					+'		<td>'
-					+'			<div class="scht_city" style="padding-left: 0px; text-align: center;">'+j.MS_COUNTRY_NAME+'</div>'			
+					+'			<div class="scht_city" style="padding-left: 0px; text-align: center;">'+j.COUNTRY_NAME+'</div>'			
 					+'		</td>'
 					+'		<td>'
-					+'			<div class="scht_city" style="padding-left: 0px; text-align: center;">'+j.MS_CITY_NAME+'</div>'		
+					+'			<div class="scht_city" style="padding-left: 0px; text-align: center;">'+j.CITY_NAME+'</div>'		
 					+'		</td>'
-					+'		<td id="'+j.MS_DAY+'" class="scht_vtop"></td>'
+					+'		<td id="'+j.START_DATE+'" class="scht_vtop"></td>'
 					+'		<td></td>'
 					+'	</tr>').appendTo('tbody');
 				$.each(d.attr, (a,b)=>{
 					
-					if($('#sch'+i).children().eq(3).attr('id')===b.MS_DAY){
-						$('<div class="scht_spotname">'+b.MS_ATTR_NAME+'</div>')
+					if($('#sch'+i).children().eq(3).attr('id')===b.START_DATE){
+						$('<div class="scht_spotname">'+b.ATTR_NAME+'</div>')
 							.appendTo('#'+$('#sch'+i).children().eq(3).attr('id'));
 					}
 				});
@@ -73,7 +71,7 @@ mysche = (()=>{
 				 $.ajax({
                      url:_+'/deleteSchedule',
                      type: 'POST',
-                     data: JSON.stringify(aa),
+                     data: JSON.stringify(data),
                      dataType:'json',
                      contentType : "application/json; charset=UTF-8",
                      success(d){

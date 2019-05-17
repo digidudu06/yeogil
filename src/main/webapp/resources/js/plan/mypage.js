@@ -40,14 +40,13 @@ mypage = (()=>{
 			$.each(d.list, (i,j)=>{
 				$('<a href="#" class="box" target="_self">'
 						+'	<div class="btn_del" onclick="del_plan(283932)">'
-						+'		<img src="/res/img/mypage/common/btn_delete.png" alt="">'
 						+'	</div>'
 						+'	<div class="plan_hidden_btn">상세일정 보기</div>'
 						+'	<div class="plan_bg">'
 						+'		<div class="plan_bg_inner">'
 						+'			<span>나라</span>'
-						+'			<span style="margin-left:10px;color:#b4b4b4;">'+j.MS_COUNTRY_NAME+'</span>'
-						+'			<br>'+j.MS_TITLE
+						+'			<span style="margin-left:10px;color:#b4b4b4;">'+j.COUNTRY_NAME+'</span>'
+						+'			<br>'+j.PLAN_TITLE
 						+'		</div>'
 						+'	</div>'
 						+'	<div class="plan_img_box">'
@@ -65,7 +64,7 @@ mypage = (()=>{
 						+'	</div>'
 						+'</a>').appendTo('.plan_inner')
 						.click(function(){
-							mysche.init(j.MS_TITLE);
+							mysche.init(j.PLAN_TITLE);
 						});
 			});
 		});

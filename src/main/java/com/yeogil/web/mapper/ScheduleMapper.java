@@ -41,8 +41,6 @@ public interface ScheduleMapper {
 	
 	public void updateSchedule(ScheduleDTO sch);
 	
-	public void deleteScheAttrs(String citySeq);
-	public void deleteScheCities(String citySeq);
-	public void deleteSche(String memSeq);
+	public void deleteSche(Proxy pxy);
 	
 }

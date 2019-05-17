@@ -120,7 +120,7 @@ body{
 }
 
 .cover_bottom{
-	background:url('/res/img/mypage/plan/sub/cover_bg.png') repeat-x;
+	background:url('') repeat-x;
 	width:100%;
 	height:204px;
 	position:absolute;
@@ -1052,7 +1052,7 @@ body{
 	font-size:18px;
 	color:#555555;
 	font-weight:bold;
-	background:url('/res/img/mypage/plan/sub/scht_cityblit.png') no-repeat center left;
+	background:url('') no-repeat center left;
 }
 
 .scht_city_en{
