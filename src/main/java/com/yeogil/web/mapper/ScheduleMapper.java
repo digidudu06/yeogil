@@ -23,7 +23,6 @@ public interface ScheduleMapper {
 	public List<AttractionDTO> scheList(ScheduleDTO attr);
 	public List<ScheduleDTO> selectAllSchedules(String id);
 	public List<ScheduleDTO> selectSomeSchedule(HashMap<String,Object> map);
-	
 	public List<ScheduleDTO> selectMemAllSchedules(String id);
 	public List<ScheduleDTO> selectMemOneSchedule(Proxy pxy);
 	public List<ScheduleDTO> selectMemOneScheAttr(Proxy pxy);

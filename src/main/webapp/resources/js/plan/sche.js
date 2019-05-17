@@ -16,8 +16,9 @@ var marker_img_sk = '/web/resources/img/map/marker/ic_current.png';
 
 
 sche = (()=>{
-	let _,js,compojs,img,css;
+	let _,js,compojs,img,css,attr_data;
 	let init=()=>{
+		attr_data =[];
 		_ = $.ctx();
 		js = $.js();
 		img = $.img();
@@ -107,23 +108,30 @@ sche = (()=>{
 			$('<div class="detail_city_bottom">'
 		 	+'<div class="detail_plan_go_btn">상세 일정 만들기</div></div>').appendTo('#select_detail_view_city');
 			
-			$('.detail_plan_go_btn').click(function(){
-				let data = {ctr : $('#city_list_title').text(),
-							startDate : $('#date_pick_btn').children().eq(0).text(),
-							city : $('#selected_cities .s_cities .city_info .fl').text(),
-							planTitle: $('#plan_title').val()};
-
-				$.ajax({
-					url: _+"/myplan/schedule/"+sessionStorage.getItem('memberId'),
-					type: "POST",
-					data : JSON.stringify(data),
-					dataType :"json",
-					contentType : "application/json; charset=UTF-8",
-					success: d => {
-						mysche.init(data.planTitle);
-					},error: e => {
-					}
-				});
+			$('.detail_plan_go_btn').click(function(e){
+				e.preventDefault();
+				let deplan = {planTitle:$('#plan_title').val(),
+						startDate:$('#date_pick_btn').val()};
+					if(deplan.planTitle===""||deplan.startDate===""){
+						alert("모든항목을 기입해주세요");
+					}else{
+						let data = [{"ctr" : $('#city_list_title').text(),
+							"startDate" : $('#date_pick_btn').children().eq(0).text(),
+							"city" : $('#selected_cities .s_cities .city_info .fl').text(),
+							"planTitle": $('#plan_title').val()},
+							{"attr" : attr_data}]
+						$.ajax({
+							url: _+"/myplan/schedule/"+sessionStorage.getItem('memberId'),
+							type: "POST",
+							data : JSON.stringify(data),
+							dataType :"json",
+							contentType : "application/json; charset=UTF-8",
+							success: d => {
+								mysche.init(data.planTitle);
+							},error: e => {
+							}
+						});
+					};
 			});
 			$('#map_close').click(function(){
 				location.assign($.ctx()+'/sche');
@@ -281,7 +289,8 @@ sche = (()=>{
 					}
 		});
 		
-		$('#cat_menu li').click(function(){
+		$('#cat_menu li').click(function(e){
+			e.preventDefault();
 			$('#cat_menu li').removeClass('on');
 			$(this).addClass('on');
 			deleteMarkers();
@@ -292,7 +301,8 @@ sche = (()=>{
 			get_country_list();
 		});
 		
-		$('#country_list_box').on('click','.item',function(){
+		$('#country_list_box').on('click','.item',function(e){
+			e.preventDefault();
 			let _cu_srl = $(this).attr('data');
 			let _cu_name = $(this).attr('data-val');
 			let _cu_ename = $(this).attr('data-name');
@@ -310,7 +320,8 @@ sche = (()=>{
 			
 		});
 		
-		$('#city_list_title').on('click','.back_btn',function(){
+		$('#city_list_title').on('click','.back_btn',function(e){
+			e.preventDefault();
 			deleteMarkers();
 			let _go_state = $(this).attr('data-go_state');
 			if(_go_state == '1'){
@@ -324,26 +335,31 @@ sche = (()=>{
 			}
 		});
 		
-		$('#selected_cities').on('click','.del_city_btn',function(){
+		$('#selected_cities').on('click','.del_city_btn',function(e){
+			e.preventDefault();
 			$(this).parent().parent().remove();
+			$('#select_detail_view_attr').remove();
 			draw_city_route();
 		});
 		
-		$('#selected_cities').on('mouseover','.del_city_btn',function(){
+		$('#selected_cities').on('mouseover','.del_city_btn',function(e){
+			e.preventDefault();
 			let _img_src = $(this).find('img').attr('src');
 			let _c_img_src = _img_src.replace('_a.png','_b.png');
 			$(this).find('img').attr('src',_c_img_src);
 			
 		});
 		
-		$('#selected_cities').on('mouseout','.del_city_btn',function(){
+		$('#selected_cities').on('mouseout','.del_city_btn',function(e){
+			e.preventDefault();
 			let _img_src = $(this).find('img').attr('src');
 			let _c_img_src = _img_src.replace('_b.png','_a.png');
 			$(this).find('img').attr('src',_c_img_src);
 			
 		});
 		
-		$('#selected_cities').on('click','.city_set_minus_btn',function(){
+		$('#selected_cities').on('click','.city_set_minus_btn',function(e){
+			e.preventDefault();
 			let _now_set = $(this).parent().find('.city_set_day_info span').text();
 			if(_now_set == '1'){
 				_chg_set = 1;
@@ -359,7 +375,8 @@ sche = (()=>{
 			
 		});
 		
-		$('#selected_cities').on('click','.city_set_plus_btn',function(){
+		$('#selected_cities').on('click','.city_set_plus_btn',function(e){
+			e.preventDefault();
 			let _total_day = $('#selected_cities').attr('data');
 			let _now_set = $(this).parent().find('.city_set_day_info span').text();
 			if(_now_set == '0.5'){
@@ -373,14 +390,17 @@ sche = (()=>{
 			
 		});
 		
-		$('#schedule_full_box').on('mouseover','.item',function(){
+		$('#schedule_full_box').on('mouseover','.item',function(e){
+			e.preventDefault();
 			var no = $(this).attr('data-no');
 			if(markers[no]){
 				markers[no].setZIndex(30);
 				markers[no].setIcon(img+'/map/marker/ic_current.png');
 			}
 		});
-		$('#schedule_full_box').on('mouseout','.item',function(){
+		
+		$('#schedule_full_box').on('mouseout','.item',function(e){
+			e.preventDefault();
 			var no = $(this).attr('data-no');
 			if(markers[no]){
 				markers[no].setZIndex(0);
@@ -414,18 +434,18 @@ sche = (()=>{
 				data : data,
 				dataType :"json",
 				success: function(data) {
-					let html = ''; 
 					$.each(data.ls, function(key, val) {
-						html += '<div class="item" id="'+val.countryEname+'" data-no="'+key+'" data="'+val.countrySeq+'" data-latlng="'+
-						val.countryLat+','+val.countryLng+'" data-val="'+val.countryEname+'" data-name="'+val.countryName+'">';
-						html += '<div class="img_box fl"><img src="'+val.IMG_URL+'"/></div>';
-						html += '<div class="info_box fl"><div class="info_title">'+val.countryName	+'</div><div class="info_sub_title">'+val.countryEname+'</div></div>';
-						html += '<div class="clear"></div></div>';
+						$('<div class="item" id="'+val.countryEname+'" data-no="'+key+'" data="'+val.countrySeq+'" data-latlng="'+
+								val.countryLat+','+val.countryLng+'" data-val="'+val.countryEname+'" data-name="'+val.countryName+'">'
+								+'<div class="img_box fl"><img src="'+val.IMG_URL+'"/></div>'
+								+'<div class="info_box fl"><div class="info_title">'+val.countryName	+'</div><div class="info_sub_title">'+val.countryEname+'</div></div>'
+								+'<div class="clear"></div></div>').appendTo('#country_list_box');
+						
+						
 						add_marker_country(val.countryLat,val.countryLng,val.countryName,val.countryEname,val.countrySeq);
 					});
-					$('#country_list_box').html(html);
-					
 				},error:function(data){
+					
 				},complete:function(){
 					fitBoundsToVisibleMarkers();
 				}
@@ -441,18 +461,14 @@ sche = (()=>{
 				data : data,
 				dataType :"json",
 				success: function(data) {
-					let html = '';
 					$.each(data.ls, function(key, val) {
-						html += '<div class="item" data-no="'+key+'" data="'+val.citySeq+'" data-ci_name="'+val.cityName+'" data-lat="'+val.cityLat+'" data-lng="'+val.cityLng+'">';
-						html += '<div class="img_box fl"><img src="'+val.imgUrl+'"></div>';
-						html += '<div class="info_box fl"><div class="info_title">'+val.cityName+'</div><div class="info_sub_title">'+val.cityEname+'</div></div>';
-						html += '<div class="spot_to_inspot"><img src="'+img+'/map/spot_to_inspot_a.png"></div>';
-						html += '<div class="clear"></div></div>';
+						$('<div class="item" data-no="'+key+'" data="'+val.citySeq+'" data-ci_name="'+val.cityName+'" data-lat="'+val.cityLat+'" data-lng="'+val.cityLng+'">'
+								+'<div class="img_box fl"><img src="'+val.imgUrl+'"></div>'
+								+'<div class="info_box fl"><div class="info_title">'+val.cityName+'</div><div class="info_sub_title">'+val.cityEname+'</div></div>'
+								+'<div class="spot_to_inspot"><img src="'+img+'/map/spot_to_inspot_a.png"></div>'
+								+'<div class="clear"></div></div>').appendTo('#city_list_box');
 						add_marker_city(val.cityLat,val.cityLng,val.cityName,val.cityEname,val.citySeq);
 					});
-					$('#city_list_box').html(html);
-					
-					
 				},error:function(data){
 				},complete:function(){
 					fitBoundsToVisibleMarkers();
@@ -527,7 +543,54 @@ sche = (()=>{
 			
 		}
 		
-		$('#city_list_box').on('click','.spot_to_inspot',function(){
+		
+		$('#selected_cities').on('click','.detail_plan_go_btn_1',function(){
+			$('#select_detail_view_attr').remove();
+			let ci_name = $(this).parent().prev().text();
+			$.ajax({
+				url: _+"/cont/country/city/"+ci_name,
+				type: "POST",
+				data : JSON.stringify(ci_name),
+				dataType :"json",
+				contentType : "application/json; charset=UTF-8",
+				success: d => {
+					$.each(d.ls,(i,j)=>{
+						console.log(d);
+						$('<div class="s_attrs" id="s_attrs"><div class="img_box fl">'
+								+'<img src="'+j.attrImg+'" width="65" height="55"></div>'
+								+'<div class="info_box fl"><div class="info_title">'+j.attrName+'</div>'
+								+'<div class="info_sub_title">Taipei</div></div>'
+								+'<div class="spot_to_inspot"><img src="'+img+'/map/spot_to_inspot_a.png"></div>'
+								+'<div class="clear"></div>'
+								+'</div>').appendTo('#selected_attr')
+								.click(function(){
+									$(this).find(".spot_to_inspot img").attr("src",img+"/map/check_img.png");
+									attr_data.push({attrName:$(this).find(".info_box .info_title").text()});
+									
+								});
+						});
+					
+					$('<div class="detail_city_bottom"><div class="detail_plan_go_btn">관광지 선택 완료</div></div>')
+				 	.appendTo('#select_detail_view_attr').click(function(){
+				 		$('#select_detail_view_attr').remove();
+				 		$('#selected_attr').empty();
+				 		$('.city_set_day_box [name='+ci_name+']').attr("style","background: #b5e27d;").text('선택완료');
+				 	});
+				},error: e => {
+				}
+			});
+			
+			$(compo.sche_detail()).appendTo('#right_full_box').attr("style","left: 450px;display: block; width:300px;").attr("id","select_detail_view_attr");
+			$('#select_detail_view_attr #plan_title').remove();
+			$('#select_detail_view_attr .pn_date_info').remove();
+			$('#select_detail_view_attr img').remove();
+			$('#select_detail_view_attr .city_title').attr("id","attr_title");
+			$('#select_detail_view_attr #selected_cities').attr("id","selected_attr");
+			$('#attr_title').children().eq(0).text(ci_name).attr("style","padding-top: 0px");
+		});
+		
+		$('#city_list_box').on('click','.spot_to_inspot',function(e){
+			$('#select_detail_view_attr').remove();
 			let ci_srl = $(this).parent().attr('data');
 			let _lat = $(this).parent().attr('data-lat');
 			let _lng = $(this).parent().attr('data-lng');
@@ -536,85 +599,10 @@ sche = (()=>{
 			$('<div class="s_cities" data-ci="'+ci_srl+'" data-day="2" data-lat="'+_lat+'" data-lng="'+_lng+'"><div class="city_route_info" id="city_route"><div class="city_distance_info fl">0Km</div><a href="http://flights.earthtory.com" target="_blank"><div class="city_air_search_btn fr">항공검색</div></a><div class="clear"></div></div>'
 					+'<div class="city_info"><div class="del_city_btn fl"><img src="'+img+'/map/del_city_btn_a.png"></div><div class="fl">'+ci_name+'</div>'
 					+'<div class="fr city_set_day_box"><div class="fl city_set_minus_btn"><img src="'+img+'/map/city_item_minus_btn.png"></div><div class="fl city_set_day_info"><span>1</span>일 </div>'
-					+'<div class="fl city_set_plus_btn"><img src="'+img+'/map/city_item_plus_btn.png"></div><div class="detail_plan_go_btn_1" name="'+ci_name+'">관광지선택</div><div class="clear"></div></div><div class="clear"></div></div>'
+					+'<div class="fl city_set_plus_btn"><img src="'+img+'/map/city_item_plus_btn.png"></div><div class="detail_plan_go_btn_1" name="'+ci_name+'">관광지선택</div></div><div class="clear"></div><div class="clear"></div></div>'
 					+'</div>'
 					).appendTo('#selected_cities')
-					.addClass('cursor').click(function(){
-						$('#select_detail_view_attr').remove();
-						let data = ci_name;
-						$.ajax({
-							url: _+"/cont/country/city/"+ci_name,
-							type: "POST",
-							data : JSON.stringify(data),
-							dataType :"json",
-							contentType : "application/json; charset=UTF-8",
-							success: d => {
-								$.each(d.ls,(i,j)=>{
-									console.log(d);
-									$('<div class="s_attrs" id="s_attrs"><div class="img_box fl">'
-											+'<img src="'+j.attrImg+'" width="65" height="55"></div>'
-											+'<div class="info_box fl"><div class="info_title">'+j.attrName+'</div>'
-											+'<div class="info_sub_title">Taipei</div></div>'
-											+'<div class="spot_to_inspot"><img src="'+img+'/map/spot_to_inspot_a.png"></div>'
-											+'<div class="clear"></div>'
-											+'</div>').appendTo('#selected_attr').click(function(){
-												$(this).find(".spot_to_inspot img").attr("src",img+"/map/check_img.png");
-											});
-									});
-								
-								$('<div class="detail_city_bottom"><div class="detail_plan_go_btn">관광지 선택 완료</div></div>')
-							 	.appendTo('#select_detail_view_attr').click(function(){
-
-							 		let aa = $('#s_attrs .spot_to_inspot img[src="'+img+'/map/check_img.png"]').prev().text();
-							 		alert(aa);
-							 		
-//							 		$($('#s_attrs .spot_to_inspot img[src="'+img+'/map/check_img.png"]').length).each((i,j)=>{
-//							 			alert();
-//							 		});
-							 		
-							 		
-//							 		$($('#s_attrs .spot_to_inspot img').attr("src") === img+"/map/check_img.png").each((i,j)=>{
-//							 			alert(i);
-//							 		});
-//							 		if($('#s_attrs .spot_to_inspot img').attr("src") === img+"/map/check_img.png"){
-//							 			aa+=1;
-//							 		}
-							 		
-							 		let data = {attrName : $('.s_attrs .info_box').children().eq(0).text()};
-							 		alert(data.attrName);
-							 		$.ajax({
-							 			url:_+"/cont/country/city/cityName/"+data.attrName,
-							 			type: "POST",
-										data : JSON.stringify(data),
-										dataType :"json",
-										contentType : "application/json; charset=UTF-8",
-										success:d=>{
-											alert('성공~');
-											$('#select_detail_view_attr').remove();
-										},
-										error:e=>{
-											alert('실패~');
-										}
-							 		});
-							 	});
-							},error: e => {
-								alert('실패');
-							}
-						});
-						
-						$(compo.sche_detail()).appendTo('#right_full_box').attr("style","left: 450px;display: block; width:300px;").attr("id","select_detail_view_attr");
-						$('#select_detail_view_attr #plan_title').remove();
-						$('#select_detail_view_attr .pn_date_info').remove();
-						$('#select_detail_view_attr img').remove();
-						
-						$('#select_detail_view_attr .city_title').attr("id","attr_title");
-						$('#select_detail_view_attr #selected_cities').attr("id","selected_attr");
-						
-						$('#attr_title').children().eq(0).text(ci_name).attr("style","padding-top: 0px");
-						
-
-						
-					});
+					.addClass('cursor');
 			
 			$('.city_route_info').css("background","url('"+img+"/map/item_route_bg.png') no-repeat 20px 0px");
 			draw_city_route();
@@ -650,7 +638,7 @@ sche = (()=>{
 				revert: false,
 				start: function (e, ui) {
 					$(ui.placeholder).css('width', 0);
-					//$('.city_route_info').hide();
+					$('.city_route_info').hide();
 					$(ui.item).find('.city_route_info').hide();
 					$(ui.item).css('height','41px');
 				},
@@ -659,7 +647,7 @@ sche = (()=>{
 				},
 				stop: function (e, ui){
 					$(ui.item).find('.city_route_info').show();
-					// $('#selected_cities .s_cities .city_route_info').show();
+					$('#selected_cities .s_cities .city_route_info').show();
 					$('#selected_cities .s_cities .city_route_info').first().hide();
 				},
 				placeholder: "ui-state-highlight",
@@ -744,18 +732,14 @@ sche = (()=>{
 			}
 		}
 		
-		
 		function clearMarkers() {
 			setAllMap(null);
 		}
-		
-		
 		
 		function deleteMarkers() {
 			clearMarkers();
 			markers = [];
 		}
-		
 		
 		function s_setAllMap(map) {
 			for (var i = 0; i < s_markers.length; i++) {
@@ -763,12 +747,9 @@ sche = (()=>{
 			}
 		}
 		
-		
 		function s_clearMarkers() {
 			s_setAllMap(null);
 		}
-		
-		
 		
 		function s_deleteMarkers() {
 			s_clearMarkers();
@@ -794,12 +775,9 @@ sche = (()=>{
 			dist = dist * 60 * 1.1515
 			dist = dist * 1.609344 
 			dist = Math.round(dist*100)/100;
-			
 			return dist;
 			
 		}
-		
-		
 		
 		function fitBoundsToVisibleMarkers() {
 			var bounds = new google.maps.LatLngBounds();

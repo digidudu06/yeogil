@@ -28,16 +28,19 @@
 		VALUES(#{msAttrName},#{ms_ctiy_seq})
 	</insert>
 
-<!-- 	<insert> -->
-<!-- 		INSERT INTO SCHEDULES(START_DATE,MEMBER_ID,ATTR_SEQ)  -->
-<!-- 		VALUES('123123','1231231231',(select ATTR_SEQ from ATTRACTION where ATTR_NAME like '타이베이 시립 미술관')); -->
-<!-- 	</insert> -->
+	<insert id="insertSchedules" parameterType="com.yeogil.web.domain.ScheduleDTO">
+		INSERT INTO SCHEDULES (START_DATE,MEMBER_ID,PLAN_TITLE,ATTR_SEQ) 
+		VALUES (#{startDate},#{member_id},#{planTitle},(SELECT ATTR_SEQ
+															FROM ATTRACTION
+															WHERE ATTR_NAME LIKE #{attrName}))
+
+	</insert>
 	
 	<select id="countSchedules" resultType="int" >
 		SELECT COUNT(*)
 		FROM SCHEDULE
 	</select>
-
+	
 	<select id="selectMemOneSchedule" resultMap="result" parameterType="com.yeogil.web.controller.Proxy">
 		SELECT MEMSCHCTIY.MS_CTIY_SEQ, MS_DAY, MS_DATE, MS_COUNTRY_NAME, MS_CITY_NAME
 		FROM MEMSCHATTR
