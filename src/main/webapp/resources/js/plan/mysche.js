@@ -37,6 +37,7 @@ mysche = (()=>{
 			
 			let data = {"id":id, "title":title};
 			memOneSchedule(data);
+			/*hotelSchedule();*/
 		});
 	};
 	let memOneSchedule=(data)=>{
@@ -66,7 +67,7 @@ mysche = (()=>{
 					}
 				});
 			});
-			
+			//ss
 			$('#edit_detail_plan').click(function(){
 				 $.ajax({
                      url:_+'/deleteSchedule',
@@ -85,5 +86,7 @@ mysche = (()=>{
 			});
 		});
 	};
+
+	
 	return {init:init};
 })();

@@ -15,6 +15,7 @@ import com.yeogil.web.domain.AirportInfoDTO;
 import com.yeogil.web.domain.AirportLeaveDTO;
 import com.yeogil.web.domain.AirportReturnDTO;
 import com.yeogil.web.domain.HotelDTO;
+import com.yeogil.web.mapper.ScheduleMapper;
 import com.yeogil.web.service.AirportInfoServiceImpl;
 import com.yeogil.web.service.AirportLeaveServiceImpl;
 import com.yeogil.web.service.AirportReturnServiceImpl;
@@ -29,6 +30,7 @@ public class SeowooController {
 	@Autowired AirportReturnServiceImpl airportReturnService;
 	@Autowired HotelServiceImpl hotelService;
 	@Autowired AirportInfoServiceImpl airportInfoService;
+	@Autowired ScheduleMapper schedulMapper;
 	
 	@GetMapping("/airlist/{page}")
 	public Map<?, ?> airpass(
@@ -56,14 +58,18 @@ public class SeowooController {
 	hdto.getStartDate();
 	hdto.getEndDate();
 	
+	
 	hdto.setHotelName(hdto.getHotelName());
 	hdto.setRoomType(hdto.getRoomType());
 	hdto.setNotice(hdto.getNotice());
 	hdto.setPrice(hdto.getPrice());
 	hdto.setCityName(hdto.getCityName());
-	hdto.setStartDate(hdto.getStartDate());
-	hdto.setEndDate(hdto.getEndDate());
+	hdto.setStartDate(hdto.getStartDate().replaceAll("-", ""));
+	hdto.setEndDate(hdto.getEndDate().replaceAll("-", ""));
+	hdto.setMemberId(memberid);
 	hotelService.createHotel(hdto);
+	map.clear();
+	map.put("s", "s");
 	return map; 
 	}
 	
@@ -100,5 +106,17 @@ public class SeowooController {
 	airportInfoService.insertAirportInfo(aidto);
 	return map; 
 	}
+	
+	/*
+	 * @GetMapping("/hotelSchedule/{memberid}") public Map<?, ?> hotelSchedule(
+	 * 
+	 * @PathVariable String memberid)throws Exception{
+	 * System.out.println("=======SW C진입 htSche탐"); map.clear();
+	 * System.out.println(memberid);
+	 * 
+	 * schedulMapper.selectMemOneSchedule(pxy);
+	 * 
+	 * map.clear(); map.put("s", "s"); return map; }
+	 */
 	
 }

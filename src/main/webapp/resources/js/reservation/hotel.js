@@ -1,4 +1,3 @@
-"use strict";
 var hotel = hotel || {};
 hotel =(()=>{
 		let _, js, css, img, compojs;
@@ -81,7 +80,50 @@ hotel =(()=>{
 													if(sessionStorage.getItem('session') === null){
 														 login();
 													 }else{
-														 pay();
+														 let data = {hotelName:$(this).find('.intro_title').text(),
+																	price:$(this).find('.position-relative').children().eq("2").text(),
+																	roomType:$(this).find('.position-relative').children().eq("3").text(),
+																	notice:$(this).find('.position-relative').children().eq("1").text(),
+																	cityName:$('#hdes_01').next().val(),
+																	startDate:$('#h_date_01').val(),
+																	endDate:$('#h_date_02').val()
+																	};
+														 alert(data.hotelName);
+														 $.ajax({
+																url: _+'/sw/htsave/'+sessionStorage.getItem('memberId'),
+																type:'post',
+																data:JSON.stringify(data),
+																dataType:'json',
+																contentType:'application/json',
+																success: d =>{
+																	IMP.init('imp68242076');
+																	 IMP.request_pay({
+																		    pg : 'kcp',
+																		    pay_method : 'samsung',
+																		    merchant_uid : 'merchant_' + new Date().getTime(),
+																		    name : '(주)여길가자 - 항공권예매',
+																		    amount : 100,
+																		    buyer_email : 'iamport@siot.do',
+																		    buyer_name : '구매자이름',
+																		    buyer_tel : '010-1234-5678',
+																		    buyer_addr : '서울특별시 강남구 삼성동',
+																		    buyer_postcode : '123-456'
+																		}, function(rsp) {
+																		    if ( rsp.success ) {
+																		        var msg = '결제가 완료되었습니다.';
+																		        msg += 'imp68242076 : ' + rsp.imp_uid;
+																		        msg += '상점 거래ID : ' + rsp.merchant_uid;
+																		        msg += '결제 금액 : ' + rsp.paid_amount;
+																		        msg += '카드 승인번호 : ' + rsp.apply_num;
+																		    } else {
+																		        var msg = '결제에 실패하였습니다.';
+																		        msg += '에러내용 : ' + rsp.error_msg;
+																		    }
+																		    alert(msg);
+																		});
+																},
+																error: e =>{}
+																});
 													 }
 													
 												});
@@ -129,52 +171,6 @@ hotel =(()=>{
 				}
 			});
 		};
-		//s
-		let pay=()=>{
-			let data = {hotelName:$('#hicon0').html(),
-					price:$('#hprice_00').html(),
-					roomType:$('#rtype_00').html(),
-					notice:$('#hnoti_00').html(),
-					cityName:$('#hdes_01').next().val(),
-					startDate:$('#h_date_01').val(),
-					endDate:$('#h_date_02').val()
-					};
 //=====================================호텔 정보저장
-			$.ajax({
-				url: _+'/sw/htsave/'+sessionStorage.getItem('memberId'),
-				type:'post',
-				data:JSON.stringify(data),
-				dataType:'json',
-				contentType:'application/json',
-				success: d =>{
-					IMP.init('imp68242076');
-					 IMP.request_pay({
-						    pg : 'kcp',
-						    pay_method : 'samsung',
-						    merchant_uid : 'merchant_' + new Date().getTime(),
-						    name : '(주)여길가자 - 항공권예매',
-						    amount : 100,
-						    buyer_email : 'iamport@siot.do',
-						    buyer_name : '구매자이름',
-						    buyer_tel : '010-1234-5678',
-						    buyer_addr : '서울특별시 강남구 삼성동',
-						    buyer_postcode : '123-456'
-						}, function(rsp) {
-						    if ( rsp.success ) {
-						        var msg = '결제가 완료되었습니다.';
-						        msg += 'imp68242076 : ' + rsp.imp_uid;
-						        msg += '상점 거래ID : ' + rsp.merchant_uid;
-						        msg += '결제 금액 : ' + rsp.paid_amount;
-						        msg += '카드 승인번호 : ' + rsp.apply_num;
-						    } else {
-						        var msg = '결제에 실패하였습니다.';
-						        msg += '에러내용 : ' + rsp.error_msg;
-						    }
-						    alert(msg);
-						});
-				},
-				error: e =>{}
-				});
-		};
 		return {init:init};
 })();
