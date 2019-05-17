@@ -3,140 +3,117 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yeogil.web.mapper.ScheduleMapper">
-
 <resultMap id="result" type="hashmap">
 </resultMap>
-
-	<insert id="insertSchedule" parameterType="com.yeogil.web.domain.ScheduleDTO">
-		INSERT INTO MEMSCH (MS_SEQ ,MS_COUNTRY_NAME,MS_TITLE,MEMBER_ID)
-		VALUES(0,#{ctr},#{planTitle},#{member_id})
-		<selectKey resultType="int" keyProperty="ms_seq" order="AFTER" >
-			SELECT LAST_INSERT_ID()
-		</selectKey>
-	</insert>
-
-	<insert id="insertSchedule2" parameterType="com.yeogil.web.domain.MemschCityDTO">
-		INSERT INTO MEMSCHCTIY (MS_DATE,MS_CITY_NAME,MS_DAY,MS_SEQ)
-		VALUES(#{msDate},#{msCityName},#{msDay},#{ms_seq})
-		<selectKey resultType="int" keyProperty="ms_ctiy_seq" order="AFTER" >
-			SELECT LAST_INSERT_ID()
-		</selectKey>
-	</insert>
-	
-	<insert id="insertSchedule3" parameterType="com.yeogil.web.domain.MemschAttrDTO">
-		INSERT INTO MEMSCHATTR (MS_ATTR_NAME,MS_CTIY_SEQ)
-		VALUES(#{msAttrName},#{ms_ctiy_seq})
-	</insert>
-
-<!-- 	<insert> -->
-<!-- 		INSERT INTO SCHEDULES(START_DATE,MEMBER_ID,ATTR_SEQ)  -->
-<!-- 		VALUES('123123','1231231231',(select ATTR_SEQ from ATTRACTION where ATTR_NAME like '타이베이 시립 미술관')); -->
-<!-- 	</insert> -->
-	
-	<select id="countSchedules" resultType="int" >
-		SELECT COUNT(*)
-		FROM SCHEDULE
-	</select>
-
-	<select id="selectMemOneSchedule" resultMap="result" parameterType="com.yeogil.web.controller.Proxy">
-		SELECT MEMSCHCTIY.MS_CTIY_SEQ, MS_DAY, MS_DATE, MS_COUNTRY_NAME, MS_CITY_NAME
-		FROM MEMSCHATTR
-			JOIN MEMSCHCTIY ON MEMSCHATTR.MS_CTIY_SEQ = MEMSCHCTIY.MS_CTIY_SEQ
-			JOIN MEMSCH ON MEMSCH.MS_SEQ = MEMSCHCTIY.MS_SEQ
-			JOIN MEMBER ON MEMBER.MEMBER_ID = MEMSCH.MEMBER_ID
-		WHERE MEMBER.MEMBER_ID LIKE #{id}
-			AND MEMSCH.MS_TITLE LIKE #{title}
-		GROUP BY MEMSCHCTIY.MS_CTIY_SEQ, MS_DAY, MS_DATE, MS_COUNTRY_NAME, MS_CITY_NAME
-		
-	</select>
-	
-	<select id="selectMemOneScheAttr" resultMap="result" parameterType="com.yeogil.web.controller.Proxy">
-		SELECT MS_ATTR_NAME, MS_DAY, MEMSCH.MS_SEQ
-		FROM MEMSCHATTR 
-			JOIN MEMSCHCTIY ON MEMSCHATTR.MS_CTIY_SEQ = MEMSCHCTIY.MS_CTIY_SEQ
-			JOIN MEMSCH ON MEMSCH.MS_SEQ = MEMSCHCTIY.MS_SEQ
-			JOIN MEMBER ON MEMBER.MEMBER_ID = MEMSCH.MEMBER_ID
-		WHERE MEMBER.MEMBER_ID LIKE #{id}
-			AND MEMSCH.MS_TITLE LIKE #{title}
-	</select>
-	
-	<select id="selectMemAllSchedules" resultMap="result" parameterType="string">
-		SELECT *,(SELECT IMG_URL FROM IMAGE
-				WHERE IMG_NAME LIKE MEMSCH.MS_COUNTRY_NAME) IMG_URL
-		FROM MEMSCH	JOIN MEMBER ON MEMBER.MEMBER_ID = MEMSCH.MEMBER_ID
-			WHERE MEMBER.MEMBER_ID LIKE #{value}
-	</select>
-	
-	<select id="scheList" resultType="com.yeogil.web.domain.AttractionDTO" parameterType="com.yeogil.web.domain.ScheduleDTO">
-		SELECT ATTR_NAME attrName,CITY_NAME cityName
-		FROM ATTRACTION
-		WHERE CITY_NAME LIKE #{city}
-		LIMIT #{continetn_seq},2
-	</select>
-	
-	<select id="countMemsch" resultType="com.yeogil.web.domain.MemschDTO">
-	  	SELECT COUNTRY_CODE countryCode,COUNT(MS_COUNTRY_NAME) msCount,COUNTRY_NAME countryName
-		FROM COUNTRY JOIN MEMSCH
-		WHERE MS_COUNTRY_NAME LIKE COUNTRY_NAME
-		GROUP BY COUNTRY_CODE,COUNTRY_NAME
-	</select>
-	
-	<select id="countMemschs" resultType="int" >
-		SELECT COUNT(*)
-		FROM MEMSCH
-	</select>
-	
-	<select id="topCountry" resultType="com.yeogil.web.domain.CountryDTO" >
-		SELECT COUNTRY_NAME countryName,COUNTRY_FLAG countryFlag
-		FROM COUNTRY c JOIN (select MS_COUNTRY_NAME ,COUNT(MS_COUNTRY_NAME) cou
-								FROM MEMSCH
-								GROUP BY MS_COUNTRY_NAME
-								ORDER BY cou desc) d
-		WHERE c.COUNTRY_NAME LIKE d.MS_COUNTRY_NAME AND COUNTRY_FLAG IS NOT NULL
-		LIMIT 1
-	</select>
-	
-	<select id="countryList" resultType="com.yeogil.web.domain.CountryDTO" >
-		SELECT COUNTRY_NAME countryName,COUNTRY_FLAG countryFlag, cou countryCount
-		FROM COUNTRY c JOIN (select MS_COUNTRY_NAME ,COUNT(MS_COUNTRY_NAME) cou
-								FROM MEMSCH
-								GROUP BY MS_COUNTRY_NAME
-								ORDER BY cou desc) d
-		WHERE c.COUNTRY_NAME LIKE d.MS_COUNTRY_NAME AND COUNTRY_FLAG IS NOT NULL
-	</select>
-	
-	<select id="selectMemSeq" resultType="string" parameterType="string">
-		SELECT MS_SEQ
-		FROM MEMSCHCTIY
-		WHERE MS_CTIY_SEQ LIKE #{value}
-	</select>
-	
-	<delete
-		id="deleteScheAttrs"
-		parameterType="string"
-		flushCache="true"
-		statementType="PREPARED">
-			DELETE FROM MEMSCHATTR
-			WHERE MS_CTIY_SEQ LIKE #{value}
-	</delete>
-	
-	<delete
-		id="deleteScheCities"
-		parameterType="string"
-		flushCache="true"
-		statementType="PREPARED">
-			DELETE FROM MEMSCHCTIY
-			WHERE MS_CTIY_SEQ LIKE #{value}
-	</delete>
-	
-	<delete
-		id="deleteSche"
-		parameterType="string"
-		flushCache="true"
-		statementType="PREPARED">
-			DELETE FROM MEMSCH
-			WHERE MS_SEQ LIKE ${value}
-	</delete>
-	
-	
+    <insert id="insertSchedule" parameterType="com.yeogil.web.domain.ScheduleDTO">
+        INSERT INTO MEMSCH (MS_SEQ ,MS_COUNTRY_NAME,MS_TITLE,MEMBER_ID)
+        VALUES(0,#{ctr},#{planTitle},#{member_id})
+        <selectKey resultType="int" keyProperty="ms_seq" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    <insert id="insertSchedule2" parameterType="com.yeogil.web.domain.MemschCityDTO">
+        INSERT INTO MEMSCHCTIY (MS_DATE,MS_CITY_NAME,MS_DAY,MS_SEQ)
+        VALUES(#{msDate},#{msCityName},#{msDay},#{ms_seq})
+        <selectKey resultType="int" keyProperty="ms_ctiy_seq" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    
+    <insert id="insertSchedule3" parameterType="com.yeogil.web.domain.MemschAttrDTO">
+        INSERT INTO MEMSCHATTR (MS_ATTR_NAME,MS_CTIY_SEQ)
+        VALUES(#{msAttrName},#{ms_ctiy_seq})
+    </insert>
+    <select id="countSchedules" resultType="int" >
+        SELECT COUNT(*)
+        FROM SCHEDULE
+    </select>
+    <select id="selectMemOneSchedule" resultMap="result" parameterType="com.yeogil.web.controller.Proxy">
+        SELECT *
+        ,SCHEDULES.ATTR_SEQ
+        ,(SELECT COUNTRY_NAME
+            FROM COUNTRY
+            WHERE COUNTRY_ENAME LIKE (SELECT COUNTRY_NAME
+                                                FROM ATTRACTION
+                                                WHERE ATTRACTION.ATTR_SEQ LIKE SCHEDULES.ATTR_SEQ)) COUNTRY_NAME
+        FROM SCHEDULES, (SELECT ATTR_SEQ, ATTR_NAME, CITY_NAME FROM ATTRACTION) ATTR
+        WHERE MEMBER_ID LIKE #{id}
+            AND PLAN_TITLE LIKE #{title}
+            AND SCHEDULES.ATTR_SEQ LIKE ATTR.ATTR_SEQ
+        GROUP BY START_DATE
+        ORDER BY START_DATE
+        
+    </select>
+    
+    <select id="selectMemOneScheAttr" resultMap="result" parameterType="com.yeogil.web.controller.Proxy">
+        SELECT *
+        FROM SCHEDULES, (SELECT ATTR_SEQ, ATTR_NAME FROM ATTRACTION) ATTR
+        WHERE MEMBER_ID LIKE #{id}
+            AND PLAN_TITLE LIKE #{title}
+            AND SCHEDULES.ATTR_SEQ LIKE ATTR.ATTR_SEQ
+        ORDER BY SCHEDULE_SEQ
+    </select>
+    
+    <select id="selectMemAllSchedules" resultMap="result" parameterType="string">
+        SELECT DISTINCT PLAN_TITLE
+                    ,(SELECT COUNTRY_NAME
+                        FROM COUNTRY
+                        WHERE COUNTRY_ENAME LIKE (SELECT COUNTRY_NAME
+                                                            FROM ATTRACTION
+                                                            WHERE ATTRACTION.ATTR_SEQ LIKE SCHEDULES.ATTR_SEQ)) COUNTRY_NAME
+                    ,(SELECT IMG_URL FROM IMAGE
+                        WHERE IMG_NAME LIKE COUNTRY_NAME) IMG_URL
+                    ,(SELECT NICKNAME FROM MEMBER
+                        WHERE MEMBER_ID LIKE SCHEDULES.MEMBER_ID) NICKNAME
+        FROM SCHEDULES
+        WHERE MEMBER_ID LIKE #{value}
+    </select>
+    
+    <select id="scheList" resultType="com.yeogil.web.domain.AttractionDTO" parameterType="com.yeogil.web.domain.ScheduleDTO">
+        SELECT ATTR_NAME attrName,CITY_NAME cityName
+        FROM ATTRACTION
+        WHERE CITY_NAME LIKE #{city}
+        LIMIT #{continetn_seq},2
+    </select>
+    
+    <select id="countMemsch" resultType="com.yeogil.web.domain.MemschDTO">
+        SELECT COUNTRY_CODE countryCode,COUNT(MS_COUNTRY_NAME) msCount,COUNTRY_NAME countryName
+        FROM COUNTRY JOIN MEMSCH
+        WHERE MS_COUNTRY_NAME LIKE COUNTRY_NAME
+        GROUP BY COUNTRY_CODE,COUNTRY_NAME
+    </select>
+    
+    <select id="countMemschs" resultType="int" >
+        SELECT COUNT(*)
+        FROM MEMSCH
+    </select>
+    
+    <select id="topCountry" resultType="com.yeogil.web.domain.CountryDTO" >
+        SELECT COUNTRY_NAME countryName,COUNTRY_FLAG countryFlag
+        FROM COUNTRY c JOIN (select MS_COUNTRY_NAME ,COUNT(MS_COUNTRY_NAME) cou
+                                FROM MEMSCH
+                                GROUP BY MS_COUNTRY_NAME
+                                ORDER BY cou desc) d
+        WHERE c.COUNTRY_NAME LIKE d.MS_COUNTRY_NAME AND COUNTRY_FLAG IS NOT NULL
+        LIMIT 1
+    </select>
+    
+    <select id="countryList" resultType="com.yeogil.web.domain.CountryDTO" >
+        SELECT COUNTRY_NAME countryName,COUNTRY_FLAG countryFlag, cou countryCount
+        FROM COUNTRY c JOIN (select MS_COUNTRY_NAME ,COUNT(MS_COUNTRY_NAME) cou
+                                FROM MEMSCH
+                                GROUP BY MS_COUNTRY_NAME
+                                ORDER BY cou desc) d
+        WHERE c.COUNTRY_NAME LIKE d.MS_COUNTRY_NAME AND COUNTRY_FLAG IS NOT NULL
+    </select>
+    
+    <delete
+        id="deleteSche"
+        parameterType="com.yeogil.web.controller.Proxy"
+        flushCache="true"
+        statementType="PREPARED">
+            DELETE FROM SCHEDULES
+            WHERE MEMBER_ID LIKE #{id}
+                AND PLAN_TITLE LIKE #{title}
+    </delete>
 </mapper>

@@ -19,9 +19,8 @@ public class HotelServiceImpl implements HotelService{
 	}
 
 	@Override
-	public List<HotelDTO> findAllCustomers(HashMap<String, String> hash) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<HotelDTO> findAllCustomers() {
+		return htmap.selectAllCustomers();
 	}
 
 	@Override
