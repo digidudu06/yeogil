@@ -110,11 +110,11 @@ sche = (()=>{
 			
 			$('.detail_plan_go_btn').click(function(e){
 				e.preventDefault();
-//				let deplan = {planTitle:$('#plan_title').val(),
-//						startDate:$('#date_pick_btn').val()};
-//					if(deplan.planTitle===""||deplan.startDate===""){
-//						alert("모든항목을 기입해주세요");
-//					}else{
+// let deplan = {planTitle:$('#plan_title').val(),
+// startDate:$('#date_pick_btn').val()};
+// if(deplan.planTitle===""||deplan.startDate===""){
+// alert("모든항목을 기입해주세요");
+// }else{
 						let data = [{"ctr" : $('#city_list_title').text(),
 							"startDate" : $('#date_pick_btn').children().eq(0).text(),
 							"city" : $('#selected_cities .s_cities .city_info .fl').text(),
@@ -127,11 +127,11 @@ sche = (()=>{
 							dataType :"json",
 							contentType : "application/json; charset=UTF-8",
 							success: d => {
-								mysche.init(data.planTitle);
+								mysche.init($('#plan_title').val());
 							},error: e => {
 							}
 						});
-//					};
+// };
 			});
 			$('#map_close').click(function(){
 				location.assign($.ctx()+'/sche');
@@ -240,31 +240,31 @@ sche = (()=>{
 			prevText:'',
 			nextText:'',
 			monthNames : [
-				'1월', //1월', 
-				'2월', //2월', 
-				'3월', //3월', 
-				'4월', //4월', 
-				'5월', //5월', 
-				'6월', //6월', 
-				'7월', //7월', 
-				'8월', //8월', 
-				'9월', //9월', 
-				'10월', //10월', 
-				'11월', //11월', 
-				'12월'], //12월'],
+				'1월', // 1월',
+				'2월', // 2월',
+				'3월', // 3월',
+				'4월', // 4월',
+				'5월', // 5월',
+				'6월', // 6월',
+				'7월', // 7월',
+				'8월', // 8월',
+				'9월', // 9월',
+				'10월', // 10월',
+				'11월', // 11월',
+				'12월'], // 12월'],
 				monthNamesShort : [
-					'1월', //1월', 
-					'2월', //2월', 
-					'3월', //3월', 
-					'4월', //4월', 
-					'5월', //5월', 
-					'6월', //6월', 
-					'7월', //7월', 
-					'8월', //8월', 
-					'9월', //9월', 
-					'10월', //10월', 
-					'11월', //11월', 
-					'12월'], //12월'],
+					'1월', // 1월',
+					'2월', // 2월',
+					'3월', // 3월',
+					'4월', // 4월',
+					'5월', // 5월',
+					'6월', // 6월',
+					'7월', // 7월',
+					'8월', // 8월',
+					'9월', // 9월',
+					'10월', // 10월',
+					'11월', // 11월',
+					'12월'], // 12월'],
 					dayNames:['SUN','MON','TUE','WED','THU','FRI','SAT'],
 					dayNamesShort:['SUN','MON','TUE','WED','THU','FRI','SAT'],
 					dayNamesMin:['SUN','MON','TUE','WED','THU','FRI','SAT'],
@@ -529,7 +529,7 @@ sche = (()=>{
 				let _html = '';
 				if(is_state == '1'){
 					deleteMarkers();
-					//get_ko_city_in_state(citySeq,cityName);
+					// get_ko_city_in_state(citySeq,cityName);
 				}else{
 					_html = '<div class="s_cities" data-ci="'+citySeq+'" data-day="2" data-lat="'+cityLng+'" data-lng="'+cityLng+'"><div class="city_route_info"><div class="city_distance_info fl">0Km</div><a href="http://flights.earthtory.com" target="_blank"><div class="city_air_search_btn fr">항공검색</div></a><div class="clear"></div></div>';
 					_html += '<div class="city_info"><div class="del_city_btn fl"><img src="'+img+'/map/del_city_btn_a.png"></div><div class="fl">'+cityName+'</div>';
@@ -614,7 +614,7 @@ sche = (()=>{
 			_ci_srl = $(this).attr('data');
 			deleteMarkers();
 			_this_st_name = $(this).attr('data-ci_name');
-			//get_ko_city_in_state(_ci_srl,_this_st_name);
+			// get_ko_city_in_state(_ci_srl,_this_st_name);
 		});
 		
 		function add_s_marker(_lat, _lng) {
