@@ -17,23 +17,22 @@
 		SELECT COUNT(*)
 		FROM SCHEDULE
 	</select>
-	
-	<select id="selectMemOneSchedule" resultMap="result" parameterType="com.yeogil.web.controller.Proxy">
-		SELECT START_DATE
-				,MEMBER_ID
-				,CITY_NAME
-				,SCHEDULES.ATTR_SEQ
-				,(SELECT COUNTRY_NAME
-					FROM COUNTRY
-					WHERE COUNTRY_ENAME LIKE (SELECT COUNTRY_NAME
-														FROM ATTRACTION
-														WHERE ATTRACTION.ATTR_SEQ LIKE SCHEDULES.ATTR_SEQ)) COUNTRY_NAME
-		FROM SCHEDULES, (SELECT ATTR_SEQ, ATTR_NAME, CITY_NAME FROM ATTRACTION) ATTR
-		WHERE MEMBER_ID LIKE #{id}
-			AND PLAN_TITLE LIKE #{title}
-			AND SCHEDULES.ATTR_SEQ LIKE ATTR.ATTR_SEQ
-		GROUP BY START_DATE
-		ORDER BY START_DATE
+
+	<select id="selectMemOneSchedule" resultType="com.yeogil.web.domain.ScheduleDTO" parameterType="com.yeogil.web.controller.Proxy">
+		SELECT START_DATE startDate
+                ,MEMBER_ID member_id
+                ,CITY_NAME city
+                ,(SELECT COUNTRY_NAME
+                    FROM COUNTRY
+                    WHERE COUNTRY_ENAME LIKE (SELECT COUNTRY_NAME
+                                                        FROM ATTRACTION
+                                                        WHERE ATTRACTION.ATTR_SEQ LIKE SCHEDULES.ATTR_SEQ)) countryName
+        FROM SCHEDULES, (SELECT ATTR_SEQ, ATTR_NAME, CITY_NAME FROM ATTRACTION) ATTR
+        WHERE MEMBER_ID LIKE #{id}
+            AND PLAN_TITLE LIKE #{title}
+            AND SCHEDULES.ATTR_SEQ LIKE ATTR.ATTR_SEQ
+        GROUP BY START_DATE
+        ORDER BY START_DATE
 	</select>
 	
 	<select id="selectMemOneScheAttr" resultMap="result" parameterType="com.yeogil.web.controller.Proxy">

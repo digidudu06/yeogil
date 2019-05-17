@@ -15,6 +15,9 @@ public interface HotelMapper {
 	public List<HotelDTO> selectSomeCustomers(HashMap<String, String> hash);
 	public List<ScheduleDTO> selectHotel(List<?> list);
 	public HotelDTO selectCustomer(HotelDTO hotel);
+	
+	public HotelDTO selectHotel(HotelDTO hotel);
+	
 	public int countCustomer();
 	public void updateCustomer(HotelDTO hotel);
 	public void deleteCustomer(HotelDTO hotel);

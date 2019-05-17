@@ -27,6 +27,16 @@
 								#{endDate}
 								)
 	</insert>
+	
+	<select id="selectHotel" resultType="com.yeogil.web.domain.HotelDTO" parameterType="com.yeogil.web.domain.HotelDTO">
+		SELECT HOTEL_NAME
+		FROM HOTEL
+		WHERE START_DATE LIKE #{startDate}
+		AND MEMBER_ID LIKE #{memberId}
+		AND CITY_NAME LIKE #{cityName}
+	</select>
+	
+	
 	<!-- <select id="findAllCustomers" parameterType="com.yeogil.web.domain.HotelDTO" resultType="com.yeogil.web.domain.HotelDTO">
 	 SELECT 
 	 		MEMBER_ID memberId,
