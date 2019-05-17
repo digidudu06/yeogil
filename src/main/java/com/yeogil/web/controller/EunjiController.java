@@ -78,6 +78,7 @@ public class EunjiController {
 		}
 		System.out.println(holist.toString());
 		
+		System.out.println("list"+list.toString());
 		map.put("list",list);
 		map.put("attr",attr);
 		map.put("holist", holist);

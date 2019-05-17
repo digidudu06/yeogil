@@ -47,20 +47,19 @@ mysche = (()=>{
 			$.each(d.list, (i,j)=>{
 				$('	<tr id="sch'+i+'" class="white">'
 					+'		<td id="sche_date">'
-					+'			<div class="scht_date">'+j.START_DATE+'</div>'
+					+'			<div class="scht_date">'+j.startDate+'</div>'
 					+'			<div class="scht_day"> Day'+(i+1)+'</div>'
 					+'		</td>'
 					+'		<td>'
-					+'			<div class="scht_city" style="padding-left: 0px; text-align: center;">'+j.COUNTRY_NAME+'</div>'			
+					+'			<div class="scht_city" style="padding-left: 0px; text-align: center;">'+j.countryName+'</div>'			
 					+'		</td>'
 					+'		<td>'
-					+'			<div class="scht_city" style="padding-left: 0px; text-align: center;">'+j.CITY_NAME+'</div>'		
+					+'			<div class="scht_city" style="padding-left: 0px; text-align: center;">'+j.city+'</div>'		
 					+'		</td>'
-					+'		<td id="'+j.START_DATE+'" class="scht_vtop"></td>'
+					+'		<td id="'+j.startDate+'" class="scht_vtop"></td>'
 					+'		<td></td>'
 					+'	</tr>').appendTo('tbody');
 				$.each(d.attr, (a,b)=>{
-					
 					if($('#sch'+i).children().eq(3).attr('id')===b.START_DATE){
 						$('<div class="scht_spotname">'+b.ATTR_NAME+'</div>')
 							.appendTo('#'+$('#sch'+i).children().eq(3).attr('id'));
