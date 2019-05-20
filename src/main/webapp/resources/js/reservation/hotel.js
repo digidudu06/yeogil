@@ -65,7 +65,8 @@ hotel =(()=>{
 								  /*});*/
 							});
 //==========================================호텔 크롤링
-							$.getJSON(_+'/crawling/hvation',d=>{
+							let x = $('.hseo_form-control').val();
+							$.getJSON(_+'/crawling/hvation/'+x,d=>{
 								
 								$(compo.hresult()).appendTo('#common_area');
 								$('#hotel_clean').remove();

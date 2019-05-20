@@ -135,40 +135,44 @@ public class CrawlController {
 		return map;
 	}
 	
-	  @GetMapping("/crawling/hvation")
-	  public Map<?, ?> hvation() throws Exception { 
+	  @GetMapping("/crawling/hvation/{cityName}")
+	  public Map<?, ?> hvation(@PathVariable String cityName) throws Exception { 
+		  String hotelimg ="";
+		  switch(cityName) {
+		  case "타이베이":
+			  hotelimg = "https://www.booking.com/searchresults.ko.html?label=gen173nr-1DCAEoggI46AdIM1gEaH2IAQGYARe4ARfIAQzYAQPoAQGIAgGoAgO4Asa29OYFwAIB&sid=68f29d9a69d9207286193d8644542b33&sb=1&src=index&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Findex.ko.html%3Flabel%3Dgen173nr-1DCAEoggI46AdIM1gEaH2IAQGYARe4ARfIAQzYAQPoAQGIAgGoAgO4Asa29OYFwAIB%3Bsid%3D68f29d9a69d9207286193d8644542b33%3Bsb_price_type%3Dtotal%26%3B&ss=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&is_ski_area=0&ssne=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&ssne_untouched=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&dest_id=-2637882&dest_type=city&checkin_year=2019&checkin_month=6&checkin_monthday=23&checkout_year=2019&checkout_month=6&checkout_monthday=28&group_adults=2&group_children=0&no_rooms=1&b_h4u_keep_filters=&from_sf=1";
+			  break;
+		  }
 	  
-	  String hotelimg = "https://www.booking.com/searchresults.ko.html?label=gen173nr-1DCAEoggI46AdIM1gEaH2IAQGYARe4ARfIAQzYAQPoAQGIAgGoAgO4Asa29OYFwAIB&sid=68f29d9a69d9207286193d8644542b33&sb=1&src=index&src_elem=sb&error_url=https%3A%2F%2Fwww.booking.com%2Findex.ko.html%3Flabel%3Dgen173nr-1DCAEoggI46AdIM1gEaH2IAQGYARe4ARfIAQzYAQPoAQGIAgGoAgO4Asa29OYFwAIB%3Bsid%3D68f29d9a69d9207286193d8644542b33%3Bsb_price_type%3Dtotal%26%3B&ss=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&is_ski_area=0&ssne=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&ssne_untouched=%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4&dest_id=-2637882&dest_type=city&checkin_year=2019&checkin_month=6&checkin_monthday=23&checkout_year=2019&checkout_month=6&checkout_monthday=28&group_adults=2&group_children=0&no_rooms=1&b_h4u_keep_filters=&from_sf=1";
-	  
-	  Connection conn =
-	   Jsoup.connect(hotelimg).header("Content-Type", "application/json;charset=UTF-8")
-	  .method(Connection.Method.POST).ignoreContentType(true);
-	  
-	  Elements httext1 = conn.get().select(".sr_item");
-	  List<HotelDTO> htlist = new ArrayList<>();
-	  HotelDTO htdto = null;
-	  //asdf
-	  for (Element s : httext1) {
-		  htdto = new HotelDTO();
-		  /*IMAGE*/
-		  String imgurl = s.select(".hotel_image").attr("src");
-		  htdto.setImgUrl(imgurl);
-		  /*NAME*/
-		  String deptime1 = s.select(".sr-hotel__name").text();
-		  htdto.setHotelName(deptime1);
-		  /*ROOMTYPE*/
-		  String sold = s.select(".room_link").text();
-		  htdto.setRoomType(sold);
-		  /*NOTICE*/
-		  String notice = s.select(".fe_banner__title").text();
-		  htdto.setNotice(notice);
-		  /*PRICE*/
-		  String hprice = s.select(".animated strong b").text();
-		  htdto.setPrice(hprice);
-		  htlist.add(htdto); 
-	  }
-	  map.clear();
-	  map.put("htlist", htlist);
-	  return map; 
+		  Connection conn =
+		   Jsoup.connect(hotelimg).header("Content-Type", "application/json;charset=UTF-8")
+		  .method(Connection.Method.POST).ignoreContentType(true);
+		  
+		  Elements httext1 = conn.get().select(".sr_item");
+		  List<HotelDTO> htlist = new ArrayList<>();
+		  HotelDTO htdto = null;
+		  //asdf
+		  for (Element s : httext1) {
+			  htdto = new HotelDTO();
+			  /*IMAGE*/
+			  String imgurl = s.select(".hotel_image").attr("src");
+			  htdto.setImgUrl(imgurl);
+			  /*NAME*/
+			  String deptime1 = s.select(".sr-hotel__name").text();
+			  htdto.setHotelName(deptime1);
+			  /*ROOMTYPE*/
+			  String sold = s.select(".room_link").text();
+			  htdto.setRoomType(sold);
+			  /*NOTICE*/
+			  String notice = s.select(".fe_banner__title").text();
+			  htdto.setNotice(notice);
+			  /*PRICE*/
+			  String hprice = s.select(".animated strong b").text();
+			  htdto.setPrice(hprice);
+			  htlist.add(htdto); 
+		  }
+		  map.clear();
+		  map.put("htlist", htlist);
+		  return map; 
 	  }
 }
