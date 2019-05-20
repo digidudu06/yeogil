@@ -127,7 +127,7 @@ sche = (()=>{
 							dataType :"json",
 							contentType : "application/json; charset=UTF-8",
 							success: d => {
-								mysche.init(data.planTitle);
+								mysche.init($('#plan_title').val());
 							},error: e => {
 							}
 						});

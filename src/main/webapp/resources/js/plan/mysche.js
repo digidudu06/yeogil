@@ -14,6 +14,7 @@ mysche = (()=>{
 	let onCreate=()=>{
 		setContentView();
 	};
+	//ssss
 	let setContentView=()=>{
 		$.getScript(compojs,()=>{
 			$('#common_area').empty();
@@ -37,7 +38,6 @@ mysche = (()=>{
 			
 			let data = {"id":id, "title":title};
 			memOneSchedule(data);
-			/*hotelSchedule();*/
 		});
 	};
 	let memOneSchedule=(data)=>{
@@ -57,7 +57,7 @@ mysche = (()=>{
 					+'			<div class="scht_city" style="padding-left: 0px; text-align: center;">'+j.city+'</div>'		
 					+'		</td>'
 					+'		<td id="'+j.startDate+'" class="scht_vtop"></td>'
-					+'		<td></td>'
+					+'		<td id="hotel'+i+'"></td>'	
 					+'	</tr>').appendTo('tbody');
 				$.each(d.attr, (a,b)=>{
 					if($('#sch'+i).children().eq(3).attr('id')===b.START_DATE){
@@ -66,9 +66,10 @@ mysche = (()=>{
 					}
 				});
 				$.each(d.holist, (n,m)=>{
-					//ss
+					$('#'+$('#hotel'+i).attr('id')).text(m.hotelName);
 				});
 			});
+			
 			$('#edit_detail_plan').click(function(){
 				 $.ajax({
                      url:_+'/deleteSchedule',

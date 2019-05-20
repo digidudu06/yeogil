@@ -29,7 +29,7 @@
 	</insert>
 	
 	<select id="selectHotel" resultType="com.yeogil.web.domain.HotelDTO" parameterType="com.yeogil.web.domain.HotelDTO">
-		SELECT HOTEL_NAME
+		SELECT HOTEL_NAME hotelName, CITY_NAME cityName
 		FROM HOTEL
 		WHERE START_DATE LIKE #{startDate}
 		AND MEMBER_ID LIKE #{memberId}
