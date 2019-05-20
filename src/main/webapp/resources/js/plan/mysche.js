@@ -65,6 +65,7 @@ mysche = (()=>{
 							.appendTo('#'+$('#sch'+i).children().eq(3).attr('id'));
 					}
 				});
+				
 			});
 			$('#edit_detail_plan').click(function(){
 				 $.ajax({
