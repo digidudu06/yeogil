@@ -434,8 +434,8 @@ compo = {
 		plan_header : ()=>{
 			return '<div class="plan_header" id="plan_header">'
 			+'<div class="wrap">'
-			+'<div class="p_header_title">'
-				+'누구나 쉽게 일정을 계획할 수 있습니다.</div>'
+//			+'<div class="p_header_title">'
+//				+'누구나 쉽게 일정을 계획할 수 있습니다.</div>'
 			+'<div class="p_header_img">'
 				+'<img id="p_header_img" alt="" />'
 			+'</div>'
