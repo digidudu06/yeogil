@@ -78,9 +78,14 @@ public class EunjiController {
 			ho.setStartDate(list.get(i).getStartDate());
 			ho.setMemberId(id);
 			
-			holist.add(hotelMapper.selectHotel(ho));
-			System.out.println(holist.toString());
+			if(hotelMapper.selectHotel(ho)==null) {
+				ho.setHotelName("예약된 호텔이 없습니다.");
+				holist.add(ho);
+			}else {
+				holist.add(hotelMapper.selectHotel(ho));
+			}
 		}
+		System.out.println(holist.toString());
 		
 		map.put("list",list);
 		map.put("attr",attr);

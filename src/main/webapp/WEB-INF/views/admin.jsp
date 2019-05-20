@@ -10,7 +10,6 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <title>여길가자 관리자페이지</title>
   <link rel="shortcut icon" href="${img}/favicon.ico">
-  <link rel="shortcut icon" href="${css}/area/area.css">
 <script src="https://www.amcharts.com/lib/4/core.js"></script>
 <script src="https://www.amcharts.com/lib/4/maps.js"></script>
 <script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
