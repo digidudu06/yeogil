@@ -126,7 +126,7 @@
     width:20px;
     height:20px;
     color:white;
-    background:url('/res/img/common/jui_next.gif') no-repeat;
+/*     background:url('/resources/img/map/jui_next.gif') no-repeat; */
     content: '';
   }
 

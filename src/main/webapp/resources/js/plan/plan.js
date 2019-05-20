@@ -64,7 +64,7 @@ plan =(()=>{
 			}
 
 			$(compo.plan_header()).appendTo('#common_area');
-			
+			$('#common_area').attr('style','height:700px; background-color:#7bc0f9;');
 			$('#p_header_img').attr('src',img+'/component/p_header_img_ko.jpg');
 				// 이미지 바꾸기
 			$('.p_header_btn_box').empty();
@@ -72,6 +72,7 @@ plan =(()=>{
 			$('<div class="p_header_btn" id="btn_1"></div>')
 				.appendTo('.p_header_btn_box').text('새로운 일정 만들기')
 				.click(function(){
+					$('#common_area').attr('style','height: ; background-color: ;');
 //*************************************************css end
 					if(sessionStorage.getItem('session') === null){
 						login();
@@ -80,13 +81,15 @@ plan =(()=>{
 					}
 				});
 			
-			$('<div class="cjtooltip"><span class="rtooltiptext">눌러주세요</span></div>').insertAfter('#plan_header');
-			
+			$('<div class="jwtooltip"><span class="jwtooltiptext">눌러주세요</span></div>').appendTo('.p_header_btn');
+			$('<div class="jwtooltip"><span class="jwtooltiptext" style="right: -173px;">눌러주세요</span></div>').appendTo('.p_header_btn');
 			$('<img/>').attr('src',img+'/component/p_header_btn_img1.jpg').appendTo('#btn_1');
 			
 			$('<div class="p_header_btn my_sch" id="btn_2"></div>')
 				.appendTo('.p_header_btn_box').text('나의 일정 보기')
 				.click(function(){
+					$('#header').remove();
+					$('#common_area').attr('style','height: ; background-color: ;');
 					if(sessionStorage.getItem('session') === null){
 						login();
 					}else{
