@@ -71,7 +71,7 @@ mysche = (()=>{
 					+'			<div class="scht_city" style="padding-left: 0px; text-align: center;">'+j.countryName+'</div>'			
 					+'		</td>'
 					+'		<td>'
-					+'			<div class="scht_city" style="padding-left: 0px; text-align: center;">'+j.city+'</div>'		
+					+'			<div class="scht_city" name='+j.city+' style="padding-left: 0px; text-align: center;">'+j.city+'</div>'		
 					+'		</td>'
 					+'		<td id="'+j.startDate+'" class="scht_vtop"></td>'
 					+'		<td id="hotel'+i+'"></td>'	
@@ -82,11 +82,14 @@ mysche = (()=>{
 							.appendTo('#'+$('#sch'+i).children().eq(3).attr('id'));
 					}
 				});
-				$.each(d.holist, (n,m)=>{
-					$('#'+$('#hotel'+i).attr('id')).text(m.hotelName);
-				});
 			});
-			
+			$.each(d.holist, (n,m)=>{
+				if($('#sch'+n).children().eq(2).children().eq(0).text() === m.cityName){
+					$('#'+$('#hotel'+n).attr('id')).text(m.hotelName);
+				}else{
+					$('#'+$('#hotel'+n).attr('id')).text("예약된 호텔이 없습니다.");
+				}
+			});
 			$('#edit_detail_plan').click(function(){
 				$('#header').remove();
 				 $.ajax({

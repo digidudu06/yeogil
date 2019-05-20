@@ -20,6 +20,7 @@ admin = (()=>{
 	let setContentView =()=>{
 		$.getJSON(_+"/member/memcount",d=>{
 			$('#f_temp').empty();
+			
 			// 첫번째 박스 보여주는곳
 			$('<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">'
 					+'<div class="info-box blue-bg">'
@@ -62,7 +63,7 @@ admin = (()=>{
 			word_map_chart(mapdata);
 		});
 		
-		$('#cj_home').click(()=>{
+		$('#cj_home').attr("style","cursor: pointer;").click(()=>{
 			location.assign($.ctx());
 		});
 	};
