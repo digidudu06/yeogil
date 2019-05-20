@@ -81,8 +81,6 @@ plan =(()=>{
 					}
 				});
 			
-			$('<div class="jwtooltip"><span class="jwtooltiptext">눌러주세요</span></div>').appendTo('.p_header_btn');
-			$('<div class="jwtooltip"><span class="jwtooltiptext" style="right: -173px;">눌러주세요</span></div>').appendTo('.p_header_btn');
 			$('<img/>').attr('src',img+'/component/p_header_btn_img1.jpg').appendTo('#btn_1');
 			
 			$('<div class="p_header_btn my_sch" id="btn_2"></div>')
@@ -96,7 +94,8 @@ plan =(()=>{
 						mypage.init();
 					}
 				});
-			
+			$('<div class="jwtooltip"><span class="jwtooltiptext">눌러주세요</span></div>').appendTo('#btn_1');
+			$('<div class="jwtooltip"><span class="jwtooltiptext" style="right: 24px;">눌러주세요</span></div>').appendTo('#btn_2');
 			$('<img/>').attr('src',img+'/component/p_header_btn_img2.jpg').appendTo('#btn_2');
 			$('#area_btn').attr('src',img+'/component/area_down.jpg');
 			$('#city_btn').attr('src',img+'/component/area_down.jpg');

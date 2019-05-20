@@ -96,11 +96,9 @@ mysche = (()=>{
                      dataType:'json',
                      contentType : "application/json; charset=UTF-8",
                      success(d){
-                    	 alert("성공"+d);
                     	 mypage.init();
                      },
                      error(d){
-                    	 alert("실패"+d);
                      }
 				 });
 			});
