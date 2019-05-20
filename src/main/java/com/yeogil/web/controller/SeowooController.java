@@ -106,17 +106,4 @@ public class SeowooController {
 	airportInfoService.insertAirportInfo(aidto);
 	return map; 
 	}
-	
-	/*
-	 * @GetMapping("/hotelSchedule/{memberid}") public Map<?, ?> hotelSchedule(
-	 * 
-	 * @PathVariable String memberid)throws Exception{
-	 * System.out.println("=======SW C진입 htSche탐"); map.clear();
-	 * System.out.println(memberid);
-	 * 
-	 * schedulMapper.selectMemOneSchedule(pxy);
-	 * 
-	 * map.clear(); map.put("s", "s"); return map; }
-	 */
-	
 }

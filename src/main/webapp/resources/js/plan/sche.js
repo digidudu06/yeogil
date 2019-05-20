@@ -758,7 +758,6 @@ sche = (()=>{
 		
 		
 		function get_ko_state(_cu_name,_cu_ename){
-			alert(_cu_name+'   '+_cu_ename);
 			$('#city_list_title .cu_title').text(_cu_name);
 			$.ajax({
 				url: _+"/cont/country/"+_cu_name,

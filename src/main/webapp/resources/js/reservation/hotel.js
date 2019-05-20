@@ -92,7 +92,6 @@ hotel =(()=>{
 																	startDate:$('#h_date_01').val(),
 																	endDate:$('#h_date_02').val()
 																	};
-														 alert(data.hotelName);
 														 $.ajax({
 																url: _+'/sw/htsave/'+sessionStorage.getItem('memberId'),
 																type:'post',

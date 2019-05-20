@@ -85,7 +85,6 @@ public class EunjiController {
 				holist.add(hotelMapper.selectHotel(ho));
 			}
 		}
-		System.out.println(holist.toString());
 		
 		map.put("list",list);
 		map.put("attr",attr);
