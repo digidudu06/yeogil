@@ -85,6 +85,12 @@ airport = (()=>{
 				$(compo.reservation()).appendTo('#common_area');
 				$('<button id="hbtn_01" class="btn btn-danger">호텔</button>').prependTo('#apbtn_01');
 				$('<button id="abtn_01" class="btn btn-danger">항공</button>').prependTo('#apbtn_01');
+				$('<div class="container" style="padding-left: 0px;">'
+					+'  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" style="width: 108px;">클릭해주세요</button>'
+					+'  <div id="demo" class="collapse" style="color:white">'
+					+'항공예매 후 호텔예약을 해주세요'
+					+'  </div>'
+					+'</div>').insertBefore('#abtn_01');
 				$('#start_01').text("출발지");
 				$('#dest_01').text("도착지");
 				$('#start_02').text("가는날");
@@ -110,11 +116,30 @@ airport = (()=>{
 						if(data.arrivalDate===""||data.departDateR===""){
 							alert("모든항목을 기입해주세요");
 						}else{
-							$(document).ready(function() {
-								 /* $('#hcheck_01').bind('click', function() {*/
-								    $('html, body').animate({scrollTop: '800'}, 2000);
-								  /*});*/
-							});
+							 let data = {incheon:$('#sinput_01').val(),
+										taiwan:$('#sinput_02').val()};//map자체
+							if(data.incheon==="인천"&&data.taiwan==="인천"||
+									data.incheon==="타이베이"&&data.taiwan==="타이베이"||
+									data.incheon==="가오슝"&&data.taiwan==="가오슝"||
+									data.incheon==="화롄"&&data.taiwan==="화롄"||
+									data.incheon==="타이베이"&&data.taiwan==="가오슝"||
+									data.incheon==="타이베이"&&data.taiwan==="화롄"||
+									data.incheon==="화롄"&&data.taiwan==="타이베이"||
+									data.incheon==="화롄"&&data.taiwan==="가오슝"||
+									data.incheon==="가오슝"&&data.taiwan==="타이베이"||
+									data.incheon==="가오슝"&&data.taiwan==="화롄"||
+									data.incheon==="타이베이"&&data.taiwan==="인천"||
+									data.incheon==="가오슝"&&data.taiwan==="인천"||
+									data.incheon==="화렌"&&data.taiwan==="인천"){
+								alert("현재 인천에서 대만 노선만 운행중입니다");
+							}else{
+								
+								$(document).ready(function() {
+									/* $('#hcheck_01').bind('click', function() {*/
+									$('html, body').animate({scrollTop: '800'}, 2000);
+									/*});*/
+								});
+							
 					 let page ='1';
 					 $.getJSON($.ctx()+'/airlist/'+ page, d=>{
 						 $('<div id="adddiv_01"></div>').appendTo('#common_area');
@@ -150,7 +175,8 @@ airport = (()=>{
 						 i++
 						 });
 					 });
-					} 
+					}
+						}///dfdf
 				});
 			}
 		);

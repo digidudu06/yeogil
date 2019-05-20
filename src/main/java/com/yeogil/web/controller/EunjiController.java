@@ -1,5 +1,6 @@
 package com.yeogil.web.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yeogil.web.domain.CityDTO;
 import com.yeogil.web.domain.HotelDTO;
 import com.yeogil.web.domain.MemberDTO;
 import com.yeogil.web.domain.ScheduleDTO;
@@ -70,12 +70,16 @@ public class EunjiController {
 		List<ScheduleDTO> list = (List<ScheduleDTO>) i1.apply(pxy);
 		IFunction i2 = (Object o) -> schMap.selectMemOneScheAttr(pxy);
 		List<?> attr = (List<?>) i2.apply(pxy);		
+		
+		holist = new ArrayList<HotelDTO>();
 		for(int i=0;i<list.size();i++) {
 			HotelDTO ho = new HotelDTO();
-			ho.setMemberId(id);
 			ho.setCityName(list.get(i).getCity());
 			ho.setStartDate(list.get(i).getStartDate());
+			ho.setMemberId(id);
+			
 			holist.add(hotelMapper.selectHotel(ho));
+			System.out.println(holist.toString());
 		}
 		
 		map.put("list",list);

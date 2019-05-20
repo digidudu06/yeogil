@@ -30,7 +30,7 @@ hotel =(()=>{
 					$('#common_area').empty();
 					$('#common_area').css("background-image", "url('"+_+"/resources/img/hbackground.jpg')");
 					$(compo.hreservation()).appendTo('#common_area');
-					$('#hdes_01').text("여행지");
+					$('#hdes_01').text("목적지");
 					$('#hchc_01').text("체크인");
 					$('#hchc_02').text("체크아웃");
 					$('#hroom_01').text("룸");
@@ -67,9 +67,9 @@ hotel =(()=>{
 //==========================================호텔 크롤링
 							let x = $('.hseo_form-control').val();
 							$.getJSON(_+'/crawling/hvation/'+x,d=>{
-								
-								$(compo.hresult()).appendTo('#common_area');
 								$('#hotel_clean').remove();
+								$(compo.hresult()).appendTo('#common_area');
+								
 								$.each(d.htlist,(i,j)=>{
 									if(i<9){
 										$('<div class="intro_box" style="height:320px"><img src="'+j.imgUrl
