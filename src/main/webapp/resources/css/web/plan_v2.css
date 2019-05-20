@@ -2,7 +2,7 @@
 .plan_header{
 	width:100%;
 	height:606px;
-	background:#7bc0f9 repeat-x;
+	background:#f0efed repeat-x;
 	background-position:0px 0px;
 }
 
@@ -32,7 +32,7 @@
 	height:61px;
 	line-height:61px;
 	color:white;
-	background:#00a79d;
+	background:#878b8a;
 	border-radius:3px;
 	font-size:18px;
 	font-family:'nanum';

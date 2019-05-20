@@ -336,6 +336,7 @@ sche = (()=>{
 		
 		$('#city_list_title').on('click','.back_btn',function(e){
 			e.preventDefault();
+			$('.jwtooltip').remove();
 			deleteMarkers();
 			let _go_state = $(this).attr('data-go_state');
 			if(_go_state == '1'){
@@ -501,19 +502,6 @@ sche = (()=>{
 				labelStyle: {opacity: 0.75}
 			});
 			markers.push(marker);
-			google.maps.event.addListener(marker, 'click', function() {
-				deleteMarkers();
-				$('#country_list_box').hide();
-				$('#country_list_title').hide();
-				$('#city_list_box').show();
-				$('#city_list_title').show();
-				if(cu_srl == '205'){
-					get_ko_state(cu_name);
-				}else{
-					get_city_list(cu_srl, cu_name);
-				}
-			});
-			
 		}
 	
 		function add_marker_city(cityLat, cityLng, cityName, cityEname, citySeq) {
@@ -533,21 +521,7 @@ sche = (()=>{
 				labelStyle: {opacity: 0.75}
 			});
 			markers.push(marker);
-			google.maps.event.addListener(marker, 'click', function() {
-				let _html = '';
-				if(is_state == '1'){
-					deleteMarkers();
-				}else{
-					_html = '<div class="s_cities" data-ci="'+citySeq+'" data-day="2" data-lat="'+cityLng+'" data-lng="'+cityLng+'"><div class="city_route_info"><div class="city_distance_info fl">0Km</div><a href="http://flights.earthtory.com" target="_blank"><div class="city_air_search_btn fr">항공검색</div></a><div class="clear"></div></div>';
-					_html += '<div class="city_info"><div class="del_city_btn fl"><img src="'+img+'/map/del_city_btn_a.png"></div><div class="fl">'+cityName+'</div>';
-					_html += '<div class="fr city_set_day_box"><div class="fl city_set_minus_btn"><img src="'+img+'/map/city_item_minus_btn.png"></div><div class="fl city_set_day_info"><span>1</span>일</div>';
-					_html += '<div class="fl city_set_plus_btn"><img src="'+img+'/map/city_item_plus_btn.png"></div><div class="clear"></div></div><div class="clear"></div></div>';
-					_html += '</div>';
-					$('#selected_cities').append(_html);
-					draw_city_route();
-				}
-			});
-			
+
 		}
 		
 		
@@ -574,10 +548,10 @@ sche = (()=>{
 									$(this).find(".spot_to_inspot img").attr("src",img+"/map/check_img.png");
 									attr_data.push({attrName:$(this).find(".info_box .info_title").text()});
 									
-									$(this).click(function(){
-										$(this).find(".spot_to_inspot img").attr("src",img+"/map/spot_to_inspot_a.png");
-										attr_data.splice({attrName:$(this).find(".info_box .info_title").text()});
-									});
+//									$(this).click(function(){
+//										$(this).find(".spot_to_inspot img").attr("src",img+"/map/spot_to_inspot_a.png");
+//										attr_data.splice({attrName:$(this).find(".info_box .info_title").text()});
+//									});
 								});
 						});
 					$('<div class="detail_city_bottom"><div class="detail_plan_go_btn">관광지 선택 완료</div></div>')

@@ -64,11 +64,10 @@ plan =(()=>{
 			}
 
 			$(compo.plan_header()).appendTo('#common_area');
-			$('#common_area').attr('style','height:700px; background-color:#7bc0f9;');
-			$('#p_header_img').attr('src',img+'/component/p_header_img_ko.jpg');
-				// 이미지 바꾸기
+			$('.plan_header').attr('src',img+'/component/back.jpg');
+			$('#p_header_img').attr('src',img+'/component/header_img.jpg').attr('style','margin-left: -372px;');
 			$('.p_header_btn_box').empty();
-				// 모달 삭제
+			$('.p_header_btn_box').attr('style','margin-top: -222px;');
 			$('<div class="p_header_btn" id="btn_1"></div>')
 				.appendTo('.p_header_btn_box').text('새로운 일정 만들기')
 				.click(function(){
@@ -81,9 +80,8 @@ plan =(()=>{
 					}
 				});
 			
-			$('<div class="jwtooltip"><span class="jwtooltiptext">눌러주세요</span></div>').appendTo('.p_header_btn');
-			$('<div class="jwtooltip"><span class="jwtooltiptext" style="right: -173px;">눌러주세요</span></div>').appendTo('.p_header_btn');
-			$('<img/>').attr('src',img+'/component/p_header_btn_img1.jpg').appendTo('#btn_1');
+
+			$('<img/>').attr('src',img+'/component/p_header_btn_img1.png').appendTo('#btn_1');
 			
 			$('<div class="p_header_btn my_sch" id="btn_2"></div>')
 				.appendTo('.p_header_btn_box').text('나의 일정 보기')
@@ -96,8 +94,9 @@ plan =(()=>{
 						mypage.init();
 					}
 				});
-			
-			$('<img/>').attr('src',img+'/component/p_header_btn_img2.jpg').appendTo('#btn_2');
+			$('<div class="jwtooltip"><span class="jwtooltiptext">눌러주세요</span></div>').appendTo('#btn_1');
+            $('<div class="jwtooltip"><span class="jwtooltiptext" style="right: 24px;">눌러주세요</span></div>').appendTo('#btn_2');
+			$('<img/>').attr('src',img+'/component/p_header_btn_img2.png').appendTo('#btn_2');
 			$('#area_btn').attr('src',img+'/component/area_down.jpg');
 			$('#city_btn').attr('src',img+'/component/area_down.jpg');
 			//안나와 아이콘
