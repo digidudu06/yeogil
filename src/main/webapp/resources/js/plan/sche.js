@@ -145,7 +145,7 @@ sche = (()=>{
 			});
 			
 			$('#home').click(function(){
-				location.assign($.ctx());
+				location.assign($.ctx()+'/index');
 			});
 		});
 	};
@@ -629,7 +629,6 @@ sche = (()=>{
 			}
 			
 			now_select_city_cnt = $('#selected_cities .s_cities').length;
-			console.log('now_select_city_cnt:'+now_select_city_cnt);
 			if(now_select_city_cnt > 0){
 				$('#select_detail_view_city').attr('style','display:block;').show("slide", { direction: "left" }, 200);
 			}else{

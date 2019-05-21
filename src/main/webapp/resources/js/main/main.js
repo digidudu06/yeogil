@@ -23,7 +23,7 @@ main = (()=>{
 	let setContentView = ()=>{
 //==========================================메인 네비바
 		$('#home').click(function(){
-			location.assign($.ctx());
+			location.assign($.ctx()+'/index');
 		});
 		
 		$('#tour').click(function(){
@@ -42,8 +42,12 @@ main = (()=>{
 			location.assign($.ctx()+'/admin');
 		});
 		
-		$('#test_login').click(function(){
+		$('#intro').click(function(){
 			location.assign($.ctx());
+		});
+		
+		$('#test_login').click(function(){
+			location.assign($.ctx()+'/index');
 			sessionStorage.setItem('session', 'test');
 			sessionStorage.setItem('memberId', 'test');
             sessionStorage.setItem('nickname', 'test');
@@ -89,34 +93,6 @@ main = (()=>{
             });
 		});
 	};
-	let test_login = ()=>{
-		
-		let data = {
-				testId: $('form input[name=uname]').val(),
-				testPass: $('form input[name=psw]').val()
-				};
-		$.ajax({
-			url: $.ctx()+'/testlogin/'+data.testId,
-			type: 'post',
-			data: JSON.stringify(data),
-			dataType: 'json',
-			contentType: 'application/json',
-			success: d=>{
-				if(d.customerId != ''){
-					alert('로그인 성공'+d.testId);
-					 location.assign(_);
-                     sessionStorage.setItem('memberId', d.testId);
-                     sessionStorage.setItem('nickname', d.nickname);
-                     sessionStorage.setItem('thumbnailImg', d.thumbnailImg);
-				}else{
-					alert('로그인 실패');
-				}
-			},
-			error: e=>{
-				alert('에러');
-			}
-		});
-	};
 	let login = ()=>{
 		Kakao.init('0b0fec75e07cb3ea427be11fe3287c3b');
 		Kakao.Auth.login({
@@ -133,7 +109,7 @@ main = (()=>{
 	                              dataType:'json',
 	                              contentType : "application/json; charset=UTF-8",
 	                              success:function(res){
-	                                 location.assign(_);
+	                                 location.assign(_+'/index');
 	                                 sessionStorage.setItem('memberId', res.memberId);
 	                                 sessionStorage.setItem('nickname', res.nickname);
 	                                 sessionStorage.setItem('thumbnailImg', res.thumbnailImg);
@@ -156,7 +132,7 @@ main = (()=>{
         sessionStorage.removeItem('memberId');
         sessionStorage.removeItem('nickname');
         sessionStorage.removeItem('thumbnailImg');
-         location.assign($.ctx());
+        location.assign($.ctx()+'/index');
     };
 	return {init:init, login:login, logout:logout}
 

@@ -114,7 +114,7 @@ mysche = (()=>{
 			
 			//==========================================메인 네비바
 			$('#home').click(function(){
-				location.assign($.ctx());
+				location.assign($.ctx()+'/index');
 			});
 			
 			$('#tour').click(function(){
@@ -159,7 +159,7 @@ mysche = (()=>{
 		sessionStorage.removeItem('memberId');
         sessionStorage.removeItem('nickname');
         sessionStorage.removeItem('thumbnailImg');
-		location.assign(_);
+        location.assign(_+'/index');
 	};
 	return {init:init,logout:logout};
 })();

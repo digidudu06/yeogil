@@ -39,6 +39,7 @@
 					<a class="fl"><li id="plan">일정만들기</li></a>
 					<a class="fl"><li id="reservation">항공·호텔</li></a>
 					<a class="fl"><li id="admin" >관리자</li></a>
+					<a class="fl"><li id="intro" >인트로</li></a>
 				</ul>
 				<div class="fr gnb_box" style="padding-top: 16px;">
 					<a id="custom-login-btn" href="javascript:loginWithKakao()">

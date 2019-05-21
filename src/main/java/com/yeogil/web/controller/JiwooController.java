@@ -148,6 +148,13 @@ public class JiwooController {
 			sche.setStartDate(format.format(cal.getTime()));
 			transactionservice.txinsert(sche);
 		}
+		ScheduleDTO sch = new ScheduleDTO();
+		sch.setMember_id(memberid);
+		@SuppressWarnings("unchecked")
+		HashMap<String, Object> t3 = (HashMap<String, Object>) list.get(0);
+		sch.setAttrName((String) t3.get("attrName"));
+		sch.setPlanTitle((String) t.get("planTitle"));
+		schedulemapper.insertMemsch(sch);
 		return map;
 	}
 }

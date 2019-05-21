@@ -78,7 +78,6 @@ city = (()=>{
 					+'	<div class="city_right">'
 					+'		<div class="city_name">'+j.attrName+'</div>'
 					+'		<div class="city_name_en">'+j.attrEname+'</div>'
-					+'		<div class="spot_names">'+j.CITY_DNAME+'</div>'
 					+'	</div>'
 					+'	<div class="clear"></div>'
 					+'</a>'

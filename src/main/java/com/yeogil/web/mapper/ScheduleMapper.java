@@ -19,6 +19,7 @@ public interface ScheduleMapper {
 	public void insertSchedule2(MemschCityDTO mem);
 	public void insertSchedule3(MemschAttrDTO mem);
 	public void insertSchedules(ScheduleDTO sch);
+	public void insertMemsch(ScheduleDTO sch);
 	
 	public List<AttractionDTO> scheList(ScheduleDTO attr);
 	public List<ScheduleDTO> selectAllSchedules(String id);
@@ -41,5 +42,6 @@ public interface ScheduleMapper {
 	public void updateSchedule(ScheduleDTO sch);
 	
 	public void deleteSche(Proxy pxy);
+	public void deleteMemSche(Proxy pxy);
 	
 }

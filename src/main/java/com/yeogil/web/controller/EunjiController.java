@@ -105,6 +105,7 @@ public class EunjiController {
 	public Map<?,?> deleteSchedule(@RequestBody Map<?,?> data) {
 		pxy.memSche(data);
 		schMap.deleteSche(pxy);
+		schMap.deleteMemSche(pxy);
 		return map;
 	}
 }

@@ -64,7 +64,7 @@ admin = (()=>{
 		});
 		
 		$('#cj_home').attr("style","cursor: pointer;").click(()=>{
-			location.assign($.ctx());
+			location.assign($.ctx()+'/index');
 		});
 	};
 	let word_map_chart = (mapData)=>{
