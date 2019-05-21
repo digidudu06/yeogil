@@ -27,12 +27,7 @@ public class HomeController {
 		session.setAttribute("img", ctx+"/resources/img");
 		return "index";
 	}
-	
-	/*
-	 * @RequestMapping(value = "/index", method = RequestMethod.GET) public String
-	 * index(Locale locale, Model model) { return "index"; }
-	 */
-	
+
 	@RequestMapping(value = "/tour", method = RequestMethod.GET)
 	public String changjun(Locale locale, Model model) {
 		return "tour_index";

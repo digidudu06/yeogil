@@ -39,6 +39,14 @@ tour = (()=>{
 		$('#admin').click(function(){
 			location.assign($.ctx()+'/admin');
 		});
+		
+		$('#test_login').click(function(){
+			location.assign($.ctx()+'/tour');
+			sessionStorage.setItem('session', 'test');
+			sessionStorage.setItem('memberId', 'test');
+            sessionStorage.setItem('nickname', 'test');
+            sessionStorage.setItem('thumbnailImg', 'default_img');
+		});
 		/*if(!(sessionStorage.getItem('memberId') === '1073491307')){
 			$('#admin').hide();
 		}else{

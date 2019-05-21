@@ -14,7 +14,6 @@ mysche = (()=>{
 	let onCreate=()=>{
 		setContentView();
 	};
-	//ssss
 	let setContentView=()=>{
 		mainnav();
 
@@ -92,6 +91,7 @@ mysche = (()=>{
 			});
 			$('#edit_detail_plan').click(function(){
 				$('#header').remove();
+				$('#footer').remove();
 				 $.ajax({
                      url:_+'/deleteSchedule',
                      type: 'POST',
@@ -120,7 +120,7 @@ mysche = (()=>{
 						+'<a class="fl"><li id="plan">일정만들기</li></a>'
 						+'<a class="fl"><li id="reservation">항공·호텔</li></a>'
 						+'<a class="fl"><li id="admin">관리자</li></a></ul>'
-					+'<div class="fr gnb_box" style="padding-top: 10px;">'
+					+'<div class="fr gnb_box" style="padding-top: 16px;">'
 						+'<a id="custom-login-btn" href="javascript:loginWithKakao()">'
 							+'<img src="https://developers.kakao.com/assets/img/about/logos/kakaologin/kr/kakao_login_btn_small.png" style="width: 100px;">'
 				+'</a></div><div class="clear"></div></div></div>').prependTo('#wrapper');
@@ -145,7 +145,22 @@ mysche = (()=>{
 			$('#admin').click(function(){
 				location.assign($.ctx()+'/admin');
 			});
+			
+			$('#test_login').click(function(){
+				location.assign($.ctx()+'/sche');
+				sessionStorage.setItem('session', 'test');
+				sessionStorage.setItem('memberId', 'test');
+	            sessionStorage.setItem('nickname', 'test');
+	            sessionStorage.setItem('thumbnailImg', 'default_img');
+			});
 		});
+	};
+	let logout=()=>{
+		sessionStorage.removeItem('session');
+		sessionStorage.removeItem('memberId');
+        sessionStorage.removeItem('nickname');
+        sessionStorage.removeItem('thumbnailImg');
+		location.assign(_);
 	};
 	return {init:init};
 })();

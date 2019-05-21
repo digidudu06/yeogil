@@ -40,9 +40,14 @@
 					<a class="fl"><li id="reservation">항공·호텔</li></a>
 					<a class="fl"><li id="admin" >관리자</li></a>
 				</ul>
-				<div class="fr gnb_box" style="padding-top: 10px;">
+				<div class="fr gnb_box" style="padding-top: 16px;">
 					<a id="custom-login-btn" href="javascript:loginWithKakao()">
-						<img src="https://developers.kakao.com/assets/img/about/logos/kakaologin/kr/kakao_login_btn_small.png" style="width: 100px;"/>
+						<img src="https://developers.kakao.com/assets/img/about/logos/kakaologin/kr/kakao_login_btn_small.png"/>
+					</a>
+					<a class="fr">
+						<div id="test_login" class="fl gnb_login_btn" style="width: 72px; height: 30px; margin-top: 0px; line-height: 2.3; font-size: 12px; border-radius: 4px; margin-left: 8px; border-right-width: 0px;">
+							TEST LOGIN
+						</div>
 					</a>
 					
 				</div>
@@ -115,6 +120,7 @@
 
 <script>
 	yeogil.init("${ctx}");
+
 </script>
 </body>
 </html>

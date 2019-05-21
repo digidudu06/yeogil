@@ -38,12 +38,16 @@ main = (()=>{
 			location.assign($.ctx()+'/reser');
 		});
 		
-		/*$('#my_sch_navi').click(function(){
-			location.assign($.ctx()+'/sche');
-		});*/
-		
 		$('#admin').click(function(){
 			location.assign($.ctx()+'/admin');
+		});
+		
+		$('#test_login').click(function(){
+			location.assign($.ctx());
+			sessionStorage.setItem('session', 'test');
+			sessionStorage.setItem('memberId', 'test');
+            sessionStorage.setItem('nickname', 'test');
+            sessionStorage.setItem('thumbnailImg', 'default_img');
 		});
 		/*if(!(sessionStorage.getItem('memberId') === '1073491307')){
 			$('#admin').hide();
@@ -52,9 +56,11 @@ main = (()=>{
 				location.assign($.ctx()+'/admin');
 			});
 		}*/
+		
 //==================================================	
 		$.getScript(compojs,()=>{
 			$(compo.main_contents()).appendTo('#common_area');
+			$('#remove_ej').remove();
 			$('.more_btn').remove();
 			$('.search_area').empty();
 			$('.main_top').attr('style', 'background:url('+img+'/main/key_bg_3.jpg) no-repeat;background-size:cover;');
@@ -81,6 +87,34 @@ main = (()=>{
                             +'</a>').appendTo('#top_city_list');
                 });
             });
+		});
+	};
+	let test_login = ()=>{
+		
+		let data = {
+				testId: $('form input[name=uname]').val(),
+				testPass: $('form input[name=psw]').val()
+				};
+		$.ajax({
+			url: $.ctx()+'/testlogin/'+data.testId,
+			type: 'post',
+			data: JSON.stringify(data),
+			dataType: 'json',
+			contentType: 'application/json',
+			success: d=>{
+				if(d.customerId != ''){
+					alert('로그인 성공'+d.testId);
+					 location.assign(_);
+                     sessionStorage.setItem('memberId', d.testId);
+                     sessionStorage.setItem('nickname', d.nickname);
+                     sessionStorage.setItem('thumbnailImg', d.thumbnailImg);
+				}else{
+					alert('로그인 실패');
+				}
+			},
+			error: e=>{
+				alert('에러');
+			}
 		});
 	};
 	let login = ()=>{

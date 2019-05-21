@@ -36,13 +36,17 @@ airport = (()=>{
 			$('#reservation').click(function(){
 				location.assign($.ctx()+'/reser');
 			});
-
-			/*$('#my_sch_navi').click(function(){
-			location.assign($.ctx()+'/sche');
-			});*/
 			
 			$('#admin').click(function(){
 				location.assign($.ctx()+'/admin');
+			});
+			
+			$('#test_login').click(function(){
+				location.assign($.ctx()+'/reser');
+				sessionStorage.setItem('session', 'test');
+				sessionStorage.setItem('memberId', 'test');
+	            sessionStorage.setItem('nickname', 'test');
+	            sessionStorage.setItem('thumbnailImg', 'default_img');
 			});
 			/*if(!(sessionStorage.getItem('memberId') === '1073491307')){
 				$('#admin').hide();

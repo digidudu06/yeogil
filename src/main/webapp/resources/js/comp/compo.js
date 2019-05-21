@@ -18,7 +18,7 @@ compo = {
 		+'		</div>'
 		+'	</div>'
 		+'<div id="contents"></div>'
-		+'<div class="wrap" style="padding-top:30px; padding-bottom:30px">'
+		+'<div id="remove_ej" class="wrap" style="padding-top:30px; padding-bottom:30px">'
 		+'<div class="page_title">'
 		+'최근 여행일정'
 		+'</div>'
@@ -110,7 +110,7 @@ compo = {
 		+'            </div>'
 	},
 	logon : ()=>{
-		return 	'<div class="dropdown">'
+		return 	'<div class="dropdown" style="margin-top: -6px;">'
 		  +'    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">'
   		  +'    <span class="caret"></span></button>'
   		  +'    <ul class="dropdown-menu">'
