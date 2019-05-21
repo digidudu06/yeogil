@@ -20,19 +20,7 @@ mysche = (()=>{
 
 		$.getScript(compojs,()=>{
 			$('#common_area').empty();
-			
-			if(sessionStorage.getItem('session') === null){
-				$('#custom-login-btn').click(function loginWithKakao() {
-					login();
-				});
-			}else{
-				$('.gnb_box').empty();
-				$(compo.logon()).appendTo('.gnb_box');
-				$('<img src="'+img+'/common/logon_img.png" style="width: 30px;">').prependTo('.dropdown-toggle ');
-				$('#logout_btn').click(()=>{
-					logout();
-				});
-			}
+			$('#footer').remove();
 			
 			$(compo.mysche()).appendTo('#common_area');
 			$('#mysche_nav').css("padding-bottom","30px");
@@ -145,7 +133,27 @@ mysche = (()=>{
 			$('#admin').click(function(){
 				location.assign($.ctx()+'/admin');
 			});
+			
+			if(sessionStorage.getItem('session') === null){
+				$('#custom-login-btn').click(function loginWithKakao() {
+					login();
+				});
+			}else{
+				$('.gnb_box').empty();
+				$(compo.logon()).appendTo('.gnb_box');
+				$('<img src="'+img+'/common/logon_img.png" style="width: 30px;">').prependTo('.dropdown-toggle ');
+				$('#logout_btn').click(()=>{
+					logout();
+				});
+			}
 		});
 	};
-	return {init:init};
+	let logout=()=>{
+		sessionStorage.removeItem('session');
+		sessionStorage.removeItem('memberId');
+		sessionStorage.removeItem('nickname');
+		sessionStorage.removeItem('thumbnailImg');
+		location.assign($.ctx());
+	};
+	return {init:init,logout:logout};
 })();
