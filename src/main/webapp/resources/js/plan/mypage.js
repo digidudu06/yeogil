@@ -15,18 +15,7 @@ mypage = (()=>{
 	let setContentView=()=>{
 		mainnav();
 		$.getScript(compojs,()=>{
-			$('#common_area').empty();
-			
-			if(sessionStorage.getItem('session') === null){
-			}else{
-				$('.gnb_box').empty();
-				$(compo.logon()).appendTo('.gnb_box');
-				$('<img src="'+img+'/common/logon_img.png" style="width: 30px;">').prependTo('.dropdown-toggle ');
-				$('#logout_btn').click(()=>{
-					logout();
-				});
-			}
-			
+			$('#common_area').empty();		
 			$(compo.mypage_sche()).appendTo('#common_area');
 			$('#my_top_menu').empty();
 			$('#ejcreat_sche').click(()=>{
@@ -77,7 +66,6 @@ mypage = (()=>{
 						+'</a>').appendTo('.plan_inner')
 						.click(function(){
 							$('#header').remove();
-//							$('#footer').remove();
 							mysche.init(j.PLAN_TITLE);
 						});
 			});
@@ -128,6 +116,18 @@ mypage = (()=>{
 	            sessionStorage.setItem('nickname', 'test');
 	            sessionStorage.setItem('thumbnailImg', 'default_img');
 			});
+			if(sessionStorage.getItem('session') === null){
+				$('#custom-login-btn').click(function loginWithKakao() {
+					login();
+				});
+			}else{
+				$('.gnb_box').empty();
+				$(compo.logon()).appendTo('.gnb_box');
+				$('<img src="'+img+'/common/logon_img.png" style="width: 30px;">').prependTo('.dropdown-toggle ');
+				$('#logout_btn').click(()=>{
+					logout();
+				});
+			}
 		});
 	};
 	let logout=()=>{
@@ -137,5 +137,5 @@ mypage = (()=>{
         sessionStorage.removeItem('thumbnailImg');
 		location.assign(_);
 	};
-	return {init:init, memAllSche:memAllSche};
+	return {init:init, memAllSche:memAllSche,logout:logout};
 })();

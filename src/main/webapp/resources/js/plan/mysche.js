@@ -19,19 +19,7 @@ mysche = (()=>{
 
 		$.getScript(compojs,()=>{
 			$('#common_area').empty();
-			
-			if(sessionStorage.getItem('session') === null){
-				$('#custom-login-btn').click(function loginWithKakao() {
-					login();
-				});
-			}else{
-				$('.gnb_box').empty();
-				$(compo.logon()).appendTo('.gnb_box');
-				$('<img src="'+img+'/common/logon_img.png" style="width: 30px;">').prependTo('.dropdown-toggle ');
-				$('#logout_btn').click(()=>{
-					logout();
-				});
-			}
+			$('#footer').remove();
 			
 			$(compo.mysche()).appendTo('#common_area');
 			$('#mysche_nav').css("padding-bottom","30px");
@@ -91,7 +79,6 @@ mysche = (()=>{
 			});
 			$('#edit_detail_plan').click(function(){
 				$('#header').remove();
-				$('#footer').remove();
 				 $.ajax({
                      url:_+'/deleteSchedule',
                      type: 'POST',
@@ -153,6 +140,18 @@ mysche = (()=>{
 	            sessionStorage.setItem('nickname', 'test');
 	            sessionStorage.setItem('thumbnailImg', 'default_img');
 			});
+			if(sessionStorage.getItem('session') === null){
+				$('#custom-login-btn').click(function loginWithKakao() {
+					login();
+				});
+			}else{
+				$('.gnb_box').empty();
+				$(compo.logon()).appendTo('.gnb_box');
+				$('<img src="'+img+'/common/logon_img.png" style="width: 30px;">').prependTo('.dropdown-toggle ');
+				$('#logout_btn').click(()=>{
+					logout();
+				});
+			}
 		});
 	};
 	let logout=()=>{
@@ -162,5 +161,5 @@ mysche = (()=>{
         sessionStorage.removeItem('thumbnailImg');
 		location.assign(_);
 	};
-	return {init:init};
+	return {init:init,logout:logout};
 })();
